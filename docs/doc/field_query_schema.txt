@@ -1,0 +1,18 @@
+JSON Schema: Field_query
+
+Properties
+
+boolean	negated
+
+string	field
+
+string	value
+
+boolean	literal
+
+string	comparator
+
+
+
+
+
