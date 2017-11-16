@@ -1,4 +1,4 @@
-The ArchivesSpace Public User Interface
+The ArchivesSpace public user interface
 =======================================
 
 The ArchivesSpace Public User Interface (PUI) provides a public
@@ -16,8 +16,8 @@ To see the full list of available options, see the file
 
 ## Preserving Patron Privacy
 
-The **:block_referrer** key in the configuration file (default: **true**) determines whether the full referring URL is 
-transmitted when the user clicks a link to a website outside the web domain of your instance of ArchivesSpace.  This 
+The **:block_referrer** key in the configuration file (default: **true**) determines whether the full referring URL is
+transmitted when the user clicks a link to a website outside the web domain of your instance of ArchivesSpace.  This
 protects your patrons from tracking by that site.
 
 ## Main Navigation Menu
@@ -50,7 +50,7 @@ locale files under the `locales/public` directory of your
 ArchivesSpace distribution.
 
 ## Addition of a "lead paragraph"
- 
+
 You can also use the custom `.yml` files, described above, to add a
 custom "lead paragraph" (including html markup) for one or more of
 your repositories, keyed to the repository's code.

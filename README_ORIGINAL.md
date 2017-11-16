@@ -292,8 +292,8 @@ database snapshots using the following configuration settings:
      #
      # Database snapshots are written to 'data/demo_db_backups' by
      # default.
-     AppConfig[:demo_db_backup_schedule] = "0 4 * * *"
-     AppConfig[:demo_db_backup_number_to_keep] = 7
+     AppConfig[:demo_db_backup_schedule] = "0 4 \* \* \*"
+     AppConfig[:demo\_db\_backup\_number\_to\_keep] = 7
 
 Solr indexes can always be recreated from the contents of the
 database, but backing them up can reduce your recovery time if
@@ -303,8 +303,8 @@ following configuration settings:
      # Create one snapshot per hour and keep only one.
      #
      # Solr snapshots are written to 'data/solr_backups' by default.
-     AppConfig[:solr_backup_schedule] = "0 * * * *"
-     AppConfig[:solr_backup_number_to_keep] = 1
+     AppConfig[:solr_backup_schedule] = "0 \* \* \* \*"
+     AppConfig[:solr\_backup\_number\_to\_keep] = 1
 
 
 ## Recovering from backup

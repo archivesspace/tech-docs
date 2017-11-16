@@ -1,149 +1,5 @@
-# ArchivesSpace Architecture overview
-
-## The ArchivesSpace API
-
-ArchivesSpace is divided into several components: the backend, which
-exposes the major workflows and data types of the system via a
-REST API, a staff interface, a public interface, and a search system,
-consisting of Solr and an indexer application.
-
-These components interact by exchanging JSON data.  The format of this
-data is defined by a class called JSONModel.
-
-
-### JSONModel -- a validated ArchivesSpace record
-
-The ArchivesSpace system is concerned with managing a number of
-different archival record types.  Each record can be expressed as a
-set of nested key/value pairs, and associated with each record type is
-a number of rules that describe what it means for a record of that
-type to be valid:
-
-  * some fields are mandatory, some optional
-  * some fields can only take certain types
-  * some fields can only take values from a constrained set
-  * some fields are dependent on other fields
-  * some record types can be nested within other record types
-  * some record types may be related to others through a hierarchy
-  * some record types form a relationship graph with other record
-    types
-
-The JSONModel class provides a common language for expressing these
-rules that all parts of the application can share.  There is a
-JSONModel class instance for each type of record in the system, so:
-
-    JSONModel(:digital_object)
-
-is a class that knows how to take a hash of properties and make sure
-those properties conform to the specification of a Digital Object:
-
-    JSONModel(:digital_object).from_hash(myhash)
-
-If it passes validation, a new JSONModel(:digital\_object) instance is
-returned, which provides accessors for accessing its values, and
-facilities for round-tripping between JSON documents and regular Ruby
-hashes:
-
-     obj = JSONModel(:digital_object).from_hash(myhash)
-
-     obj.title  # or obj['title']
-     obj.title = 'a new title'  # or obj['title'] = 'a new title'
-
-     obj._exceptions  # Validates the object and reports any issues
-
-     obj.to_hash  # Turn the JSONModel object back into a regular hash
-     obj.to_json  # Serialize the JSONModel object into JSON
-
-
-Much of the validation performed by JSONModel is provided by the JSON
-schema definitions listed in the `common/schemas` directory.  JSON
-schemas provide a standard way of declaring which properties a record
-may and may not contain, along with their types and other
-restrictions.  ArchivesSpace uses these schemas to capture the
-validation rules defining each record type in a declarative and
-relatively self-documenting fashion.
-
-JSONModel instances are the primary data interchange mechanism for the
-ArchivesSpace system: the API consumes and produces JSONModel
-instances (in JSON format), and much of the user interface's life is
-spent turning forms into JSONModel instances and shipping them off to
-the backend.
-
-
-### Working with the ArchivesSpace API
-
-#### Authentication
-
-Most actions against the backend require you to be logged in as a user
-with the appropriate permissions.  By sending a request like:
-
-     POST /users/admin/login?password=login
-
-your authentication request will be validated, and a session token
-will be returned in the JSON response for your request.  To remain
-authenticated, provide this token with subsequent requests in the
-`X-ArchivesSpace-Session` header.  For example:
-
-     X-ArchivesSpace-Session: 8e921ac9bbe9a4a947eee8a7c5fa8b4c81c51729935860c1adfed60a5e4202cb
-
-
-#### CRUD
-
-The ArchivesSpace API provides CRUD-style interactions for a number of
-different "top-level" record types.  Working with records follows a
-fairly standard pattern:
-
-     # Get a paginated list of accessions from repository '123'
-     GET /repositories/123/accessions?page=1
-
-     # Create a new accession, returning the ID of the new record
-     POST /repositories/123/accessions
-     {... a JSON document satisfying JSONModel(:accession) here ...}
-
-     # Get a single accession (returned as a JSONModel(:accession) instance) using the ID returned by the previous request
-     GET /repositories/123/accessions/456
-
-     # Update an existing accession
-     POST /repositories/123/accessions/456
-     {... a JSON document satisfying JSONModel(:accession) here ...}
-
-
-
-### JSONModel::Client -- A high-level API for interacting with the ArchivesSpace backend
-
-To save the need for a lot of HTTP request wrangling, ArchivesSpace
-ships with a module called JSONModel::Client that simplifies the
-common CRUD-style operations.  Including this module just requires
-passing an additional parameter when initialising JSONModel:
-
-     JSONModel::init(:client_mode => true, :url => @backend_url)
-     include JSONModel
-
-If you'll be working against a single repository, it's convenient to
-set it as the default for subsequent actions:
-
-     JSONModel.set_repository(123)
-
-Then, several additional JSONModel methods are available:
-
-     # As before, get a paginated list of accessions (GET)
-     JSONModel(:accession).all(:page => 1)
-
-     # Create a new accession (POST)
-     obj = JSONModel(:accession).from_hash(:title => "A new accession", ...)
-     obj.save
-
-     # Get a single accession by ID (GET)
-     obj = JSONModel(:accession).find(123)
-
-     # Update an existing accession (POST)
-     obj = JSONModel(:accession).find(123)
-     obj.title = "Updated title"
-     obj.save
-
-
-
-## The ArchivesSpace backend
+The ArchivesSpace backend
+==========================
 
 The backend is responsible for implementing the ArchivesSpace API, and
 supports the sort of access patterns shown in the previous section.
@@ -154,7 +10,7 @@ JSON documents produced from instances of JSONModel classes.
 The following sections describe how the backend fits together.
 
 
-### main.rb -- load and initialize the system
+# main.rb -- load and initialize the system
 
 The `main.rb` program is responsible for starting the ArchivesSpace
 system: loading all controllers and models, creating
@@ -196,7 +52,7 @@ the following facilities:
     of each request.
 
 
-### rest.rb -- Request and response handling for REST endpoints
+# rest.rb -- Request and response handling for REST endpoints
 
 The `rest.rb` module provides the mechanism used to define the API's
 REST endpoints.  Each endpoint definition includes:
@@ -240,7 +96,7 @@ time a request reaches the body of an endpoint:
     exception, the transaction will be automatically rolled back.
 
 
-### Controllers
+# Controllers
 
 As touched upon in the previous section, controllers implement the
 functionality of the ArchivesSpace API by registering one or more
@@ -255,7 +111,7 @@ generally don't do much more than coordinate the classes from the
 model layer and send a response back to the client.
 
 
-#### crud_helpers.rb -- capturing common CRUD controller actions
+## crud_helpers.rb -- capturing common CRUD controller actions
 
 Even though controllers are quite thin, there's still a lot of overlap
 in their behaviour.  Each record type in the system supports the same
@@ -268,7 +124,7 @@ helper methods that are invoked by each controller, providing methods
 for the standard operations of the system.
 
 
-### Models
+# Models
 
 The backend's model layer is where the action is.  The model layer's
 role is to bridge the gap between the high-level JSONModel objects
@@ -309,7 +165,7 @@ constructed by combining a number of mix-ins (Ruby modules) to satisfy
 the requirements of the given record type.  Features à la carte!
 
 
-#### ASModel and other mix-ins
+## ASModel and other mix-ins
 
 At a minimum, every model includes the `ASModel` mix-in, which provides
 base versions of the following methods:
@@ -355,7 +211,7 @@ call to the next mix-in in the chain (eventually reaching ASModel),
 then manipulate the result to implement the desired behaviour.
 
 
-#### Nested records
+## Nested records
 
 Some record types, like accessions, digital objects, and subjects, are
 *top-level records*, in the sense that they are created independently
@@ -386,7 +242,7 @@ property of the incoming record.  Each of these date records will be
 automatically linked to the created accession.
 
 
-#### Relationships
+## Relationships
 
 A relationship is a link between two top-level records, where the link
 is a separate, dynamically generated, model with zero or more
@@ -436,7 +292,7 @@ appropriate join tables in the database to store this relationship and
 retrieve it later as needed.
 
 
-#### Agents and `agent_manager.rb`
+## Agents and `agent_manager.rb`
 
 Agents present a bit of a representational challenge.  There are four
 types of agents (person, family, corporate entity, software), and at a
@@ -478,7 +334,7 @@ This definition sets up the properties of that agent.  It creates:
 
 
 
-### Validations
+# Validations
 
 As records are added to and updated within the ArchivesSpace system,
 they are validated against a number of rules to make sure they are
@@ -520,7 +376,7 @@ validations), while system-level validations are handled by the model
 and the database schema.
 
 
-### Optimistic concurrency control
+# Optimistic concurrency control
 
 Updating a record using the ArchivesSpace API is a two part process:
 
@@ -545,7 +401,7 @@ the latest version before applying their update.
 
 
 
-### The ArchivesSpace permissions model
+# The ArchivesSpace permissions model
 
 The ArchivesSpace backend enforces access control, defining which
 users are allowed to create, read, update, suppress and delete the
@@ -578,7 +434,7 @@ are a member of a group that has been assigned permission to perform
 that action.
 
 
-#### Conceptual trickery
+## Conceptual trickery
 
 Since they're repository-scoped, groups govern access to repositories.
 However, there are several record types that exist at the top-level of
@@ -593,49 +449,3 @@ entire system.  One example of this is the "admin" user, which is
 granted all permissions by the "administrators" group of the global
 repository; another is the "search indexer" user, which can read (but
 not update or delete) any record in the system.
-
-
-### Search indexing
-
-The ArchivesSpace system uses Solr for its full-text search.  As
-records are added/updated/deleted by the backend, the corresponding
-changes are made to the Solr index to keep them (roughly)
-synchronized.
-
-Keeping the backend and Solr in sync is the job of the "indexer", a
-separate process that runs in the background and watches for record
-updates.  The indexer operates in two modes simultaneously:
-
-  * The periodic mode polls the backend to get a list of records that
-    were added/modified/deleted since it last checked.  These changes
-    are propagated to the Solr index.  This generally happens every 30
-    to 60 seconds (and is configurable).
-
-  * The real-time mode responds to updates as they happen, applying
-    changes to Solr as soon as they're applied to the backend.  This
-    aims to reflect updates within the search indexes in milliseconds
-    or seconds.
-
-The two modes of operation overlap somewhat, but they serve different
-purposes.  The periodic mode ensures that records are never missed due
-to transient failures, and will bring the indexes up to date even if
-the indexer hasn't run for quite some time--even creating them from
-scratch if necessary.  This mode is also used for indexing updates
-made by bulk import processes and other updates that don't need to be
-reflected in the indexes immediately.
-
-The real-time indexer mode attempts to apply updates to the index much
-more quickly.  Rather than polling, it performs a `GET` request
-against the `/update-feed` endpoint of the backend.  This endpoint
-returns any records that were updated since the last time it was asked
-and, most importantly, it leaves the request hanging if no records
-have changed.
-
-By calling this endpoint in a loop, the real-time indexer spends most
-of its time sitting around waiting for something to happen.  The
-moment a record is updated, the already-pending request to the
-`/update-feed` endpoint yields the updated record, which is sent to
-Solr and indexed immediately.  This avoids the delays associated with
-polling and keeps indexing latency low where it matters.  For example,
-newly created records should appear in the browse list by the time a
-user views it.

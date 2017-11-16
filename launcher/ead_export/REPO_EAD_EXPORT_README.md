@@ -1,7 +1,10 @@
 ArchivesSpace repository EAD Exporter
 =====================================
 
-Exports all published resource record EAD XML files associated with a single repository into a zip archive. This zip file will be saved in the ArchivesSpace data directory (as defined in `config.rb`) and include the repository id in the filename.
+Exports all published resource record EAD XML files associated with a single
+repository into a zip archive. This zip file will be saved in the ArchivesSpace
+data directory (as defined in `config.rb`) and include the repository id in the
+filename.
 
 Usage
 -----
@@ -18,7 +21,7 @@ chmod 0600 ~/.aspace_password
 vi ~/.aspace_password # enter your password
 ```
 
-Then call the script like: 
+Then call the script like:
 
 ```
 ./scripts/ead_export.sh user $(cat /home/user/.aspace_password) repository_id

@@ -1,5 +1,5 @@
 Running ArchivesSpace under a prefix
-------------------------------------
+=====================================
 
 **Note: For versions > 2.0.1, the use of a prefix is not working correctly. Please look for a complete implementation for prefixes later in 2017.**
 

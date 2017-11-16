@@ -1,7 +1,7 @@
 ArchivesSpace Stylesheets
 =========================
 
-ArchivesSpace includes three stylesheets for you to transform exported
+ArchivesSpace includes three stylesheets for you to transform exported data
 into human-friendly formats. The stylesheets included are as follows:
 
 * `as-eac-cpf-html.xsl`: Generates HTML from EAC-CPF records
