@@ -1,5 +1,4 @@
-Running ArchivesSpace with load balancing and multiple tenants
-==============================================================
+# Running ArchivesSpace with load balancing and multiple tenants
 
 This document describes two aspects of running ArchivesSpace in a
 clustered environment: for load-balancing purposes, and for supporting
@@ -16,7 +15,7 @@ Unless otherwise stated, it is assumed that you have root access on
 your machines, and all commands are to be run as root (or with sudo).
 
 
-# Architecture overview
+## Architecture overview
 
 ![Overview](../images/overview.png)
 
@@ -32,7 +31,7 @@ This document assumes an architecture with the following components:
   * A shared NFS volume mounted under `/aspace` on each machine
 
 
-# Overview of files
+## Overview of files
 
 The `files` directory in this repository (in the same directory as this
 `README.md`) contains what will become the contents of the `/aspace`
@@ -45,7 +44,7 @@ directory, shared by all servers.  It has the following layout:
      │   │   └── tenant.rb
      │   ├── software
      │   └── tenants
-     │       └── _template
+     │       └── \_template
      │           └── archivesspace
      │               ├── config
      │               │   ├── config.rb
@@ -56,7 +55,7 @@ directory, shared by all servers.  It has the following layout:
              ├── common
              │   └── server.conf
              └── tenants
-                 └── _template.conf.example
+                 └── \_template.conf.example
 
 
 The highlights:
@@ -140,7 +139,7 @@ now, the only change we need to make is to configure Nginx to load our
 tenants' configuration files.  To do this, edit
 `/etc/nginx/conf.d/default.conf` and add the line:
 
-     include /aspace/nginx/conf/tenants/*.conf;
+     include /aspace/nginx/conf/tenants/\*.conf;
 
 *Note:* the location of Nginx's main config file might vary between
 systems.  Another likely candidate is `/etc/nginx/nginx.conf`.
@@ -256,7 +255,7 @@ up.  We can do this on either `apps1` or `apps2`--it only needs to be
 done once:
 
      cd /aspace/archivesspace/tenants
-     cp -a _template exampletenant
+     cp -a \_template exampletenant
 
 Note that we've named the tenant `exampletenant` to match the Unix
 account it will run as.  Later on, the startup script will use this
@@ -344,7 +343,7 @@ instance.  Working on the `loadbalancer` machine, we create a new
 configuration file for our tenant:
 
      cd /aspace/nginx/conf/tenants
-     cp -a _template.conf.example exampletenant.conf
+     cp -a \_template.conf.example exampletenant.conf
 
 Now open `/aspace/nginx/conf/tenants/exampletenant.conf` in an
 editor.  You will need to:

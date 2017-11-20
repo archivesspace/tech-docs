@@ -1,18 +1,17 @@
-Upgrading to a new release of ArchivesSpace
-============================================
+# Upgrading to a new release of ArchivesSpace
 
 *  **[Special considerations when upgrading to v1.1.1]**
 *  **[Special considerations when upgrading to v1.1.0](./upgrading/UPGRADING_1.1.0.md)**
 *  **[Special considerations when upgrading from v1.4.2 to 1.5.x (these considerations also apply when upgrading from 1.4.2 to any version through 2.0.1)](./upgrading/UPGRADING_1.5.0.md)**
 *  **[Special considerations when upgrading to 2.1.0](./upgrading/UPGRADING_2.1.0.md)**
 
-# Create a backup of your ArchivesSpace instance
+## Create a backup of your ArchivesSpace instance
 
 You should make sure you have a working backup of your ArchivesSpace
 installation before attempting an upgrade.  Follow the steps
 under the [Backup and recovery section](./backup.md) to do this.
 
-# Unpack the new version
+## Unpack the new version
 
 It's a good idea to unpack a fresh copy of the version of
 ArchivesSpace you are upgrading to.  This will ensure that you are
@@ -33,13 +32,13 @@ For example, on Mac OS X or Linux:
 On Windows, you can do the same by extracting ArchivesSpace into a new
 folder you create in Windows Explorer.
 
-# Shut down your ArchivesSpace instance
+## Shut down your ArchivesSpace instance
 
 To ensure you get a consistent copy, you will need to shut down your
 running ArchivesSpace instance now.
 
 
-# Copy your configuration and data files
+## Copy your configuration and data files
 
 You will need to bring across the following files and directories from
 your original ArchivesSpace installation:
@@ -72,7 +71,7 @@ Note that you may want to preserve the logs file (`logs/archivesspace.out`
 by default) from your previous installation--just in case you need to
 refer to it later.
 
-## Configuration note
+### Configuration note
 
 Sometimes a new release of ArchivesSpace will introduce new
 configuration settings that weren't present in previous releases.
@@ -87,7 +86,7 @@ uncommenting configuration options that won't be in your file if you
 keep your older version.
 
 
-# Transfer your locales data
+## Transfer your locales data
 
 If you've made modifications to you locales file ( en.yml ) with customized
 labels, titles, tooltips, etc., you'll need to transfer those to your new
@@ -104,7 +103,7 @@ new additions in the new version locales files. Simply copy the values you wish
 to keep from your old ArchivesSpace locales to your new ArchivesSpace locales
 files.
 
-# Run the database migrations
+## Run the database migrations
 
 With everything copied, the final step is to run the database
 migrations.  This will apply any schema changes and data migrations
@@ -120,7 +119,7 @@ Or on Windows:
      $ cd archivesspace-1.5.x\archivesspace
      $ scripts\setup-database.bat
 
-# If you're using external Solr
+## If you're using external Solr
 
 It's recommeneded you check your version against the version included with
 ArchivesSpace:
@@ -135,7 +134,7 @@ them if necessary (this is required for proper functionality).
 
 https://github.com/archivesspace/archivesspace/tree/v1.5.x/solr
 
-# If you've deployed to Tomcat
+## If you've deployed to Tomcat
 
 The steps to deploy to Tomcat are esentially the same as in the
 [archivesspace_tomcat](https://github.com/archivesspace/archivesspace_tomcat)
@@ -162,6 +161,6 @@ any libraries from the previous ASpace version from your Tomcat classpath.
         This will copy all the files over to Tomcat.
      9. Start Tomcat
 
-# That's it!
+## That's it!
 
 You can now start your new ArchivesSpace version as normal.

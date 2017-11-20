@@ -1,5 +1,4 @@
-Contributor License Agreements
---------------------
+# Contributor License Agreements
 
 ArchivesSpace requires that all project contributors complete a Contributor License
 Agreement (CLA). The CLA clearly defines the terms under which intellectual property is

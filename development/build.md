@@ -1,5 +1,4 @@
-ArchivesSpace build system
-==========================
+# ArchivesSpace build system
 
 ## Running the build system
 

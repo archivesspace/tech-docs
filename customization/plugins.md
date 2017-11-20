@@ -1,11 +1,10 @@
-ArchivesSpace Plug-ins
-========================
+# ArchivesSpace Plug-ins
 
 Plug-ins provide a mechanism to customize ArchivesSpace by overriding or extending functions
 without changing the core codebase. As they are self-contained, they also permit the ready
 sharing of packages of customization between ArchivesSpace instances.
 
-* Enabling plugins
+## Enabling plugins
 
 Plug-ins are enabled by placing them in the `plugins` directory, and referencing them in the
 ArchivesSpace configuration, `common/config/config.rb`. For example:
@@ -22,7 +21,7 @@ This configuration assumes the following directories exist:
 Note that the order that the plug-ins are listed in the `:plugins` configuration option
 determines the order in which they are loaded by the application.
 
-* Plugin structure
+## Plugin structure
 
 The directory structure within a plug-in is similar to the structure of the core application.
 The following shows the supported plug-in structure. Files contained in these directories can
@@ -51,7 +50,7 @@ be used to override or extend the behavior of the core application.
     search_definitions.rb . Advanced search fields
 
 
-* Overriding locales
+## Overriding locales
 
 It is not necessary for a plug-in to have all of these directories. For example, to override
 some part of a locale file for the staff interface, you can just add the following structure
@@ -63,7 +62,7 @@ This is a general rule. That is, to override behavior, rather then extend it, ma
 to the file that contains the behavior to be overridden.
 
 
-* Adding your own branding
+## Adding your own branding
 
 
 Another example, to override the branding of the staff interface, add
@@ -148,7 +147,7 @@ name of the plug-in in its role as a subrecord of this parent, for example `hell
 `zero-to-many` and `zero-to-one`.
 
 
-* Changing search behavior
+## Changing search behavior
 
 A plugin can add additional fields to the advanced search interface by
 including a `search_definitions.rb` file at the top-level of the
@@ -167,7 +166,7 @@ the `:solr_field` parameter controls which field is used from the
 underlying index.
 
 
-* Further information
+## Further information
 
 Please refer to the `hello_world` exemplar plug-in to find out more about how to implement
 a plug-in. Be sure to test your plug-in thoroughly as it may have unanticipated impacts on your

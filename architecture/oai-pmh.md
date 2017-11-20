@@ -1,5 +1,4 @@
-OAI-PMH interface
-====================
+# OAI-PMH interface
 
 A starter OAI-PMH interface for ArchivesSpace allowing other systems to harvest
 your records is included in version 2.1.0. Additional features and functionality

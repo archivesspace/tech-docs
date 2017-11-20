@@ -1,4 +1,4 @@
-Tuning ArchivesSpace
+# Tuning ArchivesSpace
 
 ArchivesSpace is a stack of web applications which may require special tuning in order to run most effectively. This is especially the case for institutions with lots of data or many simulatious users editing metadata.
 Keep in mind that ArchivesSpace can be hosted on multiple server, either in a [multitenant setup](https://github.com/archivesspace/archivesspace/blob/master/clustering/CLUSTERING_README.md) or by deploying the various applications ( i.e. backend, frontend, public, solr, & indexer ) on seperate servers.

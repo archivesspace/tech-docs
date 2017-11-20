@@ -1,5 +1,4 @@
-Application monitoring with New Relic
-=====================================
+# Application monitoring with New Relic
 
 [New Relic](http://newrelic.com/) is an application performance monitoring tool (amongst other things).
 
@@ -25,7 +24,7 @@ AppConfig[:newrelic_app_name] = "ArchivesSpace"
 ```
     ## For Linux/OSX
      $ scripts/initialize-plugin.sh newrelic
-     
+
      ## For Windows
      % scripts\initialize-plugin.bat newrelic
 ```

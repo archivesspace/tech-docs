@@ -1,5 +1,4 @@
-ArchivesSpace repository EAD Exporter
-=====================================
+# ArchivesSpace repository EAD Exporter
 
 Exports all published resource record EAD XML files associated with a single
 repository into a zip archive. This zip file will be saved in the ArchivesSpace

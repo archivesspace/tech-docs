@@ -1,5 +1,4 @@
-JSONModel -- a validated ArchivesSpace record
-==============================================
+# JSONModel -- a validated ArchivesSpace record
 
 The ArchivesSpace system is concerned with managing a number of
 different archival record types.  Each record can be expressed as a
@@ -57,7 +56,7 @@ instances (in JSON format), and much of the user interface's life is
 spent turning forms into JSONModel instances and shipping them off to
 the backend.
 
-# JSONModel::Client -- A high-level API for interacting with the ArchivesSpace backend
+## JSONModel::Client -- A high-level API for interacting with the ArchivesSpace backend
 
 To save the need for a lot of HTTP request wrangling, ArchivesSpace
 ships with a module called JSONModel::Client that simplifies the

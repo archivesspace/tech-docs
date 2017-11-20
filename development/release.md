@@ -1,5 +1,4 @@
-Building an ArchivesSpace release
--------------------------------------------------------------
+# Building an ArchivesSpace release
 
 ## Try to tie up any loose ends
 

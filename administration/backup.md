@@ -1,7 +1,6 @@
-Backup and recovery
-====================
+# Backup and recovery
 
-# Creating backups using the provided script
+## Creating backups using the provided script
 
 ArchivesSpace provides some simple scripts for backing up a single
 instance to a `.zip` file.  You can run:
@@ -20,7 +19,7 @@ database settings from your configuration file and add a dump of your
 MySQL database to the resulting `.zip` file.
 
 
-# Managing your own backups
+## Managing your own backups
 
 If you want more control over your backups, you can develop your own
 scripts.  ArchivesSpace stores all persistent data in the database, so
@@ -57,7 +56,7 @@ following configuration settings:
      AppConfig[:solr\_backup\_number\_to\_keep] = 1
 
 
-# Recovering from backup
+## Recovering from backup
 
 When recovering an ArchivesSpace installation from backup, you will
 need to restore:
@@ -70,7 +69,7 @@ are worth restoring if you have backups, but they can be recreated
 from scratch if necessary.
 
 
-## Recovering your database
+### Recovering your database
 
 If you are using MySQL, recovering your database just requires loading
 your `mysqldump` backup into an empty database.  If you are using the
@@ -100,7 +99,7 @@ to your ArchivesSpace data directory.  For example:
 
 
 
-## Recovering the search indexes and related indexer files
+### Recovering the search indexes and related indexer files
 
 This step is optional since indexes can be rebuilt from the contents
 of the database.  However, recovering your search indexes can reduce
@@ -130,7 +129,7 @@ For example:
            /path/to/archivesspace/data/
 
 
-## Checking your search indexes
+### Checking your search indexes
 
 ArchivesSpace ships with a script that can run Lucene's CheckIndex
 tool for you, verifying that a given Solr index is free from

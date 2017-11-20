@@ -1,4 +1,4 @@
-Adding support for additional username/password-based authentication backends
+# Adding support for additional username/password-based authentication backends
 =============================================================================
 
 ArchivesSpace supports LDAP-based authentication out of the box, but
@@ -7,8 +7,7 @@ defining your own authentication handler and configuring your
 ArchivesSpace instance to use it.
 
 
-Creating a new authentication handler class
--------------------------------------------
+## Creating a new authentication handler class
 
 An authentication handler is just a class that implements a couple of
 key methods:
@@ -111,8 +110,7 @@ automatically loaded when ArchivesSpace starts up.
 
 
 
-Modifying your configuration
-----------------------------
+## Modifying your configuration
 
 To have ArchivesSpace invoke your new authentication handler, just add
 a new entry to the `:authentication_sources` configuration block.

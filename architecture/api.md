@@ -1,7 +1,6 @@
-Working with the ArchivesSpace API
-===================================
+# Working with the ArchivesSpace API
 
-# Authentication
+## Authentication
 
 Most actions against the backend require you to be logged in as a user
 with the appropriate permissions.  By sending a request like:
@@ -16,7 +15,7 @@ authenticated, provide this token with subsequent requests in the
      X-ArchivesSpace-Session: 8e921ac9bbe9a4a947eee8a7c5fa8b4c81c51729935860c1adfed60a5e4202cb
 
 
-# CRUD
+## CRUD
 
 The ArchivesSpace API provides CRUD-style interactions for a number of
 different "top-level" record types.  Working with records follows a

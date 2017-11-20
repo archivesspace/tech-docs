@@ -1,5 +1,4 @@
-The ArchivesSpace backend
-==========================
+# The ArchivesSpace backend
 
 The backend is responsible for implementing the ArchivesSpace API, and
 supports the sort of access patterns shown in the previous section.
@@ -10,7 +9,7 @@ JSON documents produced from instances of JSONModel classes.
 The following sections describe how the backend fits together.
 
 
-# main.rb -- load and initialize the system
+## main.rb -- load and initialize the system
 
 The `main.rb` program is responsible for starting the ArchivesSpace
 system: loading all controllers and models, creating
@@ -52,7 +51,7 @@ the following facilities:
     of each request.
 
 
-# rest.rb -- Request and response handling for REST endpoints
+## rest.rb -- Request and response handling for REST endpoints
 
 The `rest.rb` module provides the mechanism used to define the API's
 REST endpoints.  Each endpoint definition includes:
@@ -96,7 +95,7 @@ time a request reaches the body of an endpoint:
     exception, the transaction will be automatically rolled back.
 
 
-# Controllers
+## Controllers
 
 As touched upon in the previous section, controllers implement the
 functionality of the ArchivesSpace API by registering one or more
@@ -111,7 +110,7 @@ generally don't do much more than coordinate the classes from the
 model layer and send a response back to the client.
 
 
-## crud_helpers.rb -- capturing common CRUD controller actions
+### crud_helpers.rb -- capturing common CRUD controller actions
 
 Even though controllers are quite thin, there's still a lot of overlap
 in their behaviour.  Each record type in the system supports the same
@@ -124,7 +123,7 @@ helper methods that are invoked by each controller, providing methods
 for the standard operations of the system.
 
 
-# Models
+## Models
 
 The backend's model layer is where the action is.  The model layer's
 role is to bridge the gap between the high-level JSONModel objects
@@ -165,7 +164,7 @@ constructed by combining a number of mix-ins (Ruby modules) to satisfy
 the requirements of the given record type.  Features à la carte!
 
 
-## ASModel and other mix-ins
+### ASModel and other mix-ins
 
 At a minimum, every model includes the `ASModel` mix-in, which provides
 base versions of the following methods:
@@ -211,7 +210,7 @@ call to the next mix-in in the chain (eventually reaching ASModel),
 then manipulate the result to implement the desired behaviour.
 
 
-## Nested records
+### Nested records
 
 Some record types, like accessions, digital objects, and subjects, are
 *top-level records*, in the sense that they are created independently
@@ -242,7 +241,7 @@ property of the incoming record.  Each of these date records will be
 automatically linked to the created accession.
 
 
-## Relationships
+### Relationships
 
 A relationship is a link between two top-level records, where the link
 is a separate, dynamically generated, model with zero or more
@@ -292,7 +291,7 @@ appropriate join tables in the database to store this relationship and
 retrieve it later as needed.
 
 
-## Agents and `agent_manager.rb`
+### Agents and `agent_manager.rb`
 
 Agents present a bit of a representational challenge.  There are four
 types of agents (person, family, corporate entity, software), and at a
@@ -334,7 +333,7 @@ This definition sets up the properties of that agent.  It creates:
 
 
 
-# Validations
+## Validations
 
 As records are added to and updated within the ArchivesSpace system,
 they are validated against a number of rules to make sure they are
@@ -376,7 +375,7 @@ validations), while system-level validations are handled by the model
 and the database schema.
 
 
-# Optimistic concurrency control
+## Optimistic concurrency control
 
 Updating a record using the ArchivesSpace API is a two part process:
 
@@ -401,7 +400,7 @@ the latest version before applying their update.
 
 
 
-# The ArchivesSpace permissions model
+## The ArchivesSpace permissions model
 
 The ArchivesSpace backend enforces access control, defining which
 users are allowed to create, read, update, suppress and delete the
@@ -434,7 +433,7 @@ are a member of a group that has been assigned permission to perform
 that action.
 
 
-## Conceptual trickery
+### Conceptual trickery
 
 Since they're repository-scoped, groups govern access to repositories.
 However, there are several record types that exist at the top-level of

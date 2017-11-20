@@ -1,7 +1,6 @@
-Theming ArchivesSpace
-==============================================================
+# Theming ArchivesSpace
 
-# Making small changes
+## Making small changes
 
 For small edits, it's also  easiest to do this as a plugin. With a plugin,
 we can override default views, controllers, models, etc. without having to do a
@@ -32,7 +31,7 @@ asset pipeline.
 
 Restart the application and you should see your logo in the default view.
 
-# Adding CSS rules
+## Adding CSS rules
 
 You can customize CSS through the plugin system too. If you don't want to create
 a whole new plugin, the easiest way is to modify the 'local' plugin that ships
@@ -64,7 +63,7 @@ of your site:
     archivesspace/plugins/local/public/views/shared/\_header.html.erb
     archivesspace/plugins/local/public/views/shared/\_footer.html.erb
 
-# Heavy re-theming
+## Heavy re-theming
 
 If you're wanting to really trick out your site, you could do this in a plugin
 using the override methods show above, although there are some big disadvantages

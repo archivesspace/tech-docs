@@ -1,15 +1,14 @@
-Running ArchivesSpace with external Solr
--------------------------------------------------------------
+# Running ArchivesSpace with external Solr
 
 Assuming you've unzipped a fresh new release there are a couple of steps to take:
 
-*Setup a Solr core*
+## Setup a Solr core
 
 On the Solr server make a core available for ArchivesSpace. Copy the solr files from the ArchivesSpace source into the core's conf directory and enable it:
 
 https://github.com/archivesspace/archivesspace/tree/master/solr
 
-*Disable the embedded server Solr instance*
+## Disable the embedded server Solr instance
 
 Edit the ArchivesSpace config.rb file:
 
@@ -19,7 +18,7 @@ AppConfig[:enable_solr] = false
 
 Note that doing this means that you will have to backup Solr manually.
 
-*Set the Solr url*
+## Set the Solr url
 
 This config setting should point to your Solr instance:
 

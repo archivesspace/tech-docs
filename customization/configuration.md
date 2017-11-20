@@ -1,5 +1,4 @@
-Configuring ArchivesSpace
-==============================================
+# Configuring ArchivesSpace
 
 The primary configuration for ArchivesSpace is done in the config/config.rb
 file. By default, this file contains the default settings, which are indicated

@@ -1,5 +1,4 @@
-Search indexing
-================
+# Search indexing
 
 The ArchivesSpace system uses Solr for its full-text search.  As
 records are added/updated/deleted by the backend, the corresponding

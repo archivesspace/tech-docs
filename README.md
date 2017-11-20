@@ -1,5 +1,4 @@
-ArchivesSpace technical documentation
-======================================
+# ArchivesSpace technical documentation
 
 * [Basic administration](./administration)
   * [Getting started](./administration/getting_started.md)

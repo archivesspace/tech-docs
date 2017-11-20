@@ -1,5 +1,4 @@
-Information for ArchivesSpace developers and code contributors
-===============================================================
+# Information for ArchivesSpace developers and code contributors
 
 * [ArchivesSpace build system](./build.md)
 * [Building an ArchivesSpace release](./release.md)

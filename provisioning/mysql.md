@@ -1,5 +1,4 @@
-Running ArchivesSpace against MySQL
-====================================
+# Running ArchivesSpace against MySQL
 
 Out of the box, the ArchivesSpace distribution runs against an
 embedded database, but this is only suitable for demonstration

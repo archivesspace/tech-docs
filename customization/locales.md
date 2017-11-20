@@ -1,5 +1,4 @@
-Customizing text in ArchivesSpace
-==================================
+# Customizing text in ArchivesSpace
 
 ArchivesSpace has abstracted all the labels, messages and tooltips out of the
 application into the locale files, which are part of the
@@ -36,7 +35,7 @@ If you restart ArchivesSpace, these values will take effect.
 
 If you're using a different language, simply swap out the en.yml for something else ( like fr.yml ) and update locale setting in the config.rb file ( i.e.,  AppConfig[:locale] = :fr )
 
-# Tooltips
+## Tooltips
 
 To add a tooltip to a record label, simply add a new entry with "\_tooltip"
 appended to the label's code.  For example, to add a tooltip for the Accession's
@@ -54,7 +53,7 @@ en:
         linked.</p>
 ```
 
-# Placeholders
+## Placeholders
 
 For text fields or textareas, you may like to have some placeholder text to be
 displayed when the field is empty (for more details see

@@ -1,5 +1,4 @@
-Running ArchivesSpace under a prefix
-=====================================
+# Running ArchivesSpace under a prefix
 
 **Note: For versions > 2.0.1, the use of a prefix is not working correctly. Please look for a complete implementation for prefixes later in 2017.**
 
@@ -13,9 +12,8 @@ serve each application under a prefix, e.g.
 This configuration described in this document is one possible approach,
 and to keep things simple the following are assumed:
 
-  *ArchivesSpace is running on a single Linux server
-
-  *The server is running the Apache 2.2+ webserver
+  * ArchivesSpace is running on a single Linux server
+  * The server is running the Apache 2.2+ webserver
 
 Unless otherwise stated, it is assumed that you have root access on
 your machines, and all commands are to be run as root (or with sudo).

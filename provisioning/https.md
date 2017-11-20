@@ -1,5 +1,4 @@
-Serving ArchivesSpace user-facing applications over HTTPS
-==============================================================
+# Serving ArchivesSpace user-facing applications over HTTPS
 
 This document describes a simple approach for those wishing to install
 ArchivesSpace in such a manner that all end-user requests (i.e., URLs)

@@ -1,5 +1,4 @@
-Configuring LDAP authentication
-================================
+# Configuring LDAP authentication
 
 ArchivesSpace can manage its own user directory, but can also be
 configured to authenticate against one or more LDAP directories by

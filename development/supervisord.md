@@ -1,8 +1,8 @@
-## Using Supervisord for development
+# Using Supervisord for development
 
 Supervisord can be used to simultaneously launch the ArchivesSpace development servers. This is entirely optional and just for developer convenience.
 
-**Setup**
+## Setup
 
 From within the ArchivesSpace source directory:
 

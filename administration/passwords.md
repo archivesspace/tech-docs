@@ -1,5 +1,4 @@
-Resetting passwords
-====================
+# Resetting passwords
 
 Under the `scripts` directory you will find a script that lets you
 reset a user's password.  You can invoke it as:

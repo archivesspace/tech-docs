@@ -1,7 +1,6 @@
-Getting started with ArchivesSpace
-===================================
+#Getting started with ArchivesSpace
 
-# System requirements
+## System requirements
 
 * Java 1.7 or 1.8.
 * At least 1024 MB RAM allocated to the application; at least 2 GB for optimal performance.
@@ -16,7 +15,7 @@ MySQL is not required, but is **strongly** recommended for production use.
 any data intended for production, including data in a test instance that you
 intend to move over to a production instance.**
 
-# Getting started
+## Getting started
 
 The quickest way to get ArchivesSpace up and running is to download
 the latest distribution `.zip` file from the following URL:
@@ -49,7 +48,7 @@ written to the file `logs/archivesspace.out` (by default).
 make sure that there are no spaces in any part of the path name in which the
 ArchivesSpace directory is located.
 
-## Start ArchivesSpace
+### Start ArchivesSpace
 
 The first time it starts, the system will take a minute or so to start
 up.  Once it is ready, confirm that ArchivesSpace is running correctly by

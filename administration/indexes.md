@@ -1,5 +1,4 @@
-Re-creating indexes
-====================
+# Re-creating indexes
 
 ArchivesSpace keeps track of what has been indexed by using the files
 under `data/indexer_state`.  If these files are missing, the indexer

@@ -1,5 +1,4 @@
-ArchivesSpace architecture and components
-==========================================
+# ArchivesSpace architecture and components
 
 ArchivesSpace is divided into several components: the backend, which
 exposes the major workflows and data types of the system via a

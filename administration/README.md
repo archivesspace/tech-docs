@@ -1,5 +1,4 @@
-Basic ArchivesSpace administration
-===================================
+# Basic ArchivesSpace administration
 
 * [Getting started](./getting_started.md)
 * [Running ArchivesSpace as a Unix daemon](./unix_daemon.md)

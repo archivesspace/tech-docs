@@ -1,5 +1,4 @@
-Running ArchivesSpace as a Unix daemon
-========================================
+# Running ArchivesSpace as a Unix daemon
 
 The `archivesspace.sh` startup script doubles as an init script.  If
 you run:

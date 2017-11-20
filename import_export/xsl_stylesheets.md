@@ -1,5 +1,4 @@
-ArchivesSpace XSL stylesheets
-=========================
+# ArchivesSpace XSL stylesheets
 
 ArchivesSpace includes three stylesheets for you to transform exported data
 into human-friendly formats. The stylesheets included are as follows:

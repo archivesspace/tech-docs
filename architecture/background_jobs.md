@@ -1,5 +1,4 @@
-Background Jobs
-================
+# Background Jobs
 
 ArchivesSpace provides a mechanism for long running processes to run
 asynchronously. These processes are called `Background Jobs`.

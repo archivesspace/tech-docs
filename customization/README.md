@@ -1,5 +1,4 @@
-ArchivesSpace customization and configuration
-==============================================
+# ArchivesSpace customization and configuration
 
 * [Configuring ArchivesSpace](./configuration.md)
 * [Adding support for additional username/password-based authentication backends](./authentication.md)
