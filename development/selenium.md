@@ -1,6 +1,7 @@
-# Selenium test suite
+Selenium test suite
+====================
 
-## Before running:
+# Before running:
 
 Run the bootstrap build task to configure JRuby and all required
 dependencies:
@@ -11,8 +12,7 @@ dependencies:
 Note: all example code assumes you are running from your ArchivesSpace
 project directory.
 
-
-## Running the tests:
+# Running the tests:
 
 Run the full suite:
 
@@ -28,8 +28,7 @@ groups of tests that can be run independently. As a rule, individual
 examples cannot be run in isolation because each group is a sequence
 of dependent steps.
 
-
-## Using an already running instance of ArchivesSpace:
+# Using an already running instance of ArchivesSpace:
 
 By default the selenium task will start up its own instances of the
 backend and frontend. To use instances already running, set the
@@ -39,7 +38,7 @@ following environment variables:
      $ export ASPACE_FRONTEND_URL=http://localhost:xxxx
 
 
-## Taking a screenshot of the interface if a test produces an error:
+# Taking a screenshot of the interface if a test produces an error:
 
 This can be helpful for debugging. To enable, set the following
 environment variable:
@@ -49,7 +48,7 @@ environment variable:
 The screenshot will be saved to /tmp
 
 
-## Interacting with selenium on the command line:
+# Interacting with selenium on the command line:
 
 To initialize the selenium environment for IRB:
 
@@ -72,7 +71,7 @@ prompt. Now you can say things like:
 Be sure to `cleanup` before quitting as this will kill the frontend,
 backend and firefox
 
-## Interacting with selenium using pry
+# Interacting with selenium using pry
 
 Add the following to 'selenium/Gemfile.local'
 
@@ -91,4 +90,3 @@ Example: create a repo and login to it
     > backend_login
     > repo = create(:repo)
     > $driver.login_to_repo('admin', 'admin', repo)
-

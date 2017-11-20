@@ -1,5 +1,5 @@
-ArchivesSpace provisioning and server configuration options
-============================================================
+ArchivesSpace provisioning and server configuration
+====================================================
 
 * [Running ArchivesSpace with load balancing and multiple tenants](./clustering.md)
 * [Serving ArchivesSpace user-facing applications over HTTPS](./https.md)

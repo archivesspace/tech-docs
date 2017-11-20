@@ -1,4 +1,4 @@
-ArchivesSpace Stylesheets
+ArchivesSpace XSL stylesheets
 =========================
 
 ArchivesSpace includes three stylesheets for you to transform exported data

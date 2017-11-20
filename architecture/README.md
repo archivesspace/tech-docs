@@ -1,5 +1,5 @@
-ArchivesSpace architecture, components and core functionality
-==============================================================
+ArchivesSpace architecture and components
+==========================================
 
 ArchivesSpace is divided into several components: the backend, which
 exposes the major workflows and data types of the system via a
@@ -16,4 +16,3 @@ data is defined by a class called JSONModel.
 * [Search indexing](./search.md)
 * [The ArchivesSpace public user interface](./public.md)
 * [OAI-PMH interface](./oai-pmh.md)
-* [ArchivesSpace internationalization](./locales.md)

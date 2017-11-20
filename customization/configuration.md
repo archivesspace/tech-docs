@@ -1,7 +1,5 @@
-ArchivesSpace customization and configuration
+Configuring ArchivesSpace
 ==============================================
-
-# Configuring ArchivesSpace
 
 The primary configuration for ArchivesSpace is done in the config/config.rb
 file. By default, this file contains the default settings, which are indicated
@@ -9,3 +7,7 @@ by commented out lines ( indicated by the "#" in the file ). You can adjust thes
 settings by adding new lines that change the default and restarting
 ArchivesSpace. Be sure that your new settings are not commented out
 ( i.e. do NOT start with a "#" ), otherwise the settings will not take effect.
+
+```
+TODO: Document configuration options
+```

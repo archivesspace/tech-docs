@@ -1,4 +1,4 @@
-ArchivesSpace Build System
+ArchivesSpace build system
 ==========================
 
 ## Running the build system
@@ -31,8 +31,8 @@ To run a development instance of all ArchivesSpace components:
 These should be run in different terminal sessions and do not need to be run
 in a specific order or are all required.
 
-For added convenience see: supervisord/README.md for a simpler way of running 
-the development servers with output for all servers sent to a single terminal 
+For added convenience see: supervisord/README.md for a simpler way of running
+the development servers with output for all servers sent to a single terminal
 window.
 
 You can also clear your database and search indexes with:
