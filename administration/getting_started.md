@@ -1,4 +1,4 @@
-#Getting started with ArchivesSpace
+# Getting started with ArchivesSpace
 
 ## System requirements
 
