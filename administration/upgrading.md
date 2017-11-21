@@ -1,6 +1,6 @@
 # Upgrading to a new release of ArchivesSpace
 
-*  **[Special considerations when upgrading to v1.1.1]**
+*  **[Special considerations when upgrading to v1.1.1](./upgrading/UPGRADING_1.1.1.md)**
 *  **[Special considerations when upgrading to v1.1.0](./upgrading/UPGRADING_1.1.0.md)**
 *  **[Special considerations when upgrading from v1.4.2 to 1.5.x (these considerations also apply when upgrading from 1.4.2 to any version through 2.0.1)](./upgrading/UPGRADING_1.5.0.md)**
 *  **[Special considerations when upgrading to 2.1.0](./upgrading/UPGRADING_2.1.0.md)**
