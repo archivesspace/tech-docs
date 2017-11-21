@@ -1,5 +1,4 @@
 # Adding support for additional username/password-based authentication backends
-=============================================================================
 
 ArchivesSpace supports LDAP-based authentication out of the box, but
 you can authenticate against other password-based user directories by
