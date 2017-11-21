@@ -105,11 +105,11 @@ they last harvested.
 
 Mixed content is removed from Dublin Core, dcterms, MARC, and MODS field outputs
 in the OAI-PMH response (e.g., a scope note mapped to a DC description field
-  would not include <p>, <abbr>, <address>, <archref>, <bibref>, <blockquote>,
-  <chronlist>, <corpname>, <date>, <emph>, <expan>, <extptr>, <extref>,
-  <famname>, <function>, <genreform>, <geogname>, <lb>, <linkgrp>, <list>,
-  <name>, <note>, <num>, <occupation>, <origination>, <persname>, <ptr>, <ref>,
-  <repository>, <subject>, <table>, <title>, <unitdate>, <unittitle>).
+  would not include `<p>`, `<abbr>`, `<address>`, `<archref>`, `<bibref>`, `<blockquote>`,
+  `<chronlist>`, `<corpname>`, `<date>`, `<emph>`, `<expan>`, `<extptr>`, `<extref>`,
+  `<famname>`, `<function>`, `<genreform>`, `<geogname>`, `<lb>`, `<linkgrp>`, `<list>`,
+  `<name>`, `<note>`, `<num>`, `<occupation>`, `<origination>`, `<persname>`, `<ptr>`, `<ref>`,
+  `<repository>`, `<subject>`, `<table>`, `<title>`, `<unitdate>`, `<unittitle>`).
 
 The component level records include inherited data from superior hierarchical
 levels of the finding aid. Element inheritance is determined by institutional
