@@ -13,9 +13,6 @@ and to keep things simple the following are assumed:
 
   * You have obtained an SSL certificate and key from an authority
 
-Unless otherwise stated, it is assumed that you have root access on
-your machines, and all commands are to be run as root (or with sudo).
-
 1. [Configuring the Web Server](#step-1-configure-web-server-apache-or-nginx)
    - [Apache](#apache)
      - [Setting up SSL](#setting-up-ssl)
