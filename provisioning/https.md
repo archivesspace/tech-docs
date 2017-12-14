@@ -32,7 +32,7 @@ that documentation before attempting to configure SSL.
 #### Setting up SSL
 
 
-Finally, use the `NameVirtualHost` and `VirtualHost` directives to proxy
+Use the `NameVirtualHost` and `VirtualHost` directives to proxy
 requests to the actual application urls. This requires the use of the `mod_proxy` module in Apache.
 
      NameVirtualHost *:443
