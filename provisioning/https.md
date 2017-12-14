@@ -9,7 +9,7 @@ and to keep things simple the following are assumed:
 
   * ArchivesSpace is running on a single Linux server
 
-  * The server is running the Apache 2.2+ webserver
+  * The server is running the Apache or Nginx webserver
 
   * You have obtained an SSL certificate and key from an authority
 
@@ -19,6 +19,7 @@ your machines, and all commands are to be run as root (or with sudo).
 
 ## Step 1: Configure Web Server (Apache or Nginx)
 
+### Apache
 In order for archivists and researchers to access the application, there will
 need to be two URLs that are exposed to the outside world, and per the main
 requirement of this exercise, those URLs will need to begin with `https://`.
@@ -38,6 +39,8 @@ If it is commented out, uncomment it.
 Likewise, ensure that the Apache mod_proxy module is enabled:
 
      LoadModule proxy_module modules/mod_proxy.so
+     
+#### Setting up SSL
 
 The following edits can be made in the httpd.conf file itself; however, it is
 conventional to use the `Include` directive to load them from a file
@@ -78,6 +81,28 @@ requests to the actual application urls. Example:
 More information about configuring Apache for SSL can be found at
 http://httpd.apache.org/docs/current/ssl/ssl_howto.html.  You should read
 that documentation before attempting to configure SSL.
+
+#### Setting up Redirects
+When running a site over HTTPS, it's a good idea to set up a redirect to ensure any outdated HTTP requests are routed to the correct URL. This can be done through Apache as follows:
+
+```
+<VirtualHost *:80>
+ServerName public.myarchive.org
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://public.myarchive.org$1 [R,L]
+</VirtualHost>
+
+<VirtualHost *:80>
+ServerName staff.myarchive.org
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://staff.myarchive.org$1 [R,L]
+</VirtualHost>
+```
+
+### Nginx
+
 
 ## Step 2: Configure ArchivesSpace
 
