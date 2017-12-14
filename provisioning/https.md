@@ -27,30 +27,13 @@ Let's assume that they will be:
 
   * `https://staff.myarchive.org` - for archival staff
 
-  * `https://research.myarchive.org` - for the public
-
-Start by ensuring that Apache is configured to handle HTTPS requests. Locate
-the `httpd.conf` file and ensure that it contains this line (or similar):
-
-     LoadModule ssl_module modules/mod_ssl.so
-
-If it is commented out, uncomment it.
-
-Likewise, ensure that the Apache mod_proxy module is enabled:
-
-     LoadModule proxy_module modules/mod_proxy.so
+  * `https://public.myarchive.org` - for the public
+  
+Information about configuring Apache for SSL can be found at http://httpd.apache.org/docs/current/ssl/ssl_howto.html.  You should read
+that documentation before attempting to configure SSL.
      
 #### Setting up SSL
 
-The following edits can be made in the httpd.conf file itself; however, it is
-conventional to use the `Include` directive to load them from a file
-named `ssl.conf`, `httpd-ssl.conf`, or the like. Example:
-
-     Include "/path/to/apache/extra/ssl.conf"
-
-Make sure Apache is listening on port 443 (or whatever port you choose):
-
-     Listen 443
 
 Finally, use the `NameVirtualHost` and `VirtualHost` directives to proxy
 requests to the actual application urls. Example:
@@ -67,8 +50,9 @@ requests to the actual application urls. Example:
        ProxyPass / http://localhost:8080/
        ProxyPassReverse / http://localhost:8080/
      </VirtualHost>
+     
      <VirtualHost *:443>
-       ServerName research.myarchive.org
+       ServerName public.myarchive.org
        SSLEngine On
        SSLCertificateFile "/path/to/your/cert.crt"
        SSLCertificateKeyFile "/path/to/your/key.key"
@@ -78,26 +62,24 @@ requests to the actual application urls. Example:
        ProxyPassReverse / http://localhost:8081/
      </VirtualHost>
 
-More information about configuring Apache for SSL can be found at
-http://httpd.apache.org/docs/current/ssl/ssl_howto.html.  You should read
-that documentation before attempting to configure SSL.
+
 
 #### Setting up Redirects
 When running a site over HTTPS, it's a good idea to set up a redirect to ensure any outdated HTTP requests are routed to the correct URL. This can be done through Apache as follows:
 
 ```
 <VirtualHost *:80>
-ServerName public.myarchive.org
-RewriteEngine On
-RewriteCond %{HTTPS} off
-RewriteRule (.*) https://public.myarchive.org$1 [R,L]
-</VirtualHost>
-
-<VirtualHost *:80>
 ServerName staff.myarchive.org
 RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule (.*) https://staff.myarchive.org$1 [R,L]
+</VirtualHost>
+
+<VirtualHost *:80>
+ServerName public.myarchive.org
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://public.myarchive.org$1 [R,L]
 </VirtualHost>
 ```
 
