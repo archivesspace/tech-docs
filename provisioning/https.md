@@ -1,16 +1,17 @@
 # Serving ArchivesSpace user-facing applications over HTTPS
 
-This document describes a simple approach for those wishing to install
+This document describes the approach for those wishing to install
 ArchivesSpace in such a manner that all end-user requests (i.e., URLs)
-are served over HTTPS rather than HTTP.
+are served over HTTPS rather than HTTP. For the purposes of this documentation, the URLs for the staff and public interfaces will be:
+
+  * `https://staff.myarchive.org` - staff interface
+  * `https://public.myarchive.org` - public interface
 
 The configuration described in this document is one possible approach,
 and to keep things simple the following are assumed:
 
   * ArchivesSpace is running on a single Linux server
-
   * The server is running the Apache or Nginx webserver
-
   * You have obtained an SSL certificate and key from an authority
 
 1. [Configuring the Web Server](#step-1-configure-web-server-apache-or-nginx)
@@ -24,15 +25,6 @@ and to keep things simple the following are assumed:
 ## Step 1: Configure Web Server (Apache or Nginx)
 
 ### Apache
-In order for archivists and researchers to access the application, there will
-need to be two URLs that are exposed to the outside world, and per the main
-requirement of this exercise, those URLs will need to begin with `https://`.
-Let's assume that they will be:
-
-  * `https://staff.myarchive.org` - for archival staff
-
-  * `https://public.myarchive.org` - for the public
-  
 Information about configuring Apache for SSL can be found at http://httpd.apache.org/docs/current/ssl/ssl_howto.html.  You should read
 that documentation before attempting to configure SSL.
      
