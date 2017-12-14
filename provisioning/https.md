@@ -97,7 +97,7 @@ The following lines need to be altered in the config.rb file:
 AppConfig[:frontend_proxy_url] = "https://staff.myarchive.org"
 AppConfig[:public_proxy_url] = "https://public.myarchive.org"
 ```
-These lines don't need to be altered and should remain with their default values. E.g.,
+These lines don't need to be altered and should remain with their default values. E.g.:
 ```
 AppConfig[:frontend_url] = "http://localhost:8080"
 AppConfig[:public_url] = "http://localhost:8081"
