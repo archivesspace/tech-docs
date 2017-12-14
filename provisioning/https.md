@@ -11,8 +11,9 @@ The configuration described in this document is one possible approach,
 and to keep things simple the following are assumed:
 
   * ArchivesSpace is running on a single Linux server
-  * The server is running the Apache or Nginx webserver
+  * The server is running Apache or Nginx
   * You have obtained an SSL certificate and key from an authority
+  * You have ensured that appropriate firewall ports have been opened (80 and 443).
 
 1. [Configuring the Web Server](#step-1-configure-web-server-apache-or-nginx)
    - [Apache](#apache)
