@@ -16,6 +16,13 @@ and to keep things simple the following are assumed:
 Unless otherwise stated, it is assumed that you have root access on
 your machines, and all commands are to be run as root (or with sudo).
 
+1. Configuring the Web Server
+   - Apache
+     - Setting up SSL
+     - Setting up Redirects
+   - Nginx
+2. Configuring ArchivesSpace
+
 
 ## Step 1: Configure Web Server (Apache or Nginx)
 
