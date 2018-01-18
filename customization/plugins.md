@@ -1,8 +1,14 @@
 # ArchivesSpace Plug-ins
 
+Plug-ins are a powerful feature, designed to allow you to change
+most aspects of how the application behaves.
+
 Plug-ins provide a mechanism to customize ArchivesSpace by overriding or extending functions
 without changing the core codebase. As they are self-contained, they also permit the ready
-sharing of packages of customization between ArchivesSpace instances.
+sharing of packages of customization between ArchivesSpace instances. 
+
+The ArchivesSpace distribution comes with the `hello_world` exemplar plug-in. Please refer to it find out more 
+about how to implement a plug-in. 
 
 ## Enabling plugins
 
@@ -50,7 +56,10 @@ be used to override or extend the behavior of the core application.
     search_definitions.rb . Advanced search fields
 
 
-## Overriding locales
+## Overriding behavior
+
+A general rule is: to override behavior, rather then extend it, match the path
+to the file that contains the behavior to be overridden.
 
 It is not necessary for a plug-in to have all of these directories. For example, to override
 some part of a locale file for the staff interface, you can just add the following structure
@@ -58,8 +67,7 @@ to the local plug-in:
 
     plugins/local/frontend/locales/en.yml
 
-This is a general rule. That is, to override behavior, rather then extend it, match the path
-to the file that contains the behavior to be overridden.
+More detailed information about overriding locale files is found in [Customizing text in ArchivesSpace](./locales.md)
 
 
 ## Adding your own branding
@@ -87,7 +95,7 @@ markup such as:
      </div>
 
 
-** Plugin configuration
+## Plugin configuration
 
 Plug-ins can optionally contain a configuration file at `plugins/[plugin-name]/config.yml`.
 This configuration file supports the following options:
@@ -168,7 +176,5 @@ underlying index.
 
 ## Further information
 
-Please refer to the `hello_world` exemplar plug-in to find out more about how to implement
-a plug-in. Be sure to test your plug-in thoroughly as it may have unanticipated impacts on your
-ArchivesSpace application. Plug-ins are a powerful feature, designed to allow you to change
-most aspects of how the application behaves.
+**Be sure to test your plug-in thoroughly as it may have unanticipated impacts on your
+ArchivesSpace application.**
