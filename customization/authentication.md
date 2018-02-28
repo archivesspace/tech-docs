@@ -1,12 +1,13 @@
 # Adding support for additional username/password-based authentication backends
 
-ArchivesSpace supports LDAP-based authentication out of the box, but
-you can authenticate against other password-based user directories by
-defining your own authentication handler and configuring your
-ArchivesSpace instance to use it.
+ArchivesSpace supports LDAP-based authentication out of the box, but you can
+authenticate against other password-based user directories by defining your own
+authentication handler, creating a plug-in, and configuring your ArchivesSpace
+instance to use it.  If you would rather not have to create your own handler,
+there is a plug-in available that uses OAUTH user authentication that you can add
+to your ArchivesSpace installation: https://github.com/lyrasis/aspace-oauth.
 
-
-## Creating a new authentication handler class
+## Creating a new authentication handler class to use in a plug-in
 
 An authentication handler is just a class that implements a couple of
 key methods:
@@ -103,16 +104,18 @@ for authentication.
 
       end
 
-
-Save your code into a file under `backend/app/models/`, and it will be
-automatically loaded when ArchivesSpace starts up.
-
-
+In order to use your new authentication handler, you'll need to add it to the plug-in
+architecture in ArchivesSpace and enable it. Create a new directory, called our_auth
+perhaps, in the plugins directory of your ArchivesSpace installation. Inside
+that directory create this directory hierarchy `backend/app/models/` and place the
+new class file there. Next, configure the new handler.
 
 ## Modifying your configuration
 
 To have ArchivesSpace invoke your new authentication handler, just add
-a new entry to the `:authentication_sources` configuration block.
+a new entry to the `:authentication_sources` configuration block in the
+`config/config.rb` file.
+
 A configuration for the above example might be as follows:
 
      AppConfig[:authentication_sources] = [{
@@ -120,5 +123,13 @@ A configuration for the above example might be as follows:
                                              :db_url => 'jdbc:mysql://localhost:3306/somedb?user=myuser&password=mypassword',
                                            }]
 
-That's it!  You should now see authentication requests hitting your
-new handler.
+## Add the plug-in to the list of plug-ins already enabled
+
+In the `config/config.rb` file, find the setting of AppConfig[:plugins] and add
+a reference to the new plug-in there. For example, if you named it our_auth, the
+AppConfig[:plugins] setting may look something like this:
+
+AppConfig[:plugins] = ['local', 'hello_world', 'our_auth']
+
+Restart your ArchivesSpace installation and you should now see authentication
+requests hitting your new handler.

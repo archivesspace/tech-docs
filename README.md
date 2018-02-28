@@ -41,4 +41,4 @@
   * [Contributor license agreements](./development/license_agreements.md)
 * [Importing and exporting data in ArchivesSpace](./import_export)
   * [ArchivesSpace repository EAD Exporter](./import_export/ead_exporter.md)
-  * [ArchivesSpace XSL stylesheets](./import_export/xsl_stylesheets)
+  * [ArchivesSpace XSL stylesheets](./import_export/xsl_stylesheets.md)
