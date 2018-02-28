@@ -82,7 +82,7 @@ RewriteRule (.*) https://public.myarchive.org$1 [R,L]
 
 ### Nginx
 
-# FIXME Need nginx documentation
+ # FIXME Need nginx documentation
 
 
 ## Step 2: Configure ArchivesSpace
