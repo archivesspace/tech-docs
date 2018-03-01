@@ -29,7 +29,7 @@ A user must have the `cancel_job` permission to cancel a job. By default, this
 permission is included in the `repository_managers` group.
 
 When a JobRunner registers it can specify additional create and cancel
-permssions. (See below for more information)
+permissions. (See below for more information)
 
 
 ## Types, Runners and Schemas
@@ -47,7 +47,7 @@ classes are located here:
 It is possible to define additional job runners from a plugin. (See below for
   more information about plugins.)
 
-A job runner class must subclass `JobRunner`, reigister to run one or more job
+A job runner class must subclass `JobRunner`, register to run one or more job
 types, and implement a `#run` method for jobs that it handles.
 
 When a job runner registers for a job type, it can set some options:
