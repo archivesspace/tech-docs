@@ -150,10 +150,10 @@ $ git push --tags
 ## Build the release announcement
 
 The release announcement needs to have all the tickets that make up the
-changelog for the replease. In the past, this list has been written into
+changelog for the release. In the past, this list has been written into
 markdown to add in the Github release page.
 
-An easy way to do this is to export all the relevent tickets in JIRA ( that is,
+An easy way to do this is to export all the relevant tickets in JIRA ( that is,
 all tickets accepted since the last release  ). Then use the following script
 to make a markdown file:
 
