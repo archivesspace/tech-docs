@@ -42,3 +42,6 @@
 * [Importing and exporting data in ArchivesSpace](./import_export)
   * [ArchivesSpace repository EAD Exporter](./import_export/ead_exporter.md)
   * [ArchivesSpace XSL stylesheets](./import_export/xsl_stylesheets.md)
+* [Migration tools and data mapping](./migrations)
+  * [Archivists' Toolkit migration tool instructions](./migrations/migrate_from_archivists_toolkit.md)
+  * [Archon migration tool instructions](./migrations/migrate_from_archon.md)
