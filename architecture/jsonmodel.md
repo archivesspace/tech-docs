@@ -61,7 +61,7 @@ the backend.
 To save the need for a lot of HTTP request wrangling, ArchivesSpace
 ships with a module called JSONModel::Client that simplifies the
 common CRUD-style operations.  Including this module just requires
-passing an additional parameter when initialising JSONModel:
+passing an additional parameter when initializing JSONModel:
 
      JSONModel::init(:client_mode => true, :url => @backend_url)
      include JSONModel
