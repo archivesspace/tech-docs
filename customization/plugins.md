@@ -104,7 +104,7 @@ Unless you want to write inline style or javascript (which may be practiceable f
         ```
      - I add to `plugins/my_fine_plugin/public/views/layout_head.html.erb`:
         ```ruby
-        <%= javascript_include_tag "#{@base_url}/assets/harvard.js" %>
+        <%= javascript_include_tag "#{@base_url}/assets/my.js" %>
         ```
 ## Adding your own branding
 
