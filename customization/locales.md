@@ -19,7 +19,7 @@ The base translations are broken up:
   * The top most file "en.yml" contains the translations for all the record labels, messages and tooltips in English
   * "enums/en.yml" contains the entries for the dynamic enumeration codes - add your translations to this file after importing your enumeration codes
 
-These values are pulled into the views using the I18n.t() methoded, like  I18n.t("brand.welcome_message").
+These values are pulled into the views using the I18n.t() method, like  I18n.t("brand.welcome_message").
 
 If the value you want to override is in the common locale file (like the "digital object title" field label, for example) , you can change this by simply editing the locales/en.yml file in your ArchivesSpace distribution home directory. A restart is required to have the changes take effect.  
 
@@ -55,14 +55,14 @@ en:
 
 ## Placeholders
 
-For text fields or textareas, you may like to have some placeholder text to be
+For text fields or text areas, you may like to have some placeholder text to be
 displayed when the field is empty (for more details see
 http://www.w3.org/html/wg/drafts/html/master/forms.html#the-placeholder-attribute).
 Please note while most modern browser releases support this feature,
 older version will not.
 
 To add a placeholder to a record's text field, add a new entry of the label's
-code appened with "\_placeholder". For example:
+code append with "\_placeholder". For example:
 
 
 ```
