@@ -32,9 +32,9 @@ Description=ArchivesSpace Application
 After=syslog.target network.target
 [Service]
 Type=forking
-ExecStart=/you/path/to/archivesspace.sh start
-ExecStop=/you/path/to/archivesspace.sh stop
-PIDFile=/you/path/to/archivesspace.pid
+ExecStart=/path/to/your/archivesspace/archivesspace.sh start
+ExecStop=/path/to/your/archivesspace/archivesspace.sh stop
+PIDFile=/path/to/your/archivesspace/archivesspace.pid
 User=archivesspacespace
 Group=archivesspacespace
 [Install]
