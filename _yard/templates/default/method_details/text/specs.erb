@@ -1,9 +1,0 @@
-<% if object[:specifications] %>
-
-Specifications:
----------------
-
-<% for spec in object[:specifications] %>
-<%= indent wrap("- " + spec[:name]) %>
-<% end %>
-<% end %>

@@ -1,7 +1,0 @@
-# A sample Gemfile
-source "https://rubygems.org"
-
-group :doc do
-  gem "yard", "~> 0.9.11"
-  gem "kramdown"
-end
