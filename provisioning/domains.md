@@ -4,11 +4,11 @@ This document describes how to configure ArchivesSpace and your web server to se
 practice. Separate documentation is available if you wish to [serve ArchivesSpace under a prefix](prefix.md) (e.g., `http://aspace.myarchive.org/staff` and
 `http://aspace.myarchive.org/public`).
 
-1. [Configuring Your Firewall]()
-2. [Configuring Your Web Server]()
-   - [Apache]()
-   - [Nginx]()
-3. [Configuring ArchivesSpace]()
+1. [Configuring Your Firewall](#step-1-configuring-your-firewall)
+2. [Configuring Your Web Server](#step-2-configuring-your-web-server)
+   - [Apache](#apache)
+   - [Nginx](#nginx)
+3. [Configuring ArchivesSpace](#step-3-configuring-archivesspace)
 
 
 
