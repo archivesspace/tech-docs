@@ -14,7 +14,12 @@ practice. Separate documentation is available if you wish to [serve ArchivesSpac
 
 ## Step 1: Configuring Your Firewall
 
-Since using subdomains negates the need for users to access the application directly on ports 8080 and 8081, these should be locked down 
+Since using subdomains negates the need for users to access the application directly on ports 8080 and 8081, these should be locked down to access by localhost only. On a Linux server, this can be done using iptables:
+
+     iptables -A INPUT -p tcp -s localhost --dport 8080 -j ACCEPT
+     iptables -A INPUT -p tcp --dport 8080 -j DROP
+     iptables -A INPUT -p tcp -s localhost --dport 8081 -j ACCEPT
+     iptables -A INPUT -p tcp --dport 8081 -j DROP
 
 ## Step 3: Configuring ArchivesSpace
 
