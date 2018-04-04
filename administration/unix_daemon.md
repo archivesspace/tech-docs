@@ -22,3 +22,21 @@ run-level symbolic links (such as `chkconfig` for RedHat or
 
 Note that you may want to edit archivesspace.sh to set the account
 that the system runs under, JVM options, and so on.
+
+For systems that use systemd you may wish to use a Systemd unit file for ArchivesSpace
+
+Something simliar to this should work:
+```
+[Unit]
+Description=ArchivesSpace Application
+After=syslog.target network.target
+[Service]
+Type=forking
+ExecStart=/path/to/your/archivesspace/archivesspace.sh start
+ExecStop=/path/to/your/archivesspace/archivesspace.sh stop
+PIDFile=/path/to/your/archivesspace/archivesspace.pid
+User=archivesspacespace
+Group=archivesspacespace
+[Install]
+WantedBy=multi-user.target
+```
