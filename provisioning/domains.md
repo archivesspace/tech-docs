@@ -42,7 +42,7 @@ This can be set up as a reverse proxy in the Apache configuration like so:
       ProxyPassReverse / http://localhost:8080/
       </VirtualHost>
       
-The purpose of ProxyPass is to route *incoming* traffic on the public URL (public.myarchive.org) to port 8081 of your server, where ArchivesSpace's public interface sits. The purpose of ProxyPassReverse is to intercept *outgoing* traffic and rewrite the header to the URL that the browser is expecting to see (public.myarchive.org).
+The purpose of ProxyPass is to route *incoming* traffic on the public URL (public.myarchive.org) to port 8081 of your server, where ArchivesSpace's public interface sits. The purpose of ProxyPassReverse is to intercept *outgoing* traffic and rewrite the header to match the URL that the browser is expecting to see (public.myarchive.org).
 
 ### Nginx
  > FIXME Need nginx documentation
