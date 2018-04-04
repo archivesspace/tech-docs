@@ -46,3 +46,5 @@
 * [Migration tools and data mapping](./migrations)
   * [Archivists' Toolkit migration tool instructions](./migrations/migrate_from_archivists_toolkit.md)
   * [Archon migration tool instructions](./migrations/migrate_from_archon.md)
+
+Note: the yard directory was removed from this repository. For now, the documentation will be maintained in the main [ArchivesSpace repository](https://github.com/archivesspace/archivesspace).
