@@ -55,6 +55,7 @@ be used to override or extend the behavior of the core application.
     schemas ............... JSONModel schema definitions
     search_definitions.rb . Advanced search fields
 
+**Note** that, in order to override or extend the behavior of core models and controllers, you cannot simply put your replacement with the same name in the corresponding directory path.  
 
 ## Overriding behavior
 
@@ -70,6 +71,41 @@ to the local plug-in:
 More detailed information about overriding locale files is found in [Customizing text in ArchivesSpace](./locales.md)
 
 
+## Overriding the visual (web) presentation
+
+You can directly override any view file in the core application by placing an erb file of the same name in the analogous path.
+For example, if you want to override the appearance of the "Welcome" [home] page of the Public User Interface, you can make your changes to a file `show.html.erb` and place it at `plugins/my_fine_plugin/public/views/welcome/show.html.erb`. (Where *my_fine_plugin* is the name of your plugin)
+
+### Implementing a broadly-applied style or javascript change
+
+Unless you want to write inline style or javascript (which may be practiceable for a template or two), best practice is to create `plugins/my_fine_plugin/public/views/layout_head.html.erb` or `plugins/my_fine_plugin/frontend/views/layout_head.html.erb`, which contains the HTML statements to incorporate your javascript or css into the `<HEAD>` element of the template.  Here's an example:
+
+* For the public interface, I want to change the size of the text in all links when the user is hovering. 
+    - I create `plugins/my_fine_plugin/public/assets/my.css`:
+        ```css
+            a:hover {font-size: 2em;}
+         ```
+    - I create `plugins/my_fine_plugin/public/views/layout_head.html.erb`, and insert:
+      ```ruby
+      <%= stylesheet_link_tag "#{@base_url}/assets/my.css", media: :all %>
+      ```
+* For the public interface, I want to add some javascript behavior such that, when the user hovers over a list item, astericks appear
+    - I create `plugins/my_fine_plugin/public/assets/my.js`"
+        ```javascript
+        $(function() {
+           $( "li" ).hover(
+             function() {
+                $( this ).append( $( "<span> ***</span>" ) );
+            }, function() {
+           $( this ).find( "span:last" ).remove();
+            }
+          );
+         }
+        ```
+     - I add to `plugins/my_fine_plugin/public/views/layout_head.html.erb`:
+        ```ruby
+        <%= javascript_include_tag "#{@base_url}/assets/my.js" %>
+        ```
 ## Adding your own branding
 
 
