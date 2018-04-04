@@ -1,6 +1,7 @@
 # ArchivesSpace provisioning and server configuration
 
 * [Running ArchivesSpace with load balancing and multiple tenants](./clustering.md)
+* [Serving ArchivesSpace over subdomains](./domains.md) 
 * [Serving ArchivesSpace user-facing applications over HTTPS](./https.md)
 * [JMeter Test Group Template](./jmeter.md)
 * [Running ArchivesSpace against MySQL](./mysql.md)
