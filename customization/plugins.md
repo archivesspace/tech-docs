@@ -85,9 +85,9 @@ Unless you want to write inline style or javascript (which may be practiceable f
         ```css
             a:hover {font-size: 2em;}
          ```
-    - I create `plugins/my_fine_plugin/public/views/layout_head.html.erb`:
+    - I create `plugins/my_fine_plugin/public/views/layout_head.html.erb`, and insert:
       ```ruby
-      <link rel="stylesheet" media="all" href="/assets/my.css />
+      <%= stylesheet_link_tag "#{@base_url}/assets/my.css", media: :all %>
       ```
 * For the public interface, I want to add some javascript behavior such that, when the user hovers over a list item, astericks appear
     - I create `plugins/my_fine_plugin/public/assets/my.js`"
