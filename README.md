@@ -26,6 +26,7 @@
   * [Managing frontend assets with Bower](./customization/bower.md)
 * [Provisioning and server configuration](./provisioning)
   * [Running ArchivesSpace with load balancing and multiple tenants](./provisioning/clustering.md)
+  * [Serving ArchivesSpace over subdomains](./provisioning/domains.md)
   * [Serving ArchivesSpace user-facing applications over HTTPS](./provisioning/https.md)
   * [JMeter Test Group Template](./provisioning/jmeter.md)
   * [Running ArchivesSpace against MySQL](./provisioning/mysql.md)
