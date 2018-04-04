@@ -23,7 +23,7 @@ Since using subdomains negates the need for users to access the application dire
 
 ## Step 3: Configuring ArchivesSpace
 
-The only configuration that needs to occur is adding your domain names to the following lines in config.rb:
+The only configuration within ArchivesSpace that needs to occur is adding your domain names to the following lines in config.rb:
 
      AppConfig[:frontend_proxy_url] = 'http://staff.myarchive.org'
      AppConfig[:public_proxy_url] = 'http://public.myarchive.org'
