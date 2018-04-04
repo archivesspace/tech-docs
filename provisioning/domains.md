@@ -20,6 +20,33 @@ Since using subdomains negates the need for users to access the application dire
      iptables -A INPUT -p tcp --dport 8080 -j DROP
      iptables -A INPUT -p tcp -s localhost --dport 8081 -j ACCEPT
      iptables -A INPUT -p tcp --dport 8081 -j DROP
+     
+
+## Step 2: Configuring Your Web Server
+
+### Apache
+
+The [mod_proxy module](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html) is necessary for Apache to route public web traffic to ArchivesSpace's ports as designated in your config.rb file (ports 8080 and 8081 by default).
+
+This can be set up as a reverse proxy in the Apache configuration like so:
+
+      <VirtualHost *:80>
+      ServerName public.myarchive.org
+      ProxyPass / http://localhost:8081/
+      ProxyPassReverse / http://localhost:8081/
+      </VirtualHost>
+
+      <VirtualHost *:80>
+      ServerName staff.myarchive.org
+      ProxyPass / http://localhost:8080/
+      ProxyPassReverse / http://localhost:8080/
+      </VirtualHost>
+      
+The purpose of ProxyPass is to route *incoming* traffic on the public URL (public.myarchive.org) to port 8081 of your server, where ArchivesSpace's public interface sits. The purpose of ProxyPassReverse is to intercept *outgoing* traffic and rewrite the header to the URL that the browser is expecting to see (public.myarchive.org).
+
+### Nginx
+ > FIXME Need nginx documentation
+
 
 ## Step 3: Configuring ArchivesSpace
 
