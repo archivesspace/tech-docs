@@ -1,8 +1,8 @@
-# Migrating Data from Archivists’ Toolkit to ArchivesSpace Using the Migration Tool
+# Migrating Data from Archivists' Toolkit to ArchivesSpace Using the Migration Tool
 
-These guidelines are for migrating data from Archivists’ Toolkit 2.0 Update 16 to all ArchivesSpace 2.1.x or 2.2.x releases using the migration tool provided by ArchivesSpace. Migrations of data from earlier versions of the Archivists’ Toolkit (AT) or other versions of ArchivesSpace are not supported by these guidelines or migration tool.
+These guidelines are for migrating data from Archivists' Toolkit 2.0 Update 16 to all ArchivesSpace 2.1.x or 2.2.x releases using the migration tool provided by ArchivesSpace. Migrations of data from earlier versions of the Archivists' Toolkit (AT) or other versions of ArchivesSpace are not supported by these guidelines or migration tool.
 
-> Note: A migration from Archivists’ Toolkit to ArchivesSpace should not be run against an active production database.
+> Note: A migration from Archivists' Toolkit to ArchivesSpace should not be run against an active production database.
 
 ## Preparing for migration
 
@@ -14,7 +14,7 @@ These guidelines are for migrating data from Archivists’ Toolkit 2.0 Update 16
 
 ### Notes
 
-* An AT subject record will be set to type ‘topical’ if it does not have a valid AT type statement or its type is not one of the types in ArchivesSpace. Several other AT LookupList values are not present in ArchivesSpace. These LookupList values cannot be added during the AT migration process and will therefore need to be changed in AT prior to migration. For full details on enum (controlled value list) mappings see the data map. You can use the AT Lookup List tool to change values that will not map correctly, as specified by the data map.
+* An AT subject record will be set to type ‘topical' if it does not have a valid AT type statement or its type is not one of the types in ArchivesSpace. Several other AT LookupList values are not present in ArchivesSpace. These LookupList values cannot be added during the AT migration process and will therefore need to be changed in AT prior to migration. For full details on enum (controlled value list) mappings see the data map. You can use the AT Lookup List tool to change values that will not map correctly, as specified by the data map.
 
 * Record audit information (created by, date created, modified by, and date modified) will not migrate from AT to ArchivesSpace. ArchivesSpace will assign new audit data to each record as it is imported into ArchivesSpace. The exception to this is that the username of the user who creates an accession record will be migrated to the accession general note field.
 
@@ -47,7 +47,7 @@ installation directory.
 
 ## Running the Migration Tool as an AT Plugin
 
-* Make sure that the AT instance you want to migrate from is shut down. Next, download the “scriptAT.zip” file from the at-migration release github page (https://github.com/archivesspace/at-migration/releases) and copy the file into the plugins folder of the AT instance, overwriting the one that’s already there if needed.
+* Make sure that the AT instance you want to migrate from is shut down. Next, download the “scriptAT.zip” file from the at-migration release github page (https://github.com/archivesspace/at-migration/releases) and copy the file into the plugins folder of the AT instance, overwriting the one that's already there if needed.
 
 * Make sure the ArchivesSpace instance that you are migrating into is up and running.
 
@@ -162,4 +162,4 @@ If you accept the migration in the ArchivesSpace instance, the following outline
 
 * Take special care to check to make sure your container data and locations are correct. The model for this is significantly different between AT and ArchivesSpace (where locations are tied to a container rather than directly to a resource or accession), so this presents some challenges for migration.
 
-* Merge enumeration values as necessary. For instance, if you had both ‘local’ and ‘local sources’ as a source for names, it might be a good idea to merge these values.
+* Merge enumeration values as necessary. For instance, if you had both ‘local' and ‘local sources' as a source for names, it might be a good idea to merge these values.
