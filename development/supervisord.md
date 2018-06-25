@@ -12,13 +12,13 @@ From within the ArchivesSpace source directory:
 
 [sudo] pip install supervisor supervisor-stdout
 
-# run all of the services
+#run all of the services
 supervisord -c supervisord/archivesspace.conf
 
-# run in api mode (backend + indexer / solr only)
+#run in api mode (backend + indexer / solr only)
 supervisord -c supervisord/api.conf
 
-# run just the backend (useful for trying out endpoints that don't require Solr)
+#run just the backend (useful for trying out endpoints that don't require Solr)
 supervisord -c supervisord/backend.conf
 
 To stop supervisord: `Ctrl-c`.
