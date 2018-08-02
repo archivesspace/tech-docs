@@ -66,7 +66,7 @@ Set the ArchivesSpace OAI server port. The OAI server listens on port 8082 by de
 
 #### `AppConfig[:solr_url]`
 
-Set the ArchivesSpace Solr index port. The OAI server listens on port 8090 by default.
+Set the ArchivesSpace Solr index port. The Solr server listens on port 8090 by default.
 
 `AppConfig[:solr_url] = "http://localhost:8090"`
 
