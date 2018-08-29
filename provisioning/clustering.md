@@ -75,7 +75,7 @@ The highlights:
   * `/aspace/nginx/conf/tenants/[tenant name].conf` -- A tenant-specific Nginx configuration file.  Used to set the URLs of each tenant's ArchivesSpace instances.
 
 
-# Getting started
+## Getting started
 
 We'll assume you already have the following ready to go:
 
@@ -95,7 +95,7 @@ We'll assume you already have the following ready to go:
   * Java 1.6 (or above) installed on each machine.
 
 
-## Populate your /aspace/ directory
+### Populate your /aspace/ directory
 
 Start by copying the directory structure from `files/` into your
 `/aspace` volume.  This will contain all of the configuration files
@@ -110,7 +110,7 @@ You can do this on any machine that has access to the shared
 `/aspace/` volume.
 
 
-## Install the cluster init script
+### Install the cluster init script
 
 On your application servers (`apps1` and `apps2`) you will need to
 install the supplied init script:
@@ -122,7 +122,7 @@ This will start all configured instances when the system boots up, and
 can also be used to start/stop individual instances.
 
 
-## Install and configure Nginx
+### Install and configure Nginx
 
 You will need to install Nginx on your `loadbalancer` machine, which
 you can do by following the directions at
@@ -145,7 +145,7 @@ tenants' configuration files.  To do this, edit
 systems.  Another likely candidate is `/etc/nginx/nginx.conf`.
 
 
-## Download the ArchivesSpace distribution
+### Download the ArchivesSpace distribution
 
 Rather than having every tenant maintain their own copy of the
 ArchivesSpace software, we put a shared copy under
@@ -172,7 +172,7 @@ the ArchivesSpace package:
      wget http://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.24/mysql-connector-java-5.1.24.jar
 
 
-# Defining a new tenant
+## Defining a new tenant
 
 With our server setup out of the way, we're ready to define our first
 tenant.  As shown in *Overview of files* above, each tenant has their
@@ -210,7 +210,7 @@ information you will need.  In particular, you will need to know:
     for the public interface.
 
 
-## Creating a Unix account
+### Creating a Unix account
 
 Although not strictly required, for security and ease of system
 monitoring it's a good idea to have each tenant instance running under
@@ -227,7 +227,7 @@ Note that we specify a UID and GID explicitly to ensure they match
 across machines.
 
 
-## Creating the database
+### Creating the database
 
 ArchivesSpace assumes that each tenant will have their own MySQL
 database.  You can create this from the MySQL shell:
@@ -245,7 +245,7 @@ the database URL:
 We'll make use of this URL in the following section.
 
 
-## Creating the tenant configuration
+### Creating the tenant configuration
 
 Each tenant has their own set of files under the
 `/aspace/archivesspace/tenants/` directory.  We'll define our new
@@ -273,7 +273,7 @@ which should be random, hard to guess passwords.
 
 
 
-# Adding the tenant instances
+## Adding the tenant instances
 
 To add our tenant instances, we just need to initialize them on each
 of our servers.  On `apps1` *and* `apps2`, we run:
@@ -315,7 +315,7 @@ it starts up, and are also used by the ArchivesSpace indexing system
 to track updates across the cluster.
 
 
-## Starting up
+### Starting up
 
 As a one-off, we need to populate this tenant's database with the
 default set of tables.  You can do this by running the
@@ -335,7 +335,7 @@ you should be able to connect to each instance with your web browser
 at the configured URLs.
 
 
-# Configuring the load balancer
+## Configuring the load balancer
 
 Our final step is configuring Nginx to accept requests for our staff
 and public interfaces and forward them to the appropriate application
