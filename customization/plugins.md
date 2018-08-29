@@ -7,8 +7,7 @@ Plug-ins provide a mechanism to customize ArchivesSpace by overriding or extendi
 without changing the core codebase. As they are self-contained, they also permit the ready
 sharing of packages of customization between ArchivesSpace instances. 
 
-The ArchivesSpace distribution comes with the `hello_world` exemplar plug-in. Please refer to it find out more 
-about how to implement a plug-in. 
+The ArchivesSpace distribution comes with the `hello_world` exemplar plug-in. Please refer to its [README file](https://github.com/archivesspace/archivesspace/blob/master/plugins/hello_world/README.md) for a detailed description of how it is constructed and implemented.
 
 ## Enabling plugins
 
