@@ -352,7 +352,7 @@ This works by overriding the three methods as follows:
 
 All of the mix-ins follow this pattern: call 'super' to delegate the
 call to the next mix-in in the chain (eventually reaching ASModel),
-then manipulate the result to implement the desired behaviour.
+then manipulate the result to implement the desired behavior.
 
 
 #### Nested records
@@ -450,7 +450,7 @@ However, the agent types differ in their details.  Agents contain name
 records, but the types of those name records correspond to the type of
 the agent: a person agent contains a person name record, for example.
 So, in spite of their similarities, the different agents need to be
-modelled as separate record types.
+modeled as separate record types.
 
 The `agent_manager` module captures the high-level similarities
 between agents.  Each agent model includes the agent manager mix-in:
@@ -553,7 +553,7 @@ records in the system.  The major actors in the permissions model are:
 
   * Repositories -- The main mechanism for partitioning the
     ArchivesSpace system.  For example, an instance might contain one
-    repository for each section of an organisation, or one repository
+    repository for each section of an organization, or one repository
     for each major collection.
 
   * Users -- An entity that uses the system--often a person, but
