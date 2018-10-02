@@ -329,7 +329,7 @@ base versions of the following methods:
 
 These methods comprise the primary interface of the model layer:
 virtually every mix-in in the model layer overrides one or all of
-these to add behaviour in a modular way.
+these to add behavior in a modular way.
 
 For example, the 'notes' mix-in adds support for multiple notes to be
 added to a record type--by mixing this module into a model class, that
