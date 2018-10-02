@@ -258,7 +258,7 @@ model layer and send a response back to the client.
 #### crud_helpers.rb -- capturing common CRUD controller actions
 
 Even though controllers are quite thin, there's still a lot of overlap
-in their behaviour.  Each record type in the system supports the same
+in their behavior.  Each record type in the system supports the same
 set of CRUD operations, and from the controller's point of view
 there's not much difference between an update request for an accession
 and an update request for a digital object (for example).
