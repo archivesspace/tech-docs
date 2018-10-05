@@ -75,7 +75,7 @@ accessing the following URLs in your browser:
   - http://localhost:8090/ -- the Solr admin console
 
 
-To start using the Staff interface application, log in using the adminstrator
+To start using the Staff interface application, log in using the administrator
 account:
 
 * Username: `admin`

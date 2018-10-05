@@ -114,7 +114,7 @@ fairly standard pattern:
 To save the need for a lot of HTTP request wrangling, ArchivesSpace
 ships with a module called JSONModel::Client that simplifies the
 common CRUD-style operations.  Including this module just requires
-passing an additional parameter when initialising JSONModel:
+passing an additional parameter when initializing JSONModel:
 
      JSONModel::init(:client_mode => true, :url => @backend_url)
      include JSONModel
@@ -258,7 +258,7 @@ model layer and send a response back to the client.
 #### crud_helpers.rb -- capturing common CRUD controller actions
 
 Even though controllers are quite thin, there's still a lot of overlap
-in their behaviour.  Each record type in the system supports the same
+in their behavior.  Each record type in the system supports the same
 set of CRUD operations, and from the controller's point of view
 there's not much difference between an update request for an accession
 and an update request for a digital object (for example).
@@ -329,7 +329,7 @@ base versions of the following methods:
 
 These methods comprise the primary interface of the model layer:
 virtually every mix-in in the model layer overrides one or all of
-these to add behaviour in a modular way.
+these to add behavior in a modular way.
 
 For example, the 'notes' mix-in adds support for multiple notes to be
 added to a record type--by mixing this module into a model class, that
@@ -352,7 +352,7 @@ This works by overriding the three methods as follows:
 
 All of the mix-ins follow this pattern: call 'super' to delegate the
 call to the next mix-in in the chain (eventually reaching ASModel),
-then manipulate the result to implement the desired behaviour.
+then manipulate the result to implement the desired behavior.
 
 
 #### Nested records
@@ -450,7 +450,7 @@ However, the agent types differ in their details.  Agents contain name
 records, but the types of those name records correspond to the type of
 the agent: a person agent contains a person name record, for example.
 So, in spite of their similarities, the different agents need to be
-modelled as separate record types.
+modeled as separate record types.
 
 The `agent_manager` module captures the high-level similarities
 between agents.  Each agent model includes the agent manager mix-in:
@@ -553,7 +553,7 @@ records in the system.  The major actors in the permissions model are:
 
   * Repositories -- The main mechanism for partitioning the
     ArchivesSpace system.  For example, an instance might contain one
-    repository for each section of an organisation, or one repository
+    repository for each section of an organization, or one repository
     for each major collection.
 
   * Users -- An entity that uses the system--often a person, but
