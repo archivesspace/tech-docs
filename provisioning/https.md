@@ -59,7 +59,7 @@ requests to the actual application urls. This requires the use of the `mod_proxy
        ProxyPassReverse / http://localhost:8081/
      </VirtualHost>
 
-
+You may optionally set the `Set-Cookie: Secure attribute` by adding `Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure`. When a cookie has the Secure attribute, the user agent will include the cookie in an HTTP request only if the request is transmitted over a secure channel.
 
 #### Setting up Redirects
 When running a site over HTTPS, it's a good idea to set up a redirect to ensure any outdated HTTP requests are routed to the correct URL. This can be done through Apache as follows:
