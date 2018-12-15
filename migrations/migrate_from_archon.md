@@ -14,9 +14,7 @@ Review your Archon database for data quality
 
 * Supply an accession date for all records, when possible. If an accession date is not
 recorded in Archon, the date of 01/01/9999 will be supplied during the migration process. If you wish to change this default value, you may do so by editing the following file in the new Archon distribution, prior to running the migration:
-
   `packages/core/templates/default/accession-list.inc.php`
-
 * Supply an identifier for all records, when possible. If an identifier is not recorded in Archon, a supplied identifier will be constructed during the migration process, consisting of the date and the truncated accession title.
 
 ### Classification Records
@@ -31,44 +29,32 @@ If normalized dates are not recorded correctly (i.e. if the end date and begin d
 
 ### Level/Container Manager
 
-Review the settings to make sure that each ‘level container’ is appropriately marked with the correct values for “Intellectual Level” and “Physical Container” and that EAD Values are correctly recorded.
+Review the settings to make sure that each 'level container' is appropriately marked with the correct values for "Intellectual Level" and "Physical Container" and that EAD Values are correctly recorded.
 
-![Level Container Manager](./images/archon_level.jpg)
+![Level Container Manager](https://archivesspace.github.io/archivesspace/assets/images/archon_level.jpg)
 
 Failure to code level container values correctly may result in incorrect nesting of resource components in ArchivesSpace. While the following information does not need to be acted upon prior to migration, please note the following if you find that content is not nested correctly after you migrate:
 
-* Collection content records that have a level container that is ‘Intellectual Only’ will be migrated to ArchivesSpace as resource components. Each level/container that has ‘intellectual level’ checked should have a valid value recorded in the “EAD Level” field (i.e. class, collection, file, fonds, item, otherlevel, recordgrp, series, subfonds, subgrp, subseries). These values are case sensitive, and all other values will be migrated as “otherlevel” on the collection content/resource component records to which they apply.
-* Collection content records that have a level container that is ‘Physical Only’ will be migrated to ArchivesSpace as instance records of the type ‘text’ attached to a container in ArchivesSpace. These instance/container records will be attached to the intellectual level or levels that are immediate children of the container record as it was previously expressed in Archon. If the instance/container has no children it will be attached to its parent intellectual level instead. For illustrative purposes, the following screenshots show a container record prior to and following migration.
-
-  ![Archon container example](./images/archon_container.jpg)
-
+* Collection content records that have a level container that is 'Intellectual Only' will be migrated to ArchivesSpace as resource components. Each level/container that has 'intellectual level' checked should have a valid value recorded in the "EAD Level" field (i.e. class, collection, file, fonds, item, otherlevel, recordgrp, series, subfonds, subgrp, subseries). These values are case sensitive, and all other values will be migrated as "otherlevel" on the collection content/resource component records to which they apply.
+* Collection content records that have a level container that is 'Physical Only' will be migrated to ArchivesSpace as instance records of the type 'text' attached to a container in ArchivesSpace. These instance/container records will be attached to the intellectual level or levels that are immediate children of the container record as it was previously expressed in Archon. If the instance/container has no children it will be attached to its parent intellectual level instead. For illustrative purposes, the following screenshots show a container record prior to and following migration.
+  ![Archon container example](https://archivesspace.github.io/archivesspace/assets/images/archon_container.jpg)
 * Collection content records that have both physical and intellectual levels will be migrated as both resource components and instances. In this case the instance will be attached to the resource component.
-* Collection content records that are neither physical nor intellectual levels will be migrated as if they were ‘Intellectual Only’. This is not recommended and should be fixed prior to migration.
+* Collection content records that are neither physical nor intellectual levels will be migrated as if they were 'Intellectual Only'. This is not recommended and should be fixed prior to migration.
 
 ### Collection Content Records
 
-* If a value has not been set in the “Title” or “Inclusive Dates” field of an “intellectual” level/container in Archon, the collection content record being migrated will be supplied a title, based on its “label” value and the “level/container” type set in Archon.
-
-  ![Collection Content Records](./images/archon_collection.jpg)
-
-* Optionally, if a migration fails, check for collection content records that reference invalid ‘level/containers’. These records are found in the database tables, but are not visible to staff or end users and must be eliminated prior to migration. If not eliminated, the migration will fail. In order to identify these records, you should follow these steps. **Be very careful. If you are uncertain what you are doing, backup the database first or speak with a systems administrator!**
-* In MySQL or SQL Server, open the table titled ‘tblCollections_LevelContainers’. Note the ‘ID’ value recorded of each row (i.e. LevelContainer).
-* Run a query against tblCollections_Content to find records where the LevelID column references an invalid value. For example, if tblCollections_Level Containers holds ‘ID’ values1-6 and 8-22:
-
+* If a value has not been set in the "Title" or "Inclusive Dates" field of an "intellectual" level/container in Archon, the collection content record being migrated will be supplied a title, based on its "label" value and the "level/container" type set in Archon.
+  ![Collection Content Records](https://archivesspace.github.io/archivesspace/assets/images/archon_collection.jpg)
+* Optionally, if a migration fails, check for collection content records that reference invalid 'level/containers'. These records are found in the database tables, but are not visible to staff or end users and must be eliminated prior to migration. If not eliminated, the migration will fail. In order to identify these records, you should follow these steps. **Be very careful. If you are uncertain what you are doing, backup the database first or speak with a systems administrator!**
+* In MySQL or SQL Server, open the table titled 'tblCollections_LevelContainers'. Note the 'ID' value recorded of each row (i.e. LevelContainer).
+* Run a query against tblCollections_Content to find records where the LevelID column references an invalid value. For example, if tblCollections_Level Containers holds 'ID' values1-6 and 8-22:
   `SELECT * FROM tblCollections_Content WHERE LevelContainerID > 22 OR (LevelContainerID > 6 AND LevelContainerID < 8);`
-
-  This will provide a list of all records with invalid 'LevelID’ (i.e. where a record with the primary key referenced by a foreign key cannot be found). Review this list carefully to make sure you are comfortable deleting the records, or change the LevelID to a valid integer if you wish to retain the records. If you choose to delete the records, you will need to do so directly in the database (see below.) If you choose to do the latter, you may need to take additional steps directly in the database to link these records to a valid parent content record or collection; additional instructions can be supplied upon request.
-
+  This will provide a list of all records with invalid 'LevelID' (i.e. where a record with the primary key referenced by a foreign key cannot be found). Review this list carefully to make sure you are comfortable deleting the records, or change the LevelID to a valid integer if you wish to retain the records. If you choose to delete the records, you will need to do so directly in the database (see below.) If you choose to do the latter, you may need to take additional steps directly in the database to link these records to a valid parent content record or collection; additional instructions can be supplied upon request.
 * Run a query to delete the invalid records from the collections content table. For example:
-
   `DELETE FROM tblCollections_Content WHERE LevelContainerID > 22 OR (LevelContainerID > 6 AND LevelContainerID < 8);`
-
-* Optionally, if the migration fails, check for ‘duplicate’ collection content records. ‘Duplicate’ records are those that occupy the same node in the collection/content hiearchy. To check for these records, run the following query in mysql or sql server.
-
+* Optionally, if the migration fails, check for 'duplicate' collection content records. 'Duplicate' records are those that occupy the same node in the collection/content hiearchy. To check for these records, run the following query in mysql or sql server.
   `SELECT ParentID, SortOrder, COUNT (*) FROM tblCollections_Content GROUP BY ParentID, SortOrder HAVING COUNT(*) > 1;`
-
-* The query above checks for records that occupy the same branch and same position in the content hierarchy. If you discover such records, the sort order value of one of the records must be changed, so that both records occupy a unique position. In order to do this, run a query that finds all records attached to the parent record, then run an update query to change the sort order of one of the offending records so that each has a unique sort order. For example if the query above returns ParentID as a ‘duplicate’ value, you would run query one with the appropriate ParentID value to identify the offending records, and query two to fix the problem:
-
+* The query above checks for records that occupy the same branch and same position in the content hierarchy. If you discover such records, the sort order value of one of the records must be changed, so that both records occupy a unique position. In order to do this, run a query that finds all records attached to the parent record, then run an update query to change the sort order of one of the offending records so that each has a unique sort order. For example if the query above returns ParentID as a 'duplicate' value, you would run query one with the appropriate ParentID value to identify the offending records, and query two to fix the problem:
   **Query one:**
 
   `SELECT ID, ParentID, SortOrder, Title FROM tblCollections_Content WHERE ParentID=8619;`
@@ -88,7 +74,7 @@ Failure to code level container values correctly may result in incorrect nesting
 
 The migration process is iterative in nature. You should plan to do several test migrations, culminating in a final migration. Typically, migration will require assistance from a system administrator.
 
-The migration tool will connect to your Archon installation, read data from defined ‘endpoints,’ and place the information in a target ArchivesSpace instance.
+The migration tool will connect to your Archon installation, read data from defined 'endpoints', and place the information in a target ArchivesSpace instance.
 
 A migration report is generated at the end of each migration routine and can be downloaded from the application. The report indicates errors or issues occurring with the migration. Sample data from migration report is provided in [Appendix A](#appendix-a-migration-log-review).
 
@@ -115,7 +101,6 @@ For the most part, the data migration process should be automatic, with errors b
 The time that the migration takes to complete will depend on a number of factors (database size, network performance etc.), but has been known to take anywhere from a half hour to ten or twelve hours. Most of this time will probably be spent migrating collection records.
 
 The following Archon datatypes will migrate, and all relationships that exist between these datatypes should be preserved in ArchivesSpace, except as noted in bold below. For each datatype, post- migration cleanup recommendations are provided in parentheses:
-
 * Editable controlled value lists:
   * Subject sources (review post migration and merge values with ArchivesSpace defaults or functionally duplicate values, when possible)
   * Creatorsources(reviewpostmigrationandmergevalueswithArchivesSpacedefaults
@@ -132,14 +117,10 @@ records and merge with duplicate agent names from creator migration, when possib
 * Creators/Names
 * Accessions (The migration tool will supply accession identifiers when these are blank in Archon. Review and change values, if appropriate.)
 * Digital Objects: The migration tool will generate digital object metadata records in ArchivesSpace for each digital library record that is stored in your Archon instance. For each file that has an attached digital library record, the migration tool will generate a digital object component and file instance record. In addition, the migration tool will provide a folder containing the source file you uploaded to Archon when you created the record. In order to link these files to the digital file records in ArchivesSpace, you should place the files in a single directory on a webserver.
-
-  **To preserve the linkage between the file’s metadata in ArchivesSpace, you must provide the base URL to the folder where the objects will be placed.** The migration tool prepends this URL to the filename to form a complete path to the object location, for each file being exported, as shown in the screenshot below. (In version 2.2.2 of ArchivesSpace, with the default digital object templates, these files will be available in the public interface by clicking a link.)
-
+  **To preserve the linkage between the file's metadata in ArchivesSpace, you must provide the base URL to the folder where the objects will be placed.** The migration tool prepends this URL to the filename to form a complete path to the object location, for each file being exported, as shown in the screenshot below. (In version 2.2.2 of ArchivesSpace, with the default digital object templates, these files will be available in the public interface by clicking a link.)
 * Locations (Controlled location records are much more granular in ArchivesSpace than in Archon. You should have a location record for each unique combination of location drop down, range, section, and shelf in Archon, and these records should be linked to top container records which are in turn linked to an instance for each collection where they apply.)
 * Resources and Resource Components (see locations, above).
-
 Data from the following Archon modules will not migrate to ArchivesSpace
-
 * Books (Book data could be migrated later if a plugin is developed to support this data).
 * AVSAP/Assessments
 
@@ -147,7 +128,7 @@ Data from the following Archon modules will not migrate to ArchivesSpace
 
 Make sure the ArchivesSpace instance that you are migrating into is up and running, then open up the migration tool.
 
-![Archon migrator](./images/archon_migrator.jpg)
+![Archon migrator](https://archivesspace.github.io/archivesspace/assets/images/archon_migrator.jpg)
 
 1. Change the default information in the migration tool user interface:
    * ArchonSource – Supply the base URL for the Archon instance.
@@ -155,19 +136,16 @@ Make sure the ArchivesSpace instance that you are migrating into is up and runni
    * Password – Password for that same account.
    * Download Digital Object Files checkbox – Check if you want to move any attached digital object files and supply a webpath to a web accessible folder where you intend to place the digital objects after the migration is complete.
    * Set Download Folder – Clicking this will open a file explorer that will allow you to specify the folder to which you want digital files from Archon to be downloaded.
-   * Set Default Repository checkbox -- Select "Set Default Repository" checkbox to set which Repository Accession and Unlinked digital objects are copied to. The default is “Based on Linked Collection,” which will copy Accession records to the same repository of any Collection records they are linked to, or the first repository if they are not. You can also select a specific repository from the drop-down list.
+   * Set Default Repository checkbox -- Select "Set Default Repository" checkbox to set which Repository Accession and Unlinked digital objects are copied to. The default is "Based on Linked Collection," which will copy Accession records to the same repository of any Collection records they are linked to, or the first repository if they are not. You can also select a specific repository from the drop-down list.
    * Host – The URL and port number of the ArchivesSpace backend server.
-   * ASpace admin – User name for the ArchivesSpace “admin” account. The default value of “admin” should work unless it was changed by the ArchivesSpace administrator.
-   * Password – Password for the ArchivesSpace “admin” account. The default value of “admin” should work unless it was changed by the ArchivesSpace administrator.
+   * ASpace admin – User name for the ArchivesSpace "admin" account. The default value of "admin" should work unless it was changed by the ArchivesSpace administrator.
+   * Password – Password for the ArchivesSpace "admin" account. The default value of "admin" should work unless it was changed by the ArchivesSpace administrator.
    * Reset Password – Each user account transferred has its password reset to this. Please note that users need to change their password when they first log-in unless LDAP is used for authentication.
    * Migration Options – This is needed for the functioning of the migration tool. Please do not make changes to this area.
    * Output Console – Display section for following the migration while it is running
    * View Error Log – Used to view a printout of all the errors encountered during the migration process. This can be used while the migration process is underway as well.
-
-2. Press the “Copy to ArchivesSpace” button to start the migration process. This starts the migration to the ArchivesSpace instance indicated by the Host URL.
-
+2. Press the "Copy to ArchivesSpace" button to start the migration process. This starts the migration to the ArchivesSpace instance indicated by the Host URL.
 3. If the migration process fails: Review the error message provided and /or the migration log. Fix any issues that have been identified, clear the target MySQL and try again.
-
 4. When the process has completed:
    * Download the migration report.
    * Move digital objects into the folder location corresponding to the URL you provided to the migration tool.
