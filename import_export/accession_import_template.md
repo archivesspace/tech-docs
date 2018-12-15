@@ -1,5 +1,4 @@
-# ArchivesSpace Accession CSV Import Template 
---------------------
+# Accession CSV Import Template
 
 [Download](https://raw.githubusercontent.com/archivesspace/archivesspace/master/backend/app/exporters/examples/accession/aspace_accession_import_template.csv)
 

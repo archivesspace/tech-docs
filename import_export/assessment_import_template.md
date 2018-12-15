@@ -1,5 +1,4 @@
-# ArchivesSpace Assessment CSV Import Template 
---------------------------------------------
+# Assessment CSV Import Template
 
 [Download](https://raw.githubusercontent.com/archivesspace/archivesspace/master/backend/app/exporters/examples/assessment/aspace_assessment_import_template.csv)
 

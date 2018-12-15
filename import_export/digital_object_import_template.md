@@ -1,5 +1,4 @@
-# ArchivesSpace Digital Object CSV Import Template 
---------------------
+# Digital Object CSV Import Template
 
 [Download](https://raw.githubusercontent.com/archivesspace/archivesspace/master/backend/app/exporters/examples/digital_object/aspace_digital_object_import_template.csv)
 
