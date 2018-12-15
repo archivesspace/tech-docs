@@ -14,14 +14,12 @@ key methods:
 
   * `initialize(opts)` -- An object constructor which receives the
     configuration block specified in the system's configuration.
-
   * `name` -- A zero-argument method which just returns a string that
     identifies the instance of your handler.  The format of this
     string isn't important: it just gets stored as a user attribute
     (in the ArchivesSpace database) to make it possible to tell which
     authentication source a user last successfully authenticated
     against.
-
   * `authenticate(username, password)` -- a method which checks
     whether `password` is the correct password for `username`.  If the
     password is correct, returns an instance of `JSONModel(:user)`.
@@ -52,7 +50,6 @@ Suppose you already have a database with a table containing users that
 should be able to log in to ArchivesSpace.  Below is a sketch of an
 authentication handler that will connect to this database and use it
 for authentication.
-
 
       # For this example we'll use the Sequel database toolkit.  Note that
       # this isn't necessary--you could use whatever database library you

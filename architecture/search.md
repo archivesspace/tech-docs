@@ -13,7 +13,6 @@ updates.  The indexer operates in two modes simultaneously:
     were added/modified/deleted since it last checked.  These changes
     are propagated to the Solr index.  This generally happens every 30
     to 60 seconds (and is configurable).
-
   * The real-time mode responds to updates as they happen, applying
     changes to Solr as soon as they're applied to the backend.  This
     aims to reflect updates within the search indexes in milliseconds

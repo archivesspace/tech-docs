@@ -11,7 +11,7 @@ file, with the relevant configuration options are prefixed with
 `:pui_`.
 
 To see the full list of available options, see the file
-[`app/archivesspace-public/app/lib/config_defaults.rb`](app/archivesspace-public/app/lib/config_defaults.rb)
+[`https://github.com/archivesspace/archivesspace/blob/master/common/config/config-defaults.rb`](https://github.com/archivesspace/archivesspace/blob/master/common/config/config-defaults.rb)
 
 ### Preserving Patron Privacy
 
@@ -84,9 +84,7 @@ To run a development server, the PUI follows the same pattern as the rest of Arc
 ### Three options for inheritance:
 
 * Directly inherit a value for a field – the record has no value for the field and you want the value in the field to display as if it were the record’s own [uncomment the inheritance section in the config, set desired field (property) to inherit_directly => true]
-
 * Indirectly inherit a value for a field – the record has no value for the field and you want to display the value from a higher level, but precede it with a note that indicates that it comes from that higher level, such as “From the collection” [uncomment the inheritance section in the config, set desired field (property) to inherit_directly => false]
-
 * Don’t display the field at all – the record has no value of its own for the field and you don’t want it to display at all [uncomment the inheritance section in the config, delete the lines for the desired field (property)]
 
 
@@ -100,25 +98,18 @@ Additionally, the identifier element in ArchivesSpace, which is better known as 
 
 By default, the following elements are turned on for inheritance:
 
-· Title (direct inheritance)
-
-· Identifier (indirect inheritance, but by default the identifier inherits from ancestor archival objects only; it does NOT include the resource identifier.
+  * Title (direct inheritance)
+  * Identifier (indirect inheritance, but by default the identifier inherits from ancestor archival objects only; it does NOT include the resource identifier.
 
 Also it is advised to inherit this element in a composite fashion once it is determined whether the level of description should or should not display as part of the identifier, which will depend upon local data-entry practices
 
-· Language code (direct inheritance, but it does NOT display anywhere in the interface currently; eventually, this could be used for faceting)
-
-· Dates (direct inheritance)
-
-· Extents (indirect inheritance)
-
-· Creator (indirect inheritance)
-
-· Access restrictions note (direct inheritance)
-
-· Scope and contents note (indirect inheritance)
-
-· Language of Materials note (indirect inheritance, but there seems to be a bug right now so that the Language notes always show up as being directly inherited. See AR-XXXX)
+  * Language code (direct inheritance, but it does NOT display anywhere in the interface currently; eventually, this could be used for faceting)
+  * Dates (direct inheritance)
+  * Extents (indirect inheritance)
+  * Creator (indirect inheritance)
+  * Access restrictions note (direct inheritance)
+  * Scope and contents note (indirect inheritance)
+  * Language of Materials note (indirect inheritance, but there seems to be a bug right now so that the Language notes always show up as being directly inherited. See AR-XXXX)
 
 See https://github.com/archivesspace/archivesspace/blob/master/common/config/config-defaults.rb#L296-L396 for more information and examples.
 
@@ -155,4 +146,4 @@ When you set include_level to true, that means that the archival object level wi
 
 ArchivesSpace is released under the [Educational Community License,
 version 2.0](http://opensource.org/licenses/ecl2.php). See the
-[COPYING](COPYING) file for more information.
+[COPYING](https://github.com/archivesspace/archivesspace/blob/master/COPYING) file for more information.
