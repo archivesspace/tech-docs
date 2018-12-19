@@ -39,7 +39,7 @@ database, which is only increased by the added process of PDF creation. We are c
 redesigning part of the ArchivesSpace backend to make PDF creation more user friendly by
 establishing a queue system for exports.
 
-In the meantime, Mark Cooper at Lyrasis has made a [ Public Metadata Formats plugin ]( https://github.com/archivesspace/aspace-public-formats )  
+In the meantime, Mark Cooper at Lyrasis has made a [ Public Metadata Formats plugin ](https://github.com/archivesspace-deprecated/aspace-public-formats)  
 that exposes certain metadata formats and PDFs in the public UI. This plugin has been included
 in this release, but you will need to configure it to expose which formats you would like
 to have exposed. Please read the plugin documentation on how to configure this.

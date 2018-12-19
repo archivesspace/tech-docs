@@ -1,9 +1,9 @@
 # Upgrading to a new release of ArchivesSpace
 
-*  **[Special considerations when upgrading to v1.1.0](https://archivesspace.github.io/archivesspace/user/upgrading-to-1.1.0)**
-*  **[Special considerations when upgrading to v1.1.1](https://archivesspace.github.io/archivesspace/user/upgrading-to-1.1.1)**
-*  **[Special considerations when upgrading from v1.4.2 to 1.5.x (these considerations also apply when upgrading from 1.4.2 to any version through 2.0.1)](https://archivesspace.github.io/archivesspace/user/upgrading-to-1.5.0)**
-*  **[Special considerations when upgrading to 2.1.0](https://archivesspace.github.io/archivesspace/user/upgrading-to-2.1.0)**
+*  **[Special considerations when upgrading to v1.1.0](https://archivesspace.github.io/archivesspace/user/upgrading-to-1.1.0/)**
+*  **[Special considerations when upgrading to v1.1.1](https://archivesspace.github.io/archivesspace/user/upgrading-to-1.1.1/)**
+*  **[Special considerations when upgrading from v1.4.2 to 1.5.x (these considerations also apply when upgrading from 1.4.2 to any version through 2.0.1)](https://archivesspace.github.io/archivesspace/user/upgrading-to-1.5.0/)**
+*  **[Special considerations when upgrading to 2.1.0](https://archivesspace.github.io/archivesspace/user/upgrading-to-2.1.0/)**
 
 ## Create a backup of your ArchivesSpace instance
 

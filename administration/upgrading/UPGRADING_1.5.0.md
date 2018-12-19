@@ -33,7 +33,7 @@ When your installation is upgraded to 1.5.0, the conversion will happen as part 
 
 *Can I continue to use the current model for containers and not convert to the new model?*
 
-Because it is such a substantial improvement [(see separate announcement for the new features)](https://github.com/archivesspace/tech-docs/blob/master/README_FEATURES_1.5.0.md), the new model is required for all using ArchivesSpace 1.5.0 and higher. The only way to continue using the current model is to never upgrade beyond 1.4.2.
+Because it is such a substantial improvement [(see separate announcement for the new features)](https://archivesspace.github.io/archivesspace/user/what-is-the-new-functionality-related-to-containers-and-container-management-in-1.5.0/), the new model is required for all using ArchivesSpace 1.5.0 and higher. The only way to continue using the current model is to never upgrade beyond 1.4.2.
 
 *What if I’m already using the container management plugin made available to the community by Yale University?*
 
@@ -62,7 +62,7 @@ During the conversion, ArchivesSpace will find all the Container 1s in your curr
 
 * If your Container 1s have unique barcodes, you do not need to do anything except verify that your data is complete and accurate. You should run a preliminary conversion as described in the Conversion section and resolve any errors.
 * If your Container 1s do not have barcodes, but have a nonduplicative container identifier sequence within each accession or resource (e.g. Box 1, Box 2, Box 3), or the identifiers are only reused within an accession or resource for different types of containers (for example, you have a Box 1 through 10 and an Oversize Box 1 through 3) you do not need to do anything except verify that your data is complete and accurate. You should run a preliminary conversion as described in the Conversion section and resolve any errors.
-* If your Container 1s do not have barcodes and you have parallel numbering sequences, where the same indicators and types are used to refer to different containers within the same accession or resource within some or all accessions or resources (for example, you have a Box 1 in series 1 and a different Box 1 in series 5) you will need to find a way to uniquely identify these containers. One option is to run this [barcoder plugin](https://github.com/archivesspace/barcoder) for each resource to which this applies. The barcoder plugin creates barcodes that combine the ID of the highest level archival object ancestor with the container 1 type and indicator. (The barcoder plugin is designed to run against one resource at a time, instead of against all resources, because not all resources in a repository may match this condition.) Once you’ve differentiated your containers with parallel number sequences, you should run a preliminary conversion as described in the Conversion section and resolve any errors.
+* If your Container 1s do not have barcodes and you have parallel numbering sequences, where the same indicators and types are used to refer to different containers within the same accession or resource within some or all accessions or resources (for example, you have a Box 1 in series 1 and a different Box 1 in series 5) you will need to find a way to uniquely identify these containers. One option is to run this [barcoder plugin](https://github.com/archivesspace-plugins/barcoder) for each resource to which this applies. The barcoder plugin creates barcodes that combine the ID of the highest level archival object ancestor with the container 1 type and indicator. (The barcoder plugin is designed to run against one resource at a time, instead of against all resources, because not all resources in a repository may match this condition.) Once you’ve differentiated your containers with parallel number sequences, you should run a preliminary conversion as described in the Conversion section and resolve any errors.
 
 You do not need to make any changes to Container 2 fields or Container 3 fields. Data in these fields will be converted to the new Child and Grandchild container fields that map directly to these fields.
 
@@ -74,7 +74,7 @@ If you have a box and folder associated with a component (or any other hierarchi
 
 ## Conversion <a name="conversion"></a>
 
-When upgrading from 1.4.2 (and earlier versions) to 1.5.0, the container conversion will happen as part of the upgrade process. You will be able to follow its progress in the log. Instructions for upgrading from a previous version of ArchivesSpace are available at [https://archivesspace.github.io/archivesspace/user/upgrading-to-a-new-release-of-archivesspace/].
+When upgrading from 1.4.2 (and earlier versions) to 1.5.0, the container conversion will happen as part of the upgrade process. You will be able to follow its progress in the log. Instructions for upgrading from a previous version of ArchivesSpace are available at [upgrade documentation](https://archivesspace.github.io/archivesspace/user/upgrading-to-a-new-release-of-archivesspace/).
 
 Because this is a major change in the data model for this portion of the application, running at least one test conversion is very strongly recommended. Follow these steps to run the upgrade/conversion process:
 * Create a backup of your ArchivesSpace instance to use for testing. **IT IS ESSENTIAL THAT YOU NOT RUN THIS ON A PRODUCTION INSTANCE AS THE CONVERSION CHANGES YOUR DATA, and THE CHANGES CANNOT BE UNDONE EXCEPT BY REVERTING TO A BACKUP VERSION OF YOUR DATA PRIOR TO RUNNING THE CONVERSION.**
@@ -83,23 +83,23 @@ Because this is a major change in the data model for this portion of the applica
 * Follow the upgrade instructions to run the database migrations. As part of this step, your container data will be converted to the new data model. You can follow along in the log. Windows users can open the archivesspace.out file in a tool like Notepad ++. Mac users can do a tail –f logs/archivesspace.out to get a live update from the log.
 * When the test conversion has been completed, the log will indicate "Completed: existing containers have been migrated to the new container model."
 
- ![Image of Conversion Log](https://github.com/archivesspace/archivesspace/blob/master/docs/ConversionLog.png)
+ ![Image of Conversion Log](https://archivesspace.github.io/archivesspace/ConversionLog.png)
 
 * Open ArchivesSpace via your browser and login.
 Retrieve the container conversion error report from the Background Jobs area:
 * Select Background Jobs from the Settings menu.
 
-![Image of Background Jobs](https://github.com/archivesspace/archivesspace/blob/master/docs/BackgroundJobs.png)
+![Image of Background Jobs](https://archivesspace.github.io/archivesspace/BackgroundJobs.png)
 
 * The first item listed under Archived Jobs after completing the upgrade should be container_conversion_job. Click View.
 
-![Image of Background Jobs List](https://github.com/archivesspace/archivesspace/blob/master/docs/BackgroundJobsList.png)
+![Image of Background Jobs List](https://archivesspace.github.io/archivesspace/BackgroundJobsList.png)
 
 * Under Files, click File to download a CSV file with the errors and a brief explanation.
 
-![Image of Files](https://github.com/archivesspace/archivesspace/blob/master/docs/Files.png)
+![Image of Files](https://archivesspace.github.io/archivesspace/Files.png)
 
-![Image of Error Report](https://github.com/archivesspace/archivesspace/blob/master/docs/ErrorReport.png)
+![Image of Error Report](https://archivesspace.github.io/archivesspace/ErrorReport.png)
 
 * Go back to your source data and correct any errors that you can before doing another test conversion.
 * When the error report shows no errors, or when you are satisfied with the remaining errors, your production instance is ready to be upgraded.
@@ -117,4 +117,4 @@ The conversion process can resolve some of these errors for you by supplying or 
 
 *Are there any known conversion issues?*
 
-Due to a change in the ArchivesSpace EAD importer in 2015, some EADs with hierarchical containers not designated by a @parent attribute were turned into multiple instance records. This has since been corrected in the application, but we are working on a plugin (now available at [https://github.com/archivesspace/instance_joiner]) that will enable you to turn these back into single instances so that subcontainers are not mistakenly turned into top containers.
+Due to a change in the ArchivesSpace EAD importer in 2015, some EADs with hierarchical containers not designated by a @parent attribute were turned into multiple instance records. This has since been corrected in the application, but we are working on a plugin (now available at [Instance Joiner Plug-in](https://github.com/archivesspace-plugins/instance_joiner) that will enable you to turn these back into single instances so that subcontainers are not mistakenly turned into top containers.

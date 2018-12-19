@@ -15,12 +15,12 @@ and to keep things simple the following are assumed:
   * You have obtained an SSL certificate and key from an authority
   * You have ensured that appropriate firewall ports have been opened (80 and 443).
 
-1. [Configuring the Web Server](#step-1-configure-web-server-apache-or-nginx)
-   - [Apache](#apache)
-     - [Setting up SSL](#setting-up-ssl)
-     - [Setting up Redirects](#setting-up-redirects)
-   - [Nginx](#nginx)
-2. [Configuring ArchivesSpace](#step-2-configure-archivesspace)
+1. [Configuring the Web Server](#Step-1%3A-Configure-Web-Server-(Apache-or-Nginx))
+   - [Apache](#Apache)
+     - [Setting up SSL](#Setting-up-SSL)
+     - [Setting up Redirects](#Setting-up-Redirects)
+   - [Nginx](#Nginx)
+2. [Configuring ArchivesSpace](#Step-2%3A-Configure-ArchivesSpace)
 
 
 ## Step 1: Configure Web Server (Apache or Nginx)
@@ -28,7 +28,7 @@ and to keep things simple the following are assumed:
 ### Apache
 Information about configuring Apache for SSL can be found at http://httpd.apache.org/docs/current/ssl/ssl_howto.html.  You should read
 that documentation before attempting to configure SSL.
-     
+
 #### Setting up SSL
 
 
@@ -47,7 +47,7 @@ requests to the actual application urls. This requires the use of the `mod_proxy
        ProxyPass / http://localhost:8080/
        ProxyPassReverse / http://localhost:8080/
      </VirtualHost>
-     
+
      <VirtualHost *:443>
        ServerName public.myarchive.org
        SSLEngine On

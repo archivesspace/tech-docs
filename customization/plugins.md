@@ -5,7 +5,7 @@ most aspects of how the application behaves.
 
 Plug-ins provide a mechanism to customize ArchivesSpace by overriding or extending functions
 without changing the core codebase. As they are self-contained, they also permit the ready
-sharing of packages of customization between ArchivesSpace instances. 
+sharing of packages of customization between ArchivesSpace instances.
 
 The ArchivesSpace distribution comes with the `hello_world` exemplar plug-in. Please refer to its [README file](https://github.com/archivesspace/archivesspace/blob/master/plugins/hello_world/README.md) for a detailed description of how it is constructed and implemented.
 
@@ -67,7 +67,7 @@ to the local plug-in:
 
     plugins/local/frontend/locales/en.yml
 
-More detailed information about overriding locale files is found in [Customizing text in ArchivesSpace](./locales.md)
+More detailed information about overriding locale files is found in [Customizing text in ArchivesSpace](https://archivesspace.github.io/archivesspace/user/customizing-text-in-archivesspace/)
 
 
 ## Overriding the visual (web) presentation
@@ -79,7 +79,7 @@ For example, if you want to override the appearance of the "Welcome" [home] page
 
 Unless you want to write inline style or javascript (which may be practiceable for a template or two), best practice is to create `plugins/my_fine_plugin/public/views/layout_head.html.erb` or `plugins/my_fine_plugin/frontend/views/layout_head.html.erb`, which contains the HTML statements to incorporate your javascript or css into the `<HEAD>` element of the template.  Here's an example:
 
-* For the public interface, I want to change the size of the text in all links when the user is hovering. 
+* For the public interface, I want to change the size of the text in all links when the user is hovering.
     - I create `plugins/my_fine_plugin/public/assets/my.css`:
         ```css
             a:hover {font-size: 2em;}
@@ -210,7 +210,7 @@ underlying index.
 
 ## Adding Custom Reports
 
-Custom reports may be added to plug-ins by adding a new report model as a subclass of `AbstractReport` to `plugins/[plugin-name]/backend/model/`. Look to existing reports in reports subdirectory of the ArchivesSpace base directory for examples of how to structure a report model. 
+Custom reports may be added to plug-ins by adding a new report model as a subclass of `AbstractReport` to `plugins/[plugin-name]/backend/model/`. Look to existing reports in reports subdirectory of the ArchivesSpace base directory for examples of how to structure a report model.
 
 There are several limitations to adding reports to plug-ins, including that reports from plug-ins may only use the generic report template. ArchivesSpace only searches for report templates in the reports subdirectory of the ArchivesSpace base directory, not in plug-in directories. If you would like to implement a custom report with a custom template, consider adding the report to `archivesspace/reports/` instead of `archivesspace/plugins/[plugin-name]/backend/model/`.
 
