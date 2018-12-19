@@ -2,7 +2,7 @@
 
 ## Archivists' Toolkit
 
-* [AT migration tool instructions](./migrate_from_archivists_toolkit.md)
+* [AT migration tool instructions](https://archivesspace.github.io/archivesspace/user/migrating-data-from-archivists-toolkit-to-archivesspace-using-the-migration-tool/)
 * [AT migration plugin](https://github.com/archivesspace/at-migration/releases)
 * [AT migration source code](https://github.com/archivesspace/at-migration)
 * [AT migration mapping (for 2.x versions of the tool and ArchivesSpace](https://github.com/archivesspace/at-migration/blob/master/docs/ATMappingDocument.xlsx)
@@ -14,7 +14,7 @@
 
 ## Archon
 
-* [Archon migration tool instructions](./migrate_from_archon.md)
+* [Archon migration tool instructions](https://archivesspace.github.io/archivesspace/user/migrating-data-from-archon-to-archivesspace-using-the-migration-tool/)
 * [Archon migration tool](https://github.com/archivesspace/archon-migration/releases/latest)
 * [Archon migration source code](https://github.com/archivesspace/archon-migration/)
 * [Archon migration mapping (for 2.x versions of the tool and ArchivesSpace)](https://docs.google.com/spreadsheets/d/13soN5djk16QYmRoSajtyAc_nBrNldyL58ViahKFJAog/edit?usp=sharing)

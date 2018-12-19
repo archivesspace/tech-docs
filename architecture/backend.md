@@ -22,31 +22,23 @@ following actions:
   * Initializes JSONModel--triggering it to load all record schemas
     from the filesystem and generate the classes that represent each
     record type.
-
   * Connects to the database
-
   * Loads all backend models--the system's domain objects and
     persistence layer
-
   * Loads all controllers--defining the system's REST endpoints
-
   * Starts the job scheduler--handling scheduled tasks such as backups
     of the demo database (if used)
-
   * Runs the "bootstrap ACLs" process--creates the admin user and
     group if they don't already exist; creates the hidden global
     repository; creates system users and groups.
-
   * Fires the "backend started" notification to any registered
     observers.
-
 
 In addition to handling the system startup, `main.rb` also provides
 the following facilities:
 
   * Session handling--tracks authenticated backend sessions using the
     token extracted from the `X-ArchivesSpace-Session` request header.
-
   * Helper methods for accessing the current user and current session
     of each request.
 
@@ -57,12 +49,9 @@ The `rest.rb` module provides the mechanism used to define the API's
 REST endpoints.  Each endpoint definition includes:
 
   * The URI and HTTP request method used to access the endpoint
-
   * A list of typed parameters for that endpoint
-
   * Documentation for the endpoint, each parameter, and each possible
     response that may be returned
-
   * Permission checks--predicates that the current user must satisfy
     to be able to use the endpoint
 
@@ -79,21 +68,16 @@ time a request reaches the body of an endpoint:
 
   * It can be sure that all required parameters are present and of the
     correct types.
-
   * The body of the request has been fetched, parsed into the
     appropriate type (usually a JSONModel instance--see below) and
     made available as a request parameter.
-
   * Any parameters provided by the client that weren't present in the
     endpoint definition have been dropped.
-
   * The user's session has been retrieved, and any defined access
     control checks have been carried out.
-
   * A connection to the database has been assigned to the request, and
     a transaction has been opened.  If the controller throws an
     exception, the transaction will be automatically rolled back.
-
 
 ## Controllers
 
@@ -109,7 +93,6 @@ handling logic is captured by the `rest.rb` module, controllers
 generally don't do much more than coordinate the classes from the
 model layer and send a response back to the client.
 
-
 ### crud_helpers.rb -- capturing common CRUD controller actions
 
 Even though controllers are quite thin, there's still a lot of overlap
@@ -121,7 +104,6 @@ and an update request for a digital object (for example).
 The `crud_helpers.rb` module pulls this commonality into a set of
 helper methods that are invoked by each controller, providing methods
 for the standard operations of the system.
-
 
 ## Models
 
@@ -139,9 +121,7 @@ different record types differ in the following ways:
 
   * The set of properties they allow (and their types, valid values,
     etc.)
-
   * The types of nested records they may contain
-
   * The types of relationships they may have with other record types
 
 The first of these--the set of allowable properties--is already
@@ -163,7 +143,6 @@ to put in each corresponding model.  Instead, models are generally
 constructed by combining a number of mix-ins (Ruby modules) to satisfy
 the requirements of the given record type.  Features à la carte!
 
-
 ### ASModel and other mix-ins
 
 At a minimum, every model includes the `ASModel` mix-in, which provides
@@ -172,10 +151,8 @@ base versions of the following methods:
   * `Model.create_from_json` -- Take a JSONModel instance and create a
     model instance (a subclass of Sequel::Model) from it.  Returns the
     instance.
-
   * `model.update_from_json` -- Update the target model instance with
     the values from a given JSONModel instance.
-
   * `Model.sequel_to_json` -- Return a JSONModel instance of the appropriate
     type whose values are taken from the target model instance.
     Model classes are declared to correspond to a particular JSONModel
@@ -196,11 +173,9 @@ This works by overriding the three methods as follows:
     the next mix-in in the chain.  When it returns the newly created
     object, extract the notes from the JSONModel instance and attach
     them to the model instance (saving them in the database).
-
   * `model.update_from_json` -- Call 'super' to save the other updates
     to the database, then replace any existing notes entries for the
     record with the ones provided by the JSONModel.
-
   * `Model.sequel_to_json` -- Call 'super' to have the next mix-in in
     the chain create a JSONModel instance, then pull the stored notes
     from the database and poke them into it.
@@ -208,7 +183,6 @@ This works by overriding the three methods as follows:
 All of the mix-ins follow this pattern: call 'super' to delegate the
 call to the next mix-in in the chain (eventually reaching ASModel),
 then manipulate the result to implement the desired behaviour.
-
 
 ### Nested records
 
@@ -239,7 +213,6 @@ When creating an accession, this declaration instructs the `Accession`
 model to create a database record for each date listed in the "dates"
 property of the incoming record.  Each of these date records will be
 automatically linked to the created accession.
-
 
 ### Relationships
 
@@ -290,7 +263,6 @@ The `define_relationship` definition automatically makes use of the
 appropriate join tables in the database to store this relationship and
 retrieve it later as needed.
 
-
 ### Agents and `agent_manager.rb`
 
 Agents present a bit of a representational challenge.  There are four
@@ -322,16 +294,11 @@ This definition sets up the properties of that agent.  It creates:
 
   * a one_to_many relationship with the corresponding name
     type of the agent.
-
   * a one_to_many relationship with the agent_contact table.
-
   * nested record definition which defines the names list of the agent
     (so the list of names for the agent are automatically stored in
     and retrieved from the database)
-
   * a nested record definition for contact list of the agent.
-
-
 
 ## Validations
 
@@ -344,7 +311,6 @@ types of record validation:
     that it contains all required fields, that its values are of the
     appropriate type and format, and that its fields don't contradict
     one another.
-
   * System-level validations check that a record makes sense in a
     broader context: that it doesn't share a unique identifier with
     another record, and that any record it references actually exists.
@@ -362,7 +328,6 @@ ArchivesSpace can appear in one or both of the following layers:
     documents.  Where more flexibility is needed, custom validations
     are added to the `common/validations.rb` file, allowing validation
     logic to be expressed using arbitrary Ruby code.
-
   * At the database level, validations are captured using database
     constraints.  Since the error messages yielded by these
     constraints generally aren't useful for users, database
@@ -398,8 +363,6 @@ current; if the version number doesn't match the one stored in the
 database, the update request is rejected and the user must re-fetch
 the latest version before applying their update.
 
-
-
 ## The ArchivesSpace permissions model
 
 The ArchivesSpace backend enforces access control, defining which
@@ -410,20 +373,16 @@ records in the system.  The major actors in the permissions model are:
     ArchivesSpace system.  For example, an instance might contain one
     repository for each section of an organisation, or one repository
     for each major collection.
-
   * Users -- An entity that uses the system--often a person, but
     perhaps a consumer of the ArchivesSpace API.  The set of users is
     global to the system, and a single user may have access to
     multiple repositories.
-
   * Records -- A unit of information in the system.  Some records are
     global (existing outside of any given repository), while some are
     repository-scoped (belonging to a single repository).
-
   * Groups -- A set of users *within* a repository.  Each group is
     assigned zero or more permissions, which it confers upon its
     members.
-
   * Permissions -- An action that a user can perform.  For example, A
     user with the `update_accession_record` permission is allowed to
     update accessions for a repository.
@@ -431,7 +390,6 @@ records in the system.  The major actors in the permissions model are:
 To summarize, a user can perform an action within a repository if they
 are a member of a group that has been assigned permission to perform
 that action.
-
 
 ### Conceptual trickery
 

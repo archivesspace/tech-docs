@@ -17,17 +17,14 @@ your machines, and all commands are to be run as root (or with sudo).
 
 ## Architecture overview
 
-![Overview](../images/overview.png)
+![Overview](/archivesspace/assets/images/overview.png)
 
 This document assumes an architecture with the following components:
 
   * A load balancer machine running the Nginx web server
-
   * Two application servers, each running a full ArchivesSpace
     application stack
-
   * A MySQL server
-
   * A shared NFS volume mounted under `/aspace` on each machine
 
 
@@ -61,17 +58,11 @@ directory, shared by all servers.  It has the following layout:
 The highlights:
 
   * `/aspace/archivesspace/config/config.rb` -- A global configuration file for all ArchivesSpace instances.  Any configuration options added to this file will be applied to all tenants on all machines.
-
   * `/aspace/archivesspace/software/` -- This directory will hold the master copies of the `archivesspace.zip` distribution.  Each tenant will reference one of the versions of the ArchivesSpace software in this directory.
-
   * `/aspace/archivesspace/tenants/` -- Each tenant will have a sub-directory under here, based on the `_template` directory provided.  This holds the configuration files for each tenant.
-
   * `/aspace/archivesspace/tenants/[tenant name]/config/config.rb` -- The global configuration file for [tenant name].  This contains tenant-specific options that should apply to all of the tenant's ArchivesSpace instances (such as their database connection settings).
-
   * `/aspace/archivesspace/tenants/[tenant name]/config/instance_[hostname].rb` -- The configuration file for a tenant's ArchivesSpace instance running on a particular machine.  This allows configuration options to be set on a per-machine basis (for example, setting different ports for different application servers)
-
   * `/aspace/nginx/conf/common/server.conf` -- Global Nginx configuration settings (applying to all tenants)
-
   * `/aspace/nginx/conf/tenants/[tenant name].conf` -- A tenant-specific Nginx configuration file.  Used to set the URLs of each tenant's ArchivesSpace instances.
 
 
@@ -82,16 +73,12 @@ We'll assume you already have the following ready to go:
   * Three newly installed machines, each running RedHat (or CentOS)
     Linux (we'll refer to these as `loadbalancer`, `apps1` and
     `apps2`).
-
   * A MySQL server.
-
   * An NFS volume that has been mounted as `/aspace` on each machine.
     All machines should have full read/write access to this area.
-
   * An area under `/aspace.local` which will store instance-specific
     files (such as log files and Solr indexes).  Ideally this is just
     a directory on local disk.
-
   * Java 1.6 (or above) installed on each machine.
 
 
@@ -180,12 +167,9 @@ own directory under `/aspace/archivesspace/tenants/` that holds all of
 their configuration files.  In defining our new tenant, we will:
 
   * Create a Unix account for the tenant
-
   * Create a database for the tenant
-
   * Create a new set of ArchivesSpace configuration files for the
     tenant
-
   * Set up the database
 
 Our newly defined tenant won't initially have any ArchivesSpace
@@ -196,15 +180,12 @@ information you will need.  In particular, you will need to know:
 
   * The identifier you will use for the tenant you will be creating.
     In this example we use `exampletenant`.
-
   * Which port numbers you will use for the application's backend,
     Solr instance, staff and public interfaces.  These must be free on
     your application servers.
-
   * If running each tenant under a separate Unix account, the UID and
     GID you'll use for them (which must be free on each of your
     servers).
-
   * The public-facing URLs for the new tenant.  We'll use
     `staff.example.com` for the staff interface, and `public.example.com`
     for the public interface.
@@ -349,10 +330,8 @@ Now open `/aspace/nginx/conf/tenants/exampletenant.conf` in an
 editor.  You will need to:
 
   * Replace `<tenantname>` with `exampletenant` where it appears.
-
   * Change the `server` URLs to match the hostnames and ports you
     configured each instance with.
-
   * Insert the tenant's hostnames for each `server_name` entry.  In
     our case these are `public.example.com` for the public interface, and
     `staff.example.com` for the staff interface.

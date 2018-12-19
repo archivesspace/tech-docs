@@ -6,7 +6,7 @@ will be added in later releases.
 
 By default, the OAI-PMH interface runs on port 8082. A sample request page is
 available at http://localhost:8082/sample. (To access it, make sure that you
-  have set the AppConfig[:oai_proxy_url] appropriately.)
+have set the AppConfig[:oai_proxy_url] appropriately.)
 
 The system provides responses to a number of standard OAI-PMH requests,
 including GetRecord, Identify, ListIdentifiers, ListMetadataFormats,
@@ -31,27 +31,27 @@ Here are some example URLs and other information for these requests:
 
 **GetRecord** – needs a record identifier and metadataPrefix
 
-  	http://localhost:8082/oai?verb=GetRecord&identifier=oai:archivesspace//repositories/2/resources/138&metadataPrefix=oai_ead
+  `http://localhost:8082/oai?verb=GetRecord&identifier=oai:archivesspace//repositories/2/resources/138&metadataPrefix=oai_ead`
 
 **Identify**
 
-  	http://localhost:8082/oai?verb=Identify
+  `http://localhost:8082/oai?verb=Identify`
 
 **ListIdentifiers** – needs a metadataPrefix
 
-  	http://localhost:8082/oai?verb=ListIdentifiers&metadataPrefix=oai_dc
+  `http://localhost:8082/oai?verb=ListIdentifiers&metadataPrefix=oai_dc`
 
 **ListMetadataFormats**
 
-  	http://localhost:8082/oai?verb=ListMetadataFormats
+  `http://localhost:8082/oai?verb=ListMetadataFormats`
 
 **ListRecords** – needs a metadataPrefix
 
-	http://localhost:8082/oai?verb=ListRecords&metadataPrefix=oai_dcterms
+  `http://localhost:8082/oai?verb=ListRecords&metadataPrefix=oai_dcterms`
 
 **ListSets**
 
-	http://localhost:8082/oai?verb=ListSets
+  `http://localhost:8082/oai?verb=ListSets`
 
 Harvesting the ArchivesSpace OAI-PMH server without specifying a set will yield
 all published records across all repositories.
@@ -80,22 +80,21 @@ based on repository codes and/or sponsors in the config/config.rb file:
     	:repo_codes => ['hello626'],
     	:description => "A set of one or more repositories",
   	},
-
   	'sponsor_set' => {
     	:sponsors => ['The_Sponsor'],
     	:description => "A set of one or more sponsors",
-  	},
+  	}
 	}
 
 The interface implements resumption tokens for pagination of results. As an
 example, the following URL format should be used to page through the results
 from a ListRecords request:
 
-  	http://localhost:8082/oai?verb=ListRecords&metadataPrefix=oai_ead
+  	`http://localhost:8082/oai?verb=ListRecords&metadataPrefix=oai_ead`
 
 using the resumption token:
 
-  	http://localhost:8082/oai?verb=ListRecords&resumptionToken=eyJtZXRhZGF0YV9wcmVmaXgiOiJvYWlfZWFkIiwiZnJvbSI6IjE5NzAtMDEtMDEgMDA6MDA6MDAgVVRDIiwidW50aWwiOiIyMDE3LTA3LTA2IDE3OjEwOjQxIFVUQyIsInN0YXRlIjoicHJvZHVjaW5nX3JlY29yZHMiLCJsYXN0X2RlbGV0ZV9pZCI6MCwicmVtYWluaW5nX3R5cGVzIjp7IlJlc291cmNlIjoxfSwiaXNzdWVfdGltZSI6MTQ5OTM2MTA0Mjc0OX0=
+  	`http://localhost:8082/oai?verb=ListRecords&resumptionToken=eyJtZXRhZGF0YV9wcmVmaXgiOiJvYWlfZWFkIiwiZnJvbSI6IjE5NzAtMDEtMDEgMDA6MDA6MDAgVVRDIiwidW50aWwiOiIyMDE3LTA3LTA2IDE3OjEwOjQxIFVUQyIsInN0YXRlIjoicHJvZHVjaW5nX3JlY29yZHMiLCJsYXN0X2RlbGV0ZV9pZCI6MCwicmVtYWluaW5nX3R5cGVzIjp7IlJlc291cmNlIjoxfSwiaXNzdWVfdGltZSI6MTQ5OTM2MTA0Mjc0OX0=`
 
 Note: you do not use the metadataPrefix when you use the resumptionToken
 
@@ -108,8 +107,7 @@ in the OAI-PMH response (e.g., a scope note mapped to a DC description field
   would not include `<p>`, `<abbr>`, `<address>`, `<archref>`, `<bibref>`, `<blockquote>`,
   `<chronlist>`, `<corpname>`, `<date>`, `<emph>`, `<expan>`, `<extptr>`, `<extref>`,
   `<famname>`, `<function>`, `<genreform>`, `<geogname>`, `<lb>`, `<linkgrp>`, `<list>`,
-  `<name>`, `<note>`, `<num>`, `<occupation>`, `<origination>`, `<persname>`, `<ptr>`, `<ref>`,
-  `<repository>`, `<subject>`, `<table>`, `<title>`, `<unitdate>`, `<unittitle>`).
+  `<name>`, `<note>`, `<num>`, `<occupation>`, `<origination>`, `<persname>`, `<ptr>`, `<ref>`, `<repository>`, `<subject>`, `<table>`, `<title>`, `<unitdate>`, `<unittitle>`).
 
 The component level records include inherited data from superior hierarchical
 levels of the finding aid. Element inheritance is determined by institutional

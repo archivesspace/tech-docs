@@ -1,9 +1,8 @@
-UPGRADING TO 1.1.0
-==================
+# UPGRADING TO 1.1.0
 
-Additional upgrade considerations specific to this release. Refer to the [upgrade documentation](https://github.com/archivesspace/archivesspace/blob/master/UPGRADING.md) for the standard instructions that apply in all cases.
+Additional upgrade considerations specific to this release. Refer to the [upgrade documentation](https://archivesspace.github.io/archivesspace/user/upgrading-to-a-new-release-of-archivesspace/) for the standard instructions that apply in all cases.
 
-External Solr
+## External Solr
 -------------
 
 In ArchivesSpace 1.0.9 the default ports configuration was:
@@ -15,7 +14,7 @@ AppConfig[:solr_url] = "http://localhost:8090"
 AppConfig[:public_url] = "http://localhost:8081"
 ```
 
-With the introduction of the [optional external Solr instance](README_SOLR.md) functionality this has been updated to:
+With the introduction of the [optional external Solr instance](https://archivesspace.github.io/archivesspace/user/running-archivesspace-with-external-solr/) functionality this has been updated to:
 
 ```
 AppConfig[:backend_url] = "http://localhost:8089"
@@ -43,7 +42,7 @@ Under this deployment scenario you would have changed port numbers for some (or 
 AppConfig[:indexer_url] = "http://yourhostname:8091"
 ```
 
-Clustering
+## Clustering
 ----------
 
 In a clustered configuration you may need to edit `instance_[server hostname].rb` files:
