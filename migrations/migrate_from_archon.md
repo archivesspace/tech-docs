@@ -90,7 +90,7 @@ Download the latest JAR file release from https://github.com/archivesspace/Archo
 
 ### Install ArchivesSpace Instance
 
-Implement an ArchivesSpace production version including setting up of a MySQL database to migrate into. Instructions are included at http://archivesspace.github.io/archivesspace/user/getting-started/ and http://archivesspace.github.io/archivesspace/user/running-archivesspace-against-mysql/.
+Implement an ArchivesSpace production version including setting up of a MySQL database to migrate into. Instructions are included at http://archivesspace.github.io/archivesspace/user/getting-started-with-archivesspace/ and http://archivesspace.github.io/archivesspace/user/running-archivesspace-against-mysql/.
 
 ### Prepare to Launch Migration
 

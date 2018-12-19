@@ -79,13 +79,13 @@ This video covers the staff frontend UI, but the same steps can be applied to
 the public UI as well.
 
 Also become a little familiar with the
-[build system instructions ](https://github.com/archivesspace/archivesspace/blob/master/build/README.md)
+[build system instructions ](http://archivesspace.github.io/archivesspace/user/archivesspace-build-system/)
 
 
 First, pull down a new copy of ArchivesSpace using git and be sure to checkout
 a tag matching the version you're using or wanting to use.
 
-     $ git clone https://github.com/archivesspace/archivesspace/blob/master/build/README.md
+     $ git clone https://github.com/archivesspace/archivesspace.git
      $ git checkout v1.0.9
 
 You can start your application development server by executing:
