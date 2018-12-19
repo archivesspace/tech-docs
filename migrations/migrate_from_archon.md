@@ -76,7 +76,7 @@ The migration process is iterative in nature. You should plan to do several test
 
 The migration tool will connect to your Archon installation, read data from defined 'endpoints', and place the information in a target ArchivesSpace instance.
 
-A migration report is generated at the end of each migration routine and can be downloaded from the application. The report indicates errors or issues occurring with the migration. Sample data from migration report is provided in [Appendix A](#appendix-a-migration-log-review).
+A migration report is generated at the end of each migration routine and can be downloaded from the application. The report indicates errors or issues occurring with the migration. Sample data from migration report is provided in [Appendix A](#Appendix-A%3A-Migration-Log-Review).
 
 You should use this report to determine if any problems observed in the migration results are best remedied in the source data or in the migrated data in the ArchivesSpace instance. If you address the problems in the source data, then you can simply clear the database and conduct the migration again. However, once you accept the migration and make changes to the migrated data in ArchivesSpace, you cannot migrate the source data again without either overwriting the previous migration or establishing a new target ArchivesSpace instance.
 
@@ -86,7 +86,7 @@ Before starting the migration process, make sure that your current Archon instal
 
 ### Get Archon to ArchivesSpace Migration Tool
 
-Download the latest JAR file release from https://github.com/archivesspace/ArchonMigrator/releases/latest. This is an executable JAR file – double click to run it.
+Download the latest JAR file release from https://github.com/archivesspace-deprecated/ArchonMigrator/releases/latest. This is an executable JAR file – double click to run it.
 
 ### Install ArchivesSpace Instance
 

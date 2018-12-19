@@ -1,12 +1,9 @@
 # Contributor License Agreements
 
-ArchivesSpace requires that all project contributors complete a Contributor License
-Agreement (CLA). The CLA clearly defines the terms under which intellectual property is
-being contributed, and allows ArchivesSpace to provide comprehensive governance
-over the project.
+ArchivesSpace requires that all project contributors complete a [Contributor License
+Agreement (CLA)](https://archivesspace.github.io/archivesspace/assets/ArchivesSpace_Contributor_License_Agreements.pdf. The CLA clearly defines the terms under which intellectual property is being contributed, and allows ArchivesSpace to provide comprehensive governance over the project.
 
-The Contributor License Agreement enables ArchivesSpace to update the licensing of its
-projects, when necessary or desirable, while maintaining the provenance of the code,
+The Contributor License Agreement enables ArchivesSpace to update the licensing of its projects, when necessary or desirable, while maintaining the provenance of the code,
 and the rights of the contributors and adopters of this code.
 
 
@@ -20,17 +17,12 @@ purpose, while providing ArchivesSpace and its projects the right to distribute 
 extend their contributed work.
 
 
-Individuals must have an Individual Contributor License Agreement (ICLA) on file with
-ArchivesSpace before any significant contributions will be accepted and before
+Individuals must have an [Individual Contributor License Agreement (ICLA)](https://archivesspace.github.io/archivesspace/assets/ArchivesSpace_Individual_Contributor_License_Agreement_ICLA.pdf) on file with ArchivesSpace before any significant contributions will be accepted and before
 "commit" privileges will be granted on ArchivesSpace projects.
 
 
 Organizations that have tasked employees to work on an ArchivesSpace project must
-also complete a Corporate Contributor License Agreement (CCLA) so intellectual
-property that may have been assigned as part of an employment agreement can still be
-properly contributed. Individuals still also need to submit an ICLA, even when their
-organizations has completed a CCLA. Individuals are responsible for making sure their
-organization has completed a CCLA if their contributions are owned by their employer.
+also complete a [Corporate Contributor License Agreement (CCLA)](https://archivesspace.github.io/archivesspace/assets/ArchivesSpace_Corporate_Contributor_License_Agreement.pdf) so intellectual property that may have been assigned as part of an employment agreement can still be properly contributed. Individuals still also need to submit an ICLA, even when their organizations has completed a CCLA. Individuals are responsible for making sure their organization has completed a CCLA if their contributions are owned by their employer.
 
 
 When an individual or corporation donates existing software or documentation to

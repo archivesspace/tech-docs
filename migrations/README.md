@@ -21,10 +21,10 @@
 
 ### Older information
 
-* [refactored Archon migration plugin](https://github.com/archivesspace/ArchonMigrator/releases)
+* [refactored Archon migration plugin](https://github.com/archivesspace-deprecated/ArchonMigrator/releases)
 * [information about refactoring project](https://archivesspace.atlassian.net/browse/AR-1278)
 * [previous Archon migration plugin](https://github.com/archivesspace/archon-migration/releases)
-* [Plugin read me text](https://github.com/archivesspace/ArchonMigrator/blob/master/README.md)
+* [Plugin read me text](https://github.com/archivesspace-deprecated/ArchonMigrator/blob/master/README.md)
 * [Archon migration guidelines](http://archivesspace.org/wp-content/uploads/2016/05/Archon_Migration_Guidelines-7_13_2017.docx)
 * [Archon migration mapping](http://archivesspace.org/wp-content/uploads/2016/08/ArchonSchemaMappingsPublic.xlsx)
 

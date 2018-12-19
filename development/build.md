@@ -30,9 +30,7 @@ To run a development instance of all ArchivesSpace components:
 These should be run in different terminal sessions and do not need to be run
 in a specific order or are all required.
 
-For added convenience see: supervisord/README.md for a simpler way of running
-the development servers with output for all servers sent to a single terminal
-window.
+For added convenience see: [Supervisord for Development(https://archivesspace.github.io/archivesspace/user/using-supervisord-for-development/) for a simpler way of running the development servers with output for all servers sent to a single terminal window.
 
 You can also clear your database and search indexes with:
 
@@ -59,7 +57,7 @@ tests:
 
      build/run test
 
-See also: selenium/README.md for more information on the Selenium
+See also: [Selenium Test Suite](http://archivesspace.github.io/archivesspace/user/selenium-test-suite/) for more information on the Selenium
 tests.
 
 It's also useful to be able to run the backend unit tests separately.
@@ -89,8 +87,8 @@ directory in your ArchivesSpace project directory.
 
 ## Building a distribution
 
-See: README_RELEASE.md for information on building a distribution.
+See: [Building an Archivesspace Release](http://archivesspace.github.io/archivesspace/user/building-an-archivesspace-release/) for information on building a distribution.
 
 ## Generating API documentation
 
-See: README_RELEASE.md for information on building the documentation.
+See: [Building an Archivesspace Release](http://archivesspace.github.io/archivesspace/user/building-an-archivesspace-release/) for information on building the documentation.
