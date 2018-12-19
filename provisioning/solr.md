@@ -6,7 +6,7 @@ Assuming you've unzipped a fresh new release there are a couple of steps to take
 
 On the Solr server make a core available for ArchivesSpace. Copy the solr files from the ArchivesSpace source into the core's conf directory and enable it:
 
-https://github.com/archivesspace/archivesspace/tree/master/solr
+[Solr Directory](https://github.com/archivesspace/archivesspace/tree/master/solr)
 
 ## Disable the embedded server Solr instance
 
