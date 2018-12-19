@@ -47,7 +47,7 @@ the `aspace.config.db_url` property of `JAVA_OPTS`:
 export JAVA_OPTS="-Daspace.config.db_url=jdbc:mysql://127.0.0.1:3306/archivesspace?useUnicode=true&characterEncoding=UTF-8&user=as&password=as123"
 ```
 
-See the [setup instructions](https://github.com/archivesspace/archivesspace/#running-archivesspace-against-mysql) for initializing the database.
+See the [setup instructions](http://archivesspace.github.io/archivesspace/user/running-archivesspace-against-mysql/) for initializing the database.
 The MySQL connector should be downloaded to `common/lib`. If you restore a
 database to use in development it may not play well with the tests.
 

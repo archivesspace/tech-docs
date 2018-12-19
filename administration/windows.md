@@ -19,7 +19,7 @@ directory where java was installed ( something like `C:\Program Files
 (x86)\Java` ).
 
 Before setting up the ArchivesSpace service, you should also [configure
-ArchivesSpace to run against MySQL](https://github.com/archivesspace/archivesspace#running-archivesspace-against-mysql).
+ArchivesSpace to run against MySQL](http://archivesspace.github.io/archivesspace/user/running-archivesspace-against-mysql/).
 Be sure that the MySQL connector jar file is in the lib directory, in order for
 the service setup script to add it to the application's classpath.
 
