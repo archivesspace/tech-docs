@@ -55,10 +55,8 @@ ArchivesSpace uses a combination of RSpec, integration and Selenium
 tests.  You will need to have Firefox on your path.  Then, to run all
 tests:
 
-     build/run test
+     build/run travis:test
 
-See also: [Selenium Test Suite](http://archivesspace.github.io/archivesspace/user/selenium-test-suite/) for more information on the Selenium
-tests.
 
 It's also useful to be able to run the backend unit tests separately.
 To do this, run:
