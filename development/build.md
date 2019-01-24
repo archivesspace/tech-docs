@@ -30,7 +30,31 @@ To run a development instance of all ArchivesSpace components:
 These should be run in different terminal sessions and do not need to be run
 in a specific order or are all required.
 
-For added convenience see: [Supervisord for Development(https://archivesspace.github.io/archivesspace/user/using-supervisord-for-development/) for a simpler way of running the development servers with output for all servers sent to a single terminal window.
+Use Supervisord for a simpler way of running the development servers with output 
+for all servers sent to a single terminal window.
+
+[Supervisord](http://supervisord.org/) can simultaneously launch the ArchivesSpace 
+development servers. This is entirely optional and just for developer convenience.
+
+From within the ArchivesSpace source directory:
+
+```
+./build/run bootstrap # if needed, as usual
+
+[sudo] pip install supervisor supervisor-stdout
+
+#run all of the services
+supervisord -c supervisord/archivesspace.conf
+
+#run in api mode (backend + indexer / solr only)
+supervisord -c supervisord/api.conf
+
+#run just the backend (useful for trying out endpoints that don't require Solr)
+supervisord -c supervisord/backend.conf
+
+To stop supervisord: `Ctrl-c`.
+
+```
 
 You can also clear your database and search indexes with:
 
@@ -48,6 +72,10 @@ export JAVA_OPTS="-Daspace.config.db_url=jdbc:mysql://127.0.0.1:3306/archivesspa
 See the [setup instructions](http://archivesspace.github.io/archivesspace/user/running-archivesspace-against-mysql/) for initializing the database.
 The MySQL connector should be downloaded to `common/lib`. If you restore a
 database to use in development it may not play well with the tests.
+
+After setting up and creating the database you can run the migrations with:
+
+     build/run db:migrate
 
 ## Running the tests
 
