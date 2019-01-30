@@ -17,8 +17,7 @@ The bootstrap task:
 Will bootstrap your development environment by downloading all
 dependencies--JRuby, Gems, Solr, etc..
 
-
-## Running a development environment
+## Running components indiviually
 
 To run a development instance of all ArchivesSpace components:
 
@@ -29,6 +28,8 @@ To run a development instance of all ArchivesSpace components:
 
 These should be run in different terminal sessions and do not need to be run
 in a specific order or are all required.
+
+## Running components all at once
 
 Use Supervisord for a simpler way of running the development servers with output 
 for all servers sent to a single terminal window.
@@ -56,9 +57,7 @@ To stop supervisord: `Ctrl-c`.
 
 ```
 
-You can also clear your database and search indexes with:
-
-     build/run db:nuke
+## Running with a MySQL backend
 
 To override configuration defaults create the file `common/config/config.rb`
 and set values as needed (restart the development servers). To use MySQL
@@ -76,6 +75,10 @@ database to use in development it may not play well with the tests.
 After setting up and creating the database you can run the migrations with:
 
      build/run db:migrate
+
+You can also clear your database and search indexes with:
+
+     build/run db:nuke
 
 ## Running the tests
 
