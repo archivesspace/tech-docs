@@ -533,17 +533,15 @@ AppConfig[:pui_readmore_max_characters] = 450
 ## Enable / disable PUI resource/archival object page actions
 # Example G change to false to remove citation action
 AppConfig[:pui_page_actions_cite] = true
-# Example I change to false to remove request action
-AppConfig[:pui_page_actions_request] = true
+#AppConfig[:pui_page_actions_request] = true
 # Example H change to false to remove print action
 AppConfig[:pui_page_actions_print] = true
 #AppConfig[:pui_page_actions_bookmark] = true
 #
 ## PUI Request Function (used when AppConfig[:pui_page_actions_request] = true)
 ## the following determine on what kinds of records the request button is displayed
-# Example I continued
-AppConfig[:pui_requests_permitted_for_types] = [:resource, :archival_object, :accession, :digital_object, :digital_object_component]
-AppConfig[:pui_requests_permitted_for_containers_only] = false # set to 'true' if you want to disable if there is no top container
+# AppConfig[:pui_requests_permitted_for_types] = [:resource, :archival_object, :accession, :digital_object, :digital_object_component]
+# AppConfig[:pui_requests_permitted_for_containers_only] = false # set to 'true' if you want to disable if there is no top container
 #
 ## Repository-specific examples.  Replace {repo_code} with your repository code, i.e. 'foo' - note the lower-case
 #AppConfig[:pui_repos] = {}
@@ -562,14 +560,13 @@ AppConfig[:pui_requests_permitted_for_containers_only] = false # set to 'true' i
 ## 'pui_email_override' for testing, this email will be the to-address for all sent emails
 #AppConfig[:pui_email_override] = 'testing@example.com'
 
-# Example I if request enabled need to have correct values here
 ## 'pui_request_email_fallback_to_address' the 'to' email address for repositories that don't define their own email
-AppConfig[:pui_request_email_fallback_to_address] = 'testing@example.com'
+# AppConfig[:pui_request_email_fallback_to_address] = 'testing@example.com'
 ## 'pui_request_email_fallback_from_address' the 'from' email address for repositories that don't define their own email
-AppConfig[:pui_request_email_fallback_from_address] = 'testing@example.com'
+# AppConfig[:pui_request_email_fallback_from_address] = 'testing@example.com'
 #
 ## use the repository record email address for requests (overrides config email)
-AppConfig[:pui_request_use_repo_email] = false
+# AppConfig[:pui_request_use_repo_email] = false
 #
 ## Example sendmail configuration:
 ## AppConfig[:pui_email_delivery_method] = :sendmail
@@ -590,8 +587,7 @@ AppConfig[:pui_request_use_repo_email] = false
 ##      authentication:       'plain',
 ##      enable_starttls_auto: true,
 ##}
-# Example I continued
-AppConfig[:pui_email_perform_deliveries] = true
+# AppConfig[:pui_email_perform_deliveries] = true
 ##AppConfig[:pui_email_raise_delivery_errors] = true
 #
 ## Add page actions via the configuration
