@@ -96,7 +96,7 @@ AppConfig[:db_url] = proc { AppConfig.demo_db_url }
 #AppConfig[:locale] = :en
 #
 ## Plug-ins to load. They will load in the order specified
-AppConfig[:plugins] = ['local',  'lcnaf', 'help_page_pui', 'pui_help_master']
+AppConfig[:plugins] = ['local',  'lcnaf', 'help_page_pui']
 #
 ## The number of concurrent threads available to run background jobs
 ## Resist the urge to set this to a big number as it will affect performance
@@ -480,9 +480,9 @@ AppConfig[:feedback_url] = "http://archivesspace.org/feedback"
 ## PUI General Configurations
 ## TODO: Clean up configuration options
 #
-# # Example B Change value to number of results per page
+# # Example C Change value to number of results per page
 AppConfig[:pui_search_results_page_size] = 10
-#AppConfig[:pui_branding_img] = 'archivesspace.small.png'
+AppConfig[:pui_branding_img] = 'my_branding_image.png'
 #AppConfig[:pui_block_referrer] = true # patron privacy; blocks full 'referrer' when going outside the domain
 #AppConfig[:pui_enable_staff_link] = true # attempt to add a link back to the staff interface
 #
@@ -495,7 +495,7 @@ AppConfig[:pui_search_results_page_size] = 10
 #AppConfig[:pui_pdf_timeout] = 600
 #
 ## The following determine which 'tabs' are on the main horizontal menu
-# Example D set to true to not display specific tabs
+# Example A set to true to not display specific tabs
 #AppConfig[:pui_hide] = {}
 AppConfig[:pui_hide][:repositories] = false
 AppConfig[:pui_hide][:resources] = false
@@ -507,7 +507,7 @@ AppConfig[:pui_hide][:classifications] = false
 AppConfig[:pui_hide][:search_tab] = false
 ## The following determine globally whether the various "badges" appear on the Repository page
 ## can be overriden at repository level below (e.g.:  AppConfig[:pui_repos][{repo_code}][:hide][:counts] = true
-# Example F set to true to not display specific badges
+# Example B set to true to not display specific badges
 AppConfig[:pui_hide][:resource_badge] = false
 AppConfig[:pui_hide][:record_badge] = true # hide by default
 AppConfig[:pui_hide][:digital_object_badge] = false
@@ -523,18 +523,18 @@ AppConfig[:pui_hide][:counts] = false
 ## AppConfig[:pui_hide][:accessions] = true
 #
 ## Whether to display linked decaccessions
-# Example A set to false to not display linked decaccessions
+# Example H set to false to not display linked decaccessions
 AppConfig[:pui_display_deaccessions] = true
 #
 ##The number of characters to truncate before showing the 'Read More' link on notes
-# Example C change value here
+# Example D change value here
 AppConfig[:pui_readmore_max_characters] = 450
 #
 ## Enable / disable PUI resource/archival object page actions
-# Example G change to false to remove citation action
+# Example F change to false to remove citation action
 AppConfig[:pui_page_actions_cite] = true
 #AppConfig[:pui_page_actions_request] = true
-# Example H change to false to remove print action
+# Example G change to false to remove print action
 AppConfig[:pui_page_actions_print] = true
 #AppConfig[:pui_page_actions_bookmark] = true
 #
