@@ -17,7 +17,7 @@ symbolic link:
      ln -s /path/to/your/archivesspace/archivesspace.sh archivesspace
 
 Note: By default ArchivesSpace will overwrite the log file when restarted. You 
-can change that by modifying `archivesspace.sh` and changeing the `$startup_cmd` 
+can change that by modifying `archivesspace.sh` and changing the `$startup_cmd` 
 to include double greater than signs:
 
      $startup_cmd &>> \"$ARCHIVESSPACE_LOGS\" & 
