@@ -1,8 +1,7 @@
 # Log Rotation
 
-it is important to set up log rotation to prevent your log file from growing excessivly 
+In order to prevent your ArchivesSpace log file from growing excessively, you can set up log rotation. How to set up log rotation is specific to your institution but here is an example logrotate config file with an explanation of what it does. 
 
-here is an example of the contents of a logrotate config file that would be located in 
 `/etc/logrotate.d/`
 
 ````
@@ -15,12 +14,10 @@ here is an example of the contents of a logrotate config file that would be loca
           copytruncate
    }
    ````
-   this configuration will:
-   * rotate the logs daily
-   * keep 7 days worth of logs
-   * compress the logs so they take up less space
-   * ignore (not rotate) empty logs
-   * not report errors if the log file is missing
-   and most importantly for archivesspace
-   * create a copy of the original log file for rotation before truncating the contents of the original file
-   
+   this example configuration file:
+   * rotates the logs daily
+   * keeps 7 days worth of logs
+   * compresses the logs so they take up less space
+   * ignores empty logs
+   * does not report errors if the log file is missing
+   * creates a copy of the original log file for rotation before truncating the contents of the original file
