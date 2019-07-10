@@ -7,3 +7,4 @@
 * [Re-creating indexes](./indexes.md)
 * [Resetting passwords](./passwords.md)
 * [Upgrading](./upgrading.md)
+* [Log rotation](./logrotate.md)
