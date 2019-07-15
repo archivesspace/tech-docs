@@ -1,7 +1,7 @@
 # Contributor License Agreements
 
 ArchivesSpace requires that all project contributors complete a [Contributor License
-Agreement (CLA)](https://archivesspace.github.io/archivesspace/assets/ArchivesSpace_Contributor_License_Agreements.pdf. The CLA clearly defines the terms under which intellectual property is being contributed, and allows ArchivesSpace to provide comprehensive governance over the project.
+Agreement (CLA)](https://archivesspace.github.io/archivesspace/assets/ArchivesSpace_Contributor_License_Agreements.pdf). The CLA clearly defines the terms under which intellectual property is being contributed, and allows ArchivesSpace to provide comprehensive governance over the project.
 
 The Contributor License Agreement enables ArchivesSpace to update the licensing of its projects, when necessary or desirable, while maintaining the provenance of the code,
 and the rights of the contributors and adopters of this code.
@@ -48,7 +48,7 @@ Atlanta, GA 30309
 USA
 ```
 
-Email ( Scanned signed copy in PDF form )
+Email (Scanned signed copy in PDF form)
 
 ```
 archivesspacehome@lyrasis.org
