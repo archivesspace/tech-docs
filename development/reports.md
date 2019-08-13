@@ -21,7 +21,7 @@ Adding a report is intended to be a fairly simple process. The requirements for 
 	- Each result will be passed to fix_row as a hash
 	- ReportUtils offers various class methods to simplify cleaning up data.
 	- You can also add subreports here with something like ```row[:subreport_name] = SubreportClassName.new(self, row[:id]).get_content``` where row is the result as a hash which was a parameter to fix_row. See [Adding a Subreport](#adding-a-subreport) for more information on adding subreports.
-	- Sometimes you will want to delete something from the result that you needed in order to generate a subreport but do not want to show up in the final report (such as id). To do this use ```row.delete[:id]```.
+	- Sometimes you will want to delete something from the result that you needed in order to generate a subreport but do not want to show up in the final report (such as id). To do this use ```row.delete(:id)```.
 - Special implementation of query - The default implementation is simply ```db.fetch(query_string)``` but implementing it yourself may give you more flexibility. In the end, it needs to return a result set.
 - There is a hash called info that controls what shows up in the header at the top of the report. Examples may include total record count, total extent, or any parameters that are provided by the user for your report. Add anything you want to show up in the report header to info. Repository name will be included automatically. Be sure to provide translations for the keys you add to info.
 - after_tasks is run after fix_row executes on all the results. Implement this if you have anything that needs to get done here before the report is rendered
