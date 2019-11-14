@@ -16,6 +16,7 @@
   * [The ArchivesSpace public user interface](./architecture/public.md)
   * [OAI-PMH interface](./architecture/oai-pmh.md)
 * [Working with the ArchivesSpace API](./api)
+      > Additional documentation is needed for these sections - please consider contributing documentation via a pull request to this repo
   * [GET requests (retrieving records)](./api/get_requests.md)
   * [POST requests (creating and updating records)](./api/post_requests./md)
   * [DELETE requests](./api/delete_requests)
