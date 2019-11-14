@@ -39,6 +39,6 @@ fairly standard pattern:
 ## Detailed documentation
 
 * [GET requests (retrieving records)](./get_requests.md)
-* [POST requests (creating and updating records)](./post_requests./md)
-* [DELETE requests](./delete_requests)
+* [POST requests (creating and updating records)](./post_requests.md)
+* [DELETE requests](./delete_requests.md)
 * [API reference](http://archivesspace.github.io/archivesspace/api/) - Includes a complete list of available endpoints and guidance for their use
