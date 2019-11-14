@@ -38,6 +38,8 @@ fairly standard pattern:
 
 ## Detailed documentation
 
+> Additional documentation is needed for these sections - please consider contributing documentation via a pull request to this repo
+
 * [GET requests (retrieving records)](./get_requests.md)
 * [POST requests (creating and updating records)](./post_requests.md)
 * [DELETE requests](./delete_requests.md)
