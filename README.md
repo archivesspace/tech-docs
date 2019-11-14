@@ -19,7 +19,7 @@
   * [GET requests (retrieving records)](./api/get_requests.md)
   * [POST requests (creating and updating records)](./api/post_requests./md)
   * [DELETE requests](./api/delete_requests)
-  * [API reference](http://archivesspace.github.io/archivesspace/api/) - Includes a complete list of available endpoints and guidance for their use
+  * [API reference](http://archivesspace.github.io/archivesspace/api/)
 * [Customization and configuration](./customization)
   * [Configuring ArchivesSpace](./customization/configuration.md)
   * [Adding support for additional username/password-based authentication backends](./customization/authentication.md)
