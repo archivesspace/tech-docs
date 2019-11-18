@@ -1,7 +1,5 @@
 # Working with the ArchivesSpace API
 
-> See **API section** for more detailed documentation
-
 ## Authentication
 
 Most actions against the backend require you to be logged in as a user
@@ -36,3 +34,13 @@ fairly standard pattern:
      # Update an existing accession
      POST /repositories/123/accessions/456
      {... a JSON document satisfying JSONModel(:accession) here ...}
+
+
+## Detailed documentation
+
+> Additional documentation is needed for these sections - please consider contributing documentation via a pull request to this repo
+
+* [GET requests (retrieving records)](./get_requests.md)
+* [POST requests (creating and updating records)](./post_requests.md)
+* [DELETE requests](./delete_requests.md)
+* [API reference](http://archivesspace.github.io/archivesspace/api/) - Includes a complete list of available endpoints and guidance for their use
