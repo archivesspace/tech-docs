@@ -295,15 +295,16 @@ AppConfig[:plugins] = ['local',  'lcnaf', 'help_page_pui']
 ## URL to direct the feedback link
 ## You can remove this from the footer by making the value blank.
 # Example E put in different URL or make blank to remove
-AppConfig[:feedback_url] = "http://archivesspace.org/feedback"
+AppConfig[:feedback_url] = "http://archivesspace.org/contact"
 #
 ## Allow an unauthenticated user to create an account
 #AppConfig[:allow_user_registration] = true
 #
 ## Help Configuration
-#AppConfig[:help_enabled] = true
-#AppConfig[:help_url] = "http://docs.archivesspace.org"
-#AppConfig[:help_topic_prefix] = "/Default_CSH.htm#"
+# Help Configuration
+# AppConfig[:help_enabled] = true
+# AppConfig[:help_url] = "https://archivesspace.atlassian.net/wiki/spaces/ArchivesSpaceUserManual/overview"
+# AppConfig[:help_topic_base_url] = "https://archivesspace.atlassian.net/wiki/spaces/ArchivesSpaceUserManual/pages/"
 #
 #
 #AppConfig[:shared_storage] = proc { File.join(AppConfig[:data_directory], "shared") }
@@ -484,7 +485,11 @@ AppConfig[:feedback_url] = "http://archivesspace.org/feedback"
 AppConfig[:pui_search_results_page_size] = 10
 AppConfig[:pui_branding_img] = 'my_branding_image.png'
 #AppConfig[:pui_block_referrer] = true # patron privacy; blocks full 'referrer' when going outside the domain
-#AppConfig[:pui_enable_staff_link] = true # attempt to add a link back to the staff interface
+# when a user is authenticated, add a link back to the staff interface from the specified record
+# AppConfig[:pui_enable_staff_link] = true
+# by default, staff link will open record in staff interface in edit mode,
+# change this to 'readonly' for it to open in readonly mode
+# AppConfig[:pui_staff_link_mode] = 'edit'
 #
 ## The number of PDFs that can be generated (in the background) at the same time.
 ##
@@ -637,3 +642,6 @@ AppConfig[:auto_generate_slugs_with_id] = true
 #
 ## For Resources: if this option and auto_generate_slugs_with_id are both enabled, then slugs for Resources will be generated with EADID instead of the identifier.
 #AppConfig[:generate_resource_slugs_with_eadid] = false
+
+# Use to specify the maximum number of columns to display when searching or browsing
+AppConfig[:max_search_columns] = 7
