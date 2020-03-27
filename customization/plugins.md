@@ -54,7 +54,7 @@ be used to override or extend the behavior of the core application.
     schemas ............... JSONModel schema definitions
     search_definitions.rb . Advanced search fields
 
-**Note** that, in order to override or extend the behavior of core models and controllers, you cannot simply put your replacement with the same name in the corresponding directory path.  
+**Note** that, in order to override or extend the behavior of core models and controllers, you cannot simply put your replacement with the same name in the corresponding directory path.  Core models and controllers can be overridden by adding an `after_initialize` block to `plugin_init.rb` (e.g. [aspace-hvd-pui](https://github.com/harvard-library/aspace-hvd-pui/blob/master/public/plugin_init.rb#L43)).
 
 ## Overriding behavior
 
