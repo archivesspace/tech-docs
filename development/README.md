@@ -6,4 +6,3 @@
 * [Docker](./docker.md)
 * [DB versions listed by release](./release_schema_versions.md)
 * [Public User Interface Test Suite](./public_test.md)
-* [Creating Custom Reports](./reports.md)

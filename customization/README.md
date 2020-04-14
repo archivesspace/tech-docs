@@ -7,3 +7,4 @@
 * [ArchivesSpace Plug-ins](./plugins.md)
 * [Theming ArchivesSpace](./theming.md)
 * [Managing frontend assets with Bower](./bower.md)
+* [Adding custom reports](./reports.md)
