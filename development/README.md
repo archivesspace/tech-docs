@@ -1,8 +1,7 @@
 # Information for ArchivesSpace developers and code contributors
 
-* [ArchivesSpace build system](./build.md)
+* [ArchivesSpace developer docs](./dev.md)
 * [Building an ArchivesSpace release](./release.md)
-* [Using Supervisord for development](./supervisord.md)
 * [Docker](./docker.md)
 * [DB versions listed by release](./release_schema_versions.md)
-* [Public User Interface Test Suite](./public_test.md)
+* [User Interface Test Suite](./ui_test.md)
