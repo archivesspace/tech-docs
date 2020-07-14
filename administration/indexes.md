@@ -31,9 +31,9 @@ accessions in repository 2 delete the file called `2_accession.dat`.
 If you update a record's `system_mtime` it becomes eligible for reindexing.
 
 ```sql
-# reindex all resources
+#reindex all resources
 UPDATE resource SET system_mtime = NOW();
-# reindex resource 1
+#reindex resource 1
 UPDATE resource SET system_mtime = NOW() WHERE id = 1;
 ```
 

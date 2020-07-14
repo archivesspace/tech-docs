@@ -34,13 +34,13 @@ This will return a JSON response that includes something like the following:
 It’s a good idea to save the session key as an environment variable to use for later requests:
 
 ```
-# Mac/Unix terminal
+#Mac/Unix terminal
 export SESSION="9528190655b979f00817a5d38f9daf07d1686fed99a1d53dd2c9ff2d852a0c6e"
 
-# Windows Command Prompt
+#Windows Command Prompt
 set SESSION="9528190655b979f00817a5d38f9daf07d1686fed99a1d53dd2c9ff2d852a0c6e"
 
-# Windows PowerShell
+#Windows PowerShell
 $env:SESSION="9528190655b979f00817a5d38f9daf07d1686fed99a1d53dd2c9ff2d852a0c6e"
 ```
 

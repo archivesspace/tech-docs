@@ -34,14 +34,14 @@ Note: all example code assumes you are running from your ArchivesSpace project d
 ## Running the tests:
 
 ```bash
-# Frontend tests
+#Frontend tests
 ./build/run frontend:selenium # Firefox, headless
 FIREFOX_OPTS= ./build/run frontend:selenium # Firefox, no-opts = heady
 
 SELENIUM_CHROME=true ./build/run frontend:selenium # Chrome, headless
 SELENIUM_CHROME=true CHROME_OPTS= ./build/run frontend:selenium # Chrome, no-opts = heady
 
-# Public tests
+#Public tests
 ./build/run public:test # Firefox, headless
 FIREFOX_OPTS= ./build/run public:test # Firefox, no-opts = heady
 
@@ -55,7 +55,7 @@ Tests can be scoped to specific files or groups:
 ./build/run .. -Dspec='path/to/spec/from/spec/directory' # single file
 ./build/run .. -Dexample='[description from it block]' # specific block
 
-# EXAMPLES
+#EXAMPLES
 ./build/run frontend:selenium -Dexample='Repository model'
 FIREFOX_OPTS= ./build/run frontend:selenium -Dexample='Repository model'# Firefox, heady
 

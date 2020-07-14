@@ -93,6 +93,7 @@ cd docs/slate
 gem install bundler --version '< 2.0'
 bundle install --binstubs
 ./bin/middleman build
+./bin/middleman server # optional if you want to have a look at the API docs only
 rm -r ../api
 mv build ../api
 ```
@@ -128,9 +129,9 @@ git commit -m "Updating to vX.X.X"
 11. Push docs to the gh-pages branch (do not do this with release candidates)
 
 ```
-# SKIP THIS PUSH STEP FOR RELEASE CANDIDATES
+#SKIP THIS PUSH STEP FOR RELEASE CANDIDATES
 git subtree push --prefix docs origin gh-pages
-# or, if you get a FF error
+#or, if you get a FF error
 git push origin `git subtree split --prefix docs master`:gh-pages --force
 ```
 
@@ -167,7 +168,7 @@ changes for the release.
 
 ```
 bundle exec rake release_notes:generate[$previous_release_tag,$new_release_tag]
-# example:
+#example:
 bundle exec rake release_notes:generate[v2.7.1,v2.8.0-rc1]
 ```
 
@@ -186,7 +187,7 @@ Significant changes to be the config file should be called out. To get the chang
 
 ```
 git diff $previous_version..$new_version -- common/config/config-defaults.rb
-# example
+#example
 git diff v2.7.1..v2.8.0-rc1 -- common/config/config-defaults.rb
 ```
 
@@ -217,7 +218,7 @@ Get the latest schema version:
 
 ```
 git diff --name-only $previous_version..$new_version | grep "common/db/migrations"
-# example
+#example
 git diff --name-only v2.7.1..v2.8.0-rc1 | grep "common/db/migrations"
 ```
 
@@ -227,7 +228,7 @@ to techdocs. Only do the latter for a release, not release candidates.
 Update the release notes under 'Database migrations' add:
 
 ```
-# $n = no. of lines from git diff above, $x = the no. on the last line
+#$n = no. of lines from git diff above, $x = the no. on the last line
 This release includes $n new database migrations. The schema number for this release is $x.
 ```
 
@@ -259,6 +260,21 @@ cycle of development clicks into full gear:
 ### Branches
 
 Delete merged and stale branches in Github as appropriate.
+
+### Test Servers
+
+Review existing test servers, and request the removal of any that are no longer
+needed (e.g. feature branches that have been merged for the release).
+
+### Accessibility Scan
+
+Run accessibility scans for both the public and staff sites and file a ticket
+for any new and ongoing accessibility errors.
+
+### PR Assignments
+
+Begin assigning queued PRs to members of the Core Committers group, making
+sure to include the appropriate milestone for the anticipated next release.
 
 ### Dependencies
 
