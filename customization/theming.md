@@ -75,7 +75,7 @@ of your site:
 ## Heavy re-theming
 
 If you're wanting to really trick out your site, you could do this in a plugin
-using the override methods show above, although there are some big disadvantages
+using the override methods shown above, although there are some big disadvantages
 to this. The first is that assets will not be compiled by the Rails asset
 pipeline. Another is that you won't be able to take advantage of the variables
 and mixins that Bootstrap and Less provide as a framework, which really helps
