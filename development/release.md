@@ -53,66 +53,66 @@ Steps:
 
 1. Check out a new branch from master:
 
-```
-git checkout -b $version # $version = release tag to build (i.e. v2.8.0-rc1)
-```
+  ```
+  git checkout -b $version # $version = release tag to build (i.e. v2.8.0-rc1)
+  ```
 
 2. Make sure that [script/build_docs.rb](https://github.com/archivesspace/archivesspace/blob/master/scripts/build_docs.rb#L7-L8) is up-to-date and update [Jekyll's sidebar](https://github.com/archivesspace/archivesspace/blob/master/docs/_includes/sidebar.html) if necessary.
 
 3. Bootstrap your development environment by downloading all dependencies--JRuby, Gems, Solr, etc.
 
-```
-build/run bootstrap
-```
+  ```
+  build/run bootstrap
+  ```
 
 4. The documentation spec file must be run to generate examples for the API docs
 
-```
-build/run backend:test -Dspec='documentation_spec.rb'
-```
+  ```
+  build/run backend:test -Dspec='documentation_spec.rb'
+  ```
 
 This runs through all the endpoints, generates factory bot fixture json, and spits it into a json file (endpoint_examples.json).
 
 5. Update the fallback_version value in common/asconstants.rb with the new version number so that the documentation will have the correct version number in the footer
 
-```
-fallback_version = "$version.a" # version should match branch name '.a' i.e. v2.8.0-rc1.a
-```
+  ```
+  fallback_version = "$version.a" # version should match branch name '.a' i.e. v2.8.0-rc1.a
+  ```
 
 6. Rip apart the READMEs for content by running the doc:build ANT task
 
-```
-build/run doc:build
-```
+  ```
+  build/run doc:build
+  ```
 
 7. Build Slate/API docs (using a standard Ruby)
   *Note*: At present, middleman requires a bundler version < 2.0 so the docs have been updated to reflect this.
 
-```
-cd docs/slate
-gem install bundler --version '< 2.0'
-bundle install --binstubs
-./bin/middleman build
-./bin/middleman server # optional if you want to have a look at the API docs only
-rm -r ../api
-mv build ../api
-```
+  ```
+  cd docs/slate
+  gem install bundler --version '< 2.0'
+  bundle install --binstubs
+  ./bin/middleman build
+  ./bin/middleman server # optional if you want to have a look at the API docs only
+  rm -r ../api
+  mv build ../api
+  ```
 
 8. Compile Jekyll
 
-```
-cd docs
-gem install bundler
-bundle install --binstubs
-./bin/jekyll build
-```
+  ```
+  cd docs
+  gem install bundler
+  bundle install --binstubs
+  ./bin/jekyll build
+  ```
 
 9. Preview the docs (optional)
 
-```
-cd docs
-./bin/jekyll serve # to update bind-address add: -H 0.0.0.0
-```
+  ```
+  cd docs
+  ./bin/jekyll serve # to update bind-address add: -H 0.0.0.0
+  ```
 
 - http://localhost:4000/archivesspace/ # tech docs
 - http://localhost:4000/archivesspace/api/ # api docs
@@ -120,28 +120,32 @@ cd docs
 
 10. Commit the updates to git:
 
-```
-cd ../ # go to top of the working tree
-git add # all files related to the docs that just got created/updated (eg. docs/*, index.html files, etc)
-git commit -m "Updating to vX.X.X"
-```
+  ```
+  cd ../ # go to top of the working tree
+  git add # all files related to the docs that just got created/updated (eg. docs/*, index.html files, etc)
+  #the following warning, if received, can be ignored:
+  #The following paths are ignored by one of your .gitignore files:
+  #docs/_site
+  #Use -f if you really want to add them.
+  git commit -m "Updating to vX.X.X"
+  ```
 
 11. Push docs to the gh-pages branch (do not do this with release candidates)
 
-```
-#SKIP THIS PUSH STEP FOR RELEASE CANDIDATES
-git subtree push --prefix docs origin gh-pages
-#or, if you get a FF error
-git push origin `git subtree split --prefix docs master`:gh-pages --force
-```
+  ```
+  #SKIP THIS PUSH STEP FOR RELEASE CANDIDATES
+  git subtree push --prefix docs origin gh-pages
+  #or, if you get a FF error
+  git push origin `git subtree split --prefix docs master`:gh-pages --force
+  ```
 
 ## Building a release
 
 12. Building the actual release is very simple, run the following:
 
-```
-./scripts/build_release vX.X.X
-```
+  ```
+  ./scripts/build_release vX.X.X
+  ```
 
 Replace X.X.X with the version number. This will build and package a release in
 a zip file.
@@ -151,15 +155,16 @@ not require a PR review (only in this case).
 
 14. Check out the master branch, pull, prune and tag it
 
-````shell
-git checkout master
-git pull --prune
-git tag vX.X.X
-git push --tags
-````
+  ````shell
+  git checkout master
+  git pull --prune
+  git tag vX.X.X
+  git push --tags
+  ````
 
-15. Delete the clone of ArchivesSpace used to build the release. This
-is optional but recommended.
+15. Delete the clone of ArchivesSpace used to build the release (though be sure
+to retain the zip file you created above if you intend to continue to the
+following section). This step is optional but recommended.
 
 ## Upload the release and prepare draft
 
@@ -265,6 +270,13 @@ Delete merged and stale branches in Github as appropriate.
 
 Review existing test servers, and request the removal of any that are no longer
 needed (e.g. feature branches that have been merged for the release).
+
+### GitHub Issues
+
+Review existing opening GH issues and close any that have been resolved by
+the new release (linking to a specific PR if possible).  For the remaining open
+issues, review if they are still a problem, apply labels, link to known JIRA
+issues, and add comments as necessary/relevant.
 
 ### Accessibility Scan
 
