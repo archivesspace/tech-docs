@@ -41,7 +41,7 @@
   * [Running ArchivesSpace with external Solr](./provisioning/solr.md)
   * [Tuning ArchivesSpace](./provisioning/tuning.md)
 * [Information for developers and code contributors](./development)
-  * [ArchivesSpace build system](./development/build.md)
+  * [Running a development version of ArchivesSpace](./development/dev.md)
   * [Building an ArchivesSpace release](./development/release.md)
   * [Using Supervisord for development](./development/supervisord.md)
   * [Docker](./development/docker.md)
