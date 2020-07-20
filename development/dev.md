@@ -1,4 +1,4 @@
-# ArchivesSpace developer docs
+# Running a development version of ArchivesSpace
 
 ## Running the build system
 
