@@ -1,6 +1,6 @@
 # Information for ArchivesSpace developers and code contributors
 
-* [ArchivesSpace developer docs](./dev.md)
+* [ArchivesSpace developer docs](./build.md)
 * [Building an ArchivesSpace release](./release.md)
 * [Docker](./docker.md)
 * [DB versions listed by release](./release_schema_versions.md)
