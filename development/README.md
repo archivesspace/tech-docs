@@ -5,3 +5,4 @@
 * [Docker](./docker.md)
 * [DB versions listed by release](./release_schema_versions.md)
 * [User Interface Test Suite](./ui_test.md)
+* [Upgrading Rack for ArchivesSpace](./development/jruby-rack-build.md)
