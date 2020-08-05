@@ -19,6 +19,10 @@ Your `AppConfig[:pui_branding_img]` setting should look something like this:
 
 `AppConfig[:pui_branding_img] = '/assets/images/logo.png'`
 
+If you want your image on the PUI to link out to another location, you will need to make a change to the file `public/app/views/shared/_header.html.erb`. The line that creates the logo just needs a `a href` added. That will end up looking something like this:
+
+`<div class="col-sm-3 hidden-xs"><a href="https://example.com"><img class="logo" src="<%= asset_path(AppConfig[:pui_branding_img]) %>" alt="Back to Example College Home" /></a></div>`
+
 The Staff Side logo will need a small plugin file and cannot be set in your `config.rb` file. This needs to be changed in the `plugins/local/frontend/views/site/_branding.html.erb` file. You'll most likely need to create one or more of the directories. Then create that `_branding.html.erb` file and paste in the following code:
 
 ```
@@ -71,7 +75,7 @@ of your site:
 ## Heavy re-theming
 
 If you're wanting to really trick out your site, you could do this in a plugin
-using the override methods show above, although there are some big disadvantages
+using the override methods shown above, although there are some big disadvantages
 to this. The first is that assets will not be compiled by the Rails asset
 pipeline. Another is that you won't be able to take advantage of the variables
 and mixins that Bootstrap and Less provide as a framework, which really helps

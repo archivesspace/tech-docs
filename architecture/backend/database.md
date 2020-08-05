@@ -48,7 +48,7 @@ Additionally, a BETA version of an [ArchivesSpace data dictionary](https://githu
 
 These tables hold data about the primary record types in ArchivesSpace. Main record types are distinguished from subrecords in that they have their own persistent URIs - corresponding to their database identifiers/primary keys - that are resolvable via the staff interface, public interface, and API. They are distinguished from supporting records in that they are the primary descriptive record types that users will interact with in the system.
 
-All of these records, except archival objects, can be created independently of any other record. Archival object records represent components of a larger entity, and so they must have a resource record as a root parent. See the [parent/child relationships](#parent-child-link) section for more information about the representation of  hierarchical relationships in the database.
+All of these records, except archival objects, can be created independently of any other record. Archival object records represent components of a larger entity, and so they must have a resource record as a root parent. See the [parent/child relationships](#Parent-Child-Relationships-and-Sequencing) section for more information about the representation of  hierarchical relationships in the database.
 
 A few common fields occur in several main record tables. These similar fields are defined by the parent schemas in the `common/schemas` directory:
 
@@ -142,6 +142,8 @@ Like the main record types listed above, supporting records can also be created 
 
 ## Subrecord tables
 
+<!-- link to ### Nested records section of the backend readme -->
+
 Subrecords must be associated with a main or supporting record - they cannot be created independently. As such, they do not have their own URIs, and can only be accessed via the API by retrieving the top-level record with which they are associated. In the staff interface these records are embedded within main or supporting record views. In the API subrecord data is contained in arrays within main or supporting records.
 
 The various subrecord types do have their own database tables. In addition to data specific to the subrecord type, the tables also contain foreign key columns which hold the database identifiers of main or supporting records. Subrecord tables must have a value in one of the foreign key fields. Some subrecords can have another subrecord as parent (for instance, the `sub_container` subrecord has `instance_id` as its foreign key column).
@@ -179,8 +181,7 @@ It is important to note that subrecords are deleted and recreated upon each save
 | `assessment_attribute`        | `assessment_id`
 | `lang_material`               | `archival_object_id`, `resource_id`, `digital_object_id`, `digital_object_component_id`
 | `language_and_script`         | `lang_material_id`
-| `collection_management`       | `accession_id`, `resource_id`, `digital_object_id` **NOTE**: these records have their own URIs like main/supporting module records, but also have main module records as foreign keys, like subrecords. Their URIs also persist upon save, like main/supporting module records, and they can technically exist independently of a main module record.
-| `deaccession`                 | `accession_id`, `resource_id`
+| `collection_management`       | `accession_id`, `resource_id`, `digital_object_id`
 | `location_function`           | `location_id`
 
 <!-- appropriate place for collection management and deaccession stuff? what about location function? all the rights statement stuff? Is there a specific thing that defines a subrecord as a subrecord? -->
@@ -414,7 +415,7 @@ These tables track actions taken against the database (i.e. edits and deletes), 
 <!-- | subnote_metadata |
 | rights_statement_pre_088  | -->
 
-## Parent/Child Relationships and Sequencing
+## Parent-Child Relationships and Sequencing
 
 ### Repository-scoped records
 
@@ -429,7 +430,7 @@ Many main and supporting records are scoped to a particular repository. In these
 Hierarchical relationships between other records are also expressed through foreign keys:
 
 | Column name    | Description                              | Example |PK Tables| Found in
-|---------------|------------------------------------------|---------||-------
+|---------------|-------------------------------------------|---------|---------|-------
 `root_record_id`| The database ID of the root parent record | `4566` |`resource`, `digital_object`, `classification`| `archival_object`, `digital_object_component`, `classification_term`
 `parent_id`     | The database ID of the immediate parent record. This is used to identify parent records which are of the same type as the child record (i.e. two archival object records). The value will be NULL if the only parent is the root record. | `1748121` |`archival_object`, `classification_term`, `digital_object_component`| `archival_object`, `classification_term`, `digital_object_component`, `note_persistent_id`
 `parent_name`   | The database ID or URI, and the record type of the immediate parent | `144@archival_object`, `root@/repositories/2/resources/2` | `resource`, `archival_object`, `classification`, `classification_term`, `digital_object`, `digital_object_component`| `archival_object`, `classification_term`, `digital_object_component`

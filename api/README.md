@@ -14,6 +14,41 @@ authenticated, provide this token with subsequent requests in the
 
      X-ArchivesSpace-Session: 8e921ac9bbe9a4a947eee8a7c5fa8b4c81c51729935860c1adfed60a5e4202cb
 
+### Example requests using CURL
+
+Send request to authenticate:
+
+```
+curl -s -F password="admin" "http://localhost:8089/users/admin/login"
+```
+
+This will return a JSON response that includes something like the following:
+
+```
+{
+   "session":"9528190655b979f00817a5d38f9daf07d1686fed99a1d53dd2c9ff2d852a0c6e",
+   ....
+}
+```
+
+It’s a good idea to save the session key as an environment variable to use for later requests:
+
+```
+#Mac/Unix terminal
+export SESSION="9528190655b979f00817a5d38f9daf07d1686fed99a1d53dd2c9ff2d852a0c6e"
+
+#Windows Command Prompt
+set SESSION="9528190655b979f00817a5d38f9daf07d1686fed99a1d53dd2c9ff2d852a0c6e"
+
+#Windows PowerShell
+$env:SESSION="9528190655b979f00817a5d38f9daf07d1686fed99a1d53dd2c9ff2d852a0c6e"
+```
+
+Now you can make requests like this:
+
+```
+curl -H "X-ArchivesSpace-Session: $SESSION" "http://localhost:8089/repositories/2/resources/1
+```
 
 ## CRUD
 
