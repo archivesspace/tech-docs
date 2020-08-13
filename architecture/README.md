@@ -12,5 +12,5 @@ data is defined by a class called JSONModel.
 * [The ArchivesSpace backend](./backend)
 * [Background Jobs](./jobs)
 * [Search indexing](./search)
-* [The ArchivesSpace public user interface](./public))
-* [OAI-PMH interface](./oai-pmg)
+* [The ArchivesSpace public user interface](./public)
+* [OAI-PMH interface](./oai-pmh)
