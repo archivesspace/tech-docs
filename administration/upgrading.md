@@ -43,7 +43,7 @@ running ArchivesSpace instance now.
 You will need to bring across the following files and directories from
 your original ArchivesSpace installation:
 
-  * the `data` directory
+  * the `data` directory (see **Indexes note** below)
   * the `config` directory (see **Configuration note** below)
   * your `lib/mysql-connector*.jar` file (if using MySQL)
   * any plugins and local modifications you have installed in your `plugins` directory
@@ -85,6 +85,12 @@ discover a new, exciting feature!  Documentation might also refer to
 uncommenting configuration options that won't be in your file if you
 keep your older version.
 
+### Indexes note
+
+Sometimes a new release of ArchivesSpace will require a FULL reindex
+which means you do not want to copy over anything from your data directory
+to your new release. The data directory contains the indexes created by solr.
+Check the release notes of the new version for any details about reindexing. 
 
 ## Transfer your locales data
 
