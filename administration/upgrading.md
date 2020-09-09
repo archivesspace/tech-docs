@@ -89,7 +89,7 @@ keep your older version.
 
 Sometimes a new release of ArchivesSpace will require a FULL reindex
 which means you do not want to copy over anything from your data directory
-to your new release. The data directory contains the indexes created by solr.
+to your new release. The data directory contains the indexes created by Solr.
 Check the release notes of the new version for any details about reindexing. 
 
 ## Transfer your locales data
