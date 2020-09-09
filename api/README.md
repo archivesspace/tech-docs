@@ -110,6 +110,4 @@ fairly standard pattern:
 
 ### DELETE requests
 
-
-* [POST requests (creating and updating records)](./post_requests.md)
-* [DELETE requests](./delete_requests.md)
+> Additional documentation needed
