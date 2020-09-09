@@ -77,6 +77,39 @@ fairly standard pattern:
 
 > Additional documentation is needed for these sections - please consider contributing documentation via a pull request to this repo
 
-* [GET requests (retrieving records)](./get_requests.md)
+
+### GET requests
+
+#### Resolving associated records
+
+> Additional documentation needed
+
+#### Requests for paginated results
+
+> Additional documentation needed
+
+#### Working with long results sets
+
+> Additional documentation needed
+
+#### Search requests
+
+> Additional documentation needed
+
+
+### POST requests
+
+#### Updating existing records
+
+> Additional documentation needed
+
+#### Creating new records
+
+> Additional documentation needed
+
+
+### DELETE requests
+
+
 * [POST requests (creating and updating records)](./post_requests.md)
 * [DELETE requests](./delete_requests.md)
