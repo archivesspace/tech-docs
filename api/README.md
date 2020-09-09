@@ -1,5 +1,7 @@
 # Working with the ArchivesSpace API
 
+This documentation provides general information on working with the API. For detailed documentation of specific endpoints, see the [API reference](http://archivesspace.github.io/archivesspace/api/), which is maintained separately.
+
 ## Authentication
 
 Most actions against the backend require you to be logged in as a user
@@ -71,11 +73,10 @@ fairly standard pattern:
      {... a JSON document satisfying JSONModel(:accession) here ...}
 
 
-## Detailed documentation
+## Performing API requests
 
 > Additional documentation is needed for these sections - please consider contributing documentation via a pull request to this repo
 
 * [GET requests (retrieving records)](./get_requests.md)
 * [POST requests (creating and updating records)](./post_requests.md)
 * [DELETE requests](./delete_requests.md)
-* [API reference](http://archivesspace.github.io/archivesspace/api/) - Includes a complete list of available endpoints and guidance for their use
