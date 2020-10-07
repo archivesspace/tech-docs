@@ -15,6 +15,8 @@ authenticated, provide this token with subsequent requests in the
 `X-ArchivesSpace-Session` header.  For example:
 
      X-ArchivesSpace-Session: 8e921ac9bbe9a4a947eee8a7c5fa8b4c81c51729935860c1adfed60a5e4202cb
+     
+Since not all backend/API end points require authentication, it is best to restrict access to port 8089 to only IP addresses you trust. Your firewall should be used to specify a range of IP addresses that are allowed to call your ArchivesSpace API endpoint. This is commonly called whitelisting or allowlisting.
 
 ### Example requests using CURL
 
