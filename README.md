@@ -43,7 +43,6 @@
 * [Information for developers and code contributors](./development)
   * [Running a development version of ArchivesSpace](./development/dev.md)
   * [Building an ArchivesSpace release](./development/release.md)
-  * [Using Supervisord for development](./development/supervisord.md)
   * [Docker](./development/docker.md)
   * [DB versions listed by release](./development/release_schema_versions.md)
   * [Public User Interface Test Suite](./development/public_test.md)
