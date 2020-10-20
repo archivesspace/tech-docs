@@ -45,7 +45,7 @@
   * [Building an ArchivesSpace release](./development/release.md)
   * [Docker](./development/docker.md)
   * [DB versions listed by release](./development/release_schema_versions.md)
-  * [Public User Interface Test Suite](./development/public_test.md)
+  * [User Interface Test Suite](./ui_test.md)
   * [Upgrading Rack for ArchivesSpace](./development/jruby-rack-build.md)
 * [Importing and exporting data in ArchivesSpace](./import_export)
   * [ArchivesSpace repository EAD Exporter](./import_export/ead_exporter.md)
