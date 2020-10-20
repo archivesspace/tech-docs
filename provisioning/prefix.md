@@ -32,7 +32,7 @@ Now restart Apache.
 
 ## Step 2: Install and configure ArchivesSpace
 
-Follow the instructions in the main README to download and install ArchiveSpace.
+Follow the instructions in the main README to download and install ArchivesSpace.
 
 Open the file `archivesspace/config/config.rb` and add the following lines:
 
