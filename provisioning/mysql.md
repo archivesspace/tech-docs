@@ -51,10 +51,10 @@ If using MySQL 5.7 and below:
 
 If using MySQL 8+:
 
-         mysql> create user 'test_admin'@'localhost' identified by 'test_admin';
+         mysql> create user 'as'@'localhost' identified by 'as123';
          Query OK, 0 rows affected (0.08 sec)
 
-         mysql> grant all privileges on archivesspace.* to 'test_admin'@'localhost';
+         mysql> grant all privileges on archivesspace.* to 'as'@'localhost';
          Query OK, 0 rows affected (0.21 sec)
 
 Then, modify your `config/config.rb` file to refer to your MySQL
@@ -72,4 +72,4 @@ ArchivesSpace requires.  Run this with:
 You can now follow the instructions in the "Getting Started" section to start
 your ArchivesSpace application.
 
-**NOTE: For MySQL 8. MySQL 8 uses a new method (caching_sha2_password) as the default authentication plugin instead of the old mysql_native_password that MySQL 5.7 and older used. This may require starting a MySQL 8 server with the `--default-authentication-plugin=mysql_native_password` option. You may also be able to change the auth mechanism on a per user basis by logging into mysql and running `ALTER USER 'test_admin'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';`. Also be sure to have the LATEST [MySQL Connector for Java](http://dev.mysql.com/downloads/connector/j/) from MySQL in your /lib/ directory for ArchivesSpace.
+**NOTE: For MySQL 8. MySQL 8 uses a new method (caching_sha2_password) as the default authentication plugin instead of the old mysql_native_password that MySQL 5.7 and older used. This may require starting a MySQL 8 server with the `--default-authentication-plugin=mysql_native_password` option. You may also be able to change the auth mechanism on a per user basis by logging into mysql and running `ALTER USER 'as'@'localhost' IDENTIFIED WITH mysql_native_password BY 'as123';`. Also be sure to have the LATEST [MySQL Connector for Java](http://dev.mysql.com/downloads/connector/j/) from MySQL in your /lib/ directory for ArchivesSpace.
