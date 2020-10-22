@@ -34,15 +34,27 @@ ENCODING FOR THE DATABASE TO BE `utf8`.** This is particularly important
 if you use a MySQL client to create the database (e.g. Navicat, MySQL
 Workbench, phpMyAdmin, etc.).
 
-**NOTE: If using AWS RDS MySQL databases, binary logging is not enabled by default and updates will fail.** To enable binary logging, you must create a custom db parameter group for the database and set the `log_bin_trust_function_creators = 1`. See [Working with DB Parameter Groups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html) for information about RDS parameter groups.
+<!-- This is also true of MySQL 8 in general... -->
+
+**NOTE: If using AWS RDS MySQL databases, binary logging is not enabled by default and updates will fail.** To enable binary logging, you must create a custom db parameter group for the database and set the `log_bin_trust_function_creators = 1`. See [Working with DB Parameter Groups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html) for information about RDS parameter groups. Within a MySQL session you can also try `SET GLOBAL log_bin_trust_function_creators = 1;`
 
 
          $ mysql -uroot -p
 
-         mysql> create database archivesspace default character set utf8;
+         mysql> create database archivesspace default character set utf8mb4;
          Query OK, 1 row affected (0.08 sec)
 
+If using MySQL 5.7 and below:
+
          mysql> grant all on archivesspace.* to 'as'@'localhost' identified by 'as123';
+         Query OK, 0 rows affected (0.21 sec)
+
+If using MySQL 8+:
+
+         mysql> create user 'as'@'localhost' identified by 'as123';
+         Query OK, 0 rows affected (0.08 sec)
+
+         mysql> grant all privileges on archivesspace.* to 'as'@'localhost';
          Query OK, 0 rows affected (0.21 sec)
 
 Then, modify your `config/config.rb` file to refer to your MySQL
@@ -60,4 +72,4 @@ ArchivesSpace requires.  Run this with:
 You can now follow the instructions in the "Getting Started" section to start
 your ArchivesSpace application.
 
-**NOTE: For MySQL 8. MySQL 8 uses a new method (caching_sha2_password) as the default authentication plugin instead of the old mysql_native_password that MySQL 5.7 and older used. This may require starting a MySQL 8 server with the `--default-authentication-plugin=mysql_native_password` option. You may also be able to change the auth mechanism on a per user basis by logging into mysql and running `ALTER USER 'archivesspace' IDENTIFIED WITH mysql_native_password BY '123456';`. Also be sure to have the LATEST [MySQL Connector for Java](http://dev.mysql.com/downloads/connector/j/) from MySQL in your /lib/ directory for ArchivesSpace.
+**NOTE: For MySQL 8. MySQL 8 uses a new method (caching_sha2_password) as the default authentication plugin instead of the old mysql_native_password that MySQL 5.7 and older used. This may require starting a MySQL 8 server with the `--default-authentication-plugin=mysql_native_password` option. You may also be able to change the auth mechanism on a per user basis by logging into mysql and running `ALTER USER 'as'@'localhost' IDENTIFIED WITH mysql_native_password BY 'as123';`. Also be sure to have the LATEST [MySQL Connector for Java](http://dev.mysql.com/downloads/connector/j/) from MySQL in your /lib/ directory for ArchivesSpace.
