@@ -33,7 +33,7 @@
   * [Running ArchivesSpace with external Solr](./provisioning/solr.md)
   * [JMeter Test Group Template](./provisioning/jmeter.md)
 
-* [Migration tools and data mapping](./migrations)
+## Migrating data from Archivists' Toolkit and Arcon
   * [Archivists' Toolkit migration tool instructions](./migrations/migrate_from_archivists_toolkit.md)
   * [Archon migration tool instructions](./migrations/migrate_from_archon.md)
 
