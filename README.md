@@ -16,11 +16,7 @@
   * [Search indexing](./architecture/search)
   * [OAI-PMH interface](./architecture/oai-pmh)
 * [Working with the ArchivesSpace API](./api)
-     > Additional documentation is needed for these sections - please consider contributing documentation via a pull request to this repo
-  * [GET requests (retrieving records)](./api/get_requests.md)
-  * [POST requests (creating and updating records)](./api/post_requests./md)
-  * [DELETE requests](./api/delete_requests)
-  * [API reference](http://archivesspace.github.io/archivesspace/api/)
+     > Additional documentation is needed for this section - please consider contributing documentation via a pull request to this repo
 * [Customization and configuration](./customization)
   * [Configuring ArchivesSpace](./customization/configuration.md)
   * [Adding support for additional username/password-based authentication backends](./customization/authentication.md)
