@@ -7,7 +7,7 @@
   * [Configuring ArchivesSpace](./customization/configuration.md)
   * [Adding support for additional username/password-based authentication backends](./customization/authentication.md)
   * [Configuring LDAP authentication](./customization/ldap.md)
-    * [Running ArchivesSpace against MySQL](./provisioning/mysql.md)
+  * [Running ArchivesSpace against MySQL](./provisioning/mysql.md)
   
 ## Customization and theming
   * [ArchivesSpace Plug-ins](./customization/plugins.md)
