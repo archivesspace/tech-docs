@@ -17,7 +17,7 @@
   * [Running ArchivesSpace against MySQL](./provisioning/mysql.md)
   * [ArchivesSpace Plug-ins](./customization/plugins.md)  
   
-* Migrating from Archivists' Toolkit and Archon
+## Migrating from Archivists' Toolkit and Archon
   * [Archivists' Toolkit migration tool instructions](./migrations/migrate_from_archivists_toolkit.md)
   * [Archon migration tool instructions](./migrations/migrate_from_archon.md)
 
