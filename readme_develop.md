@@ -10,6 +10,7 @@
 
 ## Building integrations and plugins
 * [ArchivesSpace Plug-ins](./customization/plugins.md)
+* [Working with the ArchivesSpace Database](./backend/database.md)
 * [Working with the ArchivesSpace API](./api)
 * [Customizing text in ArchivesSpace](./customization/locales.md)
 * [Theming ArchivesSpace](./customization/theming.md)
