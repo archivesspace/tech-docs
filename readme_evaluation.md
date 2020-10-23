@@ -7,6 +7,7 @@
   * [Background Jobs](./architecture/jobs)
   * [Search indexing](./architecture/search)
   * [OAI-PMH interface](./architecture/oai-pmh)
+  * [Languages, platforms, and included open source projects](./architecture/languages.md)
 
 ## Common configuration and customization options
   * [Running ArchivesSpace as a Unix daemon](./administration/unix_daemon.md)
