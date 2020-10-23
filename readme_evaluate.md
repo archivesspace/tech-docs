@@ -14,11 +14,11 @@
 ## Configuration and customization
   * [Running ArchivesSpace as a Unix daemon](./administration/unix_daemon.md)
   * [Running ArchivesSpace as a Windows service](./administration/windows.md)
-  * [Adding support for additional username/password-based authentication backends](./customization/authentication.md)
-  * [Theming ArchivesSpace](./customization/theming.md)
-  * [Customizing text in ArchivesSpace](./customization/locales.md)
   * [Running ArchivesSpace against MySQL](./provisioning/mysql.md)
-  * [ArchivesSpace Plug-ins](./customization/plugins.md)  
+  * [ArchivesSpace Plug-ins](./customization/plugins.md) 
+  * [Theming ArchivesSpace](./customization/theming.md)
+  * [Adding support for additional username/password-based authentication backends](./customization/authentication.md)
+  * [Customizing text in ArchivesSpace](./customization/locales.md) 
   
 ## Migrating from Archivists' Toolkit and Archon
   * [Archivists' Toolkit migration tool instructions](./migrations/migrate_from_archivists_toolkit.md)
