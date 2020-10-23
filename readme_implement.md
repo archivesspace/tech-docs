@@ -17,7 +17,7 @@
   * [Creating Custom Reports](./customization/reports.md)
   * [ArchivesSpace XSL stylesheets](./import_export/xsl_stylesheets.md)
   
-## Maintenance tasks
+## Maintenance
   * [Re-creating indexes](./administration/indexes.md)
   * [Resetting passwords](./administration/passwords.md)
   * [Upgrading](./administration/upgrading.md)
