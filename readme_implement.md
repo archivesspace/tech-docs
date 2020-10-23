@@ -21,7 +21,8 @@
   * [Re-creating indexes](./administration/indexes.md)
   * [Resetting passwords](./administration/passwords.md)
   * [Upgrading](./administration/upgrading.md)
-  * [Backup and recovery](./administration/backup.md)  
+  * [Backup and recovery](./administration/backup.md)
+  * [ArchivesSpace releases and database versions](./development/release_schema_versions.md)
 
 ## Advanced configuration
   * [Tuning ArchivesSpace](./provisioning/tuning.md)
