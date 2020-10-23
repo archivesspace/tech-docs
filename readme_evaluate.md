@@ -11,7 +11,7 @@
   * [Working with the ArchivesSpace Database](./backend/database.md)
   * [Working with the ArchivesSpace API](./api)
 
-## Common configuration and customization options
+## Configuration and customization
   * [Running ArchivesSpace as a Unix daemon](./administration/unix_daemon.md)
   * [Running ArchivesSpace as a Windows service](./administration/windows.md)
   * [Adding support for additional username/password-based authentication backends](./customization/authentication.md)
