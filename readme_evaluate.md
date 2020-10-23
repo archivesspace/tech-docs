@@ -8,6 +8,8 @@
   * [Search indexing](./architecture/search)
   * [OAI-PMH interface](./architecture/oai-pmh)
   * [Languages, platforms, and included open source projects](./architecture/languages.md)
+  * [Working with the ArchivesSpace Database](./backend/database.md)
+  * [Working with the ArchivesSpace API](./api)
 
 ## Common configuration and customization options
   * [Running ArchivesSpace as a Unix daemon](./administration/unix_daemon.md)
