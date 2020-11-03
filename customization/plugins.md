@@ -67,7 +67,7 @@ to the local plug-in:
 
     plugins/local/frontend/locales/en.yml
 
-More detailed information about overriding locale files is found in [Customizing text in ArchivesSpace](https://archivesspace.github.io/archivesspace/user/customizing-text-in-archivesspace/)
+More detailed information about overriding locale files is found in [Customizing text in ArchivesSpace](./locales.md)
 
 
 ## Overriding the visual (web) presentation

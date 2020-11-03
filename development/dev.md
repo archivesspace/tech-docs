@@ -34,10 +34,10 @@ in a specific order or are all required.
 
 ## Running components all at once
 
-Use Supervisord for a simpler way of running the development servers with output 
+Use Supervisord for a simpler way of running the development servers with output
 for all servers sent to a single terminal window.
 
-[Supervisord](http://supervisord.org/) can simultaneously launch the ArchivesSpace 
+[Supervisord](http://supervisord.org/) can simultaneously launch the ArchivesSpace
 development servers. This is entirely optional and just for developer convenience.
 
 From within the ArchivesSpace source directory:
@@ -72,7 +72,7 @@ the `aspace.config.db_url` property of `JAVA_OPTS`:
 export JAVA_OPTS="-Daspace.config.db_url=jdbc:mysql://127.0.0.1:3306/archivesspace?useUnicode=true&characterEncoding=UTF-8&user=as&password=as123"
 ```
 
-See the [setup instructions](http://archivesspace.github.io/archivesspace/user/running-archivesspace-against-mysql/) for initializing the database.
+See the [setup instructions](../provisioning/mysql.md) for initializing the database.
 The MySQL connector should be downloaded to `common/lib`. If you restore a
 database to use in development it may not play well with the tests.
 
@@ -119,8 +119,8 @@ directory in your ArchivesSpace project directory.
 
 ## Building a distribution
 
-See: [Building an Archivesspace Release](http://archivesspace.github.io/archivesspace/user/building-an-archivesspace-release/) for information on building a distribution.
+See: [Building an Archivesspace Release](release.md) for information on building a distribution.
 
 ## Generating API documentation
 
-See: [Building an Archivesspace Release](http://archivesspace.github.io/archivesspace/user/building-an-archivesspace-release/) for information on building the documentation.
+See: [Building an Archivesspace Release](release.md) for information on building the documentation.

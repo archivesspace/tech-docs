@@ -38,7 +38,7 @@ ArchivesSpace is made up of several components that are kept in separate directo
 
 ### \_yard
 
-This directory contains the code for the documentation tool used to generate the github io pages here: http://archivesspace.github.io/archivesspace/
+This directory contains the code for the documentation tool used to generate the github io pages here: https://archivesspace.github.io/archivesspace/api/ and https://archivesspace.github.io/archivesspace/doc/
 
 ### backend
 

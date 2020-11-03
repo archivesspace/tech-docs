@@ -1,15 +1,15 @@
 # Upgrading to a new release of ArchivesSpace
 
-*  **[Special considerations when upgrading to v1.1.0](https://archivesspace.github.io/archivesspace/user/upgrading-to-1.1.0/)**
-*  **[Special considerations when upgrading to v1.1.1](https://archivesspace.github.io/archivesspace/user/upgrading-to-1.1.1/)**
-*  **[Special considerations when upgrading from v1.4.2 to 1.5.x (these considerations also apply when upgrading from 1.4.2 to any version through 2.0.1)](https://archivesspace.github.io/archivesspace/user/upgrading-to-1.5.0/)**
-*  **[Special considerations when upgrading to 2.1.0](https://archivesspace.github.io/archivesspace/user/upgrading-to-2.1.0/)**
+*  **[Special considerations when upgrading to v1.1.0](upgrading/UPGRADING_1.1.0.md)**
+*  **[Special considerations when upgrading to v1.1.1](upgrading/UPGRADING_1.1.1.md)**
+*  **[Special considerations when upgrading from v1.4.2 to 1.5.x (these considerations also apply when upgrading from 1.4.2 to any version through 2.0.1)](upgrading/UPGRADING_1.5.0.md)**
+*  **[Special considerations when upgrading to 2.1.0](upgrading/UPGRADING_2.1.0.md)**
 
 ## Create a backup of your ArchivesSpace instance
 
 You should make sure you have a working backup of your ArchivesSpace
 installation before attempting an upgrade.  Follow the steps
-under the [Backup and recovery section](https://archivesspace.github.io/archivesspace/user/backup-and-recovery/) to do this.
+under the [Backup and recovery section](backup.md) to do this.
 
 ## Unpack the new version
 
@@ -90,7 +90,7 @@ keep your older version.
 Sometimes a new release of ArchivesSpace will require a FULL reindex
 which means you do not want to copy over anything from your data directory
 to your new release. The data directory contains the indexes created by Solr.
-Check the release notes of the new version for any details about reindexing. 
+Check the release notes of the new version for any details about reindexing.
 
 ## Transfer your locales data
 
