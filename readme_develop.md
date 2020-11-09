@@ -1,5 +1,11 @@
 # Resources for developers
 
+This information will be useful for those creating ArchivesSpace plugins, contributing to the core codebase, or integrating ArchivesSpace withother systems.
+
+Additional documentation is available for [installing, configuring and maintaining an ArchivesSpace instance](./readme_implement.md) and to provide a high-level [technical overview of ArchivesSpace](./readme_evaluate.md)
+
+> If you discover errors in the documentation, or would like to suggest or contribute additional documentation, please submit an [issue](https://github.com/archivesspace/tech-docs/issues) or [pull request](https://github.com/archivesspace/tech-docs/pulls) as appropriate.
+
 ## Setting up a development environment
 * [Running a development version of ArchivesSpace](./development/dev.md)
 * [Building an ArchivesSpace release](./development/release.md)
