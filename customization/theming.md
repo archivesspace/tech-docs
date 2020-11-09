@@ -88,7 +88,7 @@ This video covers the staff frontend UI, but the same steps can be applied to
 the public UI as well.
 
 Also become a little familiar with the
-[build system instructions ](http://archivesspace.github.io/archivesspace/user/archivesspace-build-system/)
+[build system instructions ](../development/dev.md)
 
 
 First, pull down a new copy of ArchivesSpace using git and be sure to checkout
