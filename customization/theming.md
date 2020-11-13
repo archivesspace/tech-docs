@@ -9,7 +9,9 @@ complete rebuild of the source code.
 Let's say we wanted to change the branding logo on the public
 interface. That can be easily changed in your `config.rb` file:
 
-`AppConfig[:pui_branding_img]`
+```
+AppConfig[:pui_branding_img]
+```
 
 That setting is used by the file found in `public/app/views/shared/_header.html.erb` to display your PUI side logo. You don't need to change that file, only the setting in your `config.rb` file.
 
@@ -17,21 +19,31 @@ You can store the image in `plugins/local/public/assets/images/logo.png` You'll 
 
 Your `AppConfig[:pui_branding_img]` setting should look something like this:
 
-`AppConfig[:pui_branding_img] = '/assets/images/logo.png'`
+```
+AppConfig[:pui_branding_img] = '/assets/images/logo.png'
+```
 
-If you want your image on the PUI to link out to another location, you will need to make a change to the file `public/app/views/shared/_header.html.erb`. The line that creates the logo just needs a `a href` added. That will end up looking something like this:
+Alt text for the PUI branding image can and should also be supplied via:
 
-`<div class="col-sm-3 hidden-xs"><a href="https://example.com"><img class="logo" src="<%= asset_path(AppConfig[:pui_branding_img]) %>" alt="Back to Example College Home" /></a></div>`
+```
+AppConfig[:pui_branding_img_alt_text] = 'My alt text'
+````
+
+If you want your image on the PUI to link out to another location, you will need to make a change to the file `public/app/views/shared/_header.html.erb`. The line that creates the logo just needs a `a href` added.  You should also alter `AppConfig[:pui_branding_img_alt_text]` to make it clear that the image also functions as a link (e.g. `AppConfig[:pui_branding_img_alt_text] = 'Back to Example College Home'`). That will end up looking something like this:
+
+```
+<div class="col-sm-3 hidden-xs"><a href="https://example.com"><img class="logo" src="<%= asset_path(AppConfig[:pui_branding_img]) %>" alt="<%= AppConfig[:pui_branding_img_alt_text] %>" /></a></div>
+```
 
 The Staff Side logo will need a small plugin file and cannot be set in your `config.rb` file. This needs to be changed in the `plugins/local/frontend/views/site/_branding.html.erb` file. You'll most likely need to create one or more of the directories. Then create that `_branding.html.erb` file and paste in the following code:
 
 ```
 <div class="container-fluid navbar-branding">
-  <%= image_tag "archivesspace/archivesspace.small.png", :class=>"img-responsive" %>
+  <%= image_tag "archivesspace/archivesspace.small.png", :class=>"img-responsive", :alt=>"My image alt text" %>
 </div>
 ```
 
-Change the `"archivesspace/archivesspace.small.png"` to the path to your image `/assets/images/logo.png` and place your login the the `plugins/local/frontend/assets/images/` directory. You'll most likely need to create one or more of the directories.
+Change the `"archivesspace/archivesspace.small.png"` to the path to your image `/assets/images/logo.png` and place your logo in the `plugins/local/frontend/assets/images/` directory. You'll most likely need to create one or more of the directories.
 
 **Note:** Since anything we add to plugins directory will not be precompiled by
 the Rails asset pipeline, we cannot use some of the tag helpers
