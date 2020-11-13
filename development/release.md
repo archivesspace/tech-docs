@@ -1,10 +1,10 @@
 # Building an ArchivesSpace release
 
-[Pre-Release Steps](#prerelease)
-[Build the Docs](#docs)
-[Build the Release](#release)
-[Post the Release with Release Notes](#notes)
-[Post-Release Steps](#postrelease)
+- [Pre-Release Steps](#prerelease)
+- [Build the Docs](#docs)
+- [Build the Release](#release)
+- [Post the Release with Release Notes](#notes)
+- [Post-Release Steps](#postrelease)
 
 ## Clone the git repository
 
@@ -70,7 +70,7 @@ the Technical Documentation sub-team at
 
 1.  Check out a new branch from master
     ```shell
-    git checkout -b $version # $version = release tag to build (i.e. v2.8.0-rc1)
+    git checkout -b $version # $version = release tag to build (i.e. v2.8.0-RC1)
     ```
 
 2.  If you didn’t already bootstrap above, do so now
@@ -122,7 +122,7 @@ the Technical Documentation sub-team at
 9.  Commit the updates to git
     ```shell
     cd ../ # go to top of the working tree
-    git add # all files related to the docs that just got created/updated (eg. docs/*, index.html files, etc)
+    git add # all files related to the docs that just got created/updated (eg. docs/*, common/asconstants.rb, etc.)
     #the following warning, if received, can be ignored:
     #The following paths are ignored by one of your .gitignore files:
     #docs/_site
@@ -167,14 +167,41 @@ the Technical Documentation sub-team at
 
 ## <a name="notes"></a>Create the Release with Notes
 
+### Review Milestone Assignments
+
+The release announcement needs to have all the tickets that make up the code
+changes/contributions included in the release. These changes are identified by
+the Github Milestone associated to each Pull Request.  Therefore, you first
+need to insure:
+
+1. That all PRs with the current milestone are closed.  The following search on
+GitHub's Pull Request page should return no results:
+```
+is:open is:pr milestone:[current-milestone]
+```
+2. That no recently merged Pull Requests were merged without having the current
+milestone applied.  The following search should only return old (before 11/2020)
+or other "back of house" pull requests:
+```
+is:pr no:milestone state:closed is:merged
+```
+
 ### Build the release notes
-The release announcement needs to have all the tickets that make up the changes
-for the release.
+
+After reviewing the above, build the release notes:
 
 ```shell
-bundle exec rake release_notes:generate[$previous_release_tag,$new_release_tag]
+# Set ENV["REL_NOTES_TOKEN"] using a GitHub personal access token
+# See: https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token )
+# The token only needs to have the following scope: public_repo, repo:status
+
+export REL_NOTES_TOKEN="github-user-name:personal-access-token"
 #example:
-bundle exec rake release_notes:generate[v2.7.1,v2.8.0-rc1]
+export REL_NOTES_TOKEN="lorawoodford:12345"
+
+bundle exec rake release_notes:generate[$current_milestone,$previous_milestone,style]
+#example:
+bundle exec rake release_notes:generate[2.8.1,2.8.0]
 ```
 
 ### Create the draft release page
@@ -186,59 +213,10 @@ the release note markdown file content.
 There are some placeholder sections in the release notes that need to be
 updated:
 
-#### Config
+#### Review the Notes
 
-Significant changes to be the config file should be called out. To get the
-changes:
-
-```shell
-git diff $previous_version..$new_version -- common/config/config-defaults.rb
-#example
-git diff v2.7.1..v2.8.0-rc1 -- common/config/config-defaults.rb
-```
-
-Example content:
-
-```md
-Config values added:
-
-AppConfig[:pui_search_collection_from_archival_objects]
-AppConfig[:pui_search_collection_from_collection_organization]
-AppConfig[:max_search_columns]
-AppConfig[:hide_do_load]
-AppConfig[:bulk_import_rows]
-AppConfig[:bulk_import_size]
-
-Config values removed:
-
-None
-
----
-
-See the config.rb file for more details.
-```
-
-#### Database migrations
-
-Get the latest schema version:
-
-```shell
-git diff --name-only $previous_version..$new_version | grep "common/db/migrations"
-#example
-git diff --name-only v2.7.1..v2.8.0-rc1 | grep "common/db/migrations"
-```
-
-Update the [Schema version number](release_schema_versions.md) file and PR
-to techdocs. Only do the latter for a release, not release candidates.
-
-Update the release notes under 'Database migrations' add:
-
-```md
-#$n = no. of lines from git diff above, $x = the no. on the last line
-This release includes $n new database migrations. The schema number for this release is $x.
-```
-
-Or remove this section if no new migrations were added.
+Many of the automatically generated sections (especially the config changes)
+will require some manual review/copy-editing.
 
 #### Other considerations
 
@@ -268,6 +246,12 @@ cycle of development clicks into full gear:
 ### Branches
 
 Delete merged and stale branches in Github as appropriate.
+
+### Milestones
+
+Close the just-released Milestone, adding a due date of today's date.  Create a
+new Milestone for the anticipated next release (this can be changed later if the
+version numbering is changed for some reason).
 
 ### Test Servers
 
