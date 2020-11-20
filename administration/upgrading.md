@@ -79,7 +79,7 @@ Before you replace the distribution `config/config.rb` with your
 original version, it's a good idea to review the distribution version
 to see if there are any new configuration settings of interest.
 
-Upgrade notes will generally draw attention to any configuration
+Release notes will generally draw attention to any configuration
 settings you need to set explicitly, but you never know when you'll
 discover a new, exciting feature!  Documentation might also refer to
 uncommenting configuration options that won't be in your file if you
@@ -90,7 +90,7 @@ keep your older version.
 Sometimes a new release of ArchivesSpace will require a FULL reindex
 which means you do not want to copy over anything from your data directory
 to your new release. The data directory contains the indexes created by Solr.
-Check the release notes of the new version for any details about reindexing.
+Check the release notes of the new version for any details about reindexing. Note: If you skip one or more releases when upgrading, check the release notes for the versions you're skipping for any changes called out in those versions, including whether a full index was required.
 
 ## Transfer your locales data
 
