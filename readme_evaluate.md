@@ -12,7 +12,7 @@ This documentation will provide implementers and administrators with the informa
   * [Search indexing](./architecture/search)
   * [OAI-PMH interface](./architecture/oai-pmh)
   * [Languages, platforms, and included open source projects](./architecture/languages.md)
-  * [Working with the ArchivesSpace Database](./backend/database.md)
+  * [Working with the ArchivesSpace Database](./architecture/backend/database.md)
   * [Working with the ArchivesSpace API](./api)
 
 ## Configuration and customization
