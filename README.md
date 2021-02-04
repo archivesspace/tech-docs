@@ -1,53 +1,7 @@
 # ArchivesSpace technical documentation
 
-* [Basic administration](./administration)
-  * [Getting started](./administration/getting_started.md)
-  * [Running ArchivesSpace as a Unix daemon](./administration/unix_daemon.md)
-  * [Running ArchivesSpace as a Windows service](./administration/windows.md)
-  * [Backup and recovery](./administration/backup.md)
-  * [Re-creating indexes](./administration/indexes.md)
-  * [Resetting passwords](./administration/passwords.md)
-  * [Upgrading](./administration/upgrading.md)
-* [Architecture and components](./architecture)
-  * [The ArchivesSpace backend](./architecture/backend)
-  * [The ArchivesSpace staff interface](./architecture/frontend)
-  * [The ArchivesSpace public user interface](./architecture/public)
-  * [Background Jobs](./architecture/jobs)
-  * [Search indexing](./architecture/search)
-  * [OAI-PMH interface](./architecture/oai-pmh)
-* [Working with the ArchivesSpace API](./api)
-     > Additional documentation is needed for this section - please consider contributing documentation via a pull request to this repo
-* [Customization and configuration](./customization)
-  * [Configuring ArchivesSpace](./customization/configuration.md)
-  * [Adding support for additional username/password-based authentication backends](./customization/authentication.md)
-  * [Configuring LDAP authentication](./customization/ldap.md)
-  * [ArchivesSpace Plug-ins](./customization/plugins.md)
-  * [Customizing text in ArchivesSpace](./customization/locales.md)
-  * [Theming ArchivesSpace](./customization/theming.md)
-  * [Managing frontend assets with Bower](./customization/bower.md)
-  * [Creating Custom Reports](./customization/reports.md)
-* [Provisioning and server configuration](./provisioning)
-  * [Running ArchivesSpace with load balancing and multiple tenants](./provisioning/clustering.md)
-  * [Serving ArchivesSpace over subdomains](./provisioning/domains.md)
-  * [Serving ArchivesSpace user-facing applications over HTTPS](./provisioning/https.md)
-  * [JMeter Test Group Template](./provisioning/jmeter.md)
-  * [Running ArchivesSpace against MySQL](./provisioning/mysql.md)
-  * [Application monitoring with New Relic](./provisioning/newrelic.md)
-  * [Running ArchivesSpace under a prefix](./provisioning/prefix.md)
-  * [Running ArchivesSpace with external Solr](./provisioning/solr.md)
-  * [Tuning ArchivesSpace](./provisioning/tuning.md)
-* [Information for developers and code contributors](./development)
-  * [Running a development version of ArchivesSpace](./development/dev.md)
-  * [Building an ArchivesSpace release](./development/release.md)
-  * [Docker](./development/docker.md)
-  * [DB versions listed by release](./development/release_schema_versions.md)
-  * [User Interface Test Suite](./development/ui_test.md)
-  * [Upgrading Rack for ArchivesSpace](./development/jruby-rack-build.md)
-* [Importing and exporting data in ArchivesSpace](./import_export)
-  * [ArchivesSpace repository EAD Exporter](./import_export/ead_exporter.md)
-  * [ArchivesSpace XSL stylesheets](./import_export/xsl_stylesheets.md)
-* [Migration tools and data mapping](./migrations)
-  * [Archivists' Toolkit migration tool instructions](./migrations/migrate_from_archivists_toolkit.md)
-  * [Archon migration tool instructions](./migrations/migrate_from_archon.md)
-
-Note: the yard directory was removed from this repository. For now, the documentation will be maintained in the main [ArchivesSpace repository](https://github.com/archivesspace/archivesspace).
+The technical documentation covers a range of topics of interest to those working with ArchivesSpace in different technical capacities, and is organized in order to help you find the information most appropriate to your role.
+ 
+* **[ArchivesSpace technical overview](./readme_evaluate.md)** – For anyone who needs to evaluate technical requirements and capabilities of ArchivesSpace
+* **[Installing, configuring and maintaining an ArchivesSpace instance](./readme_implement.md)** – For anyone responsible for installing and/or maintaining an ArchivesSpace instance
+* **[Developer resources](./readme_develop.md)** – For anyone who needs to create plugins, integrate ArchivesSpace with other systems, or contribute to core code
