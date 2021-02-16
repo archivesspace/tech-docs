@@ -7,6 +7,7 @@ real users and data, you should switch to using MySQL.  MySQL offers
 significantly better performance when multiple people are using the
 system, and will ensure that your data is kept safe.
 
+ArchivesSpace is currently able to run on MySQL version 5.x. 
 
 ## Download MySQL Connector
 
