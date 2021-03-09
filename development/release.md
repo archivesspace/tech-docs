@@ -85,20 +85,14 @@ the Technical Documentation sub-team at
 
     This runs through all the endpoints, generates factory bot fixture json, and spits it into a json file (endpoint_examples.json).
 
-4.  Update the fallback_version value in `common/asconstants.rb` with the new
-    version number so that the Yard documentation will have the correct version
-    number in the footer
+4.  Run the documentation Ant Task to generate the Yard documentation, create
+    the API.md index file, and rename the YARD index file. Optionally override
+    the version set in asconstants with an environment variable.
     ```shell
-    fallback_version = "$version.a" # version should match branch name '.a' i.e. v2.8.0-rc1.a
+    ARCHIVESSPACE_VERSION=X.Y.Z build/run doc:build
     ```
 
-5.  Run the documentation Ant Task to generate the Yard documentation, create
-    the API.md index file, and rename the YARD index file.
-    ```shell
-    build/run doc:build
-    ```
-
-6.  Build the Slate/API docs (using a standard Ruby)
+5.  Build the Slate/API docs (using a standard Ruby)
     *Note*: At present, middleman requires a bundler version < 2.0 so the docs have been updated to reflect this.
     ```shell
     cd docs/slate
@@ -110,7 +104,7 @@ the Technical Documentation sub-team at
     mv build ../api
     ```
 
-8.  Preview the docs (optional)
+6.  Preview the docs (optional)
     ```shell
     cd .. # return to docs dir
     ./bin/jekyll serve # to update bind-address add: -H 0.0.0.0
@@ -119,7 +113,7 @@ the Technical Documentation sub-team at
     - http://localhost:4000/archivesspace/api/ # api docs
     - http://localhost:4000/archivesspace/doc/ # yard docs
 
-9.  Commit the updates to git
+7.  Commit the updates to git
     ```shell
     cd ../ # go to top of the working tree
     git add # all files related to the docs that just got created/updated (eg. docs/*, common/asconstants.rb, etc.)
@@ -130,7 +124,7 @@ the Technical Documentation sub-team at
     git commit -m "Updating to vX.X.X"
     ```
 
-10. Push docs to the `gh-pages` branch (do not do this with release candidates)
+8. Push docs to the `gh-pages` branch (do not do this with release candidates)
     ```shell
     #SKIP THIS PUSH STEP FOR RELEASE CANDIDATES
     git subtree push --prefix docs origin gh-pages
