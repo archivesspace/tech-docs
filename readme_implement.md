@@ -39,6 +39,7 @@ This documentation will provide implementers and administrators with the informa
   * [JMeter Test Group Template](./provisioning/jmeter.md)
 
 ## Migrating data from Archivists' Toolkit and Arcon
+  * [Migration tools and data mapping](./migrations/migration_tools.md)
   * [Archivists' Toolkit migration tool instructions](./migrations/migrate_from_archivists_toolkit.md)
   * [Archon migration tool instructions](./migrations/migrate_from_archon.md)
 
