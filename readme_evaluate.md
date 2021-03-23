@@ -25,6 +25,7 @@ This documentation will provide implementers and administrators with the informa
   * [Customizing text in ArchivesSpace](./customization/locales.md) 
   
 ## Migrating from Archivists' Toolkit and Archon
+  * [Migration tools and data mapping](./migrations/migration_tools.md)
   * [Archivists' Toolkit migration tool instructions](./migrations/migrate_from_archivists_toolkit.md)
   * [Archon migration tool instructions](./migrations/migrate_from_archon.md)
 
