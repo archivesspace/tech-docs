@@ -117,6 +117,17 @@ This runs all of the above tests in coverage mode and, when the run
 finishes, produces a set of HTML reports within the `coverage`
 directory in your ArchivesSpace project directory.
 
+## Linting and formatting with Rubocop
+
+If you are editing or adding source files that you intend to contribute via a pull request,
+you should make sure your changes conform to the layout and style rules by running:
+
+    build/run rubocop
+
+Most errors can be auto-corrected by running:
+
+    build/run rubocop -Dcorrect=true
+
 ## Building a distribution
 
 See: [Building an Archivesspace Release](release.md) for information on building a distribution.
