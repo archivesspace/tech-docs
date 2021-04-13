@@ -12,3 +12,5 @@ The technical documentation covers a range of topics of interest to those workin
 
 * [ArchivesSpace API Reference](http://archivesspace.github.io/archivesspace/api/)
 * [ArchivesSpace YARD Docs](http://archivesspace.github.io/archivesspace/doc/)
+* [Technical Documentation website](https://archivesspace.github.io/tech-docs/)
+* [Github repository](https://github.com/archivesspace/tech-docs)
