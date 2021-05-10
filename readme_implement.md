@@ -38,9 +38,9 @@ This documentation will provide implementers and administrators with the informa
   * [Running ArchivesSpace with external Solr](./provisioning/solr.md)
   * [JMeter Test Group Template](./provisioning/jmeter.md)
 
-## Migrating data from Archivists' Toolkit and Arcon
-  * [Migration tools and data mapping](./migrations/migration_tools.md)
+## Migrating data from Archivists' Toolkit and Archon
   * [Archivists' Toolkit migration tool instructions](./migrations/migrate_from_archivists_toolkit.md)
   * [Archon migration tool instructions](./migrations/migrate_from_archon.md)
 
-
+## Other migration resources
+  * [Migration tools and data mapping](./migrations/migration_tools.md)
