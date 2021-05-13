@@ -82,8 +82,60 @@ RewriteRule (.*) https://public.myarchive.org$1 [R,L]
 
 ### Nginx
 
-> FIXME Need nginx documentation
+Information about configuring nginx for SSL can be found at http://nginx.org/en/docs/http/configuring_https_servers.html  You should read
+that documentation before attempting to configure SSL.
 
+```
+
+server {
+	listen 80;
+	listen [::]:80;
+	server_name staff.myarchive.org;
+	return 301 https://staff.myarchive.org;
+}
+
+
+server {
+  listen 443 ssl;
+  server_name staff.myarchive.org;
+  charset utf-8;
+  }
+ 
+  ssl_certificate     /path/to/your/fullchain.pem;
+  ssl_certificate_key /path/to/your/key.pem
+
+  location / {
+    allow 0.0.0.0/0;
+    deny all;
+    proxy_pass http://localhost:8081;
+  }
+}
+
+server {
+	listen 80;
+	listen [::]:80;
+	server_name public.myarchive.org;
+	return 301 https://public.myarchive.org;
+}
+
+
+server {
+  listen 443 ssl;
+  server_name staff.myarchive.org;
+  charset utf-8;
+  }
+ 
+  ssl_certificate     /path/to/your/fullchain.pem;
+  ssl_certificate_key /path/to/your/key.pem
+
+  location / {
+    allow 0.0.0.0/0;
+    deny all;
+    proxy_pass http://localhost:8080;
+  }
+}
+
+```
 
 ## Step 2: Configure ArchivesSpace
 
