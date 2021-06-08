@@ -1,8 +1,12 @@
 ## Releases:
 
+3.0.1 June 4, 2021    
+The schema number for this release is 147.  
+https://github.com/archivesspace/archivesspace/releases/download/v3.0.1/archivesspace-v3.0.1.zip
+
 3.0.0 May 10, 2021    
 The schema number for this release is 147.  
-https://github.com/archivesspace/archivesspace/releases/download/v3.0.0/archivesspace-v3.0.0.zip
+[Bug in Release]
 
 2.8.1 Nov 11, 2020.  
 The schema number for this release is 138.  
