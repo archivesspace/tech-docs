@@ -127,6 +127,25 @@ you should make sure your changes conform to the layout and style rules by runni
 Most errors can be auto-corrected by running:
 
     build/run rubocop -Dcorrect=true
+    
+## Submitting a Pull Request
+
+When you have code ready to be reviewed, open a pull request to ask for it to be 
+merged into the codebase.
+    
+To help make the review go smoothly, here are some general guidelines:
+
+* __Your pull request should address a single issue.__
+  It's better to split large or complicated PRs into discrete steps if possible. This 
+  makes review more manageable and reduces the risk of conflicts with other changes.
+* __Give your pull request a brief title, referencing any JIRA or Github issues resolved 
+by the pull request.__
+  Including JIRA numbers (e.g. 'ANW-123') explicitly in your pull request title ensures the 
+  PR will be linked to the original issue in JIRA. Similarly, referencing GitHub issue numbers 
+  (e.g. 'Fixes #123') will automatically close that issue when the PR is merged.
+* __Fill out as much of the Pull Request template as is possible/relevant.__ 
+  This makes it easier to understand the full context of your PR, including any discussions or supporting documentation that went into developing the functionality or resolving the bug.
+
 
 ## Building a distribution
 
