@@ -39,9 +39,13 @@
 * [Digital Objects Export Maps](http://archivesspace.org/wp-content/uploads/2016/08/ASpace-Dig-Object-Exports.xlsx)
 * [EAD Import / Export Map](http://archivesspace.org/wp-content/uploads/2016/05/EAD-Import-Export-Mapping-20171030.xlsx)
 * [Location Record CSV Template](https://github.com/archivesspace/archivesspace/tree/master/backend/app/exporters/examples/location)
-* [MARCXML Import / Export Map](http://archivesspace.org/wp-content/uploads/2016/08/MARCXML-Import-Export-Mapping-20130715.xlsx)
+* (newly reviewed) [MARCXML Import Map](https://archivesspace.org/wp-content/uploads/2021/06/AS-MARC-import-mappings-2021-06-15.xlsx)
+* [MARCXML Export Map](https://archivesspace.org/wp-content/uploads/2021/06/MARCXML-Export-Mapping-20130715.xlsx)
 * [MARCXML Authority Import / Export Map](https://archivesspace.org/wp-content/uploads/2021/05/Agents-ASpace-to-MARCXMLMay2021.xlsx)
 * [EAC-CPF Import / Export Map](https://archivesspace.org/wp-content/uploads/2021/05/Agents-ASpace-to-EAC-CPFMay2021.xlsx)
+
+(newly reviewed) MARCXML Import Map
+MARCXML Export Map
 
 
 ### OAI-PMH-only maps
