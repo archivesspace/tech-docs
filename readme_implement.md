@@ -12,6 +12,7 @@ This documentation will provide implementers and administrators with the informa
   * [Adding support for additional username/password-based authentication backends](./customization/authentication.md)
   * [Configuring LDAP authentication](./customization/ldap.md)
   * [Running ArchivesSpace against MySQL](./provisioning/mysql.md)
+  * [Security considerations](./administration/security.md)
   
 ## Customization and theming
   * [ArchivesSpace Plug-ins](./customization/plugins.md)
