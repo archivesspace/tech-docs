@@ -38,6 +38,7 @@ be used to override or extend the behavior of the core application.
       converters .......... classes for importing data
       job_runners ......... classes for defining background jobs
       plugin_init.rb ...... if present, loaded when the backend first starts
+      lib/bulk_import ..... bulk import processor
     frontend
       assets .............. static assets (such as images, javascript) in the staff interface
       controllers ......... controllers for the staff interface
@@ -53,6 +54,8 @@ be used to override or extend the behavior of the core application.
     migrations ............ database migrations
     schemas ............... JSONModel schema definitions
     search_definitions.rb . Advanced search fields
+
+**Note** that `backend/lib/bulk_import` is the only directory in `backend/lib/` that is loaded by the plugin manager.  Other files in `backend/lib/` will not be loaded during startup.
 
 **Note** that, in order to override or extend the behavior of core models and controllers, you cannot simply put your replacement with the same name in the corresponding directory path.  Core models and controllers can be overridden by adding an `after_initialize` block to `plugin_init.rb` (e.g. [aspace-hvd-pui](https://github.com/harvard-library/aspace-hvd-pui/blob/master/public/plugin_init.rb#L43)).
 
