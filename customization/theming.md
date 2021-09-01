@@ -81,8 +81,8 @@ footer. Those overrides would go into the following places for the public side
 of your site:
 
     archivesspace/plugins/local/public/views/welcome/show.html.erb
-    archivesspace/plugins/local/public/views/shared/\_header.html.erb
-    archivesspace/plugins/local/public/views/shared/\_footer.html.erb
+    archivesspace/plugins/local/public/views/shared/_header.html.erb
+    archivesspace/plugins/local/public/views/shared/_footer.html.erb
 
 ## Heavy re-theming
 
