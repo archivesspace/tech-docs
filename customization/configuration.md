@@ -1371,6 +1371,12 @@ The number of characters to truncate before showing the 'Read More' link on note
 
 `AppConfig[:pui_readmore_max_characters] = 450`
 
+#### `AppConfig[:pui_expand_all]`
+
+Whether to expand all additional information blocks at the bottom of record pages by default. `true` expands all blocks, `false` collapses all blocks.
+
+`AppConfig[:pui_expand_all] = false`
+
 #### `AppConfig[:max_search_columns]`
 
 Use to specify the maximum number of columns to display when searching or browsing
