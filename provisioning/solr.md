@@ -1,23 +1,23 @@
 # Running ArchivesSpace with external Solr
 
-For ArchivesSpace > 3.1.0 this is **required**. For previous versions it is optional.
+For ArchivesSpace > 3.1.1 this is **required**. For previous versions it is optional.
 
-ArchivesSpace "offically" supports the version indicated in
+ArchivesSpace "officially" supports the version indicated in
 [solrconfig.xml](https://github.com/archivesspace/archivesspace/blob/master/solr/solrconfig.xml#L7).
 That refers to a version that is used for development and tested between release cycles.
 
-If you are already running Solr externally, using configuration dervied from a 3.1.0 or
+If you are already running Solr externally using a configuration derived from a 3.1.1 or
 earlier ArchivesSpace then it should continue to work, as for the transition from embedded
 to external Solr the configuration files have only been updated to resolve deprecations.
-However to support a custom set of Solr configuration files (i.e. not the exact files provided
-with an ArchivesSpace release) you must set `AppConfig[:solr_verify_checksums] = false` in `config.rb`.
+To support a custom set of Solr configuration files (i.e. not the exact files provided
+with an ArchivesSpace release), however, you must set `AppConfig[:solr_verify_checksums] = false` in `config.rb`.
 Alternatively if you would like to use the verify checksums feature you can place a copy of your
 schema and solrconfig xml files in the ArchivesSpace release `solr` directory, overwriting those
 provided by ArchivesSpace.
 
 **Note: the ArchivesSpace Program Team can only provide support for Solr deployments
 using the "officially" supported version with the standard configuration provided by
-the application. Everything else will be treated as "best effort" community led support.**
+the application. Everything else will be treated as "best effort" community-led support.**
 
 ## Install Solr
 
@@ -132,7 +132,7 @@ Created new core 'archivesspace'
 
 In the browser you should be able to access the [ArchivesSpace schema](http://localhost:8983/solr/#/archivesspace/files?file=schema.xml).
 
-## Disable the embedded server Solr instance (optional <= 3.1.0 only)
+## Disable the embedded server Solr instance (optional <= 3.1.1 only)
 
 Edit the ArchivesSpace config.rb file:
 
