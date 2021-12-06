@@ -46,12 +46,30 @@ Solr configuration.
 
 To perform a full reindex:
 
+### ArchivesSpace <= 3.1.0 (embedded Solr)
+
 - Shutdown ArchivesSpace
 - Delete these directories:
   - `rm -rf /path/to/archivesspace/data/indexer_state/`
   - `rm -rf /path/to/archivesspace/data/indexer_pui_state/`
   - `rm -rf /path/to/archivesspace/data/solr_index/`
 - Restart ArchivesSpace
+
+### ArchivesSpace > 3.1.0 (external Solr)
+
+For external Solr there is a plugin that can perform all of the re-indexing steps: [aspace-reindexer](https://github.com/lyrasis/aspace-reindexer)
+
+Manual steps:
+
+- Shutdown ArchivesSpace
+- Delete these directories:
+  - `rm -rf /path/to/archivesspace/data/indexer_state/`
+  - `rm -rf /path/to/archivesspace/data/indexer_pui_state/`
+- Perform a delete all Solr query:
+  - `curl -X POST -H 'Content-Type: application/json' --data-binary '{"delete":{"query":"*:*" }}' http://${solrUrl}:${solrPort}/solr/archivesspace/update?commit=true`
+- Restart ArchivesSpace
+
+---
 
 You can watch the [Tips for indexing ArchivesSpace](https://www.youtube.com/watch?v=yFJ6yAaPa3A) youtube video to see these steps performed.
 
