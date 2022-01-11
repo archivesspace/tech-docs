@@ -54,12 +54,13 @@ mkdir -p /opt/solr/server/solr/configsets/archivesspace/conf
 Right click on your Solr directory and open in Windows Terminal (Powershell).
 
 ```
-PS C:\Users\archivesspace\Projects\solr-8.10.1> mkdir -p .\server\solr\configsets\archivesspace\conf
+mkdir -p .\server\solr\configsets\archivesspace\conf
+```
 
+You should see something like this in response:
 
-    Directory: C:\Users\archivesspace\Projects\solr-8.10.1\server\solr\configsets\archivesspace
-
-
+```
+Directory: C:\Users\archivesspace\Projects\solr-8.10.1\server\solr\configsets\archivesspace
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
 d-----        10/25/2021  12:15 PM                conf
