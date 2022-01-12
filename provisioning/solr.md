@@ -71,6 +71,8 @@ d-----        10/25/2021  12:15 PM                conf
 Copy the ArchivesSpace Solr configuration files from the `solr` directory included
 with the release into the `$SOLR_HOME/server/solr/configsets/archivesspace/conf` directory.
 
+[Link to files in GitHub](https://github.com/archivesspace/archivesspace/tree/master/solr)
+
 There should be four files:
 
 - schema.xml
@@ -79,11 +81,9 @@ There should be four files:
 - synonyms.txt
 
 ```
-PS C:\Users\archivesspace\Projects\solr-8.10.1> ls .\server\solr\configsets\archivesspace\conf\
+ls .\server\solr\configsets\archivesspace\conf\
 
-
-    Directory: C:\Users\archivesspace\Projects\solr-8.10.1\server\solr\configsets\archivesspace\conf
-
+Directory: C:\Users\archivesspace\Projects\solr-8.10.1\server\solr\configsets\archivesspace\conf
 
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
@@ -106,7 +106,7 @@ bin/solr start
 Wait for Solr to start (running as a non-admin user):
 
 ```
-PS C:\Users\archivesspace\Projects\solr-8.10.1> .\bin\solr start
+.\bin\solr start
 "java version info is 11.0.12"
 "Extracted major version is 11"
 OpenJDK 64-Bit Server VM warning: JVM cannot use large page memory because it does not have enough privilege to lock pages in memory.
@@ -143,7 +143,7 @@ AppConfig[:enable_solr] = false
 
 Note that doing this means that you will have to backup Solr manually.
 
-## Set the Solr url
+## Set the Solr url in your config.rb file
 
 This config setting should point to your Solr instance:
 
@@ -160,7 +160,7 @@ by setting `AppConfig[:solr_verify_checksums] = false` in `config.rb`.
 
 ---
 
-You can now follow the instructions in the "Getting Started" section to start
+You can now follow the instructions in the [Getting started](./administration/getting_started.md) section to start
 your ArchivesSpace application.
 
 ---

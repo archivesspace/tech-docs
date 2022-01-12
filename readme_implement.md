@@ -5,13 +5,15 @@ This documentation will provide implementers and administrators with the informa
 > If you discover errors in the documentation, or would like to suggest or contribute additional documentation, please submit an [issue](https://github.com/archivesspace/tech-docs/issues) or [pull request](https://github.com/archivesspace/tech-docs/pulls) as appropriate.
 
 ## Installation and configuration
-  * [Getting started](./administration/getting_started.md)
-  * [Running ArchivesSpace as a Unix daemon](./administration/unix_daemon.md)
-  * [Running ArchivesSpace as a Windows service](./administration/windows.md)
-  * [Configuring ArchivesSpace](./customization/configuration.md)
-  * [Adding support for additional username/password-based authentication backends](./customization/authentication.md)
-  * [Configuring LDAP authentication](./customization/ldap.md)
-  * [Running ArchivesSpace against MySQL](./provisioning/mysql.md)
+  * [Getting started](./administration/getting_started.md) (All Versions)
+  * [Configuring ArchivesSpace](./customization/configuration.md) (All Versions)
+  * [Running ArchivesSpace against MySQL](./provisioning/mysql.md) (All Versions)
+  * [Running ArchivesSpace with external Solr](./provisioning/solr.md) (Version 3.2+)
+  * [Running ArchivesSpace as a Unix daemon](./administration/unix_daemon.md) (All Versions)
+  * [Running ArchivesSpace as a Windows service](./administration/windows.md) (All Versions)
+  * [Adding support for additional username/password-based authentication backends](./customization/authentication.md) (All Versions)
+  * [Configuring LDAP authentication](./customization/ldap.md) (All Versions)
+
   
 ## Customization and theming
   * [ArchivesSpace Plug-ins](./customization/plugins.md)
@@ -35,7 +37,6 @@ This documentation will provide implementers and administrators with the informa
   * [Serving ArchivesSpace user-facing applications over HTTPS](./provisioning/https.md)
   * [Application monitoring with New Relic](./provisioning/newrelic.md)
   * [Running ArchivesSpace under a prefix](./provisioning/prefix.md)
-  * [Running ArchivesSpace with external Solr](./provisioning/solr.md)
   * [JMeter Test Group Template](./provisioning/jmeter.md)
 
 ## Migrating data from Archivists' Toolkit and Archon
