@@ -151,7 +151,7 @@ This config setting should point to your Solr instance:
 AppConfig[:solr_url] = "http://localhost:8983/solr/archivesspace"
 ```
 
-If you are not running ArchivesSpace and Solr on the same server update
+If you are not running ArchivesSpace and Solr on the same server, update
 `localhost` to your Solr address.
 
 By default, on startup, ArchivesSpace will check that the Solr configuration
