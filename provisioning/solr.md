@@ -159,7 +159,7 @@ appears to be correct and will raise an error if not. You can disable this check
 by setting `AppConfig[:solr_verify_checksums] = false` in `config.rb`.
 
 Please note: if you're upgrading an existing installation of ArchivesSpace to use an external Solr, you will need to trigger a full re-index. Instructions for this are in 
- [Indexes](./administration/indexes.md) .
+ [Indexes](../administration/indexes.md) .
 
 ---
 
