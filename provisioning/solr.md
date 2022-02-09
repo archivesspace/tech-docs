@@ -160,7 +160,7 @@ by setting `AppConfig[:solr_verify_checksums] = false` in `config.rb`.
 
 ---
 
-You can now follow the instructions in the [Getting started](./administration/getting_started.md) section to start
+You can now follow the instructions in the [Getting started](../administration/getting_started.md) section to start
 your ArchivesSpace application.
 
 ---
