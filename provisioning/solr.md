@@ -163,7 +163,7 @@ Please note: if you're upgrading an existing installation of ArchivesSpace to us
 
 ---
 
-You can now follow the instructions in the [Getting started](./administration/getting_started.md) section to start
+You can now follow the instructions in the [Getting started](../administration/getting_started.md) section to start
 your ArchivesSpace application.
 
 ---
