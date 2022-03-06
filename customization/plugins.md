@@ -12,7 +12,7 @@ The ArchivesSpace distribution comes with the `hello_world` exemplar plug-in. Pl
 ## Enabling plugins
 
 Plug-ins are enabled by placing them in the `plugins` directory, and referencing them in the
-ArchivesSpace configuration, `config/config.rb`. For example:
+ArchivesSpace configuration, `common/config/config.rb`. For example:
 
     AppConfig[:plugins] = ['local', 'hello_world', 'my_plugin']
 
