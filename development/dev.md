@@ -11,7 +11,7 @@ ones.
 
 The bootstrap task:
 
-     build/run bootstrap
+     ./build/run bootstrap
 
 Will bootstrap your development environment by downloading all
 dependencies--JRuby, Gems, Solr, etc..
@@ -24,10 +24,10 @@ Gemfiles or other dependencies such as those in the `./build/build.xml` file.
 
 To run a development instance of all ArchivesSpace components:
 
-     build/run backend:devserver
-     build/run frontend:devserver
-     build/run public:devserver
-     build/run indexer
+     ./build/run backend:devserver
+     ./build/run frontend:devserver
+     ./build/run public:devserver
+     ./build/run indexer
 
 These should be run in different terminal sessions and do not need to be run
 in a specific order or are all required.
@@ -78,11 +78,11 @@ database to use in development it may not play well with the tests.
 
 After setting up and creating the database you can run the migrations with:
 
-     build/run db:migrate
+     ./build/run db:migrate
 
 You can also clear your database and search indexes with:
 
-     build/run db:nuke
+     ./build/run db:nuke
 
 ## Running the tests
 
@@ -90,20 +90,20 @@ ArchivesSpace uses a combination of RSpec, integration and Selenium
 tests.  You will need to have Firefox on your path.  Then, to run all
 tests:
 
-     build/run travis:test
+     ./build/run travis:test
 
 It's also useful to be able to run the backend unit tests separately.
 To do this, run:
 
-     build/run backend:test
+     ./build/run backend:test
 
 You can also run a single spec file with:
 
-     build/run backend:test -Dspec="myfile_spec.rb"
+     ./build/run backend:test -Dspec="myfile_spec.rb"
 
 or a single example with:
 
-     build/run backend:test -Dexample="does something important"
+     ./build/run backend:test -Dexample="does something important"
 
 There are specific instructions and requirements for the [UI tests](ui_test.md) to work.
 
@@ -111,7 +111,7 @@ There are specific instructions and requirements for the [UI tests](ui_test.md) 
 
 You can run the coverage reports using:
 
-     build/run coverage
+     ./build/run coverage
 
 This runs all of the above tests in coverage mode and, when the run
 finishes, produces a set of HTML reports within the `coverage`
@@ -122,11 +122,11 @@ directory in your ArchivesSpace project directory.
 If you are editing or adding source files that you intend to contribute via a pull request,
 you should make sure your changes conform to the layout and style rules by running:
 
-    build/run rubocop
+    ./build/run rubocop
 
 Most errors can be auto-corrected by running:
 
-    build/run rubocop -Dcorrect=true
+    ./build/run rubocop -Dcorrect=true
     
 ## Submitting a Pull Request
 
