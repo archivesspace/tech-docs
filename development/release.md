@@ -15,13 +15,44 @@ safest way of ensuring this is to clone the repo:
 git clone https://github.com/archivesspace/archivesspace.git
 ```
 
-This assumes you will be building a release from master. To build from a tag you
- will need to additionally check out the tag, like this:
+## Checkout the release branch
 
-```shell
-git checkout [tag-name]
+If you are building a major or minor version (see [https://semver.org])(semver.org)),
+start by creating a branch for the release and all future patch releases:
+
+``` shell
+git checkout -b release-v1.0.x
+git tag v1.0.0
+```
+If you are building a patch version, just check out the existing branch and see below:
+
+``` shell
+git checkout release-v1.0.x
 ```
 
+Patch versions typically arise because a regression or critical bug has arisen since
+the last major or minor release. If the "hotfix" has been merged to the release branch,
+it will need to be cherry-picked back to the master branch. If it has been merged to the
+master branch (more likely given current code review / QA workflow), it (they) will
+need to be cherry-picked to the release branch.
+
+Consider the following scenario. The current production release is v1.0.0 and a critical
+bug has been discovered. In the time since v1.0.0 was released, new features have been
+added to the master branch, intended for release in v1.1.0:
+
+``` shell
+git checkout master
+git checkout -b oh-no-some-migration-corrupts-some-data
+( fixes problem )
+git commit -m "fix bad migration and add a migration to repair corrupted data"
+gh pr create --web
+( PR is reviewed and approved on Github, QA'd, then merged to master)
+git pull master
+git checkout release-v1.0.x
+git cherry-pick [SHA of hotfix commit]
+git push origin release-v1.0.x
+git tag v1.0.1
+```
 
 ## <a name="prerelease"></a>Pre-Release Steps
 
@@ -60,7 +91,7 @@ translations or multiple gem versions.
 This documentation is maintained on a separate
 [https://github.com/archivesspace/archivesspace/tree/gh-pages](gh-pages) branch
 in the ArchivesSpace repository, and consists of a
-[Slate](https://github.com/tripit/slate) site (for REST API documentation), and
+[Slate](https://github.com/archivesspace/slate) site (for REST API documentation), and
 the Ruby [YARD](http://yardoc.org/) documentation.  Additional Technical
 Documentation (including this document) are maintained and served separately by
 the Technical Documentation sub-team at
@@ -70,67 +101,40 @@ the Technical Documentation sub-team at
 
 1.  Check out a new branch from master
     ```shell
-    git checkout -b $version # $version = release tag to build (i.e. v2.8.0-RC1)
-    ```
+    # if 1.0.0 has already been released:
+    git checkout release-v1.0.x
 
-2.  If you didn’t already bootstrap above, do so now
+    # if 1.0.0 has not yet been released:
+    git checkout -b release-v1.0.x
+    ```
+    At this point you probably want to remove the gems in the `build` directory and
+    run bootstrap:
     ```shell
-    build/run bootstrap
+    ./build/run bootstrap
     ```
 
-3.  Run the documentation spec file to generate examples for the API docs
+2.  Run the doc:build task to generate Slate API and Yard documentation. (Note: the
+    API generation requires a DB connection with standard enumeration values.)
     ```shell
-    build/run backend:test -Dspec='documentation_spec.rb'
+    ARCHIVESSPACE_VERSION=X.Y.Z APPCONFIG_DB_URL=$APPCONFIG_DB_URL build/run doc:build
     ```
+    This generates `docs/slate/source/index.html.md` (Slate source document) and `docs/doc/*` (Yard).
 
-    This runs through all the endpoints, generates factory bot fixture json, and spits it into a json file (endpoint_examples.json).
 
-4.  Run the documentation Ant Task to generate the Yard documentation, create
-    the API.md index file, and rename the YARD index file. Optionally override
-    the version set in asconstants with an environment variable.
+3.  (Optional) Run a docker container to preview API and Yard docs (you can do this as you develop as well).
     ```shell
-    ARCHIVESSPACE_VERSION=X.Y.Z build/run doc:build
+    docker-compose -f docker-compose-docs.yml up
     ```
+    Visit `http://localhost:4568/api` to see the preview server render the api docs.
+    Visit `http://localhost:4568/doc` to see the preview server render the Yard docs.
 
-5.  Build the Slate/API docs (using a standard Ruby)
-    *Note*: At present, middleman requires a bundler version < 2.0 so the docs have been updated to reflect this.
+4.  Deploy the documentation. This will push `docs/slate/build` to [the gh-pages branch](https://github.com/archivesspace/archivesspace/tree/gh-pages).
     ```shell
-    cd docs/slate
-    gem install bundler --version '< 2.0'
-    bundle install --binstubs # if this fails, you may need to bundle update
-    ./bin/middleman build
-    ./bin/middleman server # optional if you want to have a look at the API docs only
-    rm -r ../api
-    mv build ../api
+    ./docs/slate/deploy.sh --push-only
     ```
-
-6.  Preview the docs (optional)
-    ```shell
-    cd .. # return to docs dir
-    ./bin/jekyll serve # to update bind-address add: -H 0.0.0.0
-    ```
-
-    - http://localhost:4000/archivesspace/api/ # api docs
-    - http://localhost:4000/archivesspace/doc/ # yard docs
-
-7.  Commit the updates to git
-    ```shell
-    cd ../ # go to top of the working tree
-    git add # all files related to the docs that just got created/updated (eg. docs/*, common/asconstants.rb, etc.)
-    #the following warning, if received, can be ignored:
-    #The following paths are ignored by one of your .gitignore files:
-    #docs/_site
-    #Use -f if you really want to add them.
-    git commit -m "Updating to vX.X.X"
-    ```
-
-8. Push docs to the `gh-pages` branch (do not do this with release candidates)
-    ```shell
-    #SKIP THIS PUSH STEP FOR RELEASE CANDIDATES
-    git subtree push --prefix docs origin gh-pages
-    #or, if you get a FF error
-    git push origin `git subtree split --prefix docs master`:gh-pages --force
-    ```
+    Published documents should appear a short while later at:
+    [http://archivesspace.github.io/archivesspace/api](http://archivesspace.github.io/archivesspace/api)
+    [http://archivesspace.github.io/archivesspace/doc](http://archivesspace.github.io/archivesspace/doc)
 
 
 ## <a name="release"></a>Building a release
@@ -143,42 +147,7 @@ the Technical Documentation sub-team at
     Replace X.X.X with the version number. This will build and package a release
     in a zip file.
 
-2.  Merge the updates back into master by creating and merging a PR. This
-    does not require a PR review (only in this case).
-
-3.  Check out the master branch, pull, prune and tag it
-    ```shell
-    git checkout master
-    git pull --prune
-    git tag vX.X.X
-    git push --tags
-    ```
-
-4.  Delete the clone of ArchivesSpace used to build the release (though be sure
-    to retain the zip file you created above if you intend to continue to the
-    following section). This step is optional but recommended.
-
-
 ## <a name="notes"></a>Create the Release with Notes
-
-### Review Milestone Assignments
-
-The release announcement needs to have all the tickets that make up the code
-changes/contributions included in the release. These changes are identified by
-the Github Milestone associated to each Pull Request.  Therefore, you first
-need to insure:
-
-1. That all PRs with the current milestone are closed.  The following search on
-GitHub's Pull Request page should return no results:
-```
-is:open is:pr milestone:[current-milestone]
-```
-2. That no recently merged Pull Requests were merged without having the current
-milestone applied.  The following search should only return old (before 11/2020)
-or other "back of house" pull requests:
-```
-is:pr no:milestone state:closed is:merged
-```
 
 ### Build the release notes
 
