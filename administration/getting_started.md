@@ -19,7 +19,7 @@ versions provided an embedded Solr v4 instance, which was removed due to
 being old and unsupported, with very limited scope for enhancements over
 time).
 
-[Running ArchivesSpace with external Solr](./provisioning/solr.md) (Version 3.2+)
+[Running ArchivesSpace with external Solr](../provisioning/solr.md) (Version 3.2+)
 
 ## Getting started
 
