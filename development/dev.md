@@ -6,6 +6,13 @@ System requirements:
 - [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/) is optional but makes running MySQL and Solr more convenient
 - [Supervisord](http://supervisord.org/) is optional but makes running the development servers more convenient
 
+If using Docker & Docker Compose install them following the official documentation:
+
+- https://docs.docker.com/get-docker/
+- https://docs.docker.com/compose/install/
+
+_Do not use system packages or any other unofficial source as these have been found to be inconsistent with standard Docker._
+
 The recommended way of developing ArchivesSpace is to fork the repository and clone it locally.
 
 _Note: all commands in the following instructions assume you are in the root directory of your local fork
@@ -59,6 +66,21 @@ docker-compose -f docker-compose-dev.yml up --detach
 
 By using Docker Compose to run MySQL and Solr you are guaranteed to have the correct connection settings
 and don't otherwise need to define connection settings for MySQL or Solr.
+
+Verify that MySQL & Solr are running: `docker ps`. It should list the running containers:
+
+```txt
+CONTAINER ID   IMAGE                       COMMAND                  CREATED       STATUS       PORTS                               NAMES
+ec76bd09d73b   mysql:8.0                   "docker-entrypoint.s…"   8 hours ago   Up 8 hours   33060/tcp, 0.0.0.0:3307->3306/tcp   as_test_db
+30574171530f   archivesspace/solr:latest   "docker-entrypoint.s…"   8 hours ago   Up 8 hours   0.0.0.0:8984->8983/tcp              as_test_solr
+d84a6a183bb0   archivesspace/solr:latest   "docker-entrypoint.s…"   8 hours ago   Up 8 hours   0.0.0.0:8983->8983/tcp              as_dev_solr
+7df930293875   mysql:8.0                   "docker-entrypoint.s…"   8 hours ago   Up 8 hours   0.0.0.0:3306->3306/tcp, 33060/tcp   as_dev_db
+```
+
+To check the servers are online:
+
+- MYSQL: `mysql -h 127.0.0.1 -u as -pas123 archivesspace`
+- SOLR: `curl http://localhost:8983/solr/admin/cores`
 
 To stop and / or remove the servers:
 
@@ -199,6 +221,23 @@ These should be run in different terminal sessions and do not need to be run
 in a specific order or are all required.
 
 _An example use case for running a server directly is to use the pry debugger._
+
+__Advanced: debugging with pry__
+
+To debug with pry you cannot use supervisord to run the application devserver,
+however you can mix and match:
+
+```bash
+# run the backend and indexer with supervisord
+supervisord -c supervisord/api.conf
+
+# in a separate terminal run the frontend directly
+./build/run frontend:devserver
+```
+
+Add `binding.pry` to set breakpoints in the code. This can also be used in views:
+`<% binding.pry %>`. Using pry you can easily inspect the `request`, `params` and
+in scope instance variables that are available.
 
 __Advanced: development servers and the build directory__
 
