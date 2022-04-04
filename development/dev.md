@@ -251,6 +251,21 @@ Running the developments servers will create directories in `./build/dev`:
 _Note: the folders will be created as they are needed, so they may not all be present
 at all times._
 
+## Loading data fixtures into dev database
+
+To populate the `as_dev_db` container with real data, do the following. This assumes that `as_dev_db` has previously been
+built and is running (along wiith the other containers defined in `docker-compose-dev.yml`):
+
+    docker stop as_dev_db
+    docker rm as_dev_db
+    docker-compose -f docker-compose-dev.yml up -d --build db1
+    gzip -dc ./build/mysql_db_fixtures/accessibility.sql.gz | mysql --host=127.0.0.1 --port=3306  -u root accessibility
+    # enter password 123456 when prompted
+    # Now migrate the database to catch any migration updates
+    ./build/run db:migrate
+    # Now run the indexer to populate Solr
+    ./build/run indexer
+
 ## Running the tests
 
 ArchivesSpace uses a combination of RSpec, integration and Selenium
