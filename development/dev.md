@@ -96,7 +96,8 @@ built and is running (along wiith the other containers defined in `docker-compos
     # enter password 123456 when prompted
     # Now migrate the database to catch any migration updates
     ./build/run db:migrate
-    # Now run the indexer to populate Solr
+    # Now run the backend and indexer to populate Solr
+    ./build/run backend:devserver
     ./build/run indexer
 
 ## Running the tests
