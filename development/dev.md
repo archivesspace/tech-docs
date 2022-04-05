@@ -92,7 +92,7 @@ built and is running (along wiith the other containers defined in `docker-compos
     docker stop as_dev_db
     docker rm as_dev_db
     docker-compose -f docker-compose-dev.yml up -d --build db1
-    gzip -dc ./build/mysql_db_fixtures/accessibility.sql.gz | mysql --host=127.0.0.1 --port=3306  -u root accessibility
+    gzip -dc ./build/mysql_db_fixtures/accessibility.sql.gz | mysql --host=127.0.0.1 --port=3306  -u root archivesspace
     # enter password 123456 when prompted
     # Now migrate the database to catch any migration updates
     ./build/run db:migrate
