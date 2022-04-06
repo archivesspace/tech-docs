@@ -31,13 +31,15 @@ docker-compose -f docker-compose-dev.yml up --detach
 cd ./common/lib && wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.23/mysql-connector-java-8.0.23.jar && cd -
 # Download all application dependencies
 ./build/run bootstrap
+# OPTIONAL: load dev database
+gzip -dc ./build/mysql_db_fixtures/accessibility.sql.gz | mysql --host=127.0.0.1 --port=3306  -u root -p123456 archivesspace
 # Setup the development database
 ./build/run db:migrate
 # Clear out any existing Solr state (only needed after a database setup / restore after previous development)
 ./build/run solr:reset
 # Run the development servers
 supervisord -c supervisord/archivesspace.conf
-# Run a backend (api) test (for checking setup is correct)
+# OPTIONAL: Run a backend (api) test (for checking setup is correct)
 ./build/run backend:test -Dexample="User model"
 ```
 
@@ -165,6 +167,38 @@ There is a task for resetting the database:
 
 Which will first delete then migrate the database.
 
+__Advanced: Loading data fixtures into dev database__
+
+When loading a database into the development MySQL instance always ensure that ArchivesSpace
+is **not** running. Stop ArchivesSpace if it is running. Run `./build/run solr:reset` to
+clear indexer state (a more thorough explanation of this step is described below).
+
+If you are loading a database and MySQL has already been used for development you'll want to
+drop and create an empty database first.
+
+```bash
+mysql -h 127.0.0.1 -u as -pas123 -e "DROP DATABASE archivesspace"
+mysql -h 127.0.0.1 -u as -pas123 -e "CREATE DATABASE IF NOT EXISTS archivesspace DEFAULT CHARACTER SET utf8mb4"
+```
+
+_Note: you can skip the above step if MySQL was just started for the first time or any time you
+have an empty ArchivesSpace (one where `db:migrate` has not been run)._
+
+Assuming you have MySQL running and an empty `archivesspace` database available you can proceed
+to restore:
+
+```bash
+gzip -dc ./build/mysql_db_fixtures/accessibility.sql.gz | mysql --host=127.0.0.1 --port=3306  -u root -p123456 archivesspace
+./build/run db:migrate
+```
+
+_Note: The above instructions should work out-of-the-box. If you want to use your own database
+and / or have configured MySQL differently then adjust the commands as needed._
+
+After the restore `./build/run db:migrate` is run to catch any migration updates. You can now
+proceed to run the application dev servers, as described below, with data already
+populated in ArchivesSpace.
+
 ### Clear out existing Solr state
 
 The Solr reset task:
@@ -211,10 +245,10 @@ Supervisord is not required, or ideal for every situation. You can run the devel
 servers directly via build tasks:
 
 ```bash
-./build/run backend:devserver
-./build/run frontend:devserver
-./build/run public:devserver
-./build/run indexer
+./build/run backend:devserver # This is the REST API
+./build/run frontend:devserver # This is the staff user interface
+./build/run public:devserver # This is the public user interface
+./build/run indexer # This is the indexer (converts ASpace records to Solr Docs and ships to Solr)
 ```
 
 These should be run in different terminal sessions and do not need to be run
