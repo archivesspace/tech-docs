@@ -6,10 +6,33 @@ System requirements:
 - [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/) is optional but makes running MySQL and Solr more convenient
 - [Supervisord](http://supervisord.org/) is optional but makes running the development servers more convenient
 
+Currently supported platforms for development:
+
+- Linux (although generally only Ubuntu is actually used / tested)
+- Mac (x86)
+
+Windows is not supported because of issues building gems with C extensions (such as sassc).
+
+For Mac (arm) see [https://teaspoon-consulting.com/articles/archivesspace-on-the-m1.html](https://teaspoon-consulting.com/articles/archivesspace-on-the-m1.html).
+
+When installing Java OpenJDK is strongly recommended. Other vendors may work, but OpenJDK is
+most extensively used and tested. It is highly recommended that you use [Jabba](https://github.com/shyiko/jabba)
+to install Java (OpenJDK). This has proven to be a reliable way of resolving cross platform
+issues (looking at you Mac :/) that have occured via other means of installing Java.
+
+Installing OpenJDK with jabba will look something like:
+
+```bash
+# assuming you have jabba installed
+jabba install openjdk@1.11.0-2
+jabba use openjdk@1.11.0-2
+jabba alias default openjdk@1.11.0-2 # [optional] make this the default java
+```
+
 If using Docker & Docker Compose install them following the official documentation:
 
-- https://docs.docker.com/get-docker/
-- https://docs.docker.com/compose/install/
+- [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
+- [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
 
 _Do not use system packages or any other unofficial source as these have been found to be inconsistent with standard Docker._
 
@@ -138,6 +161,32 @@ This is the starting point for all ArchivesSpace development. You may need
 to re-run this command after fetching updates, or when making changes to
 Gemfiles or other dependencies such as those in the `./build/build.xml` file.
 
+**Errors running bootstrap**
+
+```txt
+     [java] INFO: jetty-9.4.44.v20210927; built: 2021-09-27T23:02:44.612Z; git: 8da83308eeca865e495e53ef315a249d63ba9332; jvm 11+28
+     [java] Exiting
+     [java] LoadError: no such file to load -- rails/commands
+     [java]   require at org/jruby/RubyKernel.java:974
+     [java]    <main> at script/rails:8
+```
+
+There have been various forms of the same `LoadError`. It's a transient error
+that is resolved by rerunning bootstrap.
+
+```txt
+     [java] org.jruby.Main -I uri:classloader://META-INF/jruby.home/lib/ruby/stdlib -r
+     [java] ./siteconf20220407-5224-13f6qi7.rb extconf.rb
+     [java] sh: /Library/Internet: No such file or directory
+     [java] sh: line 0: exec: /Library/Internet: cannot execute: No such file or directory
+     [java]
+     [java] extconf failed, exit code 126
+```
+
+This has been seen on Mac platforms resulting from the installation method
+for Java. Installing the OpenJDK via Jabba has been effective in resolving
+this error.
+
 __Advanced: bootstrap & the build directory__
 
 Running bootstrap will download jars to the build directory, including:
@@ -233,9 +282,9 @@ supervisord -c supervisord/backend.conf
 
 ArchivesSpace is started with:
 
-- the staff interface on http://localhost:3000/
-- the PUI on http://localhost:3001/
-- the API on http://localhost:4567/
+- the staff interface on [http://localhost:3000/](http://localhost:3000/)
+- the PUI on [http://localhost:3001/](http://localhost:3001/)
+- the API on [http://localhost:4567/](http://localhost:4567/)
 
 To stop supervisord: `Ctrl-c`.
 
