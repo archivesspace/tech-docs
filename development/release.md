@@ -15,7 +15,7 @@ safest way of ensuring this is to clone the repo:
 git clone https://github.com/archivesspace/archivesspace.git
 ```
 
-## Checkout the release branch
+## Checkout the release branch and create release tag
 
 If you are building a major or minor version (see [https://semver.org])(semver.org)),
 start by creating a branch for the release and all future patch releases:
@@ -56,13 +56,6 @@ git tag v1.0.1
 
 ## <a name="prerelease"></a>Pre-Release Steps
 
-### Try to tie up any loose ends
-
-Before doing the release, it's a good idea to try and make sure nothing is left
-hanging. Check JIRA for any tickets with the status of “Pull Request Submitted”
-or “Rejected” and confirm there are no open Pull Requests in Github with the
-current milestone.
-
 ### Run the ArchivesSpace rake tasks to check for issues
 
 Before proceeding further, it’s a good idea to check that there aren’t missing
@@ -97,45 +90,61 @@ Documentation (including this document) are maintained and served separately by
 the Technical Documentation sub-team at
 [https://github.com/archivesspace/tech-docs](https://github.com/archivesspace/tech-docs).
 
-**Note** that these steps assume you're using a standard Ruby, not jRuby.
+### Build the API docs
 
-1.  Check out a new branch from master
+1.  API documentation depends on the [archivesspace/slate](https://github.com/archivesspace/slate) submodule
+    and on Docker. Slate cannot run on JRuby.
     ```shell
-    # if 1.0.0 has already been released:
-    git checkout release-v1.0.x
-
-    # if 1.0.0 has not yet been released:
-    git checkout -b release-v1.0.x
-    ```
-    At this point you probably want to remove the gems in the `build` directory and
-    run bootstrap:
-    ```shell
-    ./build/run bootstrap
+    git submodule init
     ```
 
-2.  Run the doc:build task to generate Slate API and Yard documentation. (Note: the
+2.  Run the `doc:api` task to generate Slate API and Yard documentation. (Note: the
     API generation requires a DB connection with standard enumeration values.)
     ```shell
-    ARCHIVESSPACE_VERSION=X.Y.Z APPCONFIG_DB_URL=$APPCONFIG_DB_URL build/run doc:build
+    ARCHIVESSPACE_VERSION=X.Y.Z APPCONFIG_DB_URL=$APPCONFIG_DB_URL build/run doc:api
     ```
-    This generates `docs/slate/source/index.html.md` (Slate source document) and `docs/doc/*` (Yard).
+    This generates `docs/slate/source/index.html.md` (Slate source document).
 
-
-3.  (Optional) Run a docker container to preview API and Yard docs (you can do this as you develop as well).
+3.  (Optional) Run a docker container to preview API docs.
     ```shell
     docker-compose -f docker-compose-docs.yml up
     ```
-    Visit `http://localhost:4568/api` to see the preview server render the api docs.
-    Visit `http://localhost:4568/doc` to see the preview server render the Yard docs.
+    Visit `http://localhost:4568` to preview the api docs.
 
-4.  Deploy the documentation. This will push `docs/slate/build` to [the gh-pages branch](https://github.com/archivesspace/archivesspace/tree/gh-pages).
+4.  Build the static api files. The api markdown document should already be in `docs/slate/source` (step 2 above).
+    The api markdown will be rendered to html and moved to `docs/build/api`.
     ```shell
-    ./docs/slate/deploy.sh --push-only
+    docker run --rm --name slate -v $(pwd)/docs/build/api:/srv/slate/build -v $(pwd)/docs/slate/source:/srv/slate/source slatedocs/slate build
+    ```
+
+### Build the YARD docs
+
+1.   Build the YARD docs in the `docs/build/doc` directory:
+    ```shell
+    ./build/run doc:yardoc
+    ```
+
+### Commit built docs and push to Github pages
+
+1.  Double check that you are on a release branch (we don't need this stuff in master) and
+    commit the newly built documentation:
+    ```shell
+    git add docs/build
+    git commit -m "release-vx.y.z api and yard documentation"
+    ```
+
+    Use `git subtree` to push the documentation to the `gh-pages` branch:
+    ```shell
+    git subtree push --prefix docs/build origin gh-pages
     ```
     Published documents should appear a short while later at:
     [http://archivesspace.github.io/archivesspace/api](http://archivesspace.github.io/archivesspace/api)
     [http://archivesspace.github.io/archivesspace/doc](http://archivesspace.github.io/archivesspace/doc)
 
+    Note: if the push command fails you may need to delete `gh-pages` in the remote repo:
+    ```shell
+    git push origin :gh-pages
+    ```
 
 ## <a name="release"></a>Building a release
 
