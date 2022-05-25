@@ -79,16 +79,10 @@ translations or multiple gem versions.
     versions are reported, that should be addressed prior to moving on.
 
 
-## <a name="docs"></a>Build the API and Yard Docs
-
-This documentation is maintained on a separate
-[https://github.com/archivesspace/archivesspace/tree/gh-pages](gh-pages) branch
-in the ArchivesSpace repository, and consists of a
-[Slate](https://github.com/archivesspace/slate) site (for REST API documentation), and
-the Ruby [YARD](http://yardoc.org/) documentation.  Additional Technical
-Documentation (including this document) are maintained and served separately by
-the Technical Documentation sub-team at
-[https://github.com/archivesspace/tech-docs](https://github.com/archivesspace/tech-docs).
+## <a name="docs"></a>Build and Publish the API and Yard Docs
+    API docs are built using the submodule in `docs/slate` and Docker.
+    YARD docs are built using the YARD gem. At this time, they cover a small percentage of the code
+    and are not especially useful.
 
 ### Build the API docs
 
