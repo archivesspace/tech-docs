@@ -90,6 +90,7 @@ translations or multiple gem versions.
     and on Docker. Slate cannot run on JRuby.
     ```shell
     git submodule init
+    git submodule update
     ```
 
 2.  Run the `doc:api` task to generate Slate API and Yard documentation. (Note: the
