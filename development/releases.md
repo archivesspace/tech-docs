@@ -1,8 +1,17 @@
 ## Releases:
 
+3.2.0 February 4, 2022
+The schema number for this release is 159.
+https://github.com/archivesspace/archivesspace/releases/download/v3.2.0/archivesspace-v3.2.0.zip
+
+3.1.1 Novemver 19, 2021
+The schema number for this release is 157.
+https://github.com/archivesspace/archivesspace/releases/download/v3.1.0/archivesspace-v3.1.1.zip
+
 3.1.0 September 20, 2021
 The schema number for this release is 157.
 https://github.com/archivesspace/archivesspace/releases/download/v3.1.0/archivesspace-v3.1.0.zip
+
 
 3.0.2 August 11, 2021    
 The schema number for this release is 148.  
