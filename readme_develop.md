@@ -19,8 +19,18 @@ This information will be useful for those creating ArchivesSpace plugins, contri
 * [Customizing text in ArchivesSpace](./customization/locales.md)
 * [Theming ArchivesSpace](./customization/theming.md)
 * [Managing frontend assets with Bower](./customization/bower.md)
-  
+
 ## Exporting data from ArchivesSpace
 * [ArchivesSpace repository EAD Exporter](./import_export/ead_exporter.md)
 * [ArchivesSpace XSL stylesheets](./import_export/xsl_stylesheets.md)
 * [Creating Custom Reports](./customization/reports.md)
+
+## Repositories and CoC
+* [Code of Conduct](https://github.com/archivesspace/archivesspace/blob/master/CODE_OF_CONDUCT.md)
+* [Main ArchivesSpace Repository](https://github.com/archivesspace/archivesspace)
+* [Plugins supported by the Program Team](https://github.com/archivesspace-plugins)
+* [Repository for community development projects](https://github.com/archivesspace-labs)
+* [Program Team's Youtube channel](https://www.youtube.com/channel/UCxR6D-UlSx6N6UWTeqHTjzA)
+* [Hudson Molonglo's Youtub channel](https://www.youtube.com/channel/UCMBmBY_CsxwJy9rJKxQrVoQ)
+* [Sandbox - latest release](http://sandbox.archivesspace.org/)
+* [Test Server - latest commit](http://test.archivesspace.org/)
