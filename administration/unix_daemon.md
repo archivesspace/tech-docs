@@ -16,12 +16,12 @@ symbolic link:
      cd /etc/init.d
      ln -s /path/to/your/archivesspace/archivesspace.sh archivesspace
 
-Note: By default ArchivesSpace will overwrite the log file when restarted. You 
-can change that by modifying `archivesspace.sh` and changing the `$startup_cmd` 
+Note: By default ArchivesSpace will overwrite the log file when restarted. You
+can change that by modifying `archivesspace.sh` and changing the `$startup_cmd`
 to include double greater than signs:
 
-     $startup_cmd &>> \"$ARCHIVESSPACE_LOGS\" & 
-     
+     $startup_cmd &>> \"$ARCHIVESSPACE_LOGS\" &
+
 
 Then use the appropriate tool for your distribution to set up the
 run-level symbolic links (such as `chkconfig` for RedHat or
@@ -32,15 +32,15 @@ that the system runs under, JVM options, and so on.
 
 For systems that use systemd you may wish to use a Systemd unit file for ArchivesSpace
 
-Something simliar to this should work:
+Something similar to this should work:
 ```
 [Unit]
 Description=ArchivesSpace Application
 After=syslog.target network.target
 [Service]
-Type=forking
-ExecStart=/path/to/your/archivesspace/archivesspace.sh start
-ExecStop=/path/to/your/archivesspace/archivesspace.sh stop
+Type=simple
+ExecStart=/path/to/your/archivesspace/archivesspace.sh
+ExecStop=/path/to/your/archivesspace/archivesspace.sh
 PIDFile=/path/to/your/archivesspace/archivesspace.pid
 User=archivesspacespace
 Group=archivesspacespace
