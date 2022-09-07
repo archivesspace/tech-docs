@@ -67,11 +67,10 @@ translations or multiple gem versions.
     build/run bootstrap
     ```
 
-2.  From the root aspace directory (requires Ruby and Bundler)
+2.  Run the following checks (recommended):
     ```shell
-    bundle
-    bundle exec rake check:locales
-    bundle exec rake check:multiple_gem_versions
+    build/run rake -Dtask=check:locales
+    build/run rake -Dtask=check:multiple_gem_versions
     ```
 
 3.  Missing locales do not need to be addressed for a Release Candidate, but
@@ -80,9 +79,10 @@ translations or multiple gem versions.
 
 
 ## <a name="docs"></a>Build and Publish the API and Yard Docs
-    API docs are built using the submodule in `docs/slate` and Docker.
-    YARD docs are built using the YARD gem. At this time, they cover a small percentage of the code
-    and are not especially useful.
+
+API docs are built using the submodule in `docs/slate` and Docker.
+YARD docs are built using the YARD gem. At this time, they cover a small
+percentage of the code and are not especially useful.
 
 ### Build the API docs
 
@@ -141,7 +141,7 @@ translations or multiple gem versions.
     git push origin :gh-pages
     ```
 
-## <a name="release"></a>Building a release
+## <a name="release"></a>Building a release yourself
 
 1.  Building the actual release is very simple. Run the following:
     ```shell
@@ -151,6 +151,17 @@ translations or multiple gem versions.
     Replace X.X.X with the version number. This will build and package a release
     in a zip file.
 
+## <a name="release"></a>Building a release on Github
+
+1.  There is no need to build the release yourself. Just push your tag to Github
+    and trigger the `release` workflow:
+    ```shell
+    git push vX.X.X
+    ```
+    Replace X.X.X with the version number. You can set the resulting release page to
+    "draft" using the Github API.
+
+
 ## <a name="notes"></a>Create the Release with Notes
 
 ### Build the release notes
@@ -158,27 +169,9 @@ translations or multiple gem versions.
 After reviewing the above, build the release notes:
 
 ```shell
-# Set ENV["REL_NOTES_TOKEN"] using a GitHub personal access token
-# See: https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token )
-# The token only needs to have the following scope: public_repo, repo:status
-
-export REL_NOTES_TOKEN="github-user-name:personal-access-token"
-#example:
-export REL_NOTES_TOKEN="lorawoodford:12345"
-
-bundle exec rake release_notes:generate[$current_milestone,$previous_milestone,style]
-#example:
-bundle exec rake release_notes:generate[2.8.1,2.8.0]
+export GITHUB_API_TOKEN={YOUR DEPLOYMENT TOKEN ON GITHUB}
+build/run thor -Dtask="doc:release_notes" -Dtask_args="--token=$GITHUB_API_TOKEN --current_tag=v3.3.0 --previous_tag=v3.2.0 --out=RELEASE_NOTES.md"
 ```
-
-### Create the draft release page
-Make a release page on Github: https://github.com/archivesspace/archivesspace/releases/new
-
-Use the new tag for the release version. Upload the zip package and paste in
-the release note markdown file content.
-
-There are some placeholder sections in the release notes that need to be
-updated:
 
 #### Review the Notes
 
