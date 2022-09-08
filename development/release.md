@@ -15,22 +15,46 @@ safest way of ensuring this is to clone the repo:
 git clone https://github.com/archivesspace/archivesspace.git
 ```
 
-This assumes you will be building a release from master. To build from a tag you
- will need to additionally check out the tag, like this:
+## Checkout the release branch and create release tag
 
-```shell
-git checkout [tag-name]
+If you are building a major or minor version (see [https://semver.org])(semver.org)),
+start by creating a branch for the release and all future patch releases:
+
+``` shell
+git checkout -b release-v1.0.x
+git tag v1.0.0
+```
+If you are building a patch version, just check out the existing branch and see below:
+
+``` shell
+git checkout release-v1.0.x
 ```
 
+Patch versions typically arise because a regression or critical bug has arisen since
+the last major or minor release. If the "hotfix" has been merged to the release branch,
+it will need to be cherry-picked back to the master branch. If it has been merged to the
+master branch (more likely given current code review / QA workflow), it (they) will
+need to be cherry-picked to the release branch.
+
+Consider the following scenario. The current production release is v1.0.0 and a critical
+bug has been discovered. In the time since v1.0.0 was released, new features have been
+added to the master branch, intended for release in v1.1.0:
+
+``` shell
+git checkout master
+git checkout -b oh-no-some-migration-corrupts-some-data
+( fixes problem )
+git commit -m "fix bad migration and add a migration to repair corrupted data"
+gh pr create --web
+( PR is reviewed and approved on Github, QA'd, then merged to master)
+git pull master
+git checkout release-v1.0.x
+git cherry-pick [SHA of hotfix commit]
+git push origin release-v1.0.x
+git tag v1.0.1
+```
 
 ## <a name="prerelease"></a>Pre-Release Steps
-
-### Try to tie up any loose ends
-
-Before doing the release, it's a good idea to try and make sure nothing is left
-hanging. Check JIRA for any tickets with the status of “Pull Request Submitted”
-or “Rejected” and confirm there are no open Pull Requests in Github with the
-current milestone.
 
 ### Run the ArchivesSpace rake tasks to check for issues
 
@@ -43,11 +67,10 @@ translations or multiple gem versions.
     build/run bootstrap
     ```
 
-2.  From the root aspace directory (requires Ruby and Bundler)
+2.  Run the following checks (recommended):
     ```shell
-    bundle
-    bundle exec rake check:locales
-    bundle exec rake check:multiple_gem_versions
+    build/run rake -Dtask=check:locales
+    build/run rake -Dtask=check:multiple_gem_versions
     ```
 
 3.  Missing locales do not need to be addressed for a Release Candidate, but
@@ -55,85 +78,70 @@ translations or multiple gem versions.
     versions are reported, that should be addressed prior to moving on.
 
 
-## <a name="docs"></a>Build the API and Yard Docs
+## <a name="docs"></a>Build and Publish the API and Yard Docs
 
-This documentation is maintained on a separate
-[https://github.com/archivesspace/archivesspace/tree/gh-pages](gh-pages) branch
-in the ArchivesSpace repository, and consists of a
-[Slate](https://github.com/tripit/slate) site (for REST API documentation), and
-the Ruby [YARD](http://yardoc.org/) documentation.  Additional Technical
-Documentation (including this document) are maintained and served separately by
-the Technical Documentation sub-team at
-[https://github.com/archivesspace/tech-docs](https://github.com/archivesspace/tech-docs).
+API docs are built using the submodule in `docs/slate` and Docker.
+YARD docs are built using the YARD gem. At this time, they cover a small
+percentage of the code and are not especially useful.
 
-**Note** that these steps assume you're using a standard Ruby, not jRuby.
+### Build the API docs
 
-1.  Check out a new branch from master
+1.  API documentation depends on the [archivesspace/slate](https://github.com/archivesspace/slate) submodule
+    and on Docker. Slate cannot run on JRuby.
     ```shell
-    git checkout -b $version # $version = release tag to build (i.e. v2.8.0-RC1)
+    git submodule init
+    git submodule update
     ```
 
-2.  If you didn’t already bootstrap above, do so now
+2.  Run the `doc:api` task to generate Slate API and Yard documentation. (Note: the
+    API generation requires a DB connection with standard enumeration values.)
     ```shell
-    build/run bootstrap
+    ARCHIVESSPACE_VERSION=X.Y.Z APPCONFIG_DB_URL=$APPCONFIG_DB_URL build/run doc:api
+    ```
+    This generates `docs/slate/source/index.html.md` (Slate source document).
+
+3.  (Optional) Run a docker container to preview API docs.
+    ```shell
+    docker-compose -f docker-compose-docs.yml up
+    ```
+    Visit `http://localhost:4568` to preview the api docs.
+
+4.  Build the static api files. The api markdown document should already be in `docs/slate/source` (step 2 above).
+    The api markdown will be rendered to html and moved to `docs/build/api`.
+    ```shell
+    docker run --rm --name slate -v $(pwd)/docs/build/api:/srv/slate/build -v $(pwd)/docs/slate/source:/srv/slate/source slatedocs/slate build
     ```
 
-3.  Run the documentation spec file to generate examples for the API docs
+### Build the YARD docs
+
+1.   Build the YARD docs in the `docs/build/doc` directory:
     ```shell
-    build/run backend:test -Dspec='documentation_spec.rb'
+    ./build/run doc:yardoc
     ```
 
-    This runs through all the endpoints, generates factory bot fixture json, and spits it into a json file (endpoint_examples.json).
+### Commit built docs and push to Github pages
 
-4.  Run the documentation Ant Task to generate the Yard documentation, create
-    the API.md index file, and rename the YARD index file. Optionally override
-    the version set in asconstants with an environment variable.
+1.  Double check that you are on a release branch (we don't need this stuff in master) and
+    commit the newly built documentation:
     ```shell
-    ARCHIVESSPACE_VERSION=X.Y.Z build/run doc:build
+    git add docs/build
+    git commit -m "release-vx.y.z api and yard documentation"
     ```
 
-5.  Build the Slate/API docs (using a standard Ruby)
-    *Note*: At present, middleman requires a bundler version < 2.0 so the docs have been updated to reflect this.
+    Use `git subtree` to push the documentation to the `gh-pages` branch:
     ```shell
-    cd docs/slate
-    gem install bundler --version '< 2.0'
-    bundle install --binstubs # if this fails, you may need to bundle update
-    ./bin/middleman build
-    ./bin/middleman server # optional if you want to have a look at the API docs only
-    rm -r ../api
-    mv build ../api
+    git subtree push --prefix docs/build origin gh-pages
+    ```
+    Published documents should appear a short while later at:
+    [http://archivesspace.github.io/archivesspace/api](http://archivesspace.github.io/archivesspace/api)
+    [http://archivesspace.github.io/archivesspace/doc](http://archivesspace.github.io/archivesspace/doc)
+
+    Note: if the push command fails you may need to delete `gh-pages` in the remote repo:
+    ```shell
+    git push origin :gh-pages
     ```
 
-6.  Preview the docs (optional)
-    ```shell
-    cd .. # return to docs dir
-    ./bin/jekyll serve # to update bind-address add: -H 0.0.0.0
-    ```
-
-    - http://localhost:4000/archivesspace/api/ # api docs
-    - http://localhost:4000/archivesspace/doc/ # yard docs
-
-7.  Commit the updates to git
-    ```shell
-    cd ../ # go to top of the working tree
-    git add # all files related to the docs that just got created/updated (eg. docs/*, common/asconstants.rb, etc.)
-    #the following warning, if received, can be ignored:
-    #The following paths are ignored by one of your .gitignore files:
-    #docs/_site
-    #Use -f if you really want to add them.
-    git commit -m "Updating to vX.X.X"
-    ```
-
-8. Push docs to the `gh-pages` branch (do not do this with release candidates)
-    ```shell
-    #SKIP THIS PUSH STEP FOR RELEASE CANDIDATES
-    git subtree push --prefix docs origin gh-pages
-    #or, if you get a FF error
-    git push origin `git subtree split --prefix docs master`:gh-pages --force
-    ```
-
-
-## <a name="release"></a>Building a release
+## <a name="release"></a>Building a release yourself
 
 1.  Building the actual release is very simple. Run the following:
     ```shell
@@ -143,69 +151,27 @@ the Technical Documentation sub-team at
     Replace X.X.X with the version number. This will build and package a release
     in a zip file.
 
-2.  Merge the updates back into master by creating and merging a PR. This
-    does not require a PR review (only in this case).
+## <a name="release"></a>Building a release on Github
 
-3.  Check out the master branch, pull, prune and tag it
+1.  There is no need to build the release yourself. Just push your tag to Github
+    and trigger the `release` workflow:
     ```shell
-    git checkout master
-    git pull --prune
-    git tag vX.X.X
-    git push --tags
+    git push vX.X.X
     ```
-
-4.  Delete the clone of ArchivesSpace used to build the release (though be sure
-    to retain the zip file you created above if you intend to continue to the
-    following section). This step is optional but recommended.
+    Replace X.X.X with the version number. You can set the resulting release page to
+    "draft" using the Github API.
 
 
 ## <a name="notes"></a>Create the Release with Notes
-
-### Review Milestone Assignments
-
-The release announcement needs to have all the tickets that make up the code
-changes/contributions included in the release. These changes are identified by
-the Github Milestone associated to each Pull Request.  Therefore, you first
-need to insure:
-
-1. That all PRs with the current milestone are closed.  The following search on
-GitHub's Pull Request page should return no results:
-```
-is:open is:pr milestone:[current-milestone]
-```
-2. That no recently merged Pull Requests were merged without having the current
-milestone applied.  The following search should only return old (before 11/2020)
-or other "back of house" pull requests:
-```
-is:pr no:milestone state:closed is:merged
-```
 
 ### Build the release notes
 
 After reviewing the above, build the release notes:
 
 ```shell
-# Set ENV["REL_NOTES_TOKEN"] using a GitHub personal access token
-# See: https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token )
-# The token only needs to have the following scope: public_repo, repo:status
-
-export REL_NOTES_TOKEN="github-user-name:personal-access-token"
-#example:
-export REL_NOTES_TOKEN="lorawoodford:12345"
-
-bundle exec rake release_notes:generate[$current_milestone,$previous_milestone,style]
-#example:
-bundle exec rake release_notes:generate[2.8.1,2.8.0]
+export GITHUB_API_TOKEN={YOUR DEPLOYMENT TOKEN ON GITHUB}
+build/run thor -Dtask="doc:release_notes" -Dtask_args="--token=$GITHUB_API_TOKEN --current_tag=v3.3.0 --previous_tag=v3.2.0 --out=RELEASE_NOTES.md"
 ```
-
-### Create the draft release page
-Make a release page on Github: https://github.com/archivesspace/archivesspace/releases/new
-
-Use the new tag for the release version. Upload the zip package and paste in
-the release note markdown file content.
-
-There are some placeholder sections in the release notes that need to be
-updated:
 
 #### Review the Notes
 
