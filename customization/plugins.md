@@ -9,10 +9,12 @@ sharing of packages of customization between ArchivesSpace instances.
 
 The ArchivesSpace distribution comes with the `hello_world` exemplar plug-in. Please refer to its [README file](https://github.com/archivesspace/archivesspace/blob/master/plugins/hello_world/README.md) for a detailed description of how it is constructed and implemented.
 
+You can find other examples in the following plugin repositories. The ArchivesSpace plugins that are officially supported and maintained by the ArchivesSpace Program Team are in archivesspace-plugins (https://github.com/archivesspace-plugins). Deprecated code which is no longer supported but has been kept for future reference is in archivesspace-deprecated (https://github.com/archivesspace-deprecated). There is an open/unmanaged GitHub repository where community members can share their code called archivesspace-labs (https://github.com/archivesspace-labs). The community developed Python library for interacting with the ArchivesSpace API, called ArchivesSnake, is managed in the archivesspace-labs repository.
+
 ## Enabling plugins
 
 Plug-ins are enabled by placing them in the `plugins` directory, and referencing them in the
-ArchivesSpace configuration, `common/config/config.rb`. For example:
+ArchivesSpace configuration, `config/config.rb`. For example:
 
     AppConfig[:plugins] = ['local', 'hello_world', 'my_plugin']
 
@@ -38,6 +40,7 @@ be used to override or extend the behavior of the core application.
       converters .......... classes for importing data
       job_runners ......... classes for defining background jobs
       plugin_init.rb ...... if present, loaded when the backend first starts
+      lib/bulk_import ..... bulk import processor
     frontend
       assets .............. static assets (such as images, javascript) in the staff interface
       controllers ......... controllers for the staff interface
@@ -53,6 +56,8 @@ be used to override or extend the behavior of the core application.
     migrations ............ database migrations
     schemas ............... JSONModel schema definitions
     search_definitions.rb . Advanced search fields
+
+**Note** that `backend/lib/bulk_import` is the only directory in `backend/lib/` that is loaded by the plugin manager.  Other files in `backend/lib/` will not be loaded during startup.
 
 **Note** that, in order to override or extend the behavior of core models and controllers, you cannot simply put your replacement with the same name in the corresponding directory path.  Core models and controllers can be overridden by adding an `after_initialize` block to `plugin_init.rb` (e.g. [aspace-hvd-pui](https://github.com/harvard-library/aspace-hvd-pui/blob/master/public/plugin_init.rb#L43)).
 

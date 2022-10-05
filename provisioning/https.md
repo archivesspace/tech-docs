@@ -61,6 +61,8 @@ requests to the actual application urls. This requires the use of the `mod_proxy
 
 You may optionally set the `Set-Cookie: Secure attribute` by adding `Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure`. When a cookie has the Secure attribute, the user agent will include the cookie in an HTTP request only if the request is transmitted over a secure channel.
 
+Users may encounter a warning in the browser's console stating `Cookie “archivesspace_session” does not have a proper “SameSite” attribute value. Soon, cookies without the “SameSite” attribute or with an invalid value will be treated as “Lax”. This means that the cookie will no longer be sent in third-party contexts` (example from Firefox 104) or something similar. Some browsers (for example, Chrome version 80 or above) already enforce this. Standard ArchivesSpace installations should be unaffected, but if you encounter problems with integrations and/or customizations of your particular installation, the following directive may be required: `Header edit Set-Cookie ^(.*)$ $1;SameSite=None;Secure`. Alternatively, it may be the case that `SameSite=Lax` (the default) or even `SameSite=Strict` are more appropriate depending on your functional and/or security requirements. Please refer to https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite or other resources for more information.
+
 #### Setting up Redirects
 When running a site over HTTPS, it's a good idea to set up a redirect to ensure any outdated HTTP requests are routed to the correct URL. This can be done through Apache as follows:
 
@@ -82,8 +84,60 @@ RewriteRule (.*) https://public.myarchive.org$1 [R,L]
 
 ### Nginx
 
-> FIXME Need nginx documentation
+Information about configuring nginx for SSL can be found at http://nginx.org/en/docs/http/configuring_https_servers.html  You should read
+that documentation before attempting to configure SSL.
 
+```
+
+server {
+	listen 80;
+	listen [::]:80;
+	server_name staff.myarchive.org;
+	return 301 https://staff.myarchive.org;
+}
+
+
+server {
+  listen 443 ssl;
+  server_name staff.myarchive.org;
+  charset utf-8;
+  }
+ 
+  ssl_certificate     /path/to/your/fullchain.pem;
+  ssl_certificate_key /path/to/your/key.pem
+
+  location / {
+    allow 0.0.0.0/0;
+    deny all;
+    proxy_pass http://localhost:8081;
+  }
+}
+
+server {
+	listen 80;
+	listen [::]:80;
+	server_name public.myarchive.org;
+	return 301 https://public.myarchive.org;
+}
+
+
+server {
+  listen 443 ssl;
+  server_name staff.myarchive.org;
+  charset utf-8;
+  }
+ 
+  ssl_certificate     /path/to/your/fullchain.pem;
+  ssl_certificate_key /path/to/your/key.pem
+
+  location / {
+    allow 0.0.0.0/0;
+    deny all;
+    proxy_pass http://localhost:8080;
+  }
+}
+
+```
 
 ## Step 2: Configure ArchivesSpace
 

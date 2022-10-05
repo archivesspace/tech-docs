@@ -13,7 +13,7 @@ ArchivesSpace. Be sure that your new settings are not commented out
 ### Database config
 
 
-#### `AppConfig[:db_url]`
+#### :db_url
 
 Set your database name and credentials. The default specifies that the embedded database should be used.
 It is recommended to use a MySQL database instead of the embedded database.
@@ -25,7 +25,7 @@ This is an example of specifying MySQL credentials:
 `AppConfig[:db_url] = "jdbc:mysql://127.0.0.1:3306/aspace?useUnicode=true&characterEncoding=UTF-8&user=as&password=as123"`
 
 
-#### `AppConfig[:db_max_connections]`
+#### :db_max_connections
 
 Set the maximum number of database connections used by the application.
 Default is derived from the number of indexer threads.
@@ -35,56 +35,52 @@ Default is derived from the number of indexer threads.
 
 ### URLs for ArchivesSpace components
 
-
-#### `AppConfig[:backend_url]`
-
 Set the ArchivesSpace backend port. The backend listens on port 8089 by default.
 
 `AppConfig[:backend_url] = "http://localhost:8089"`
 
-
-#### `AppConfig[:frontend_url]`
 
 Set the ArchivesSpace staff interface (frontend) port. The staff interface listens on port 8080 by default.
 
 `AppConfig[:frontend_url] = "http://localhost:8080"`
 
 
-#### `AppConfig[:public_url]`
-
 Set the ArchivesSpace public interface port. The public interface listens on port 8081 by default.
 
 `AppConfig[:public_url] = "http://localhost:8081"`
 
-
-#### `AppConfig[:oai_url]`
 
 Set the ArchivesSpace OAI server port. The OAI server listens on port 8082 by default.
 
 `AppConfig[:oai_url] = "http://localhost:8082"`
 
 
-#### `AppConfig[:solr_url]`
-
 Set the ArchivesSpace Solr index port. The Solr server listens on port 8090 by default.
 
 `AppConfig[:solr_url] = "http://localhost:8090"`
 
-
-#### `AppConfig[:indexer_url]`
-
 Set the ArchivesSpace indexer port. The indexer listens on port 8091 by default.
 
 `AppConfig[:indexer_url] = "http://localhost:8091"`
-
-
-#### `AppConfig[:docs_url]`
 
 Set the ArchivesSpace API documentation port. The API documentation listens on port 8888 by default.
 
 `AppConfig[:docs_url] = "http://localhost:8888"`
 
 
+### Enabling ArchivesSpace components
+
+Enable or disable specific componenets by setting the following settings to true or false (defaults to true):
+
+```
+AppConfig[:enable_backend] = true
+AppConfig[:enable_frontend] = true
+AppConfig[:enable_public] = true
+AppConfig[:enable_solr] = true
+AppConfig[:enable_indexer] = true
+AppConfig[:enable_docs] = true
+AppConfig[:enable_oai] = true
+```
 
 ### Application logging
 
@@ -1374,6 +1370,12 @@ AppConfig[:pui_email_smtp_settings] = {
 The number of characters to truncate before showing the 'Read More' link on notes
 
 `AppConfig[:pui_readmore_max_characters] = 450`
+
+#### `AppConfig[:pui_expand_all]`
+
+Whether to expand all additional information blocks at the bottom of record pages by default. `true` expands all blocks, `false` collapses all blocks.
+
+`AppConfig[:pui_expand_all] = false`
 
 #### `AppConfig[:max_search_columns]`
 

@@ -5,6 +5,7 @@ This documentation will provide implementers and administrators with the informa
 > If you discover errors in the documentation, or would like to suggest or contribute additional documentation, please submit an [issue](https://github.com/archivesspace/tech-docs/issues) or [pull request](https://github.com/archivesspace/tech-docs/pulls) as appropriate.
 
 ## Installation and configuration
+##security-considerations
   * [Getting started](./administration/getting_started.md)
   * [Running ArchivesSpace as a Unix daemon](./administration/unix_daemon.md)
   * [Running ArchivesSpace as a Windows service](./administration/windows.md)
@@ -13,6 +14,7 @@ This documentation will provide implementers and administrators with the informa
   * [Configuring LDAP authentication](./customization/ldap.md)
   * [Running ArchivesSpace against MySQL](./provisioning/mysql.md)
   * [Security considerations](./administration/security.md)
+
   
 ## Customization and theming
   * [ArchivesSpace Plug-ins](./customization/plugins.md)
@@ -36,12 +38,11 @@ This documentation will provide implementers and administrators with the informa
   * [Serving ArchivesSpace user-facing applications over HTTPS](./provisioning/https.md)
   * [Application monitoring with New Relic](./provisioning/newrelic.md)
   * [Running ArchivesSpace under a prefix](./provisioning/prefix.md)
-  * [Running ArchivesSpace with external Solr](./provisioning/solr.md)
   * [JMeter Test Group Template](./provisioning/jmeter.md)
 
-## Migrating data from Archivists' Toolkit and Arcon
-  * [Migration tools and data mapping](./migrations/migration_tools.md)
+## Migrating data from Archivists' Toolkit and Archon
   * [Archivists' Toolkit migration tool instructions](./migrations/migrate_from_archivists_toolkit.md)
   * [Archon migration tool instructions](./migrations/migrate_from_archon.md)
 
-
+## Other migration resources
+  * [Migration tools and data mapping](./migrations/migration_tools.md)

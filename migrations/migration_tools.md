@@ -32,8 +32,27 @@
 
 * [Accession CSV Map](http://archivesspace.org/wp-content/uploads/2016/05/Accession-CSV-mapping-2013-08-05.xlsx)
 * [Accession CSV Template](https://github.com/archivesspace/archivesspace/tree/master/backend/app/exporters/examples/accession)
-* [EAD Import / Export Map](http://archivesspace.org/wp-content/uploads/2016/05/EAD-Import-Export-Mapping-20171030.xlsx)
-* [MARCXML Import / Export Map](http://archivesspace.org/wp-content/uploads/2016/08/MARCXML-Import-Export-Mapping-20130715.xlsx)
+* [Archival Objects from Excel or CSV with Load Via Spreadsheet](https://github.com/archivesspace/archivesspace/tree/master/templates)
+* [Assessment CSV Template](https://github.com/archivesspace/archivesspace/tree/master/backend/app/exporters/examples/assessment)
 * [Digital Object CSV Map](http://archivesspace.org/wp-content/uploads/2016/08/DigitalObject-CSV-mapping-2013-02-26.xlsx)
 * [Digital Object CSV Template](https://github.com/archivesspace/archivesspace/tree/master/backend/app/exporters/examples/digital_object)
 * [Digital Objects Export Maps](http://archivesspace.org/wp-content/uploads/2016/08/ASpace-Dig-Object-Exports.xlsx)
+* [EAD Import / Export Map](http://archivesspace.org/wp-content/uploads/2016/05/EAD-Import-Export-Mapping-20171030.xlsx)
+* [Location Record CSV Template](https://github.com/archivesspace/archivesspace/tree/master/backend/app/exporters/examples/location)
+* (newly reviewed) [MARCXML Import Map](https://archivesspace.org/wp-content/uploads/2021/06/AS-MARC-import-mappings-2021-06-15.xlsx)
+* [MARCXML Export Map](https://archivesspace.org/wp-content/uploads/2021/06/MARCXML-Export-Mapping-20130715.xlsx)
+* [MARCXML Authority Import / Export Map](https://archivesspace.org/wp-content/uploads/2021/05/Agents-ASpace-to-MARCXMLMay2021.xlsx)
+* [EAC-CPF Import / Export Map](https://archivesspace.org/wp-content/uploads/2021/05/Agents-ASpace-to-EAC-CPFMay2021.xlsx)
+
+(newly reviewed) MARCXML Import Map
+MARCXML Export Map
+
+
+### OAI-PMH-only maps
+
+Most ArchivesSpace OAI-PMH responses are based on the export maps above, but there are a few that are only available through OAI-PMH
+
+[MODS for resources and resource components](https://archivesspace.org/wp-content/uploads/2019/06/MODS-OAI-Export-Mapping-20190610.xlsx)
+[Dublin Core for resources and resource components](https://archivesspace.org/wp-content/uploads/2019/06/DC-OAI-Export-Mapping-20190610.xlsx)
+[DCMI Metadata Terms for resources and resource components](https://archivesspace.org/wp-content/uploads/2019/06/DCTerms-OAI-Export-Mapping-20190611.xlsx)
+

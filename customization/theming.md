@@ -4,7 +4,8 @@
 
 It's easiest to use a plugin for small changes to your site's theme. With a plugin,
 we can override default views, controllers, models, etc. without having to do a
-complete rebuild of the source code.
+complete rebuild of the source code. Be sure to remove the `#` at the beginning of
+any line that you want to change. Any line that starts with a `#` is ignored.
 
 Let's say we wanted to change the branding logo on the public
 interface. That can be easily changed in your `config.rb` file:
@@ -28,6 +29,9 @@ Alt text for the PUI branding image can and should also be supplied via:
 ```
 AppConfig[:pui_branding_img_alt_text] = 'My alt text'
 ````
+
+Be sure to remove the `#` at the beginning of
+any line that you want to change. Any line that starts with a `#` is ignored.
 
 If you want your image on the PUI to link out to another location, you will need to make a change to the file `public/app/views/shared/_header.html.erb`. The line that creates the logo just needs a `a href` added.  You should also alter `AppConfig[:pui_branding_img_alt_text]` to make it clear that the image also functions as a link (e.g. `AppConfig[:pui_branding_img_alt_text] = 'Back to Example College Home'`). That will end up looking something like this:
 
@@ -81,8 +85,8 @@ footer. Those overrides would go into the following places for the public side
 of your site:
 
     archivesspace/plugins/local/public/views/welcome/show.html.erb
-    archivesspace/plugins/local/public/views/shared/\_header.html.erb
-    archivesspace/plugins/local/public/views/shared/\_footer.html.erb
+    archivesspace/plugins/local/public/views/shared/_header.html.erb
+    archivesspace/plugins/local/public/views/shared/_footer.html.erb
 
 ## Heavy re-theming
 

@@ -2,16 +2,24 @@
 
 ## System requirements
 
-* Java 1.8 only.
+* Java 8 or 11 only.
 * At least 1024 MB RAM allocated to the application; at least 2 GB for optimal performance.
 
-ArchivesSpace has been tested on Ubuntu Linux, Mac OS X, and
-Windows.
+ArchivesSpace has been tested on Ubuntu Linux, Mac OS X, and Windows.
 
-MySQL is not required, but is **strongly** recommended for production use.
+While ArchivesSpace does include an embedded database, MySQL is required for production use. 
 MariaDB is another relational database currently in use by community members so there is some community support for version 10.4.10 only.
 
 **The embedded database is for testing purposes only. You should use MySQL or MariaDB for any data intended for production, including data in a test instance that you intend to move over to a production instance.**
+
+## Version 3.2 And Above
+
+From any ArchivesSpace version > 3.1.0 external Solr is required (previous
+versions provided an embedded Solr v4 instance, which was removed due to
+being old and unsupported, with very limited scope for enhancements over
+time).
+
+[Running ArchivesSpace with external Solr](../provisioning/solr.md) (Version 3.2+)
 
 ## Getting started
 
@@ -28,7 +36,12 @@ You can check your Java version by running the command:
 If you are running an earlier version of java upgrade to 1.8 (not the newest version). If you are running a newer version of Java you should revert back to 1.8 or force your machine to use 1.8 for ArchivesSpace.
 
 When you extract the `.zip` file, it will create a directory called
-`archivesspace`.  To run the system, just execute the appropriate
+`archivesspace`. Next, follow the instructions for setting up
+[MySQL](../provisioning/mysql.md), and for version 3.2 and above, [Solr](../provisioning/solr.md).
+
+**Do not proceed until MySQL and Solr are running.**
+
+To run the system, just execute the appropriate
 startup script for your platform.  On Linux and OSX:
 
      cd /path/to/archivesspace
