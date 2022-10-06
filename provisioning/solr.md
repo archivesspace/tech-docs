@@ -2,6 +2,8 @@
 
 For ArchivesSpace > 3.1.1 this is **required**. For previous versions it is optional.
 
+## Supported Solr Versions
+
 ArchivesSpace "officially" supports the version indicated in
 [solrconfig.xml](https://github.com/archivesspace/archivesspace/blob/master/solr/solrconfig.xml#L7).
 That refers to a version that is used for development and tested between release cycles.

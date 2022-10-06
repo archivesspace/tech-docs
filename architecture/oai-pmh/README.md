@@ -16,11 +16,11 @@ not included in any of the OAI-PMH responses.
 Some responses require the URL parameter metadataPrefix. There are five
 different metadata responses available:
 
-  EAD	                  oai_ead (resources in EAD)
-  Dublin Core	          oai_dc (archival objects and resources in Dublin Core)
-  extended DCMI Terms	  oai_dcterms (archival objects and resources in DCMI Metadata Terms format)
-  MARC	                oai_marc (archival objects and resources in MARC)
-  MODS	                oai_mods (archival objects and resources in MODS)
+* EAD -- oai_ead (resources in EAD)
+* Dublin Core -- oai_dc (archival objects and resources in Dublin Core)
+* extended DCMI Terms -- oai_dcterms (archival objects and resources in DCMI Metadata Terms format)
+* MARC -- oai_marc (archival objects and resources in MARC)
+* MODS -- oai_mods (archival objects and resources in MODS)
 
 The EAD response for resources and MARC response for resources and archival
 objects use the mappings from the built-in exporter for resources. The DC,
@@ -60,17 +60,17 @@ records from sets include a set parameter in the URL and the DC metadataPrefix,
 such as "&set=collection&metadataPrefix=oai_dc". These sets can be from
 configured sets as shown above or from the following levels of description:
 
-  Class	      class
-  Collection	collection
-  File	      file
-  Fonds	      fonds
-  Item	      item
-  Other_Level	otherlevel
-  Record_Group	recordgrp
-  Series	    series
-  Sub-Fonds	  subfonds
-  Sub-Group	  subgrp
-  Sub-Series	 subseries
+* Class -- class
+* Collection -- collection
+* File -- file
+* Fonds -- fonds
+* Item -- item
+* Other_Level -- otherlevel
+* Record_Group -- recordgrp
+* Series -- series
+* Sub-Fonds -- subfonds
+* Sub-Group -- subgrp
+* Sub-Series -- subseries
 
 In addition to the sets based on level of description, you can define sets
 based on repository codes and/or sponsors in the config/config.rb file:
