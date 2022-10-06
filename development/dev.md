@@ -140,9 +140,7 @@ cd -
 
 The bootstrap task:
 
-```bash
-./build/run bootstrap
-```
+     ./build/run bootstrap
 
 Will bootstrap your development environment by downloading all
 dependencies--JRuby, Gems, etc. This one command creates a fully
@@ -170,6 +168,11 @@ Gemfiles or other dependencies such as those in the `./build/build.xml` file.
      [java]   require at org/jruby/RubyKernel.java:974
      [java]    <main> at script/rails:8
 ```
+
+     ./build/run backend:devserver
+     ./build/run frontend:devserver
+     ./build/run public:devserver
+     ./build/run indexer
 
 There have been various forms of the same `LoadError`. It's a transient error
 that is resolved by rerunning bootstrap.
@@ -324,12 +327,15 @@ in scope instance variables that are available.
 
 __Advanced: development servers and the build directory__
 
+     ./build/run db:migrate
 
 Running the developments servers will create directories in `./build/dev`:
 
 - indexer_pui_state: latest timestamps for PUI indexer activity
 - indexer_state: latest timestamps for (SUI) indexer activity
 - shared: background job files
+
+     ./build/run db:nuke
 
 _Note: the folders will be created as they are needed, so they may not all be present
 at all times._
@@ -338,6 +344,17 @@ at all times._
 
 ArchivesSpace uses a combination of RSpec, integration and Selenium
 tests.
+
+     ./build/run travis:test
+
+It's also useful to be able to run the backend unit tests separately.
+To do this, run:
+
+     ./build/run backend:test
+
+You can also run a single spec file with:
+
+     ./build/run backend:test -Dspec="myfile_spec.rb"
 
 _By default the tests are configured to run using a separate MySQL & Solr from the
 development servers. This means that the development and test environments will not
@@ -371,7 +388,7 @@ the same as for the development servers as described above.
 
 You can run the coverage reports using:
 
-     build/run coverage
+     ./build/run coverage
 
 This runs all of the above tests in coverage mode and, when the run
 finishes, produces a set of HTML reports within the `coverage`
@@ -382,11 +399,12 @@ directory in your ArchivesSpace project directory.
 If you are editing or adding source files that you intend to contribute via a pull request,
 you should make sure your changes conform to the layout and style rules by running:
 
-    build/run rubocop
+    ./build/run rubocop
 
 Most errors can be auto-corrected by running:
 
-    build/run rubocop -Dcorrect=true
+    ./build/run rubocop -Dcorrect=true
+    
 
 ## Submitting a Pull Request
 
