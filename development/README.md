@@ -7,3 +7,4 @@
 * [User Interface Test Suite](./ui_test.md)
 * [Upgrading Rack for ArchivesSpace](./development/jruby-rack-build.md)
 * [ArchivesSpace Releases](./releases.md)
+* [Using the VS Code editor for local development](./vscode.md)
