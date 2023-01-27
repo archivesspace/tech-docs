@@ -11,6 +11,8 @@ This information will be useful for those creating ArchivesSpace plugins, contri
 * [DB versions listed by release](./development/release_schema_versions.md)
 * [User Interface Test Suite](./development/ui_test.md)
 * [Upgrading Rack for ArchivesSpace](./development/jruby-rack-build.md)
+* [ArchivesSpace Releases](./development/releases.md)
+* [Using the VS Code editor for local development](./development/vscode.md)
 
 ## Building integrations and plugins
 * [ArchivesSpace Plug-ins](./customization/plugins.md)
