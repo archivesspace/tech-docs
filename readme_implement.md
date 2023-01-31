@@ -5,22 +5,16 @@ This documentation will provide implementers and administrators with the informa
 > If you discover errors in the documentation, or would like to suggest or contribute additional documentation, please submit an [issue](https://github.com/archivesspace/tech-docs/issues) or [pull request](https://github.com/archivesspace/tech-docs/pulls) as appropriate.
 
 ## Installation and configuration
-  * [Getting started](./administration/getting_started.md) (All Versions)
-  * [Configuring ArchivesSpace](./customization/configuration.md) (All Versions)
-  * [Running ArchivesSpace against MySQL](./provisioning/mysql.md) (All Versions)
-  * [Running ArchivesSpace with external Solr](./provisioning/solr.md) (Version 3.2+)
-  * [Running ArchivesSpace as a Unix daemon](./administration/unix_daemon.md) (All Versions)
-  * [Running ArchivesSpace as a Windows service](./administration/windows.md) (All Versions)
-  * [Adding support for additional username/password-based authentication backends](./customization/authentication.md) (All Versions)
-  * [Configuring LDAP authentication](./customization/ldap.md) (All Versions)
+  * [Getting started and configuring ArchivesSpace](./administration/getting_started.md) 
+  * [Running ArchivesSpace as a Unix daemon](./administration/unix_daemon.md)
+  * [Running ArchivesSpace as a Windows service](./administration/windows.md)
+  * [Adding support for additional username/password-based authentication backends](./customization/authentication.md)
+  * [Configuring LDAP authentication](./customization/ldap.md)
 
   
 ## Customization and theming
   * [ArchivesSpace Plug-ins](./customization/plugins.md)
-  * [Customizing text in ArchivesSpace](./customization/locales.md)
-  * [Theming ArchivesSpace](./customization/theming.md)
-  * [Managing frontend assets with Bower](./customization/bower.md)
-  * [Creating Custom Reports](./customization/reports.md)
+  * [Customizing text and themeing in ArchivesSpace](./customization/locales.md)
   * [ArchivesSpace XSL stylesheets](./import_export/xsl_stylesheets.md)
   
 ## Maintenance
@@ -33,10 +27,8 @@ This documentation will provide implementers and administrators with the informa
 ## Advanced configuration
   * [Tuning ArchivesSpace](./provisioning/tuning.md)
   * [Running ArchivesSpace with load balancing and multiple tenants](./provisioning/clustering.md)
-  * [Serving ArchivesSpace over subdomains](./provisioning/domains.md)
-  * [Serving ArchivesSpace user-facing applications over HTTPS](./provisioning/https.md)
+  * [Serving ArchivesSpace using Domain Names and HTTPS](./provisioning/domains.md)
   * [Application monitoring with New Relic](./provisioning/newrelic.md)
-  * [Running ArchivesSpace under a prefix](./provisioning/prefix.md)
   * [JMeter Test Group Template](./provisioning/jmeter.md)
 
 ## Migrating data from Archivists' Toolkit and Archon
