@@ -1,1 +1,25 @@
 theme: jekyll-theme-minimal
+title: tech-docs
+description: Technical documentation for ArchivesSpace
+
+plugins:
+  - jekyll-optional-front-matter
+
+optional_front_matter:
+  remove_originals: true
+
+include:
+  - README.md # for optional-front-matter plugin
+
+defaults:
+  - scope:
+      path: "" # all files
+    values:
+      layout: "default"
+
+github: # recreate gh-pages api
+  is_project_page: true
+  repository_url: https://github.com/archivesspace/tech-docs
+  repository_nwo: archivesspace/tech-docs
+  owner_url: https://github.com/archivesspace
+  owner_name: ArchivesSpace
