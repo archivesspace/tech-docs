@@ -1,3 +1,7 @@
+---
+permalink: /architecture/backend/
+---
+
 # The ArchivesSpace backend
 
 The backend is responsible for implementing the ArchivesSpace API, and

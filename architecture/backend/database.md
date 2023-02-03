@@ -2,11 +2,11 @@
 
 The ArchivesSpace database stores all data that is created within an ArchivesSpace instance. As described in other sections of this documentation, the backend code - particularly the model layer and `ASModel_crud.rb` file - uses the `Sequel` database toolkit to bridge the gap between this underlying data and the JSON objects which are exchanged by the other components of the system.
 
-Often, querying the database directly is the most efficient and powerful way to retrieve data from ArchivesSpace. It is also possible to use raw SQL queries to create custom reports that can be run by users in the staff interface. Please consult the [Custom Reports](../../customization/reports.md) section of this documentation for additional information on creating custom reports.
+Often, querying the database directly is the most efficient and powerful way to retrieve data from ArchivesSpace. It is also possible to use raw SQL queries to create custom reports that can be run by users in the staff interface. Please consult the [Custom Reports](../../customization/reports.html) section of this documentation for additional information on creating custom reports.
 
 <!-- .See this [plugin](link-to-plugin) for an example. Also  -->
 
-It is recommended that ArchivesSpace be run against MySQL in production, not the included demo database. Instructions on setting up ArchivesSpace to run against MySQL are [here](../../provisioning/mysql.md).
+It is recommended that ArchivesSpace be run against MySQL in production, not the included demo database. Instructions on setting up ArchivesSpace to run against MySQL are [here](../../provisioning/mysql.html).
 
 The examples in this section are written for MySQL. There are many freely-available tutorials on the internet which can provide guidance to those unfamiliar with MySQL query syntax and the features of the language.
 

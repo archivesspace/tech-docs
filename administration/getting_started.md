@@ -19,7 +19,7 @@ versions provided an embedded Solr v4 instance, which was removed due to
 being old and unsupported, with very limited scope for enhancements over
 time).
 
-[Running ArchivesSpace with external Solr](../provisioning/solr.md) (Version 3.2+)
+[Running ArchivesSpace with external Solr](../provisioning/solr.html) (Version 3.2+)
 
 ## Getting started
 
@@ -37,7 +37,7 @@ If you are running an earlier version of java upgrade to 1.8 (not the newest ver
 
 When you extract the `.zip` file, it will create a directory called
 `archivesspace`. Next, follow the instructions for setting up
-[MySQL](../provisioning/mysql.md), and for version 3.2 and above, [Solr](../provisioning/solr.md).
+[MySQL](../provisioning/mysql.html), and for version 3.2 and above, [Solr](../provisioning/solr.html).
 
 **Do not proceed until MySQL and Solr are running.**
 

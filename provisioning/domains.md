@@ -1,7 +1,7 @@
 # Serving ArchivesSpace over subdomains
 
 This document describes how to configure ArchivesSpace and your web server to serve the application over subdomains (e.g., `http://staff.myarchive.org/` and `http://public.myarchive.org/`), which is the  recommended
-practice. Separate documentation is available if you wish to [serve ArchivesSpace under a prefix](prefix.md) (e.g., `http://aspace.myarchive.org/staff` and
+practice. Separate documentation is available if you wish to [serve ArchivesSpace under a prefix](prefix.html) (e.g., `http://aspace.myarchive.org/staff` and
 `http://aspace.myarchive.org/public`).
 
 1. [Configuring Your Firewall](#Step-1%3A-Configuring-Your-Firewall)

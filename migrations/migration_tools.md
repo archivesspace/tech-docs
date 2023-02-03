@@ -2,7 +2,7 @@
 
 ## Archivists' Toolkit
 
-* [AT migration tool instructions](migrate_from_archivists_toolkit.md)
+* [AT migration tool instructions](migrate_from_archivists_toolkit.html)
 * [AT migration plugin](https://github.com/archivesspace/at-migration/releases)
 * [AT migration source code](https://github.com/archivesspace/at-migration)
 * [AT migration mapping (for 2.x versions of the tool and ArchivesSpace](https://github.com/archivesspace/at-migration/blob/master/docs/ATMappingDocument.xlsx)
@@ -14,7 +14,7 @@
 
 ## Archon
 
-* [Archon migration tool instructions](migrate_from_archon.md)
+* [Archon migration tool instructions](migrate_from_archon.html)
 * [Archon migration tool](https://github.com/archivesspace/archon-migration/releases/latest)
 * [Archon migration source code](https://github.com/archivesspace/archon-migration/)
 * [Archon migration mapping (for 2.x versions of the tool and ArchivesSpace)](https://docs.google.com/spreadsheets/d/13soN5djk16QYmRoSajtyAc_nBrNldyL58ViahKFJAog/edit?usp=sharing)
@@ -24,7 +24,7 @@
 * [refactored Archon migration plugin](https://github.com/archivesspace-deprecated/ArchonMigrator/releases)
 * [information about refactoring project](https://archivesspace.atlassian.net/browse/AR-1278)
 * [previous Archon migration plugin](https://github.com/archivesspace/archon-migration/releases)
-* [Plugin read me text](https://github.com/archivesspace-deprecated/ArchonMigrator/blob/master/README.md)
+* [Plugin read me text](https://github.com/archivesspace-deprecated/ArchonMigrator/blob/master/README.html)
 * [Archon migration guidelines](http://archivesspace.org/wp-content/uploads/2016/05/Archon_Migration_Guidelines-7_13_2017.docx)
 * [Archon migration mapping](http://archivesspace.org/wp-content/uploads/2016/08/ArchonSchemaMappingsPublic.xlsx)
 

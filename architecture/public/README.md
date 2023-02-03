@@ -1,3 +1,7 @@
+---
+permalink: /architecture/public/
+---
+
 # The ArchivesSpace public user interface
 
 The ArchivesSpace Public User Interface (PUI) provides a public

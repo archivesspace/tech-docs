@@ -1,6 +1,6 @@
 # UPGRADING TO 1.1.1
 
-Additional upgrade considerations specific to this release. Refer to the [upgrade documentation](../upgrading.md) for the standard instructions that apply in all cases.
+Additional upgrade considerations specific to this release. Refer to the [upgrade documentation](../upgrading.html) for the standard instructions that apply in all cases.
 
 ## Resequencing of Archival Object & Digital Object Component trees
 -------------

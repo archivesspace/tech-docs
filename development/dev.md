@@ -377,7 +377,7 @@ Or a single example with:
 ./build/run backend:test -Dexample="does something important"
 ```
 
-There are specific instructions and requirements for the [UI tests](ui_test.md) to work.
+There are specific instructions and requirements for the [UI tests](ui_test.html) to work.
 
 __Advanced: tests and the build directory__
 
@@ -426,8 +426,8 @@ by the pull request.__
 
 ## Building a distribution
 
-See: [Building an Archivesspace Release](release.md) for information on building a distribution.
+See: [Building an Archivesspace Release](release.html) for information on building a distribution.
 
 ## Generating API documentation
 
-See: [Building an Archivesspace Release](release.md) for information on building the documentation.
+See: [Building an Archivesspace Release](release.html) for information on building the documentation.

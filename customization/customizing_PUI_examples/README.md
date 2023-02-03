@@ -1,3 +1,7 @@
+---
+permalink: /customization/customizing_PUI_examples/
+---
+
 # Customizing the Public User Interface: Simple How-tos
 
 This is a collection of examples for simple how-tos for customizing the Public User Interface
