@@ -7,7 +7,7 @@ Plug-ins provide a mechanism to customize ArchivesSpace by overriding or extendi
 without changing the core codebase. As they are self-contained, they also permit the ready
 sharing of packages of customization between ArchivesSpace instances.
 
-The ArchivesSpace distribution comes with the `hello_world` exemplar plug-in. Please refer to its [README file](https://github.com/archivesspace/archivesspace/blob/master/plugins/hello_world/README.md) for a detailed description of how it is constructed and implemented.
+The ArchivesSpace distribution comes with the `hello_world` exemplar plug-in. Please refer to its [README file](https://github.com/archivesspace/archivesspace/blob/master/plugins/hello_world/README.html) for a detailed description of how it is constructed and implemented.
 
 You can find other examples in the following plugin repositories. The ArchivesSpace plugins that are officially supported and maintained by the ArchivesSpace Program Team are in archivesspace-plugins (https://github.com/archivesspace-plugins). Deprecated code which is no longer supported but has been kept for future reference is in archivesspace-deprecated (https://github.com/archivesspace-deprecated). There is an open/unmanaged GitHub repository where community members can share their code called archivesspace-labs (https://github.com/archivesspace-labs). The community developed Python library for interacting with the ArchivesSpace API, called ArchivesSnake, is managed in the archivesspace-labs repository.
 
@@ -72,7 +72,7 @@ to the local plug-in:
 
     plugins/local/frontend/locales/en.yml
 
-More detailed information about overriding locale files is found in [Customizing text in ArchivesSpace](./locales.md)
+More detailed information about overriding locale files is found in [Customizing text in ArchivesSpace](./locales.html)
 
 
 ## Overriding the visual (web) presentation

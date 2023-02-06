@@ -90,7 +90,7 @@ Download the latest JAR file release from https://github.com/archivesspace-depre
 
 ### Install ArchivesSpace Instance
 
-Implement an ArchivesSpace production version including the setting up of a MySQL database to migrate into. Instructions are included at [Getting Started with ArchivesSpace](../administration/getting_started.md) and [Running ArchivesSpace against MySQL](../provisioning/mysql.md)
+Implement an ArchivesSpace production version including the setting up of a MySQL database to migrate into. Instructions are included at [Getting Started with ArchivesSpace](../administration/getting_started.html) and [Running ArchivesSpace against MySQL](../provisioning/mysql.html)
 
 ### Prepare to Launch Migration
 

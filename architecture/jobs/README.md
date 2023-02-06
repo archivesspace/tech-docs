@@ -1,3 +1,7 @@
+---
+permalink: /architecture/jobs/
+---
+
 # Background Jobs
 
 ArchivesSpace provides a mechanism for long running processes to run

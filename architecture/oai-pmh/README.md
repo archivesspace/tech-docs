@@ -1,3 +1,7 @@
+---
+permalink: /architecture/oai-pmh/
+---
+
 # OAI-PMH interface
 
 A starter OAI-PMH interface for ArchivesSpace allowing other systems to harvest

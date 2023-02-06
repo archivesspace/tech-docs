@@ -18,7 +18,7 @@ ArchivesSpace. Be sure that your new settings are not commented out
 Set your database name and credentials. The default specifies that the embedded database should be used.
 It is recommended to use a MySQL database instead of the embedded database.
 For more info, see
-[Running ArchivesSpace against MySQL](https://github.com/archivesspace/tech-docs/blob/master/provisioning/mysql.md)
+[Running ArchivesSpace against MySQL](https://github.com/archivesspace/tech-docs/blob/master/provisioning/mysql.html)
 
 This is an example of specifying MySQL credentials:
 

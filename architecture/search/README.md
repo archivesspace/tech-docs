@@ -1,3 +1,7 @@
+---
+permalink: /architecture/search/
+---
+
 # Search indexing
 
 The ArchivesSpace system uses Solr for its full-text search.  As

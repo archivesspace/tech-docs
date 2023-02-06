@@ -1,3 +1,7 @@
+---
+permalink: /architecture/
+---
+
 # ArchivesSpace architecture and components
 
 ArchivesSpace is divided into several components: the backend, which
@@ -8,7 +12,7 @@ consisting of Solr and an indexer application.
 These components interact by exchanging JSON data.  The format of this
 data is defined by a class called JSONModel.
 
-* [JSONModel -- a validated ArchivesSpace record](./jsonmodel.md)
+* [JSONModel -- a validated ArchivesSpace record](./jsonmodel.html)
 * [The ArchivesSpace backend](./backend)
 * [The ArchivesSpace staff interface](./frontend)
 * [Background Jobs](./jobs)
