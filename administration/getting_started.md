@@ -2,7 +2,7 @@
 
 ## System requirements
 
-* Java 8 or 11 only.
+* Java (OpenJDK should be fine) 8 or 11 only.
 * At least 1024 MB RAM allocated to the application; at least 2 GB for optimal performance.
 
 ArchivesSpace has been tested on Ubuntu Linux, Mac OS X, and Windows.
@@ -33,7 +33,7 @@ You can check your Java version by running the command:
 
      java -version
 
-If you are running an earlier version of java upgrade to 1.8 (not the newest version). If you are running a newer version of Java you should revert back to 1.8 or force your machine to use 1.8 for ArchivesSpace.
+If you are running an earlier version of java upgrade to 1.8 or 1.11 (not the newest version of Java). If you are running a newer version of Java you should revert back to 1.8 (or 1.11) or force your machine to use 1.8 (or 1.11) for ArchivesSpace.
 
 When you extract the `.zip` file, it will create a directory called
 `archivesspace`. Next, follow the instructions for setting up
