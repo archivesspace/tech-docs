@@ -1,4 +1,11 @@
 ## Releases:
+3.4.0 May 24, 2023
+The schema number for this release is 172.
+https://github.com/archivesspace/archivesspace/tree/v3.4.0
+
+3.3.1 Oct 4, 2022
+The schema number for this release is 164
+https://github.com/archivesspace/archivesspace/tree/v3.3.1
 
 3.2.0 February 4, 2022
 The schema number for this release is 159.
