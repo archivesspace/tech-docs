@@ -17,7 +17,7 @@ git clone https://github.com/archivesspace/archivesspace.git
 
 ## Checkout the release branch and create release tag
 
-If you are building a major or minor version (see [https://semver.org])(semver.org)),
+If you are building a major or minor version (see [https://semver.org](https://semver.org)),
 start by creating a branch for the release and all future patch releases:
 
 ``` shell
@@ -46,8 +46,7 @@ git checkout -b oh-no-some-migration-corrupts-some-data
 ( fixes problem )
 git commit -m "fix bad migration and add a migration to repair corrupted data"
 gh pr create --web
-( PR is reviewed and approved on Github, QA'd, then merged to master)
-git pull master
+( PR is reviewed and merged to master)
 git checkout release-v1.0.x
 git cherry-pick [SHA of hotfix commit]
 git push origin release-v1.0.x
@@ -166,21 +165,18 @@ percentage of the code and are not especially useful.
 
 ### Build the release notes
 
-After reviewing the above, build the release notes:
+**As of v3.4.0, it should no longer necessary to build release notes manually.**
+
+To manually generate release notes:
 
 ```shell
-export GITHUB_API_TOKEN={YOUR DEPLOYMENT TOKEN ON GITHUB}
-build/run thor -Dtask="doc:release_notes" -Dtask_args="--token=$GITHUB_API_TOKEN --current_tag=v3.3.0 --previous_tag=v3.2.0 --out=RELEASE_NOTES.md"
+export GITHUB_TOKEN={YOUR DEPLOYMENT TOKEN ON GITHUB}
+./build/run doc:release_notes -Dcurrent_tag=v3.4.0 -Doutfile=RELEASE_NOTES.md -Dtoken=$GITHUB_TOKEN
 ```
 
-#### Review the Notes
+#### Edit Release Page As Neccessary
 
-Many of the automatically generated sections (especially the config changes)
-will require some manual review/copy-editing.
-
-#### Other considerations
-
-If there are any special considerations add them here. Special considerations
+If there are any special considerations add them to the release page manually. Special considerations
 might include changes that will require 3rd party plugins to be updated or a
 that a full reindex is required.
 
@@ -192,16 +188,11 @@ correctly. Please follow the [instructions for reindexing](https://archivesspace
 before starting ArchivesSpace with the new version.
 ```
 
-### Save the draft
-
-When the placeholder sections have been updated or removed save the draft and
-share with the team.
-
-
 ## <a name="postrelease"></a>Post release updates
 
 After a release has been put out it's time for some maintenance before the next
-cycle of development clicks into full gear:
+cycle of development clicks into full gear. Consider the following, depending on 
+current team consensus:
 
 ### Branches
 
