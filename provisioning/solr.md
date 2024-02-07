@@ -4,6 +4,8 @@ For ArchivesSpace > 3.1.1 this is **required**. For previous versions it is opti
 
 ## Supported Solr Versions
 
+**Note: ArchivesSpace does NOT currently support Solr 9. Using the latest version of Solr 8 is recommended at this time.
+
 ArchivesSpace "officially" supports the version indicated in
 [solrconfig.xml](https://github.com/archivesspace/archivesspace/blob/master/solr/solrconfig.xml#L7).
 That refers to a version that is used for development and tested between release cycles.
