@@ -2,12 +2,32 @@
 
 ArchivesSpace's staff and public interfaces use [Selenium](http://docs.seleniumhq.org/) to run automated browser tests. These tests can be run using [Firefox via geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/geckodriver/index.html) and [Chrome](https://sites.google.com/a/chromium.org/chromedriver/home) (either regular Chrome or headless).
 
-Firefox is the default. To install geckodriver on Ubuntu Linux:
+Firefox is the default used in our [CI workflows](https://github.com/archivesspace/archivesspace/actions).
+
+On Ubuntu 22.04 or later, the included Firefox deb package is a transition package that actually installs Firefox through [snap](https://snapcraft.io/). Snap has security restrictions that do not work with automated testing without additional configuration.
+
+To uninstall the Firefox snap package and reinstall it as a traditional deb package on Ubuntu use:
 
 ```bash
-cd ~/Downloads
-wget -c https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz -O - | tar -xz
-sudo mv geckodriver /usr/local/bin/
+# remove old snap firefox package (if installed)
+sudo snap remove firefox
+
+# create a keyring directory (if not existing)
+sudo install -d -m 0755 /etc/apt/keyrings
+
+# download mozilla key and add it to the keyring
+wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
+
+# set high priority for the mozilla pakcages
+echo "deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] https://packages.mozilla.org/apt mozilla main" | sudo tee -a /etc/apt/sources.list.d/mozilla.list > /dev/null
+echo '
+Package: *
+Pin: origin packages.mozilla.org
+Pin-Priority: 1000
+' | sudo tee /etc/apt/preferences.d/mozilla
+
+# install firefox and geckdriver as a standard deb package
+sudo apt update && sudo apt install firefox firefox-geckodriver
 ```
 
 On Mac you can use: `brew install geckodriver`.
@@ -61,6 +81,22 @@ FIREFOX_OPTS= ./build/run frontend:selenium -Dexample='Repository model'# Firefo
 
 ./build/run public:test -Dspec='features/accessibility_spec.rb'
 SELENIUM_CHROME=true CHROME_OPTS= ./build/run public:test -Dspec='features/accessibility_spec.rb' # Chrome, heady
+```
+
+Test require a backend and a frontend service to be running. To ovoid the overhead of starting and stopping them while developing, you can run tests against a dev backend:
+
+```
+# start mysql and solr containers:
+docker-compose -f docker-compose-dev.yml up
+
+# start services:
+ supervisord -c supervisord/archivesspace.conf
+
+# run a spec using the started backend:
+ASPACE_TEST_BACKEND_URL='http://localhost:4567' ./build/run frontend:test -Dpattern="./features/events_spec.rb"
+
+# run all examples that contain "can spawn" in their description:
+./build/run frontend:test -Dpattern="./features/accessions_spec.rb" -Dexample="can spawn"
 ```
 
 Note, however, that some tests are dependent on a sequence of ordered steps and may not always run cleanly in isolation.  In this case, more than the example provided may be run, and/or unexpected fails may result.
