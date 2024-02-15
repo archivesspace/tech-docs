@@ -125,20 +125,10 @@ Or on Windows:
      $ cd archivesspace-1.5.x\archivesspace
      $ scripts\setup-database.bat
 
-## If you're using external Solr
+## If you're using external Solr (required beginning with version 3.2.0)
 
-It's recommeneded you check your version against the version included with
-ArchivesSpace:
+[Full instructions for using external Solr with ArchivesSpace](provisioning/solr.html)
 
-https://github.com/archivesspace/archivesspace/blob/v1.5.x/build/build.xml#L9
-
-If your version is older than the one provided by ArchivesSpace you may want to
-consider upgrading.
-
-Also you should check `schema.xml` and `solrconfig.xml` for changes and update
-them if necessary (this is required for proper functionality).
-
-https://github.com/archivesspace/archivesspace/tree/v1.5.x/solr
 
 ## If you've deployed to Tomcat
 
