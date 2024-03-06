@@ -31,26 +31,32 @@ git checkout release-v1.0.x
 ```
 
 Patch versions typically arise because a regression or critical bug has arisen since
-the last major or minor release. If the "hotfix" has been merged to the release branch,
-it will need to be cherry-picked back to the master branch. If it has been merged to the
-master branch (more likely given current code review / QA workflow), it (they) will
-need to be cherry-picked to the release branch.
+the last major or minor release. We try to ensure that the "hotfix" is merged into both
+master and the release branch without the need to cherry-pick commits from one branch to
+the other. The reason is that cherry-picking creates a new commit (with a new commit id)
+that contains identical changes, which is not optimal for the repository history.
+
+It is therefore preferable to start from the release branch when creating a "hotfix"
+that needs to be merged into both the release branch and master. The Pull Request should
+then be based on the release branch. After that Pull Request has been through Code review,
+QA and merged, a second Pull Request should be created to merge the updated release branch
+to master.
 
 Consider the following scenario. The current production release is v1.0.0 and a critical
 bug has been discovered. In the time since v1.0.0 was released, new features have been
 added to the master branch, intended for release in v1.1.0:
 
 ``` shell
-git checkout master
-git checkout -b oh-no-some-migration-corrupts-some-data
+git checkout -b oh-no-some-migration-corrupts-some-data origin/release-v1.0.0
 ( fixes problem )
 git commit -m "fix bad migration and add a migration to repair corrupted data"
-gh pr create --web
-( PR is reviewed and merged to master)
+gh pr create -B release-v1.0.x --web
+( PR is reviewed and merged to the release branch)
 git checkout release-v1.0.x
-git cherry-pick [SHA of hotfix commit]
-git push origin release-v1.0.x
+git pull
 git tag v1.0.1
+gh pr create -B master --web
+( PR is reviewed and merged to the master branch)
 ```
 
 ## <a name="prerelease"></a>Pre-Release Steps
@@ -191,7 +197,7 @@ before starting ArchivesSpace with the new version.
 ## <a name="postrelease"></a>Post release updates
 
 After a release has been put out it's time for some maintenance before the next
-cycle of development clicks into full gear. Consider the following, depending on 
+cycle of development clicks into full gear. Consider the following, depending on
 current team consensus:
 
 ### Branches
