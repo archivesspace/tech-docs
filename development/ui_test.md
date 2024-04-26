@@ -103,3 +103,22 @@ Note, however, that some tests are dependent on a sequence of ordered steps and 
 
 ### Saved pages on spec failures
 When frontend specs fail, a screenshot and an html page is saved for each failed example under `frontend/tmp/capybara`. On the CI, a zip file will be available for each failed CI job run under Summary -> Artifacts. In order to load the assets (and not see plain html) when viewing the saved html pages, a dev server should be running locally on port 3000, see [Running a development version of ArchivesSpace](./dev.md).
+
+### Keeping the test database up to date
+When calling `./build/run frontend:test` to run frontend specs, the following steps happen before the actual specs run:
+
+* All tables of the test database are dropped: `./build/run db:nuke:test`
+* `frontend/spec/fixtures/archivesspace-test.sql` is loaded to the test database: `./build/run db:load:test`
+* Any not-yet-applied migrations are run: `./build/run db:migrate:test`
+
+#### Updating the test database dump
+If any migrations are being applied whenever you run one or all frontend specs, it means that the test database dump `frontend/spec/fixtures/archivesspace-test.sql` has stayed behind. A new test database dump can be created by running:
+
+```
+./build/run db:nuke:test
+./build/run db:load:test
+./build/run db:migrate:test
+./build/run db:dump:test
+```
+
+An updated `frontend/spec/fixtures/archivesspace-test.sql` will be created that can be committed and pushed to a Pull Request.
