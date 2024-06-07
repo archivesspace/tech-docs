@@ -30,7 +30,7 @@ If you are running an earlier version of java upgrade to 1.8 or 1.11 (not the ne
 
 When you extract the `.zip` file, it will create a directory called
 `archivesspace`. Next, follow the instructions for setting up
-[MySQL](../provisioning/mysql.html), and for version 3.2 and above, [Solr](../provisioning/solr.html).
+[MySQL](../provisioning/mysql.md), and for version 3.2 and above, [Solr](../provisioning/solr.md).
 
 **From any ArchivesSpace version > 3.1.0 external Solr is required. Earlier versions provided an embedded Solr v4 instance, which is now unsupported due to its age.**
 

@@ -1,15 +1,15 @@
 # Upgrading to a new release of ArchivesSpace
 
-*  **[Special considerations when upgrading to v1.1.0](upgrading/UPGRADING_1.1.0.html)**
-*  **[Special considerations when upgrading to v1.1.1](upgrading/UPGRADING_1.1.1.html)**
-*  **[Special considerations when upgrading from v1.4.2 to 1.5.x (these considerations also apply when upgrading from 1.4.2 to any version through 2.0.1)](upgrading/UPGRADING_1.5.0.html)**
-*  **[Special considerations when upgrading to 2.1.0](upgrading/UPGRADING_2.1.0.html)**
+*  **[Special considerations when upgrading to v1.1.0](upgrading/UPGRADING_1.1.0.md)**
+*  **[Special considerations when upgrading to v1.1.1](upgrading/UPGRADING_1.1.1.md)**
+*  **[Special considerations when upgrading from v1.4.2 to 1.5.x (these considerations also apply when upgrading from 1.4.2 to any version through 2.0.1)](upgrading/UPGRADING_1.5.0.md)**
+*  **[Special considerations when upgrading to 2.1.0](upgrading/UPGRADING_2.1.0.md)**
 
 ## Create a backup of your ArchivesSpace instance
 
 You should make sure you have a working backup of your ArchivesSpace
 installation before attempting an upgrade.  Follow the steps
-under the [Backup and recovery section](backup.html) to do this.
+under the [Backup and recovery section](backup.md) to do this.
 
 ## Unpack the new version
 
@@ -127,7 +127,7 @@ Or on Windows:
 
 ## If you're using external Solr (required beginning with version 3.2.0)
 
-[Full instructions for using external Solr with ArchivesSpace](provisioning/solr.html)
+[Full instructions for using external Solr with ArchivesSpace](../provisioning/solr.md)
 
 
 ## If you've deployed to Tomcat

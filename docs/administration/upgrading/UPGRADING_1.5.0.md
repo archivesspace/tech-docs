@@ -1,6 +1,6 @@
 # UPGRADING TO 1.5.0
 
-Additional upgrade considerations specific to this release, which also apply to upgrading from 1.4.2 or lower to any version through 2.0.1. Refer to the [upgrade documentation](../upgrading.html) for the standard instructions that apply in all cases.
+Additional upgrade considerations specific to this release, which also apply to upgrading from 1.4.2 or lower to any version through 2.0.1. Refer to the [upgrade documentation](../upgrading.md) for the standard instructions that apply in all cases.
 
 ## General overview
 
@@ -9,10 +9,10 @@ The upgrade process to the new data model in 1.5.0 requires considerable data tr
 A quick overview of the steps are:
 
 1. Review this document and understand how the upgrade will impact your data, paying particular attention to the [Preparation section](#preparation) .
-2. [Backup your database](../backup.html).
-3. No, really, [backup your database](../backup.html).
-4. It is suggested that [users start with a new solr index](../indexes.html). To do this, delete the data/solr_index/index directory and all files in the data/indexer_state directory. The embedded version of Solr has been upgraded, which should result in a much more compact index size.
-5. Follow the standard [upgrading instructions](../upgrading.html). Important to note:  The setup-database.sh|bat script will modify your database schema, but it will not move the data. If you are currently using the container management plugin you will need to remove it from the list of plugins in your config file prior to starting ArchivesSpace.
+2. [Backup your database](../backup.md).
+3. No, really, [backup your database](../backup.md).
+4. It is suggested that [users start with a new solr index](../indexes.md). To do this, delete the data/solr_index/index directory and all files in the data/indexer_state directory. The embedded version of Solr has been upgraded, which should result in a much more compact index size.
+5. Follow the standard [upgrading instructions](../upgrading.md). Important to note:  The setup-database.sh|bat script will modify your database schema, but it will not move the data. If you are currently using the container management plugin you will need to remove it from the list of plugins in your config file prior to starting ArchivesSpace.
 6. Start ArchivesSpace. When 1.5.0 starts for the first time, a conversion process will kick off and move the data into the new table structure. **During this time, the application will be unavailable until it completes**. Duration depends on the size of your data and server resources, with a few minutes for very small databases to several hours for very large ones.
 7. When the conversion is done, the web application will start and the indexer will rebuild your index. Performance might be slower while the indexer runs, depending on your server environment and available resources.
 8. Review the [output of the conversion process](#conversion) following the instructions below. How long it takes for the report to load will depend on the number of entries included in it.
@@ -33,7 +33,7 @@ When your installation is upgraded to 1.5.0, the conversion will happen as part 
 
 *Can I continue to use the current model for containers and not convert to the new model?*
 
-Because it is such a substantial improvement [(see separate announcement for the new features)](../../README_FEATURES_1.5.0.html), the new model is required for all using ArchivesSpace 1.5.0 and higher. The only way to continue using the current model is to never upgrade beyond 1.4.2.
+Because it is such a substantial improvement [(see separate announcement for the new features)](../../README_FEATURES_1.5.0.md), the new model is required for all using ArchivesSpace 1.5.0 and higher. The only way to continue using the current model is to never upgrade beyond 1.4.2.
 
 *What if I’m already using the container management plugin made available to the community by Yale University?*
 
@@ -74,7 +74,7 @@ If you have a box and folder associated with a component (or any other hierarchi
 
 ## Conversion <a name="conversion"></a>
 
-When upgrading from 1.4.2 (and earlier versions) to 1.5.0, the container conversion will happen as part of the upgrade process. You will be able to follow its progress in the log. Instructions for upgrading from a previous version of ArchivesSpace are available at [upgrade documentation](../upgrading.html).
+When upgrading from 1.4.2 (and earlier versions) to 1.5.0, the container conversion will happen as part of the upgrade process. You will be able to follow its progress in the log. Instructions for upgrading from a previous version of ArchivesSpace are available at [upgrade documentation](../upgrading.md).
 
 Because this is a major change in the data model for this portion of the application, running at least one test conversion is very strongly recommended. Follow these steps to run the upgrade/conversion process:
 * Create a backup of your ArchivesSpace instance to use for testing. **IT IS ESSENTIAL THAT YOU NOT RUN THIS ON A PRODUCTION INSTANCE AS THE CONVERSION CHANGES YOUR DATA, and THE CHANGES CANNOT BE UNDONE EXCEPT BY REVERTING TO A BACKUP VERSION OF YOUR DATA PRIOR TO RUNNING THE CONVERSION.**
