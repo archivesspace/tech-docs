@@ -1,31 +1,31 @@
 # Resources for developers
 
-This information will be useful for those creating ArchivesSpace plugins, contributing to the core codebase, or integrating ArchivesSpace withother systems. Additional documentation is available for [installing, configuring and maintaining an ArchivesSpace instance](./readme_implement.html) and to provide [a technical overview of ArchivesSpace](./readme_evaluate.html) for evaluating technical requirements and capabilities.
+This information will be useful for those creating ArchivesSpace plugins, contributing to the core codebase, or integrating ArchivesSpace withother systems. Additional documentation is available for [installing, configuring and maintaining an ArchivesSpace instance](./readme_implement.md) and to provide [a technical overview of ArchivesSpace](./readme_evaluate.md) for evaluating technical requirements and capabilities.
 
 > If you discover errors in the documentation, or would like to suggest or contribute additional documentation, please submit an [issue](https://github.com/archivesspace/tech-docs/issues) or [pull request](https://github.com/archivesspace/tech-docs/pulls) as appropriate.
 
 ## Setting up a development environment
-* [Running a development version of ArchivesSpace](./development/dev.html)
-* [Building an ArchivesSpace release](./development/release.html)
-* [Docker](./development/docker.html)
-* [DB versions listed by release](./development/release_schema_versions.html)
-* [User Interface Test Suite](./development/ui_test.html)
-* [Upgrading Rack for ArchivesSpace](./development/jruby-rack-build.html)
-* [ArchivesSpace Releases](./development/releases.html)
-* [Using the VS Code editor for local development](./development/vscode.html)
+* [Running a development version of ArchivesSpace](./development/dev.md)
+* [Building an ArchivesSpace release](./development/release.md)
+* [Docker](./development/docker.md)
+* [DB versions listed by release](./development/release_schema_versions.md)
+* [User Interface Test Suite](./development/ui_test.md)
+* [Upgrading Rack for ArchivesSpace](./development/jruby-rack-build.md)
+* [ArchivesSpace Releases](./development/releases.md)
+* [Using the VS Code editor for local development](./development/vscode.md)
 
 ## Building integrations and plugins
-* [ArchivesSpace Plug-ins](./customization/plugins.html)
-* [Working with the ArchivesSpace Database](./architecture/backend/database.html)
+* [ArchivesSpace Plug-ins](./customization/plugins.md)
+* [Working with the ArchivesSpace Database](./architecture/backend/database.md)
 * [Working with the ArchivesSpace API](./api)
-* [Customizing text in ArchivesSpace](./customization/locales.html)
-* [Theming ArchivesSpace](./customization/theming.html)
-* [Managing frontend assets with Bower](./customization/bower.html)
+* [Customizing text in ArchivesSpace](./customization/locales.md)
+* [Theming ArchivesSpace](./customization/theming.md)
+* [Managing frontend assets with Bower](./customization/bower.md)
 
 ## Exporting data from ArchivesSpace
-* [ArchivesSpace repository EAD Exporter](./import_export/ead_exporter.html)
-* [ArchivesSpace XSL stylesheets](./import_export/xsl_stylesheets.html)
-* [Creating Custom Reports](./customization/reports.html)
+* [ArchivesSpace repository EAD Exporter](./import_export/ead_exporter.md)
+* [ArchivesSpace XSL stylesheets](./import_export/xsl_stylesheets.md)
+* [Creating Custom Reports](./customization/reports.md)
 
 ## Repositories and CoC
 * [Code of Conduct](https://github.com/archivesspace/archivesspace/blob/master/CODE_OF_CONDUCT.html)
