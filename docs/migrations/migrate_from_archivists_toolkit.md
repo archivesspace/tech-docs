@@ -14,14 +14,14 @@ These guidelines are for migrating data from Archivists' Toolkit 2.0 Update 16 t
 
 * An AT subject record will be set to type 'topical' if it does not have a valid AT type statement or its type is not one of the types in ArchivesSpace. Several other AT LookupList values are not present in ArchivesSpace. These LookupList values cannot be added during the AT migration process and will therefore need to be changed in AT prior to migration. For full details on enum (controlled value list) mappings see the data map. You can use the AT Lookup List tool to change values that will not map correctly, as specified by the data map.
 * Record audit information (created by, date created, modified by, and date modified) will not migrate from AT to ArchivesSpace. ArchivesSpace will assign new audit data to each record as it is imported into ArchivesSpace. The exception to this is that the username of the user who creates an accession record will be migrated to the accession general note field.
-* Implement an ArchivesSpace production version including the setting up of a MySQL database to migrate into. Instructions are included at [Getting Started with ArchivesSpace](../administration/getting_started.html) and [Running ArchivesSpace against MySQL](../provisioning/mysql.html).
+* Implement an ArchivesSpace production version including the setting up of a MySQL database to migrate into. Instructions are included at [Getting Started with ArchivesSpace](../administration/getting_started.md) and [Running ArchivesSpace against MySQL](../provisioning/mysql.md).
 
 ## Preparing for Migrating AT Data
 
 * The migration process is iterative in nature. A migration report is generated at the end of each migration routine. The report indicates errors or issues occurring with the migration. (An example of an AT migration report is provided at the end of this document.) You should use this report to determine if any problems observed in the migration results are best remedied in the source data or in the migrated data in the ArchivesSpace instance. If you address the problems in the source data, then you can simply conduct the migration again.
 * However, once you accept the migration and address problems in the migrated data, you cannot migrate the source data again without establishing a new target ArchivesSpace instance. Migrating data to a previously migrated ArchivesSpace database may result in a great many duplicate record error messages and may cause unrecoverable damage to the ArchivesSpace database.
 * Please note, data migration can be a very memory and time intensive task due to the large number of records being transferred. As such, we recommend running the AT migration on a computer with at least 2GB of available memory.
-* Make sure your ArchivesSpace MySQL database is setup correctly, following the documentation in the ArchivesSpace README file. When creating a MySQL database, you MUST set the default character encoding for the database to be UTF8. This is particularly important if you use a MySQL client, such as Navicat, MySQL Workbench, phpMyAdmin, etc., to create the database. See [Running ArchivesSpace against MySQL](../provisioning/mysql.html) for more details.
+* Make sure your ArchivesSpace MySQL database is setup correctly, following the documentation in the ArchivesSpace README file. When creating a MySQL database, you MUST set the default character encoding for the database to be UTF8. This is particularly important if you use a MySQL client, such as Navicat, MySQL Workbench, phpMyAdmin, etc., to create the database. See [Running ArchivesSpace against MySQL](../provisioning/mysql.md) for more details.
 * Increase the maximum Java heap space if you are experiencing time out events. To do so:
   * Stop the current ArchivesSpace instance
   * Open in a text editor the file "archivesspace.sh" (Linux / Mac OSX) or archivesspace.bat (Windows). The file is located in the ArchivesSpace installation directory.
@@ -36,7 +36,7 @@ These guidelines are for migrating data from Archivists' Toolkit 2.0 Update 16 t
 * Make sure the ArchivesSpace instance that you are migrating into is up and running.
 * Restart the AT instance to load the newly installed plug-in. To run the plug-in go to the "Tools" menu, then select "Script Runtime v1.0", and finally "ArchivesSpace Data Migrator". This will cause the plug-in window to display.
 
-![AT migrator](../images/at_migrator.jpg)
+![AT migrator](/images/at_migrator.jpg)
 * Change the default information in the Migrator UI:
   * **Threads** – Used to specify the number of clients that are used to copy Resource records simultaneously. The limit on the number of clients depends on the record size and allocated memory. A number from 4 to 6 is generally a good value to use, but can be reduced if an "Out of Memory Exception" occurs.
   * **Host** – The URL and port number of the ArchivesSpace backend server
