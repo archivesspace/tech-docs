@@ -9,12 +9,12 @@ These components interact by exchanging JSON data.  The format of this
 data is defined by a class called JSONModel.
 
 * [JSONModel -- a validated ArchivesSpace record](./jsonmodel.md)
-* [The ArchivesSpace backend](./backend/README.md)
-* [The ArchivesSpace staff interface](./frontend/README.md)
-* [Background Jobs](./jobs/README.md)
-* [Search indexing](./search/README.md)
-* [The ArchivesSpace public user interface](./public/README.md)
-* [OAI-PMH interface](./oai-pmh/README.md)
+* [The ArchivesSpace backend](./backend/index.md)
+* [The ArchivesSpace staff interface](./frontend/index.md)
+* [Background Jobs](./jobs/index.md)
+* [Search indexing](./search/index.md)
+* [The ArchivesSpace public user interface](./public/index.md)
+* [OAI-PMH interface](./oai-pmh/index.md)
 
 ## Languages, platforms, and included open source projects
 
