@@ -1,6 +1,6 @@
 # Resources for developers
 
-This information will be useful for those creating ArchivesSpace plugins, contributing to the core codebase, or integrating ArchivesSpace withother systems. Additional documentation is available for [installing, configuring and maintaining an ArchivesSpace instance](implement.md) and to provide [a technical overview of ArchivesSpace](evaluate.md) for evaluating technical requirements and capabilities.
+This information will be useful for those creating ArchivesSpace plugins, contributing to the core codebase, or integrating ArchivesSpace withother systems. Additional documentation is available for [installing, configuring and maintaining an ArchivesSpace instance](./implement.md) and to provide [a technical overview of ArchivesSpace](./evaluate.md) for evaluating technical requirements and capabilities.
 
 > If you discover errors in the documentation, or would like to suggest or contribute additional documentation, please submit an [issue](https://github.com/archivesspace/tech-docs/issues) or [pull request](https://github.com/archivesspace/tech-docs/pulls) as appropriate.
 
@@ -17,7 +17,7 @@ This information will be useful for those creating ArchivesSpace plugins, contri
 ## Building integrations and plugins
 * [ArchivesSpace Plug-ins](./customization/plugins.md)
 * [Working with the ArchivesSpace Database](./architecture/backend/database.md)
-* [Working with the ArchivesSpace API](./api)
+* [Working with the ArchivesSpace API](./api/index.md)
 * [Customizing text in ArchivesSpace](./customization/locales.md)
 * [Theming ArchivesSpace](./customization/theming.md)
 * [Managing frontend assets with Bower](./customization/bower.md)

@@ -1,7 +1,7 @@
 # Tuning ArchivesSpace
 
 ArchivesSpace is a stack of web applications which may require special tuning in order to run most effectively. This is especially the case for institutions with lots of data or many simultaneous users editing metadata.
-Keep in mind that ArchivesSpace can be hosted on multiple server, either in a [multitenant setup](clustering.md) or by deploying the various applications ( i.e. backend, frontend, public, solr, & indexer ) on separate servers.
+Keep in mind that ArchivesSpace can be hosted on multiple server, either in a [multitenant setup](./clustering.md) or by deploying the various applications ( i.e. backend, frontend, public, solr, & indexer ) on separate servers.
 
 ## Application Settings
 
@@ -46,4 +46,4 @@ Keep a close eye on the memory available to the server, as well as your InnoDB b
 
 ## Solr
 
-The internet is full of many suggestions on how to optimize a Solr index. [Running an external Solr index](solr.md) can be beneficial to the performance of ArchivesSpace, since that moves the index to its own server.
+The internet is full of many suggestions on how to optimize a Solr index. [Running an external Solr index](./solr.md) can be beneficial to the performance of ArchivesSpace, since that moves the index to its own server.

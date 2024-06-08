@@ -16,14 +16,18 @@ You can find other examples in the following plugin repositories. The ArchivesSp
 Plug-ins are enabled by placing them in the `plugins` directory, and referencing them in the
 ArchivesSpace configuration, `config/config.rb`. For example:
 
-    AppConfig[:plugins] = ['local', 'hello_world', 'my_plugin']
+```
+AppConfig[:plugins] = ['local', 'hello_world', 'my_plugin']
+```
 
 This configuration assumes the following directories exist:
 
-    plugins
-      hello_world
-      local
-      my_plugin
+```
+plugins
+  hello_world
+  local
+  my_plugin
+```
 
 Note that the order that the plug-ins are listed in the `:plugins` configuration option
 determines the order in which they are loaded by the application.
@@ -34,28 +38,30 @@ The directory structure within a plug-in is similar to the structure of the core
 The following shows the supported plug-in structure. Files contained in these directories can
 be used to override or extend the behavior of the core application.
 
-    backend
-      controllers ......... backend endpoints
-      model ............... database mapping models
-      converters .......... classes for importing data
-      job_runners ......... classes for defining background jobs
-      plugin_init.rb ...... if present, loaded when the backend first starts
-      lib/bulk_import ..... bulk import processor
-    frontend
-      assets .............. static assets (such as images, javascript) in the staff interface
-      controllers ......... controllers for the staff interface
-      locales ............. locale translations for the staff interface
-      views ............... templates for the staff interface
-      plugin_init.rb ...... if present, loaded when the staff interface first starts
-    public
-      assets .............. static assets (such as images, javascript) in the public interface
-      controllers ......... controllers for the public interface
-      locales ............. locale translations for the public interface
-      views ............... templates for the public interface
-      plugin_init.rb ...... if present, loaded when the public interface first starts
-    migrations ............ database migrations
-    schemas ............... JSONModel schema definitions
-    search_definitions.rb . Advanced search fields
+```
+backend
+  controllers ......... backend endpoints
+  model ............... database mapping models
+  converters .......... classes for importing data
+  job_runners ......... classes for defining background jobs
+  plugin_init.rb ...... if present, loaded when the backend first starts
+  lib/bulk_import ..... bulk import processor
+frontend
+  assets .............. static assets (such as images, javascript) in the staff interface
+  controllers ......... controllers for the staff interface
+  locales ............. locale translations for the staff interface
+  views ............... templates for the staff interface
+  plugin_init.rb ...... if present, loaded when the staff interface first starts
+public
+  assets .............. static assets (such as images, javascript) in the public interface
+  controllers ......... controllers for the public interface
+  locales ............. locale translations for the public interface
+  views ............... templates for the public interface
+  plugin_init.rb ...... if present, loaded when the public interface first starts
+migrations ............ database migrations
+schemas ............... JSONModel schema definitions
+search_definitions.rb . Advanced search fields
+```
 
 **Note** that `backend/lib/bulk_import` is the only directory in `backend/lib/` that is loaded by the plugin manager.  Other files in `backend/lib/` will not be loaded during startup.
 
@@ -70,9 +76,11 @@ It is not necessary for a plug-in to have all of these directories. For example,
 some part of a locale file for the staff interface, you can just add the following structure
 to the local plug-in:
 
-    plugins/local/frontend/locales/en.yml
+```
+plugins/local/frontend/locales/en.yml
+```
 
-More detailed information about overriding locale files is found in [Customizing text in ArchivesSpace](locales.md)
+More detailed information about overriding locale files is found in [Customizing text in ArchivesSpace](./locales.md)
 
 
 ## Overriding the visual (web) presentation
@@ -85,14 +93,14 @@ For example, if you want to override the appearance of the "Welcome" [home] page
 Unless you want to write inline style or javascript (which may be practiceable for a template or two), best practice is to create `plugins/my_fine_plugin/public/views/layout_head.html.erb` or `plugins/my_fine_plugin/frontend/views/layout_head.html.erb`, which contains the HTML statements to incorporate your javascript or css into the `<HEAD>` element of the template.  Here's an example:
 
 * For the public interface, I want to change the size of the text in all links when the user is hovering.
-    - I create `plugins/my_fine_plugin/public/assets/my.css`:
-        ```css
-            a:hover {font-size: 2em;}
-         ```
-    - I create `plugins/my_fine_plugin/public/views/layout_head.html.erb`, and insert:
-      ```ruby
-      <%= stylesheet_link_tag "#{@base_url}/assets/my.css", media: :all %>
-      ```
+  - I create `plugins/my_fine_plugin/public/assets/my.css`:
+    ```css
+    a:hover {font-size: 2em;}
+    ```
+  - I create `plugins/my_fine_plugin/public/views/layout_head.html.erb`, and insert:
+    ```ruby
+    <%= stylesheet_link_tag "#{@base_url}/assets/my.css", media: :all %>
+    ```
 * For the public interface, I want to add some javascript behavior such that, when the user hovers over a list item, astericks appear
     - I create `plugins/my_fine_plugin/public/assets/my.js`"
         ```javascript

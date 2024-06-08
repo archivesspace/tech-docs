@@ -1,6 +1,6 @@
 # ArchivesSpace technical overview
 
-This documentation will provide implementers and administrators with the information needed to install, configure and maintain an ArchivesSpase instance. Additional documentation is available [for developers](develop.md) and for [installing, configuring and maintaining an ArchivesSpace instance](implement.md).
+This documentation will provide implementers and administrators with the information needed to install, configure and maintain an ArchivesSpase instance. Additional documentation is available [for developers](./develop.md) and for [installing, configuring and maintaining an ArchivesSpace instance](./implement.md).
 
 > If you discover errors in the documentation, or would like to suggest or contribute additional documentation, please submit an [issue](https://github.com/archivesspace/tech-docs/issues) or [pull request](https://github.com/archivesspace/tech-docs/pulls) as appropriate.
 
