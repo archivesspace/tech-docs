@@ -1,15 +1,16 @@
 {
   "name": "tech-docs",
-  "version": "1.0.0",
-  "description": "--- permalink: / ---",
-  "main": "index.js",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "Brian Zelip",
+    "email": "brian.zelip@lyrasis.org"
+  },
+  "license": "ECL-2.0",
   "devDependencies": {
     "@11ty/eleventy": "3.0.0-alpha.10"
   },
