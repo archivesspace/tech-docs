@@ -12,5 +12,8 @@
   "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "3.0.0-alpha.10"
+  },
+  "dependencies": {
+    "linkedom": "^0.18.3"
   }
 }

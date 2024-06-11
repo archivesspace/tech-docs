@@ -1,4 +1,5 @@
-import { InputPathToUrlTransformPlugin } from '@11ty/eleventy';
+import { parseHTML } from 'linkedom';
+import InternalLink from './src/lib/InternalLink.js';
 
 export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ 'src/assets/css': 'css' });
@@ -7,7 +8,29 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addGlobalData('layout', 'default.html');
 
-  eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
+  eleventyConfig.addTransform(
+    'tranform-internal-links-for-html',
+    async function (content, outputPath) {
+      // TODO add this function to the InternalLink class as a static method
+      if (!outputPath?.endsWith('.html')) {
+        return content;
+      }
+
+      const inputPath = this.inputPath;
+      const internalLinkRegex = /^(\.\/|\.\.\/)*.*\.md$/;
+      const { document } = parseHTML(content);
+      const internalLinks = Array.from(
+        document.querySelectorAll('a[href]')
+      ).filter((link) => internalLinkRegex.test(link.href));
+
+      internalLinks.forEach((link) => {
+        const il = new InternalLink(link.href, inputPath);
+        link.setAttribute('href', il.newHref);
+      });
+
+      return document.documentElement.outerHTML;
+    }
+  );
 
   return {
     dir: {
