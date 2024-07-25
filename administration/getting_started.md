@@ -5,10 +5,11 @@
 * Java 8 or 11 only (OpenJDK should be fine)
 * At least 1024 MB RAM allocated to the application; at least 2 GB for optimal performance.
 * Solr (for ArchivesSpace versions after 3.1)
+* NodeJS
 
 ArchivesSpace has been tested on Ubuntu Linux, Mac OS X, and Windows.
 
-While ArchivesSpace does include an embedded database, MySQL is required for production use. 
+While ArchivesSpace does include an embedded database, MySQL is required for production use.
 
 (While not officially supported by ArchivesSpace, some community members use MariaDB so there is some community support for version 10.4.10 only.)
 
@@ -29,8 +30,11 @@ You can check your Java version by running the command:
 If you are running an earlier version of java upgrade to 1.8 or 1.11 (not the newest version of Java). If you are running a newer version of Java you should revert back to 1.8 or 1.11 or force your machine to use 1.8 or 1.11 for ArchivesSpace.
 
 When you extract the `.zip` file, it will create a directory called
-`archivesspace`. Next, follow the instructions for setting up
-[MySQL](../provisioning/mysql.html), and for version 3.2 and above, [Solr](../provisioning/solr.html).
+`archivesspace`. Next, follow the instructions for setting up:
+
+* [MySQL](../provisioning/mysql.html)
+* The minimum supported version is v18.20.2. We recommend installing the latest LTS version of Node.js. See the [Node.js download page](https://nodejs.org/en/download/) for instructions.
+* for version 3.2 and above, [Solr](../provisioning/solr.html) is also required
 
 **From any ArchivesSpace version > 3.1.0 external Solr is required. Earlier versions provided an embedded Solr v4 instance, which is now unsupported due to its age.**
 
