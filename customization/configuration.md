@@ -175,8 +175,7 @@ Number of Solr backups to keep (default = 1)
 
 Directory to store Solr backups.
 
-`AppConfig[:[solr](https://archivesspace.github.io/tech-docs/provisioning/solr.html)_backup_directory] = proc { File.join(AppConfig[:data_directory], "solr_backups") }`
-
+`AppConfig[:solr_backup_directory] = proc { File.join(AppConfig[:data_directory], "solr_backups") }`
 
 ### Default Solr params
 
