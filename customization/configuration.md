@@ -18,7 +18,7 @@ ArchivesSpace. Be sure that your new settings are not commented out
 Set your database name and credentials. The default specifies that the embedded database should be used.
 It is recommended to use a MySQL database instead of the embedded database.
 For more info, see
-[Running ArchivesSpace against MySQL](https://github.com/archivesspace/tech-docs/blob/master/provisioning/mysql.html)
+[Running ArchivesSpace against MySQL](https://archivesspace.github.io/tech-docs/provisioning/mysql.html)
 
 This is an example of specifying MySQL credentials:
 
@@ -175,7 +175,7 @@ Number of Solr backups to keep (default = 1)
 
 Directory to store Solr backups.
 
-`AppConfig[:solr_backup_directory] = proc { File.join(AppConfig[:data_directory], "solr_backups") }`
+`AppConfig[:[solr](https://archivesspace.github.io/tech-docs/provisioning/solr.html)_backup_directory] = proc { File.join(AppConfig[:data_directory], "solr_backups") }`
 
 
 ### Default Solr params
