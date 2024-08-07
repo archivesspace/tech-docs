@@ -102,7 +102,7 @@ ASPACE_TEST_BACKEND_URL='http://localhost:4567' ./build/run frontend:test -Dpatt
 Note, however, that some tests are dependent on a sequence of ordered steps and may not always run cleanly in isolation.  In this case, more than the example provided may be run, and/or unexpected fails may result.
 
 ### Saved pages on spec failures
-When frontend specs fail, a screenshot and an html page is saved for each failed example under `frontend/tmp/capybara`. On the CI, a zip file will be available for each failed CI job run under Summary -> Artifacts. In order to load the assets (and not see plain html) when viewing the saved html pages, a dev server should be running locally on port 3000, see [Running a development version of ArchivesSpace](./dev.html).
+When frontend specs fail, a screenshot and an html page is saved for each failed example under `frontend/tmp/capybara`. On the CI, a zip file will be available for each failed CI job run under Summary -> Artifacts. In order to load the assets (and not see plain html) when viewing the saved html pages, a dev server should be running locally on port 3000, see [Running a development version of ArchivesSpace(https://archivesspace.github.io/tech-docs/development/dev.html).
 
 ### Keeping the test database up to date
 When calling `./build/run frontend:test` to run frontend specs, the following steps happen before the actual specs run:
