@@ -25,7 +25,7 @@ the application. Everything else will be treated as "best effort" community-led 
 
 ## Install Solr
 
-Refer to the [Solr documentation](https://solr.apache.org/guide/8_10/installing-solr.html)
+Refer to the [Solr documentation](https://solr.apache.org/guide/8_11/installing-solr.html)
 for instructions on setting up Solr on your server.
 
 You will download the Solr package and extract it to a folder of your choosing. Do not start Solr
