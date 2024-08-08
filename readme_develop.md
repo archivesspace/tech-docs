@@ -28,7 +28,7 @@ This information will be useful for those creating ArchivesSpace plugins, contri
 * [Creating Custom Reports](./customization/reports.html)
 
 ## Repositories and CoC
-* [Code of Conduct](https://github.com/archivesspace/archivesspace/blob/master/CODE_OF_CONDUCT.html)
+* [Code of Conduct](https://archivesspace.org/archivesspace-code-of-conduct)
 * [Main ArchivesSpace Repository](https://github.com/archivesspace/archivesspace)
 * [Plugins supported by the Program Team](https://github.com/archivesspace-plugins)
 * [Repository for community development projects](https://github.com/archivesspace-labs)

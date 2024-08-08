@@ -40,7 +40,7 @@ uncher/launcher.rb" > "logs/archivesspace.out" 2>&1
 
 ## MySQL
 
-The ArchivesSpace application can hit a database server rather hard, since it’s a metadata rich application. There are many articles online about how to tune a MySQL database. A good place to start is try something like [MySQL Tuner](http://mysqltuner.com/) or [Tuning Primer](https://rtcamp.com/tutorials/mysql/tuningprimer/) which can give good hints on possible tweaks to make to your MySQL server configuration.
+The ArchivesSpace application can hit a database server rather hard, since it’s a metadata rich application. There are many articles online about how to tune a MySQL database. A good place to start is try something like [MySQL Tuner](http://mysqltuner.com/) or [Tuning Primer](https://rtcamp.com/tutorials/mysql/tuning-primer/) which can give good hints on possible tweaks to make to your MySQL server configuration.
 
 Keep a close eye on the memory available to the server, as well as your InnoDB buffer pool.
 
