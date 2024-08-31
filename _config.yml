@@ -23,3 +23,6 @@ github: # recreate gh-pages api
   repository_nwo: archivesspace/tech-docs
   owner_url: https://github.com/archivesspace
   owner_name: ArchivesSpace
+  edit_base_url: https://github.com/archivesspace/tech-docs/edit/master/
+
+jira_issues: https://archivesspace.atlassian.net/jira/software/projects/TD/issues
