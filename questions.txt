@@ -1,0 +1,81 @@
+# Questions and answers
+
+## Q1
+
+this.inputPath is index.md,
+link.href is a relative path,
+link.href basename is index.md
+
+### A1
+
+cool uri it
+
+## Q2
+
+this.inputPath is index.md,
+link.href is a relative path,
+link.href basename is not index.md
+
+### A2
+
+cool uri it
+
+## Q3
+
+this.inputPath is index.md,
+link.href is a directory parent,
+link.href basename is index.md
+
+### A3
+
+cool uri it
+
+## Q4
+
+this.inputPath is index.md,
+link.href is a directory parent,
+link.href basename is not index.md
+
+### A4
+
+cool uri it
+
+## Q5
+
+this.inputPath is not index.md,
+link.href is a relative path,
+link.href basename is index.md
+
+### A5
+
+go up one, cool uri it
+
+## Q6
+
+this.inputPath is not index.md,
+link.href is a relative path,
+link.href basename is not index.md
+
+### A6
+
+go up one, cool uri it
+
+## Q7
+
+this.inputPath is not index.md,
+link.href is a directory parent,
+link.href basename is index.md
+
+### A7
+
+go up one, cool uri it
+
+## Q8
+
+this.inputPath is not index.md,
+link.href is a directory parent,
+link.href basename is not index.md
+
+### A8
+
+go up one, cool uri it
