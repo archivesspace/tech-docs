@@ -23,3 +23,5 @@ github: # recreate gh-pages api
   repository_nwo: archivesspace/tech-docs
   owner_url: https://github.com/archivesspace
   owner_name: ArchivesSpace
+  edit_base_url: https://github.com/archivesspace/tech-docs/edit/master/
+  new_issue_base_url: https://github.com/archivesspace/tech-docs/issues/new?title=Problem+on+
