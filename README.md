@@ -1,5 +1,20 @@
 # Porting tech-docs from Jekyll to 11ty
 
+## On the value, or role, of this branch
+
+So far, its main value lies in the ./docs dir, everything else is just 11ty implementation details. This branch should likely not be the basis for newer more official work, rather, it should be used as a reference point that provides the docs and boilerplate to manually copy, while altering newly changed files and factoring in the tests from recent PRs.
+
+## Going forward
+
+There is a need to add markdown linting to ensure that internal links follow the rules described herein elsewhere.
+
+### On markdownlint
+
+See the following libs:
+
+- https://github.com/DavidAnson/markdownlint
+- https://www.npmjs.com/package/markdownlint-rule-relative-links
+
 ## Rules for internal links to other docs pages
 
 Interal LINKS MUST be relative and start with './' or '../', and end in '.md'
