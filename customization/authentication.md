@@ -4,8 +4,8 @@ ArchivesSpace supports LDAP-based authentication out of the box, but you can
 authenticate against other password-based user directories by defining your own
 authentication handler, creating a plug-in, and configuring your ArchivesSpace
 instance to use it.  If you would rather not have to create your own handler,
-there is a plug-in available that uses OAUTH user authentication that you can add
-to your ArchivesSpace installation: https://github.com/lyrasis/aspace-oauth.
+there is a [plug-in](https://github.com/lyrasis/aspace-oauth) available that uses OAUTH user authentication that you can add
+to your ArchivesSpace installation.
 
 ## Creating a new authentication handler class to use in a plug-in
 
