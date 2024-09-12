@@ -1,36 +1,27 @@
 ---
-title: Welcome to Starlight
+title: Tech Docs
 description: Get started building your docs site with Starlight.
-template: splash
+tableOfContents: false
 hero:
-  tagline: Congrats on setting up a new Starlight project!
-  image:
-    file: ../../assets/houston.webp
-  actions:
-    - text: Example Guide
-      link: /guides/example/
-      icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
-      variant: minimal
+  tagline: The technical documentation covers a range of topics of interest to those working with ArchivesSpace in different technical capacities, and is organized in order to help you find the information most appropriate to your role.
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
-
-<CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+<CardGrid>
+	<Card title="ArchivesSpace technical overview">
+		For anyone who needs to evaluate technical requirements and capabilities of ArchivesSpace
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
+	<Card title="Installing, configuring and maintaining an ArchivesSpace instance">
+		For anyone responsible for installing and/or maintaining an ArchivesSpace instance
 	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
+	<Card title="Developer resources">
+		For anyone who needs to create plugins, integrate ArchivesSpace with other systems, or contribute to core code
 	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+	<Card title="Further technical documentation resources">
+    - [ArchivesSpace API Reference](http://archivesspace.github.io/archivesspace/api/)
+    - [ArchivesSpace YARD Docs](http://archivesspace.github.io/archivesspace/doc/)
+    - [Technical Documentation website](https://archivesspace.github.io/tech-docs/)
+    - [Github repository](https://github.com/archivesspace/tech-docs)
 	</Card>
 </CardGrid>
