@@ -1,6 +1,7 @@
-# Ignore Mac system files
-/.DS_Store
-/*/.DS_Store
-_site
-.jekyll-cache
-node_modules
+node_modules/
+dist/
+.astro/
+npm-debug.log*
+pnpm-debug.log*
+.DS_Store
+.env
