@@ -1,8 +1,10 @@
-# Configuring LDAP authentication
+---
+title: Configuring LDAP authentication
+---
 
 ArchivesSpace can manage its own user directory, but can also be
 configured to authenticate against one or more LDAP directories by
-specifying them in the application's configuration file.  When a user
+specifying them in the application's configuration file. When a user
 attempts to log in, each authentication source is tried until one
 matches.
 
@@ -22,17 +24,16 @@ connecting to `ldap://ldap.example.com:389/`, binding anonymously,
 searching the `ou=people,dc=example,dc=com` tree for `uid = <username>`.
 
 If the user is found, ArchivesSpace authenticates them by
-binding using the password specified.  Finally, the `:attribute_map`
+binding using the password specified. Finally, the `:attribute_map`
 entry specifies how LDAP attributes should be mapped to ArchivesSpace
 user attributes (mapping LDAP's `cn` to ArchivesSpace's `name` in the
 above example).
 
-Many LDAP directories don't support anonymous binding.  To integrate
+Many LDAP directories don't support anonymous binding. To integrate
 with such a directory, you will need to specify the username and
 password of a user with permission to connect to the directory and
-search for other users.  Modifying the previous example for this case
+search for other users. Modifying the previous example for this case
 looks like this:
-
 
      AppConfig[:authentication_sources] = [{
                                              :model => 'LDAPAuth',
@@ -45,8 +46,7 @@ looks like this:
                                              :bind_password => 'secretsquirrel',
      }]
 
-
-Finally, some LDAP directories enforce the use of SSL encryption.  To
+Finally, some LDAP directories enforce the use of SSL encryption. To
 configure ArchivesSpace to connect via LDAPS, change the port as
 appropriate and specify the `encryption` option:
 

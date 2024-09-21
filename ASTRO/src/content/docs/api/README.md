@@ -1,8 +1,6 @@
 ---
-permalink: /api/
+title: Working with the ArchivesSpace API
 ---
-
-# Working with the ArchivesSpace API
 
 This documentation provides general information on working with the API. For detailed documentation of specific endpoints, see the [API reference](http://archivesspace.github.io/archivesspace/api/), which is maintained separately.
 
@@ -14,12 +12,12 @@ with the appropriate permissions. By sending a request like:
      POST /users/admin/login?password=login
 
 your authentication request will be validated, and a session token
-will be returned in the JSON response for your request.  To remain
+will be returned in the JSON response for your request. To remain
 authenticated, provide this token with subsequent requests in the
-`X-ArchivesSpace-Session` header.  For example:
+`X-ArchivesSpace-Session` header. For example:
 
      X-ArchivesSpace-Session: 8e921ac9bbe9a4a947eee8a7c5fa8b4c81c51729935860c1adfed60a5e4202cb
-     
+
 Since not all backend/API end points require authentication, it is best to restrict access to port 8089 to only IP addresses you trust. Your firewall should be used to specify a range of IP addresses that are allowed to call your ArchivesSpace API endpoint. This is commonly called whitelisting or allowlisting.
 
 ### Example requests using CURL
@@ -61,7 +59,7 @@ curl -H "X-ArchivesSpace-Session: $SESSION" "http://localhost:8089/repositories/
 ## CRUD
 
 The ArchivesSpace API provides CRUD-style interactions for a number of
-different "top-level" record types.  Working with records follows a
+different "top-level" record types. Working with records follows a
 fairly standard pattern:
 
      # Get a paginated list of accessions from repository '123'
@@ -78,11 +76,9 @@ fairly standard pattern:
      POST /repositories/123/accessions/456
      {... a JSON document satisfying JSONModel(:accession) here ...}
 
-
 ## Performing API requests
 
 > Additional documentation is needed for these sections - please consider contributing documentation via a pull request to this repo
-
 
 ### GET requests
 
@@ -102,7 +98,6 @@ fairly standard pattern:
 
 > Additional documentation needed
 
-
 ### POST requests
 
 #### Updating existing records
@@ -112,7 +107,6 @@ fairly standard pattern:
 #### Creating new records
 
 > Additional documentation needed
-
 
 ### DELETE requests
 

@@ -1,4 +1,6 @@
-# Working with the ArchivesSpace API
+---
+title: Working with the ArchivesSpace API
+---
 
 > See **API section** for more detailed documentation
 
@@ -10,17 +12,16 @@ with the appropriate permissions. By sending a request like:
      POST /users/admin/login?password=login
 
 your authentication request will be validated, and a session token
-will be returned in the JSON response for your request.  To remain
+will be returned in the JSON response for your request. To remain
 authenticated, provide this token with subsequent requests in the
-`X-ArchivesSpace-Session` header.  For example:
+`X-ArchivesSpace-Session` header. For example:
 
      X-ArchivesSpace-Session: 8e921ac9bbe9a4a947eee8a7c5fa8b4c81c51729935860c1adfed60a5e4202cb
-
 
 ## CRUD
 
 The ArchivesSpace API provides CRUD-style interactions for a number of
-different "top-level" record types.  Working with records follows a
+different "top-level" record types. Working with records follows a
 fairly standard pattern:
 
      # Get a paginated list of accessions from repository '123'

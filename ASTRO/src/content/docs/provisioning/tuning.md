@@ -1,4 +1,6 @@
-# Tuning ArchivesSpace
+---
+title: Tuning ArchivesSpace
+---
 
 ArchivesSpace is a stack of web applications which may require special tuning in order to run most effectively. This is especially the case for institutions with lots of data or many simultaneous users editing metadata.
 Keep in mind that ArchivesSpace can be hosted on multiple server, either in a [multitenant setup](clustering.html) or by deploying the various applications ( i.e. backend, frontend, public, solr, & indexer ) on separate servers.
@@ -11,14 +13,13 @@ An important thing to note is that since ArchivesSpace is a Java application, it
 
 These settings are:
 
-*   ASPACE_JAVA_XMX : Maximum heap space ( maps to Java’s Xmx, default "Xmx1024m" )
-*   ASPACE_JAVA_XSS : Thread stack size ( maps to Xss, default "Xss2m" )
-*   ASPACE_GC_OPTS : Options used by the Java garbage collector ( default : "-XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -XX:NewRatio=1" )
+- ASPACE_JAVA_XMX : Maximum heap space ( maps to Java’s Xmx, default "Xmx1024m" )
+- ASPACE_JAVA_XSS : Thread stack size ( maps to Xss, default "Xss2m" )
+- ASPACE_GC_OPTS : Options used by the Java garbage collector ( default : "-XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -XX:NewRatio=1" )
 
 To modify these settings, Linux users can either export an environment variable ( e.g. $ export ASPACE_JAVA_XMX="Xmx2048m" ) or edit the archivesspace.sh startup script and modify the defaults.
 
 Windows users must edit the archivesspace.bat file.
-
 
 If you're having trouble with errors like `java.lang.OutOfMemoryError` try doubling the `ASPACE_JAVA_XMX`. On Linux you can do this either by setting an environment variable like `$ export ASPACE_JAVA_XMX="Xmx2048m"` or by editing archivsspace.sh:
 
@@ -27,6 +28,7 @@ if [ "$ASPACE_JAVA_XMX" = "" ]; then
     ASPACE_JAVA_XMX="-Xmx2048m"
 fi
 ```
+
 For Windows, you'll change archivesspace.bat:
 
 ```
@@ -34,7 +36,6 @@ java -Darchivesspace-daemon=yes %JAVA_OPTS% -XX:+CMSClassUnloadingEnabled -XX:+U
 mx2048m -Dfile.encoding=UTF-8 -cp "%GEM_HOME%\gems\jruby-rack-1.1.12\lib\*;lib\*;launcher\lib\*!JRUBY!" org.jruby.Main "la
 uncher/launcher.rb" > "logs/archivesspace.out" 2>&1
 ```
-
 
 **NOTE: THE APPLICATION WILL NOT USE THE AVAILABLE MEMORY UNLESS YOU SET THE MAXIMUM HEAP SIZE TO ALLOCATE IT** For example, if your server has 4 gigs of RAM, but you haven’t adjusted the ArchivesSpace settings, you’ll only be using 1 gig.
 

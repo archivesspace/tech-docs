@@ -1,4 +1,6 @@
-# Building an ArchivesSpace release
+---
+title: Building an ArchivesSpace release
+---
 
 - [Pre-Release Steps](#prerelease)
 - [Build the Docs](#docs)
@@ -20,13 +22,14 @@ git clone https://github.com/archivesspace/archivesspace.git
 If you are building a major or minor version (see [https://semver.org](https://semver.org)),
 start by creating a branch for the release and all future patch releases:
 
-``` shell
+```shell
 git checkout -b release-v1.0.x
 git tag v1.0.0
 ```
+
 If you are building a patch version, just check out the existing branch and see below:
 
-``` shell
+```shell
 git checkout release-v1.0.x
 ```
 
@@ -46,7 +49,7 @@ Consider the following scenario. The current production release is v1.0.0 and a 
 bug has been discovered. In the time since v1.0.0 was released, new features have been
 added to the master branch, intended for release in v1.1.0:
 
-``` shell
+```shell
 git checkout -b oh-no-some-migration-corrupts-some-data origin/release-v1.0.0
 ( fixes problem )
 git commit -m "fix bad migration and add a migration to repair corrupted data"
@@ -68,20 +71,21 @@ translations or multiple gem versions.
 
 1.  Bootstrap your current development environment on the latest master branch
     by downloading all dependencies--JRuby, Gems, Solr, etc.
+
     ```shell
     build/run bootstrap
     ```
 
 2.  Run the following checks (recommended):
+
     ```shell
     build/run rake -Dtask=check:locales
     build/run rake -Dtask=check:multiple_gem_versions
     ```
 
 3.  Missing locales do not need to be addressed for a Release Candidate, but
-    should be noted and provided prior to a full release.  If multiple gem
+    should be noted and provided prior to a full release. If multiple gem
     versions are reported, that should be addressed prior to moving on.
-
 
 ## <a name="docs"></a>Build and Publish the API and Yard Docs
 
@@ -93,6 +97,7 @@ percentage of the code and are not especially useful.
 
 1.  API documentation depends on the [archivesspace/slate](https://github.com/archivesspace/slate) submodule
     and on Docker. Slate cannot run on JRuby.
+
     ```shell
     git submodule init
     git submodule update
@@ -100,15 +105,19 @@ percentage of the code and are not especially useful.
 
 2.  Run the `doc:api` task to generate Slate API and Yard documentation. (Note: the
     API generation requires a DB connection with standard enumeration values.)
+
     ```shell
     ARCHIVESSPACE_VERSION=X.Y.Z APPCONFIG_DB_URL=$APPCONFIG_DB_URL build/run doc:api
     ```
+
     This generates `docs/slate/source/index.html.md` (Slate source document).
 
 3.  (Optional) Run a docker container to preview API docs.
+
     ```shell
     docker-compose -f docker-compose-docs.yml up
     ```
+
     Visit `http://localhost:4568` to preview the api docs.
 
 4.  Build the static api files. The api markdown document should already be in `docs/slate/source` (step 2 above).
@@ -119,7 +128,9 @@ percentage of the code and are not especially useful.
 
 ### Build the YARD docs
 
-1.   Build the YARD docs in the `docs/build/doc` directory:
+1.  Build the YARD docs in the `docs/build/doc` directory:
+
+
     ```shell
     ./build/run doc:yardoc
     ```
@@ -128,20 +139,24 @@ percentage of the code and are not especially useful.
 
 1.  Double check that you are on a release branch (we don't need this stuff in master) and
     commit the newly built documentation:
+
     ```shell
     git add docs/build
     git commit -m "release-vx.y.z api and yard documentation"
     ```
 
     Use `git subtree` to push the documentation to the `gh-pages` branch:
+
     ```shell
     git subtree push --prefix docs/build origin gh-pages
     ```
+
     Published documents should appear a short while later at:
     [http://archivesspace.github.io/archivesspace/api](http://archivesspace.github.io/archivesspace/api)
     [http://archivesspace.github.io/archivesspace/doc](http://archivesspace.github.io/archivesspace/doc)
 
     Note: if the push command fails you may need to delete `gh-pages` in the remote repo:
+
     ```shell
     git push origin :gh-pages
     ```
@@ -149,6 +164,7 @@ percentage of the code and are not especially useful.
 ## <a name="release"></a>Building a release yourself
 
 1.  Building the actual release is very simple. Run the following:
+
     ```shell
     ./scripts/build_release vX.X.X
     ```
@@ -165,7 +181,6 @@ percentage of the code and are not especially useful.
     ```
     Replace X.X.X with the version number. You can set the resulting release page to
     "draft" using the Github API.
-
 
 ## <a name="notes"></a>Create the Release with Notes
 
@@ -206,7 +221,7 @@ Delete merged and stale branches in Github as appropriate.
 
 ### Milestones
 
-Close the just-released Milestone, adding a due date of today's date.  Create a
+Close the just-released Milestone, adding a due date of today's date. Create a
 new Milestone for the anticipated next release (this can be changed later if the
 version numbering is changed for some reason).
 
@@ -218,7 +233,7 @@ needed (e.g. feature branches that have been merged for the release).
 ### GitHub Issues
 
 Review existing opening GH issues and close any that have been resolved by
-the new release (linking to a specific PR if possible).  For the remaining open
+the new release (linking to a specific PR if possible). For the remaining open
 issues, review if they are still a problem, apply labels, link to known JIRA
 issues, and add comments as necessary/relevant.
 

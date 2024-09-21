@@ -1,7 +1,9 @@
-# ArchivesSpace robots.txt
+---
+title: ArchivesSpace robots.txt
+---
 
 The easiest way to add a `robots.txt` to your site is simply create
-one in your `/config/` directly. This file will be served as a standard 
+one in your `/config/` directly. This file will be served as a standard
 `robots.txt` file when you start your site.
 
 If you're not able to do that, you can use a seperate file and your proxy.

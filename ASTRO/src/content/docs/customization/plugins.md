@@ -1,4 +1,6 @@
-# ArchivesSpace Plug-ins
+---
+title: ArchivesSpace Plug-ins
+---
 
 Plug-ins are a powerful feature, designed to allow you to change
 most aspects of how the application behaves.
@@ -57,9 +59,9 @@ be used to override or extend the behavior of the core application.
     schemas ............... JSONModel schema definitions
     search_definitions.rb . Advanced search fields
 
-**Note** that `backend/lib/bulk_import` is the only directory in `backend/lib/` that is loaded by the plugin manager.  Other files in `backend/lib/` will not be loaded during startup.
+**Note** that `backend/lib/bulk_import` is the only directory in `backend/lib/` that is loaded by the plugin manager. Other files in `backend/lib/` will not be loaded during startup.
 
-**Note** that, in order to override or extend the behavior of core models and controllers, you cannot simply put your replacement with the same name in the corresponding directory path.  Core models and controllers can be overridden by adding an `after_initialize` block to `plugin_init.rb` (e.g. [aspace-hvd-pui](https://github.com/harvard-library/aspace-hvd-pui/blob/master/public/plugin_init.rb#L43)).
+**Note** that, in order to override or extend the behavior of core models and controllers, you cannot simply put your replacement with the same name in the corresponding directory path. Core models and controllers can be overridden by adding an `after_initialize` block to `plugin_init.rb` (e.g. [aspace-hvd-pui](https://github.com/harvard-library/aspace-hvd-pui/blob/master/public/plugin_init.rb#L43)).
 
 ## Overriding behavior
 
@@ -74,44 +76,45 @@ to the local plug-in:
 
 More detailed information about overriding locale files is found in [Customizing text in ArchivesSpace](./locales.html)
 
-
 ## Overriding the visual (web) presentation
 
 You can directly override any view file in the core application by placing an erb file of the same name in the analogous path.
-For example, if you want to override the appearance of the "Welcome" [home] page of the Public User Interface, you can make your changes to a file `show.html.erb` and place it at `plugins/my_fine_plugin/public/views/welcome/show.html.erb`. (Where *my_fine_plugin* is the name of your plugin)
+For example, if you want to override the appearance of the "Welcome" [home] page of the Public User Interface, you can make your changes to a file `show.html.erb` and place it at `plugins/my_fine_plugin/public/views/welcome/show.html.erb`. (Where _my_fine_plugin_ is the name of your plugin)
 
 ### Implementing a broadly-applied style or javascript change
 
-Unless you want to write inline style or javascript (which may be practiceable for a template or two), best practice is to create `plugins/my_fine_plugin/public/views/layout_head.html.erb` or `plugins/my_fine_plugin/frontend/views/layout_head.html.erb`, which contains the HTML statements to incorporate your javascript or css into the `<HEAD>` element of the template.  Here's an example:
+Unless you want to write inline style or javascript (which may be practiceable for a template or two), best practice is to create `plugins/my_fine_plugin/public/views/layout_head.html.erb` or `plugins/my_fine_plugin/frontend/views/layout_head.html.erb`, which contains the HTML statements to incorporate your javascript or css into the `<HEAD>` element of the template. Here's an example:
 
-* For the public interface, I want to change the size of the text in all links when the user is hovering.
-    - I create `plugins/my_fine_plugin/public/assets/my.css`:
-        ```css
-            a:hover {font-size: 2em;}
-         ```
-    - I create `plugins/my_fine_plugin/public/views/layout_head.html.erb`, and insert:
-      ```ruby
-      <%= stylesheet_link_tag "#{@base_url}/assets/my.css", media: :all %>
-      ```
-* For the public interface, I want to add some javascript behavior such that, when the user hovers over a list item, astericks appear
-    - I create `plugins/my_fine_plugin/public/assets/my.js`"
-        ```javascript
-        $(function() {
-           $( "li" ).hover(
-             function() {
-                $( this ).append( $( "<span> ***</span>" ) );
-            }, function() {
-           $( this ).find( "span:last" ).remove();
-            }
-          );
-         }
-        ```
-     - I add to `plugins/my_fine_plugin/public/views/layout_head.html.erb`:
-        ```ruby
-        <%= javascript_include_tag "#{@base_url}/assets/my.js" %>
-        ```
+- For the public interface, I want to change the size of the text in all links when the user is hovering.
+  - I create `plugins/my_fine_plugin/public/assets/my.css`:
+    ```css
+    a:hover {
+      font-size: 2em;
+    }
+    ```
+  - I create `plugins/my_fine_plugin/public/views/layout_head.html.erb`, and insert:
+    ```ruby
+    <%= stylesheet_link_tag "#{@base_url}/assets/my.css", media: :all %>
+    ```
+- For the public interface, I want to add some javascript behavior such that, when the user hovers over a list item, astericks appear
+  - I create `plugins/my_fine_plugin/public/assets/my.js`"
+    ```javascript
+    $(function() {
+       $( "li" ).hover(
+         function() {
+            $( this ).append( $( "<span> ***</span>" ) );
+        }, function() {
+       $( this ).find( "span:last" ).remove();
+        }
+      );
+     }
+    ```
+  - I add to `plugins/my_fine_plugin/public/views/layout_head.html.erb`:
+    ```ruby
+    <%= javascript_include_tag "#{@base_url}/assets/my.js" %>
+    ```
+
 ## Adding your own branding
-
 
 Another example, to override the branding of the staff interface, add
 your own template at:
@@ -133,7 +136,6 @@ markup such as:
      <div class="container branding">
        <img src="<%= #{AppConfig[:frontend_proxy_prefix]} %>assets/my_logo.png" alt="My logo" />
      </div>
-
 
 ## Plugin configuration
 
@@ -194,22 +196,21 @@ name of the plug-in in its role as a subrecord of this parent, for example `hell
 `cardinality` specifies the cardinality of the plug-in records. Currently supported values are
 `zero-to-many` and `zero-to-one`.
 
-
 ## Changing search behavior
 
 A plugin can add additional fields to the advanced search interface by
 including a `search_definitions.rb` file at the top-level of the
-plugin directory.  This file can contain definitions such as the
+plugin directory. This file can contain definitions such as the
 following:
 
     AdvancedSearch.define_field(:name => 'payment_fund_code', :type => :enum, :visibility => [:staff], :solr_field => 'payment_fund_code_u_utext')
     AdvancedSearch.define_field(:name => 'payment_authorizers', :type => :text, :visibility => [:staff], :solr_field => 'payment_authorizers_u_utext')
 
 Each field defined will appear in the advanced search interface as a
-searchable field.  The `:visibility` option controls whether the field
+searchable field. The `:visibility` option controls whether the field
 is presented in the staff or public interface (or both), while the
 `:type` parameter determines what sort of search is being performed.
-Valid values are `:text:`, `:boolean`, `:date` and `:enum`.  Finally,
+Valid values are `:text:`, `:boolean`, `:date` and `:enum`. Finally,
 the `:solr_field` parameter controls which field is used from the
 underlying index.
 
@@ -219,28 +220,27 @@ Custom reports may be added to plug-ins by adding a new report model as a subcla
 
 There are several limitations to adding reports to plug-ins, including that reports from plug-ins may only use the generic report template. ArchivesSpace only searches for report templates in the reports subdirectory of the ArchivesSpace base directory, not in plug-in directories. If you would like to implement a custom report with a custom template, consider adding the report to `archivesspace/reports/` instead of `archivesspace/plugins/[plugin-name]/backend/model/`.
 
-
 ## Frontend Specific Hooks
 
 To make adding new records fields and sections to record forms a little eaiser via your plugin, the ArchivesSpace frontend provides a series of hooks via the `frontend/config/initializers/plugin.rb` module. These are as follows:
 
-* `Plugins.add_search_base_facets(*facets)` - add to the base facets list to include extra facets for all record searches and listing pages.
+- `Plugins.add_search_base_facets(*facets)` - add to the base facets list to include extra facets for all record searches and listing pages.
 
-* `Plugins.add_search_facets(jsonmodel_type, *facets)` - add facets for a particular JSONModel type to be included in searches and listing pages for that record type.
+- `Plugins.add_search_facets(jsonmodel_type, *facets)` - add facets for a particular JSONModel type to be included in searches and listing pages for that record type.
 
-* `Plugins.add_resolve_field(field_name)` - use this when you have added a new field/relationship and you need it to be resolved when the record is retrieved from the API.
+- `Plugins.add_resolve_field(field_name)` - use this when you have added a new field/relationship and you need it to be resolved when the record is retrieved from the API.
 
-* `Plugins.register_edit_role_for_type(jsonmodel_type, role)` - when you add a new top level JSONModel, register it and its edit role so the listing view can determine if the "Edit" button can be displayed to the user.
+- `Plugins.register_edit_role_for_type(jsonmodel_type, role)` - when you add a new top level JSONModel, register it and its edit role so the listing view can determine if the "Edit" button can be displayed to the user.
 
-* `Plugins.register_note_types_handler(proc)` where proc handles parameters `jsonmodel_type, note_types, context` - allow a plugin to customize the note types shown for particular JSONModel type. For example, you can filter those that do not apply to your institution.
+- `Plugins.register_note_types_handler(proc)` where proc handles parameters `jsonmodel_type, note_types, context` - allow a plugin to customize the note types shown for particular JSONModel type. For example, you can filter those that do not apply to your institution.
 
-* `Plugins.register_plugin_section(section)` - allows you define a template to be inserted as a section for a given JSONModel record. A section is a type of `Plugins::AbstractPluginSection` which defines the source `plugin`, section `name`, the `jsonmodel_types` for which the section should show and any `opts` required by the templates at the time of render. These new sections (readonly, edit and sidebar additions) are output as part of the `PluginHelper` render methods.
+- `Plugins.register_plugin_section(section)` - allows you define a template to be inserted as a section for a given JSONModel record. A section is a type of `Plugins::AbstractPluginSection` which defines the source `plugin`, section `name`, the `jsonmodel_types` for which the section should show and any `opts` required by the templates at the time of render. These new sections (readonly, edit and sidebar additions) are output as part of the `PluginHelper` render methods.
 
   `Plugins::AbstractPluginSection` can be subclassed to allow flexible inclusion of arbitrary HTML. There are two examples provided with ArchivesSpace:
 
-  * `Plugins::PluginSubRecord` - uses the `shared/subrecord` partial to output a standard styled ArchivesSpace section. `opts` requires the jsonmodel field to be defined.
+  - `Plugins::PluginSubRecord` - uses the `shared/subrecord` partial to output a standard styled ArchivesSpace section. `opts` requires the jsonmodel field to be defined.
 
-  * `Plugins::PluginReadonlySearch` - uses the `search/embedded` partial to output a search listing as a section. `opts` requires the custom filter terms for this search to be defined.
+  - `Plugins::PluginReadonlySearch` - uses the `search/embedded` partial to output a search listing as a section. `opts` requires the custom filter terms for this search to be defined.
 
 ## Further information
 

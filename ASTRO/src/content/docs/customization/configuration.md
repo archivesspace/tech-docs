@@ -1,4 +1,6 @@
-# Configuring ArchivesSpace
+---
+title: Configuring ArchivesSpace
+---
 
 The primary configuration for ArchivesSpace is done in the config/config.rb
 file. By default, this file contains the default settings, which are indicated
@@ -7,11 +9,9 @@ settings by adding new lines that change the default and restarting
 ArchivesSpace. Be sure that your new settings are not commented out
 ( i.e. do NOT start with a "#" ), otherwise the settings will not take effect.
 
-
 ## Commonly changed settings
 
 ### Database config
-
 
 #### :db_url
 
@@ -24,7 +24,6 @@ This is an example of specifying MySQL credentials:
 
 `AppConfig[:db_url] = "jdbc:mysql://127.0.0.1:3306/aspace?useUnicode=true&characterEncoding=UTF-8&user=as&password=as123"`
 
-
 #### :db_max_connections
 
 Set the maximum number of database connections used by the application.
@@ -32,28 +31,23 @@ Default is derived from the number of indexer threads.
 
 `AppConfig[:db_max_connections] = proc { 20 + (AppConfig[:indexer_thread_count] * 2) }`
 
-
 ### URLs for ArchivesSpace components
 
 Set the ArchivesSpace backend port. The backend listens on port 8089 by default.
 
 `AppConfig[:backend_url] = "http://localhost:8089"`
 
-
 Set the ArchivesSpace staff interface (frontend) port. The staff interface listens on port 8080 by default.
 
 `AppConfig[:frontend_url] = "http://localhost:8080"`
-
 
 Set the ArchivesSpace public interface port. The public interface listens on port 8081 by default.
 
 `AppConfig[:public_url] = "http://localhost:8081"`
 
-
 Set the ArchivesSpace OAI server port. The OAI server listens on port 8082 by default.
 
 `AppConfig[:oai_url] = "http://localhost:8082"`
-
 
 Set the ArchivesSpace Solr index port. The Solr server listens on port 8090 by default.
 
@@ -66,7 +60,6 @@ Set the ArchivesSpace indexer port. The indexer listens on port 8091 by default.
 Set the ArchivesSpace API documentation port. The API documentation listens on port 8888 by default.
 
 `AppConfig[:docs_url] = "http://localhost:8888"`
-
 
 ### Enabling ArchivesSpace components
 
@@ -91,11 +84,11 @@ a filepath that archivesspace has write access to.
 
 You can also set the logging level for each component. Valid values are:
 
-* `debug` (everything)
-* `info`
-* `warn`
-* `error`
-* `fatal` (severe only)
+- `debug` (everything)
+- `info`
+- `warn`
+- `error`
+- `fatal` (severe only)
 
 #### `AppConfig[:frontend_log]`
 
@@ -106,7 +99,6 @@ route log output to archivesspace.out.
 
 Logging level for the frontend.
 
-
 #### `AppConfig[:backend_log]`
 
 File for log output for the backend. Set to "default" to
@@ -115,7 +107,6 @@ route log output to archivesspace.out.
 #### `#AppConfig[:backend_log_level]`
 
 Logging level for the backend.
-
 
 #### `AppConfig[:pui_log]`
 
@@ -126,7 +117,6 @@ route log output to archivesspace.out.
 
 Logging level for the public UI.
 
-
 #### `AppConfig[:indexer_log]`
 
 File for log output for the indexer. Set to "default" to
@@ -135,7 +125,6 @@ route log output to archivesspace.out.
 #### `#AppConfig[:indexer_log_level]`
 
 Logging level for the indexer.
-
 
 ### Database logging
 
@@ -146,30 +135,26 @@ Note that this will have a performance impact!
 
 `AppConfig[:db_debug_log] = false`
 
-
 #### `AppConfig[:mysql_binlog]`
 
 Set to true if you have enabled MySQL binary logging.
 
 `AppConfig[:mysql_binlog] = false`
 
-
 ### Solr backups
 
 #### `AppConfig[:solr_backup_schedule]`
 
-Set Solr back up schedule. By default, Solr backups will run at midnight.  See https://crontab.guru/ for
- information about the schedule syntax.
+Set Solr back up schedule. By default, Solr backups will run at midnight. See https://crontab.guru/ for
+information about the schedule syntax.
 
 `AppConfig[:solr_backup_schedule] = "0 * * * *"`
-
 
 #### `AppConfig[:solr_backup_number_to_keep]`
 
 Number of Solr backups to keep (default = 1)
 
 `AppConfig[:solr_backup_number_to_keep] = 1`
-
 
 #### `AppConfig[:solr_backup_directory]`
 
@@ -211,8 +196,6 @@ for a list of available locale codes). Default is English (:en):
 
 `AppConfig[:locale] = :en`
 
-
-
 ### Plugin registration
 
 #### `AppConfig[:plugins]`
@@ -220,8 +203,6 @@ for a list of available locale codes). Default is English (:en):
 Plug-ins to load. They will load in the order specified.
 
 `AppConfig[:plugins] = ['local',  'lcnaf']`
-
-
 
 ### Thread count
 
@@ -232,8 +213,6 @@ Introduced because long running jobs were blocking the queue.
 Resist the urge to set this to a big number!
 
 `AppConfig[:job_thread_count] = 2`
-
-
 
 ### OAI configuration options
 
@@ -257,8 +236,6 @@ Resist the urge to set this to a big number!
 
 `AppConfig[:oai_admin_email] = 'admin@example.com'`
 
-
-
 #### `AppConfig[:oai_sets]`
 
 In addition to the sets based on level of description, you can define OAI Sets
@@ -278,9 +255,7 @@ AppConfig[:oai_sets] = {
 }
 ```
 
-
 ## Other less commonly changed settings
-
 
 ### Default admin password
 
@@ -290,7 +265,6 @@ Set default admin password. Default password is "admin".
 
 `#AppConfig[:default_admin_password] = "admin"`
 
-
 ### Data directories
 
 #### `AppConfig[:data_directory]`
@@ -298,11 +272,10 @@ Set default admin password. Default password is "admin".
 If you run ArchivesSpace using the standard scripts (archivesspace.sh,
 archivesspace.bat or as a Windows service), the value of :data_directory is
 automatically set to be the "data" directory of your ArchivesSpace
-distribution.  You don't need to change this value unless you specifically
+distribution. You don't need to change this value unless you specifically
 want ArchivesSpace to put its data files elsewhere.
 
 `AppConfig[:data_directory] = File.join(Dir.home, "ArchivesSpace")`
-
 
 #### `AppConfig[:backup_directory]`
 
@@ -310,21 +283,17 @@ want ArchivesSpace to put its data files elsewhere.
 
 `AppConfig[:backup_directory] = proc { File.join(AppConfig[:data_directory], "demo_db_backups") }`
 
-
 #### `AppConfig[:solr_index_directory]`
 
 > TODO - Needs more documentation
 
 `AppConfig[:solr_index_directory] = proc { File.join(AppConfig[:data_directory], "solr_index") }`
 
-
 #### `AppConfig[:solr_home_directory]`
 
 > TODO - Needs more documentation
 
 `AppConfig[:solr_home_directory] = proc { File.join(AppConfig[:data_directory], "solr_home") }`
-
-
 
 ### Solr defaults
 
@@ -334,13 +303,11 @@ want ArchivesSpace to put its data files elsewhere.
 
 `AppConfig[:solr_indexing_frequency_seconds] = 30`
 
-
 #### `AppConfig[:solr_facet_limit]`
 
 > TODO - Needs more documentation
 
 `AppConfig[:solr_facet_limit] = 100`
-
 
 #### `AppConfig[:default_page_size]`
 
@@ -348,13 +315,11 @@ want ArchivesSpace to put its data files elsewhere.
 
 `AppConfig[:default_page_size] = 10`
 
-
 #### `AppConfig[:max_page_size]`
 
 > TODO - Needs more documentation
 
 `AppConfig[:max_page_size] = 250`
-
 
 ### Cookie prefix
 
@@ -367,7 +332,6 @@ Default is "archivesspace".
 
 `AppConfig[:cookie_prefix] = "archivesspace"`
 
-
 ### Indexer settings
 
 The periodic indexer can run using multiple threads to take advantage of
@@ -379,19 +343,15 @@ indexing process (more cores and/or more records per thread means more memory us
 
 `AppConfig[:indexer_records_per_thread] = 25`
 
-
 #### `AppConfig[:indexer_thread_count]`
 
 `AppConfig[:indexer_thread_count] = 4`
-
 
 #### `AppConfig[:indexer_solr_timeout_seconds]`
 
 > TODO - Needs more documentation
 
 `AppConfig[:indexer_solr_timeout_seconds] = 300`
-
-
 
 ### PUI Indexer Settings
 
@@ -401,13 +361,11 @@ indexing process (more cores and/or more records per thread means more memory us
 
 `AppConfig[:pui_indexer_enabled] = true`
 
-
 #### `AppConfig[:pui_indexing_frequency_seconds]`
 
 > TODO - Needs more documentation
 
 `AppConfig[:pui_indexing_frequency_seconds] = 30`
-
 
 #### `AppConfig[:pui_indexer_records_per_thread]`
 
@@ -415,18 +373,13 @@ indexing process (more cores and/or more records per thread means more memory us
 
 `AppConfig[:pui_indexer_records_per_thread] = 25`
 
-
 #### `AppConfig[:pui_indexer_thread_count]`
 
 > TODO - Needs more documentation
 
 `AppConfig[:pui_indexer_thread_count] = 1`
 
-
-
 ### Index state
-
-
 
 #### `AppConfig[:index_state_class]`
 
@@ -435,7 +388,6 @@ Set to 'IndexStateS3' for amazon s3
 > TODO - Needs more documentation
 
 `AppConfig[:index_state_class] = 'IndexState'`
-
 
 #### `AppConfig[:index_state_s3]`
 
@@ -455,7 +407,6 @@ AppConfig[:index_state_s3] = {
 }
 ```
 
-
 ### Misc. database options
 
 #### `AppConfig[:allow_other_unmapped]`
@@ -464,13 +415,11 @@ AppConfig[:index_state_s3] = {
 
 `AppConfig[:allow_other_unmapped] = false`
 
-
 #### `AppConfig[:db_url_redacted]`
 
 > TODO - Needs more documentation
 
 `AppConfig[:db_url_redacted] = proc { AppConfig[:db_url].gsub(/(user|password)=(.*?)(&|$)/, '\1=[REDACTED]\3') }`
-
 
 #### `AppConfig[:demo_db_backup_schedule]`
 
@@ -478,13 +427,11 @@ AppConfig[:index_state_s3] = {
 
 `AppConfig[:demo_db_backup_schedule] = "0 4 * * *"`
 
-
 #### `AppConfig[:allow_unsupported_database]`
 
 > TODO - Needs more documentation
 
 `AppConfig[:allow_unsupported_database] = false`
-
 
 #### `AppConfig[:allow_non_utf8_mysql_database]`
 
@@ -492,14 +439,11 @@ AppConfig[:index_state_s3] = {
 
 `AppConfig[:allow_non_utf8_mysql_database] = false`
 
-
 #### `AppConfig[:demo_db_backup_number_to_keep] = 7`
 
 > TODO - Needs more documentation
 
 `AppConfig[:demo_db_backup_number_to_keep] = 7`
-
-
 
 ### Proxy URLs
 
@@ -507,13 +451,11 @@ If you are serving user-facing applications via proxy
 (i.e., another domain or port, or via https, or for a prefix) it is
 recommended that you record those URLs in your configuration
 
-
 #### `AppConfig[:frontend_proxy_url] = proc { AppConfig[:frontend_url] }`
 
 Proxy URL for the frontend (staff interface)
 
 `AppConfig[:frontend_proxy_url] = proc { AppConfig[:frontend_url] }`
-
 
 #### `AppConfig[:public_proxy_url]`
 
@@ -521,13 +463,11 @@ Proxy URL for the public interface
 
 `AppConfig[:public_proxy_url] = proc { AppConfig[:public_url] }`
 
-
 #### `AppConfig[:frontend_proxy_prefix]`
 
 Don't override this setting unless you know what you're doing
 
 `AppConfig[:frontend_proxy_prefix] = proc { "#{URI(AppConfig[:frontend_proxy_url]).path}/".gsub(%r{/+$}, "/") }`
-
 
 #### `AppConfig[:public_proxy_prefix]`
 
@@ -535,49 +475,39 @@ Don't override this setting unless you know what you're doing
 
 `AppConfig[:public_proxy_prefix] = proc { "#{URI(AppConfig[:public_proxy_url]).path}/".gsub(%r{/+$}, "/") }`
 
-
 ### Enable component applications
 
 Setting any of these false will prevent the associated applications from starting.
 Temporarily disabling the frontend and public UIs and/or the indexer may help users
 who are running into memory-related issues during migration.
 
-
 #### `AppConfig[:enable_backend]`
 
 `AppConfig[:enable_backend] = true`
-
 
 #### `AppConfig[:enable_frontend]`
 
 `AppConfig[:enable_frontend] = true`
 
-
 #### `AppConfig[:enable_public]`
 
 `AppConfig[:enable_public] = true`
-
 
 #### `AppConfig[:enable_solr]`
 
 `AppConfig[:enable_solr] = true`
 
-
 #### `AppConfig[:enable_indexer]`
 
 `AppConfig[:enable_indexer] = true`
-
 
 #### `AppConfig[:enable_docs]`
 
 `AppConfig[:enable_docs] = true`
 
-
 #### `AppConfig[:enable_oai]`
 
 `AppConfig[:enable_oai] = true`
-
-
 
 ### Jetty shutdown
 
@@ -591,48 +521,39 @@ possibility of a collision in the path configuration. So, full path would be
 The launcher creates a password to use this, which is stored
 in the data directory. This is not turned on by default.
 
-
 #### `AppConfig[:use_jetty_shutdown_handler]`
 
 `AppConfig[:use_jetty_shutdown_handler] = false`
-
 
 #### `AppConfig[:jetty_shutdown_path]`
 
 `AppConfig[:jetty_shutdown_path] = "/xkcd"`
 
-
 ### Managing multile backend instances
 
 If you have multiple instances of the backend running behind a load
-balancer, list the URL of each backend instance here.  This is used by the
+balancer, list the URL of each backend instance here. This is used by the
 real-time indexing, which needs to connect directly to each running
 instance.
 
 By default we assume you're not using a load balancer, so we just connect
 to the regular backend URL.
 
-
 #### `AppConfig[:backend_instance_urls]`
 
 `AppConfig[:backend_instance_urls] = proc { [AppConfig[:backend_url]] }`
-
 
 ### Theme
 
 > TODO - Needs more documentation
 
-
 #### `AppConfig[:frontend_theme]`
 
 `AppConfig[:frontend_theme] = "default"`
 
-
 #### `AppConfig[:public_theme]`
 
 `AppConfig[:public_theme] = "default"`
-
-
 
 ### Session expiration
 
@@ -642,34 +563,27 @@ Sessions marked as expirable will timeout after this number of seconds of inacti
 
 `AppConfig[:session_expire_after_seconds] = 3600`
 
-
 #### `AppConfig[:session_nonexpirable_force_expire_after_seconds]`
 
 Sessions marked as non-expirable will eventually expire too, but after a longer period.
 
 `AppConfig[:session_nonexpirable_force_expire_after_seconds] = 604800`
 
-
 ### System usernames
 
 > TODO - Needs more documentation
-
 
 #### `AppConfig[:search_username]`
 
 `AppConfig[:search_username] = "search_indexer"`
 
-
 #### `AppConfig[:public_username]`
 
 `AppConfig[:public_username] = "public_anonymous"`
 
-
 #### `AppConfig[:staff_username]`
 
 `AppConfig[:staff_username] = "staff_system"`
-
-
 
 ### Authentication sources
 
@@ -679,8 +593,6 @@ Sessions marked as non-expirable will eventually expire too, but after a longer 
 
 `AppConfig[:authentication_sources] = []`
 
-
-
 ### Misc. backlog and snapshot settings
 
 #### `AppConfig[:realtime_index_backlog_ms]`
@@ -689,13 +601,11 @@ Sessions marked as non-expirable will eventually expire too, but after a longer 
 
 `AppConfig[:realtime_index_backlog_ms] = 60000`
 
-
 #### `AppConfig[:notifications_backlog_ms]`
 
 > TODO - Needs more documentation
 
 `AppConfig[:notifications_backlog_ms] = 60000`
-
 
 #### `AppConfig[:notifications_poll_frequency_ms]`
 
@@ -703,13 +613,11 @@ Sessions marked as non-expirable will eventually expire too, but after a longer 
 
 `AppConfig[:notifications_poll_frequency_ms] = 1000`
 
-
 #### `AppConfig[:max_usernames_per_source]`
 
 > TODO - Needs more documentation
 
 `AppConfig[:max_usernames_per_source] = 50`
-
 
 #### `AppConfig[:demodb_snapshot_flag]`
 
@@ -717,17 +625,14 @@ Sessions marked as non-expirable will eventually expire too, but after a longer 
 
 `AppConfig[:demodb_snapshot_flag] = proc { File.join(AppConfig[:data_directory], "create_demodb_snapshot.txt") }`
 
-
-
 ### Report Configuration
 
 #### `AppConfig[:report_page_layout]`
 
-Uses valid values for the  CSS3 @page directive's size property:
+Uses valid values for the CSS3 @page directive's size property:
 http://www.w3.org/TR/css3-page/#page-size-prop
 
 `AppConfig[:report_page_layout] = "letter"`
-
 
 #### `AppConfig[:report_pdf_font_paths]`
 
@@ -735,13 +640,11 @@ http://www.w3.org/TR/css3-page/#page-size-prop
 
 `AppConfig[:report_pdf_font_paths] = proc { ["#{AppConfig[:backend_url]}/reports/static/fonts/dejavu/DejaVuSans.ttf"] }`
 
-
 #### `AppConfig[:report_pdf_font_family]`
 
 > TODO - Needs more documentation
 
 `AppConfig[:report_pdf_font_family] = "\"DejaVu Sans\", sans-serif"`
-
 
 ### Plugins directory
 
@@ -752,7 +655,6 @@ If you want to override that, update this with an absolute path
 
 `AppConfig[:plugins_directory] = "plugins"`
 
-
 ### Feedback
 
 #### `AppConfig[:feedback_url]`
@@ -762,7 +664,6 @@ You can remove this from the footer by making the value blank.
 
 `AppConfig[:feedback_url] = "http://archivesspace.org/contact"`
 
-
 ### User registration
 
 #### `AppConfig[:allow_user_registration]`
@@ -771,8 +672,6 @@ Allow an unauthenticated user to create an account
 
 `AppConfig[:allow_user_registration] = true`
 
-
-
 ### Help Configuration
 
 #### `AppConfig[:help_enabled]`
@@ -780,7 +679,6 @@ Allow an unauthenticated user to create an account
 > TODO - Needs more documentation
 
 `AppConfig[:help_enabled] = true`
-
 
 #### `AppConfig[:help_url]`
 
@@ -794,14 +692,11 @@ Allow an unauthenticated user to create an account
 
 `AppConfig[:help_topic_base_url] = "https://archivesspace.atlassian.net/wiki/spaces/ArchivesSpaceUserManual/pages/"``
 
-
 ### Shared storage
 
 #### `AppConfig[:shared_storage]`
 
 `AppConfig[:shared_storage] = proc { File.join(AppConfig[:data_directory], "shared") }`
-
-
 
 ### Background jobs
 
@@ -813,13 +708,11 @@ Formerly known as :import_job_path
 
 `AppConfig[:job_file_path] = proc { AppConfig.has_key?(:import_job_path) ? AppConfig[:import_job_path] : File.join(AppConfig[:shared_storage], "job_files") }`
 
-
 #### `AppConfig[:job_poll_seconds]`
 
 > TODO - Needs more documentation
 
 `AppConfig[:job_poll_seconds] = proc { AppConfig.has_key?(:import_poll_seconds) ? AppConfig[:import_poll_seconds] : 5 }`
-
 
 #### `AppConfig[:job_timeout_seconds]`
 
@@ -827,13 +720,11 @@ Formerly known as :import_job_path
 
 `AppConfig[:job_timeout_seconds] = proc { AppConfig.has_key?(:import_timeout_seconds) ? AppConfig[:import_timeout_seconds] : 300 }`
 
-
 #### `AppConfig[:jobs_cancelable]`
 
 By default, only allow jobs to be cancelled if we're running against MySQL (since we can rollback)
 
 `AppConfig[:jobs_cancelable] = proc { (AppConfig[:db_url] != AppConfig.demo_db_url).to_s }`
-
 
 ### Locations
 
@@ -842,8 +733,6 @@ By default, only allow jobs to be cancelled if we're running against MySQL (sinc
 > TODO - Needs more documentation
 
 `AppConfig[:max_location_range] = 1000`
-
-
 
 ### Schema Info check
 
@@ -856,7 +745,6 @@ this check here. Do so at your own peril.
 
 `AppConfig[:ignore_schema_info_check] = false`
 
-
 ### Demo data
 
 #### `AppConfig[:demo_data_url]`
@@ -866,7 +754,6 @@ teaching, etc. To use this, set an OS environment variable of ASPACE_DEMO = true
 
 `AppConfig[:demo_data_url] = "https://s3-us-west-2.amazonaws.com/archivesspacedemo/latest-demo-data.zip"`
 
-
 ### External IDs
 
 #### `AppConfig[:show_external_ids]`
@@ -875,23 +762,19 @@ Expose external ids in the frontend
 
 `AppConfig[:show_external_ids] = false`
 
-
 ### Jetty request/response buffer
 
 Set the allowed size of the request/response header that Jetty will accept
 (anything bigger gets a 403 error). Note if you want to jack this size up,
-you will also have to configure your Nginx/Apache  as well if you're using that
+you will also have to configure your Nginx/Apache as well if you're using that
 
 #### `AppConfig[:jetty_response_buffer_size_bytes]`
 
 `AppConfig[:jetty_response_buffer_size_bytes] = 64 * 1024`
 
-
 #### `AppConfig[:jetty_request_buffer_size_bytes]`
 
 `AppConfig[:jetty_request_buffer_size_bytes] = 64 * 1024`
-
-
 
 ### Container management configuration fields
 
@@ -903,7 +786,6 @@ Set global constraints via :system_default, and use the repo_code value for repo
 Note that :system_default will always inherit down its values when possible.
 
 `AppConfig[:container_management_barcode_length] = {:system_default => {:min => 5, :max => 10}, 'repo' => {:min => 9, :max => 12}, 'other_repo' => {:min => 9, :max => 9} }`
-
 
 #### `AppConfig[:container_management_extent_calculator]`
 
@@ -917,7 +799,6 @@ Use :decimal_places to define how many decimal places the calculator should retu
 Example:
 
 `AppConfig[:container_management_extent_calculator] = { :report_volume => true, :unit => :feet, :decimal_places => 3 }`
-
 
 ### Record inheritance in public interface
 
@@ -979,7 +860,6 @@ AppConfig[:record_inheritance] = {
 }
 ```
 
-
 To enable composite identifiers - added to the merged record in a property
 `\_composite_identifier`
 
@@ -995,7 +875,6 @@ AppConfig[:record_inheritance][:archival_object][:composite_identifiers] = {
   :identifier_delimiter => ' '
 }
 ```
-
 
 To configure additional elements to be inherited use this pattern in your config
 
@@ -1051,25 +930,19 @@ clause to the scopecontent rule, like this:
   },
 ```
 
-
-
 ### PUI Configurations
 
 #### `AppConfig[:pui_search_results_page_size]`
 
 `AppConfig[:pui_search_results_page_size] = 10`
 
-
 #### `AppConfig[:pui_branding_img]`
 
 `AppConfig[:pui_branding_img] = 'archivesspace.small.png'`
 
-
 #### `AppConfig[:pui_block_referrer]`
 
 `AppConfig[:pui_block_referrer] = true # patron privacy; blocks full 'referer' when going outside the domain`
-
-
 
 #### `AppConfig[:pui_max_concurrent_pdfs]`
 
@@ -1080,13 +953,11 @@ set this fairly low out of the box.
 
 `AppConfig[:pui_max_concurrent_pdfs] = 2`
 
-
 #### `AppConfig[:pui_pdf_timeout]`
 
 You can set this to nil or zero to prevent a timeout
 
 `AppConfig[:pui_pdf_timeout] = 600`
-
 
 #### `AppConfig[:pui_hide]`
 
@@ -1127,13 +998,11 @@ tab/pill is hidden on resource/collection page
 AppConfig[:pui_hide][:container_inventory] = false
 ```
 
-
 #### `AppConfig[:pui_requests_permitted_for_types]`
 
 Determine when the request button is displayed
 
 `AppConfig[:pui_requests_permitted_for_types] = [:resource, :archival_object, :accession, :digital_object, :digital_object_component]`
-
 
 #### `AppConfig[:pui_requests_permitted_for_containers_only]`
 
@@ -1141,10 +1010,9 @@ Set to 'true' if you want to disable if there is no top container
 
 `AppConfig[:pui_requests_permitted_for_containers_only] = false`
 
-
 #### `AppConfig[:pui_repos]`
 
-Repository-specific examples.  Replace {repo_code} with your repository code, i.e. 'foo' - note the lower-case
+Repository-specific examples. Replace {repo_code} with your repository code, i.e. 'foo' - note the lower-case
 
 `AppConfig[:pui_repos] = {}`
 
@@ -1175,14 +1043,11 @@ AppConfig[:pui_repos]['foo'][:hide] = {}
 AppConfig[:pui_repos]['foo'][:hide][:counts] = true
 ```
 
-
 #### `AppConfig[:pui_display_deaccessions]`
 
 > TODO - Needs more documentation
 
 `AppConfig[:pui_display_deaccessions] = true`
-
-
 
 #### `AppConfig[:pui_page_actions_cite]`
 
@@ -1190,13 +1055,11 @@ Enable / disable PUI resource/archival object page 'cite' action
 
 `AppConfig[:pui_page_actions_cite] = true`
 
-
 #### `AppConfig[:pui_page_actions_bookmark]`
 
 Enable / disable PUI resource/archival object page 'bookmark' action
 
 `AppConfig[:pui_page_actions_bookmark] = true`
-
 
 #### `AppConfig[:pui_page_actions_request]`
 
@@ -1204,13 +1067,11 @@ Enable / disable PUI resource/archival object page 'request' action
 
 `AppConfig[:pui_page_actions_request] = true`
 
-
 #### `AppConfig[:pui_page_actions_print]`
 
 Enable / disable PUI resource/archival object page 'print' action
 
 `AppConfig[:pui_page_actions_print] = true`
-
 
 #### `AppConfig[:pui_enable_staff_link]`
 
@@ -1218,14 +1079,12 @@ when a user is authenticated, add a link back to the staff interface from the sp
 
 `AppConfig[:pui_enable_staff_link] = true`
 
-
 #### `AppConfig[:pui_staff_link_mode]`
 
 by default, staff link will open record in staff interface in edit mode,
 change this to 'readonly' for it to open in readonly mode
 
 `AppConfig[:pui_staff_link_mode] = 'edit'`
-
 
 #### `AppConfig[:pui_page_custom_actions]`
 
@@ -1282,14 +1141,11 @@ AppConfig[:pui_page_custom_actions] << {
 }
 ```
 
-
 #### `AppConfig[:pui_email_enabled]`
 
 PUI email settings (logs emails when disabled)
 
 `AppConfig[:pui_email_enabled] = false`
-
-
 
 #### `AppConfig[:pui_email_override]`
 
@@ -1298,13 +1154,11 @@ See above AppConfig[:pui_repos][{repo_code}][:request_email] for setting reposit
 
 `AppConfig[:pui_email_override] = 'testing@example.com'`
 
-
 #### `AppConfig[:pui_request_email_fallback_to_address]`
 
 The 'to' email address for repositories that don't define their own email
 
 `AppConfig[:pui_request_email_fallback_to_address] = 'testing@example.com'`
-
 
 #### `AppConfig[:pui_request_email_fallback_from_address]`
 
@@ -1312,19 +1166,15 @@ The 'from' email address for repositories that don't define their own email
 
 `AppConfig[:pui_request_email_fallback_from_address] = 'testing@example.com'`
 
-
 #### `AppConfig[:pui_request_use_repo_email]`
 
 Use the repository record email address for requests (overrides config email)
 
 `AppConfig[:pui_request_use_repo_email] = false`
 
-
 #### `AppConfig[:pui_email_delivery_method]`
 
 `AppConfig[:pui_email_delivery_method] = :sendmail`
-
-
 
 #### `AppConfig[:pui_email_sendmail_settings]`
 
@@ -1353,16 +1203,13 @@ AppConfig[:pui_email_smtp_settings] = {
 }
 ```
 
-
 #### `AppConfig[:pui_email_perform_deliveries]`
 
 `AppConfig[:pui_email_perform_deliveries] = true`
 
-
 #### `AppConfig[:pui_email_raise_delivery_errors]`
 
 `AppConfig[:pui_email_raise_delivery_errors] = true`
-
 
 #### `AppConfig[:pui_readmore_max_characters]`
 

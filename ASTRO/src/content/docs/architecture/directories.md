@@ -1,4 +1,6 @@
-# Directory structure
+---
+title: Directory structure
+---
 
 ArchivesSpace is made up of several components that are kept in separate directories.
 

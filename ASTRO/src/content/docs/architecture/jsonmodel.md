@@ -1,22 +1,24 @@
-# JSONModel -- a validated ArchivesSpace record
+---
+title: JSONModel -- a validated ArchivesSpace record
+---
 
 The ArchivesSpace system is concerned with managing a number of
-different archival record types.  Each record can be expressed as a
+different archival record types. Each record can be expressed as a
 set of nested key/value pairs, and associated with each record type is
 a number of rules that describe what it means for a record of that
 type to be valid:
 
-  * some fields are mandatory, some optional
-  * some fields can only take certain types
-  * some fields can only take values from a constrained set
-  * some fields are dependent on other fields
-  * some record types can be nested within other record types
-  * some record types may be related to others through a hierarchy
-  * some record types form a relationship graph with other record
-    types
+- some fields are mandatory, some optional
+- some fields can only take certain types
+- some fields can only take values from a constrained set
+- some fields are dependent on other fields
+- some record types can be nested within other record types
+- some record types may be related to others through a hierarchy
+- some record types form a relationship graph with other record
+  types
 
 The JSONModel class provides a common language for expressing these
-rules that all parts of the application can share.  There is a
+rules that all parts of the application can share. There is a
 JSONModel class instance for each type of record in the system, so:
 
     JSONModel(:digital_object)
@@ -26,7 +28,7 @@ those properties conform to the specification of a Digital Object:
 
     JSONModel(:digital_object).from_hash(myhash)
 
-If it passes validation, a new JSONModel(:digital\_object) instance is
+If it passes validation, a new JSONModel(:digital_object) instance is
 returned, which provides accessors for accessing its values, and
 facilities for round-tripping between JSON documents and regular Ruby
 hashes:
@@ -41,12 +43,11 @@ hashes:
      obj.to_hash  # Turn the JSONModel object back into a regular hash
      obj.to_json  # Serialize the JSONModel object into JSON
 
-
 Much of the validation performed by JSONModel is provided by the JSON
-schema definitions listed in the `common/schemas` directory.  JSON
+schema definitions listed in the `common/schemas` directory. JSON
 schemas provide a standard way of declaring which properties a record
 may and may not contain, along with their types and other
-restrictions.  ArchivesSpace uses these schemas to capture the
+restrictions. ArchivesSpace uses these schemas to capture the
 validation rules defining each record type in a declarative and
 relatively self-documenting fashion.
 
@@ -60,7 +61,7 @@ the backend.
 
 To save the need for a lot of HTTP request wrangling, ArchivesSpace
 ships with a module called JSONModel::Client that simplifies the
-common CRUD-style operations.  Including this module just requires
+common CRUD-style operations. Including this module just requires
 passing an additional parameter when initializing JSONModel:
 
      JSONModel::init(:client_mode => true, :url => @backend_url)
