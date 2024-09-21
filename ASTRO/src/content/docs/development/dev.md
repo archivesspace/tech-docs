@@ -1,4 +1,6 @@
-# Running a development version of ArchivesSpace
+---
+title: Running a development version of ArchivesSpace
+---
 
 System requirements:
 
@@ -41,7 +43,7 @@ The recommended way of developing ArchivesSpace is to fork the repository and cl
 _Note: all commands in the following instructions assume you are in the root directory of your local fork
 unless otherwise specified._
 
-__Quickstart__
+**Quickstart**
 
 This is an abridged reference for getting started with a limited explanation of the steps:
 
@@ -114,7 +116,7 @@ docker-compose -f docker-compose-dev.yml stop # shutdowns the servers (data will
 docker-compose -f docker-compose-dev.yml rm # deletes the containers (all data will be removed)
 ```
 
-__Advanced: running MySQL and Solr outside of Docker__
+**Advanced: running MySQL and Solr outside of Docker**
 
 You are not required to use Docker for MySQL and Solr. If you run them another way the default
 requirements are:
@@ -190,7 +192,7 @@ This has been seen on Mac platforms resulting from the installation method
 for Java. Installing the OpenJDK via Jabba has been effective in resolving
 this error.
 
-__Advanced: bootstrap & the build directory__
+**Advanced: bootstrap & the build directory**
 
 Running bootstrap will download jars to the build directory, including:
 
@@ -219,7 +221,7 @@ There is a task for resetting the database:
 
 Which will first delete then migrate the database.
 
-__Advanced: Loading data fixtures into dev database__
+**Advanced: Loading data fixtures into dev database**
 
 When loading a database into the development MySQL instance always ensure that ArchivesSpace
 is **not** running. Stop ArchivesSpace if it is running. Run `./build/run solr:reset` to
@@ -291,7 +293,7 @@ ArchivesSpace is started with:
 
 To stop supervisord: `Ctrl-c`.
 
-__Advanced: running the development servers directly__
+**Advanced: running the development servers directly**
 
 Supervisord is not required, or ideal for every situation. You can run the development
 servers directly via build tasks:
@@ -308,7 +310,7 @@ in a specific order or are all required.
 
 _An example use case for running a server directly is to use the pry debugger._
 
-__Advanced: debugging with pry__
+**Advanced: debugging with pry**
 
 To debug with pry you cannot use supervisord to run the application devserver,
 however you can mix and match:
@@ -325,7 +327,7 @@ Add `binding.pry` to set breakpoints in the code. This can also be used in views
 `<% binding.pry %>`. Using pry you can easily inspect the `request`, `params` and
 in scope instance variables that are available.
 
-__Advanced: development servers and the build directory__
+**Advanced: development servers and the build directory**
 
      ./build/run db:migrate
 
@@ -335,7 +337,7 @@ Running the developments servers will create directories in `./build/dev`:
 - indexer_state: latest timestamps for (SUI) indexer activity
 - shared: background job files
 
-     ./build/run db:nuke
+  ./build/run db:nuke
 
 _Note: the folders will be created as they are needed, so they may not all be present
 at all times._
@@ -379,7 +381,7 @@ Or a single example with:
 
 There are specific instructions and requirements for the [UI tests](ui_test.html) to work.
 
-__Advanced: tests and the build directory__
+**Advanced: tests and the build directory**
 
 Running the tests may create directories in `./build/test`. These will be
 the same as for the development servers as described above.
@@ -404,7 +406,6 @@ you should make sure your changes conform to the layout and style rules by runni
 Most errors can be auto-corrected by running:
 
     ./build/run rubocop -Dcorrect=true
-    
 
 ## Submitting a Pull Request
 
@@ -413,15 +414,15 @@ merged into the codebase.
 
 To help make the review go smoothly, here are some general guidelines:
 
-* __Your pull request should address a single issue.__
+- **Your pull request should address a single issue.**
   It's better to split large or complicated PRs into discrete steps if possible. This
   makes review more manageable and reduces the risk of conflicts with other changes.
-* __Give your pull request a brief title, referencing any JIRA or Github issues resolved
-by the pull request.__
+- **Give your pull request a brief title, referencing any JIRA or Github issues resolved
+  by the pull request.**
   Including JIRA numbers (e.g. 'ANW-123') explicitly in your pull request title ensures the
   PR will be linked to the original issue in JIRA. Similarly, referencing GitHub issue numbers
   (e.g. 'Fixes #123') will automatically close that issue when the PR is merged.
-* __Fill out as much of the Pull Request template as is possible/relevant.__
+- **Fill out as much of the Pull Request template as is possible/relevant.**
   This makes it easier to understand the full context of your PR, including any discussions or supporting documentation that went into developing the functionality or resolving the bug.
 
 ## Building a distribution

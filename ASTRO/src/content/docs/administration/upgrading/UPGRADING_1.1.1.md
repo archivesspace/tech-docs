@@ -1,9 +1,12 @@
-# UPGRADING TO 1.1.1
+---
+title: UPGRADING TO 1.1.1
+---
 
 Additional upgrade considerations specific to this release. Refer to the [upgrade documentation](../upgrading.html) for the standard instructions that apply in all cases.
 
 ## Resequencing of Archival Object & Digital Object Component trees
--------------
+
+---
 
 There have been some scenarios in which archival objects and digital object components lose
 some of the information used to order their hierarchy. This can result in issues in creation,
@@ -31,7 +34,8 @@ After you've started ArchivesSpace, be sure to change the config.rb file to have
 set to "false", since you will not need to run this process on every restart.
 
 ## Export PDFs in the Public Interface
--------------
+
+---
 
 A common request has been to have PDF version of the EAD exported in the public application.
 This has been a bit problematic, since EAD export has a rather large resource hit on the
@@ -49,7 +53,5 @@ Exporting large EAD resources with this plugin will most likely cause some probl
 will timeout, since the server does not want to waste resources on long running processes.
 In addition, large number of requests for PDFs can cause an increase load on the server.
 Please be aware of the issues and limitations of this plugin before enabling it.
-
-
 
 ---

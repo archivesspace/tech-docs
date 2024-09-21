@@ -1,4 +1,6 @@
-# Managing frontend assets with Bower
+---
+title: Managing frontend assets with Bower
+---
 
 This is aimed at developers and applies to the 'frontend' application only.
 

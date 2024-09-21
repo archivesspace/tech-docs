@@ -1,11 +1,9 @@
 ---
-permalink: /architecture/public/
+title: The ArchivesSpace public user interface
 ---
 
-# The ArchivesSpace public user interface
-
 The ArchivesSpace Public User Interface (PUI) provides a public
-interface to your ArchivesSpace collections.  In a default
+interface to your ArchivesSpace collections. In a default
 ArchivesSpace installation it runs on port `:8081`.
 
 ## Configuration
@@ -20,14 +18,14 @@ To see the full list of available options, see the file
 ### Preserving Patron Privacy
 
 The **:block_referrer** key in the configuration file (default: **true**) determines whether the full referring URL is
-transmitted when the user clicks a link to a website outside the web domain of your instance of ArchivesSpace.  This
+transmitted when the user clicks a link to a website outside the web domain of your instance of ArchivesSpace. This
 protects your patrons from tracking by that site.
 
 ### Main Navigation Menu
 
 You can choose not to display one or more of the links on the main
 (horizontal) navigation menu, either globally or by repository, if you
-have more than one repository.  You manage this through the
+have more than one repository. You manage this through the
 `:pui_hide` options in the `config/config.rb` file.
 
 ### Repository Customization
@@ -35,14 +33,14 @@ have more than one repository.  You manage this through the
 #### Display of "badges" on the Repository page
 
 You can configure which badges appear on the Repository page, both
-globally or by repository.  See the `:pui_hide` configuration options
+globally or by repository. See the `:pui_hide` configuration options
 for these too.
 
 ### Activation of the "Request" button on archival object pages
 
 You can configure, both globally or by repository, whether the
 "Request" button is active on archival object pages for objects that
-don't have an associated Top Container.  See the
+don't have an associated Top Container. See the
 `:pui_requests_permitted_for_containers_only` configuration option to
 modify this.
 
@@ -60,6 +58,7 @@ your repositories, keyed to the repository's code.
 
 For example, if your repository, `My Wonderful Repository` has a code of `MWR`, this is what you might see in the
 custom `en.yml`:
+
 ```
 en:
   repos:
@@ -69,7 +68,7 @@ en:
 
 ## Development
 
-To run a development server, the PUI follows the same pattern as the rest of ArchivesSpace.  From your ArchivesSpace checkout:
+To run a development server, the PUI follows the same pattern as the rest of ArchivesSpace. From your ArchivesSpace checkout:
 
      # Prepare all dependencies
      build/run bootstrap
@@ -87,10 +86,9 @@ To run a development server, the PUI follows the same pattern as the rest of Arc
 
 ### Three options for inheritance:
 
-* Directly inherit a value for a field – the record has no value for the field and you want the value in the field to display as if it were the record’s own [uncomment the inheritance section in the config, set desired field (property) to inherit_directly => true]
-* Indirectly inherit a value for a field – the record has no value for the field and you want to display the value from a higher level, but precede it with a note that indicates that it comes from that higher level, such as "From the collection" [uncomment the inheritance section in the config, set desired field (property) to inherit_directly => false]
-* Don’t display the field at all – the record has no value of its own for the field and you don’t want it to display at all [uncomment the inheritance section in the config, delete the lines for the desired field (property)]
-
+- Directly inherit a value for a field – the record has no value for the field and you want the value in the field to display as if it were the record’s own [uncomment the inheritance section in the config, set desired field (property) to inherit_directly => true]
+- Indirectly inherit a value for a field – the record has no value for the field and you want to display the value from a higher level, but precede it with a note that indicates that it comes from that higher level, such as "From the collection" [uncomment the inheritance section in the config, set desired field (property) to inherit_directly => false]
+- Don’t display the field at all – the record has no value of its own for the field and you don’t want it to display at all [uncomment the inheritance section in the config, delete the lines for the desired field (property)]
 
 ### Archival Inheritance
 
@@ -102,18 +100,18 @@ Additionally, the identifier element in ArchivesSpace, which is better known as 
 
 By default, the following elements are turned on for inheritance:
 
-  * Title (direct inheritance)
-  * Identifier (indirect inheritance, but by default the identifier inherits from ancestor archival objects only; it does NOT include the resource identifier.
+- Title (direct inheritance)
+- Identifier (indirect inheritance, but by default the identifier inherits from ancestor archival objects only; it does NOT include the resource identifier.
 
 Also it is advised to inherit this element in a composite fashion once it is determined whether the level of description should or should not display as part of the identifier, which will depend upon local data-entry practices
 
-  * Language code (direct inheritance, but it does NOT display anywhere in the interface currently; eventually, this could be used for faceting)
-  * Dates (direct inheritance)
-  * Extents (indirect inheritance)
-  * Creator (indirect inheritance)
-  * Access restrictions note (direct inheritance)
-  * Scope and contents note (indirect inheritance)
-  * Language of Materials note (indirect inheritance, but there seems to be a bug right now so that the Language notes always show up as being directly inherited. See AR-XXXX)
+- Language code (direct inheritance, but it does NOT display anywhere in the interface currently; eventually, this could be used for faceting)
+- Dates (direct inheritance)
+- Extents (indirect inheritance)
+- Creator (indirect inheritance)
+- Access restrictions note (direct inheritance)
+- Scope and contents note (indirect inheritance)
+- Language of Materials note (indirect inheritance, but there seems to be a bug right now so that the Language notes always show up as being directly inherited. See AR-XXXX)
 
 See https://github.com/archivesspace/archivesspace/blob/master/common/config/config-defaults.rb#L296-L396 for more information and examples.
 

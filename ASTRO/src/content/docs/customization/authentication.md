@@ -1,9 +1,11 @@
-# Adding support for additional username/password-based authentication backends
+---
+title: Adding support for additional username/password-based authentication backends
+---
 
 ArchivesSpace supports LDAP-based authentication out of the box, but you can
 authenticate against other password-based user directories by defining your own
 authentication handler, creating a plug-in, and configuring your ArchivesSpace
-instance to use it.  If you would rather not have to create your own handler,
+instance to use it. If you would rather not have to create your own handler,
 there is a [plug-in](https://github.com/lyrasis/aspace-oauth) available that uses OAUTH user authentication that you can add
 to your ArchivesSpace installation.
 
@@ -12,18 +14,18 @@ to your ArchivesSpace installation.
 An authentication handler is just a class that implements a couple of
 key methods:
 
-  * `initialize(opts)` -- An object constructor which receives the
-    configuration block specified in the system's configuration.
-  * `name` -- A zero-argument method which just returns a string that
-    identifies the instance of your handler.  The format of this
-    string isn't important: it just gets stored as a user attribute
-    (in the ArchivesSpace database) to make it possible to tell which
-    authentication source a user last successfully authenticated
-    against.
-  * `authenticate(username, password)` -- a method which checks
-    whether `password` is the correct password for `username`.  If the
-    password is correct, returns an instance of `JSONModel(:user)`.
-    Otherwise, returns `nil`.
+- `initialize(opts)` -- An object constructor which receives the
+  configuration block specified in the system's configuration.
+- `name` -- A zero-argument method which just returns a string that
+  identifies the instance of your handler. The format of this
+  string isn't important: it just gets stored as a user attribute
+  (in the ArchivesSpace database) to make it possible to tell which
+  authentication source a user last successfully authenticated
+  against.
+- `authenticate(username, password)` -- a method which checks
+  whether `password` is the correct password for `username`. If the
+  password is correct, returns an instance of `JSONModel(:user)`.
+  Otherwise, returns `nil`.
 
 A new instance of your handler will be created for each login attempt,
 so there's no need to handle concurrency in your implementation.
@@ -34,20 +36,20 @@ it must return either `nil` or a `JSONModel(:user)` instance.
 
 The `JSONModel(:user)` class (whose JSON schema is defined in
 `common/schemas/user.rb`) defines the set of properties that the
-system needs for a user.  When you return a `JSONModel(:user)` object,
+system needs for a user. When you return a `JSONModel(:user)` object,
 its values will be used to create an ArchivesSpace user (if a user by
 that name didn't exist already), or update the existing user (if they
 were already known).
 
 **Note**: `The JSONModel(:user)` class validates the values you give it
 against its JSON schema and throws an `JSONModel::ValidationException`
-if anything isn't right.  If this happens within your handler, the
+if anything isn't right. If this happens within your handler, the
 exception will be logged and the authentication request will fail.
 
 ### A skeleton implementation
 
 Suppose you already have a database with a table containing users that
-should be able to log in to ArchivesSpace.  Below is a sketch of an
+should be able to log in to ArchivesSpace. Below is a sketch of an
 authentication handler that will connect to this database and use it
 for authentication.
 

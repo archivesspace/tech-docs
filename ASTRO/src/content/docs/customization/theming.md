@@ -1,4 +1,6 @@
-# Theming ArchivesSpace
+---
+title: Theming ArchivesSpace
+---
 
 ## Making small changes
 
@@ -28,12 +30,12 @@ Alt text for the PUI branding image can and should also be supplied via:
 
 ```
 AppConfig[:pui_branding_img_alt_text] = 'My alt text'
-````
+```
 
 Be sure to remove the `#` at the beginning of
 any line that you want to change. Any line that starts with a `#` is ignored.
 
-If you want your image on the PUI to link out to another location, you will need to make a change to the file `public/app/views/shared/_header.html.erb`. The line that creates the logo just needs a `a href` added.  You should also alter `AppConfig[:pui_branding_img_alt_text]` to make it clear that the image also functions as a link (e.g. `AppConfig[:pui_branding_img_alt_text] = 'Back to Example College Home'`). That will end up looking something like this:
+If you want your image on the PUI to link out to another location, you will need to make a change to the file `public/app/views/shared/_header.html.erb`. The line that creates the logo just needs a `a href` added. You should also alter `AppConfig[:pui_branding_img_alt_text]` to make it clear that the image also functions as a link (e.g. `AppConfig[:pui_branding_img_alt_text] = 'Back to Example College Home'`). That will end up looking something like this:
 
 ```
 <div class="col-sm-3 hidden-xs"><a href="https://example.com"><img class="logo" src="<%= asset_path(AppConfig[:pui_branding_img]) %>" alt="<%= AppConfig[:pui_branding_img_alt_text] %>" /></a></div>
@@ -106,7 +108,6 @@ the public UI as well.
 Also become a little familiar with the
 [build system instructions ](../development/dev.html)
 
-
 First, pull down a new copy of ArchivesSpace using git and be sure to checkout
 a tag matching the version you're using or wanting to use.
 
@@ -115,17 +116,16 @@ a tag matching the version you're using or wanting to use.
 
 You can start your application development server by executing:
 
-	     $ ./build/run bootstrap
-	     $ ./build/run backend:devserver
-	     $ ./build/run frontend:devserver
-	     $ ./build/run public:devserver
+         $ ./build/run bootstrap
+         $ ./build/run backend:devserver
+         $ ./build/run frontend:devserver
+         $ ./build/run public:devserver
 
 **Note:** You don't have to run all these commands all the time. The bootstrap
 command really only has to be run the first time your pull down the code --
-it will also take awhile.  You also don't have to start the frontend or public
+it will also take awhile. You also don't have to start the frontend or public
 if you're not working on those interfaces. Backend does have to be started for
 either the public or frontend interfaces to work. )
-
 
 Follow the instructions in the video to create a new theme. A good way is to copy the existing default theme to a new folder and start making your updates. Be sure to take advantage of the existing variables set in the Less files to make your assets nice and organized.
 

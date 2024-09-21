@@ -1,21 +1,23 @@
-# Upgrading to a new release of ArchivesSpace
+---
+title: Upgrading to a new release of ArchivesSpace
+---
 
-*  **[Special considerations when upgrading to v1.1.0](upgrading/UPGRADING_1.1.0.html)**
-*  **[Special considerations when upgrading to v1.1.1](upgrading/UPGRADING_1.1.1.html)**
-*  **[Special considerations when upgrading from v1.4.2 to 1.5.x (these considerations also apply when upgrading from 1.4.2 to any version through 2.0.1)](upgrading/UPGRADING_1.5.0.html)**
-*  **[Special considerations when upgrading to 2.1.0](upgrading/UPGRADING_2.1.0.html)**
+- **[Special considerations when upgrading to v1.1.0](upgrading/UPGRADING_1.1.0.html)**
+- **[Special considerations when upgrading to v1.1.1](upgrading/UPGRADING_1.1.1.html)**
+- **[Special considerations when upgrading from v1.4.2 to 1.5.x (these considerations also apply when upgrading from 1.4.2 to any version through 2.0.1)](upgrading/UPGRADING_1.5.0.html)**
+- **[Special considerations when upgrading to 2.1.0](upgrading/UPGRADING_2.1.0.html)**
 
 ## Create a backup of your ArchivesSpace instance
 
 You should make sure you have a working backup of your ArchivesSpace
-installation before attempting an upgrade.  Follow the steps
+installation before attempting an upgrade. Follow the steps
 under the [Backup and recovery section](backup.html) to do this.
 
 ## Unpack the new version
 
 It's a good idea to unpack a fresh copy of the version of
-ArchivesSpace you are upgrading to.  This will ensure that you are
-running the latest versions of all files.  In the examples below,
+ArchivesSpace you are upgrading to. This will ensure that you are
+running the latest versions of all files. In the examples below,
 replace the lower case x with the version number updating to. For example,
 1.5.2 or 1.5.3.
 
@@ -27,7 +29,7 @@ For example, on Mac OS X or Linux:
      $ unzip -x archivesspace-v1.5.x.zip
 
 ( The curl step is optional and simply downloads the distribution from github. You can also
- simply download the zip file in your browser and copy it to the directory )
+simply download the zip file in your browser and copy it to the directory )
 
 On Windows, you can do the same by extracting ArchivesSpace into a new
 folder you create in Windows Explorer.
@@ -37,16 +39,15 @@ folder you create in Windows Explorer.
 To ensure you get a consistent copy, you will need to shut down your
 running ArchivesSpace instance now.
 
-
 ## Copy your configuration and data files
 
 You will need to bring across the following files and directories from
 your original ArchivesSpace installation:
 
-  * the `data` directory (see **Indexes note** below)
-  * the `config` directory (see **Configuration note** below)
-  * your `lib/mysql-connector*.jar` file (if using MySQL)
-  * any plugins and local modifications you have installed in your `plugins` directory
+- the `data` directory (see **Indexes note** below)
+- the `config` directory (see **Configuration note** below)
+- your `lib/mysql-connector*.jar` file (if using MySQL)
+- any plugins and local modifications you have installed in your `plugins` directory
 
 For example, on Mac OS X or Linux:
 
@@ -66,7 +67,6 @@ Or on Windows:
      $ xcopy \path\to\archivesspace-1.4.2\archivesspace\plugins\local plugins\local /i /k /h /s /e /o /x /y
      $ xcopy \path\to\archivesspace-1.4.2\archivesspace\plugins\wonderful_plugin plugins\wonderful_plugin /i /k /h /s /e /o /x /y
 
-
 Note that you may want to preserve the logs file (`logs/archivesspace.out`
 by default) from your previous installation--just in case you need to
 refer to it later.
@@ -81,7 +81,7 @@ to see if there are any new configuration settings of interest.
 
 Upgrade notes will generally draw attention to any configuration
 settings you need to set explicitly, but you never know when you'll
-discover a new, exciting feature!  Documentation might also refer to
+discover a new, exciting feature! Documentation might also refer to
 uncommenting configuration options that won't be in your file if you
 keep your older version.
 
@@ -112,8 +112,8 @@ files.
 ## Run the database migrations
 
 With everything copied, the final step is to run the database
-migrations.  This will apply any schema changes and data migrations
-that need to happen as a part of the upgrade.  To do this, use the
+migrations. This will apply any schema changes and data migrations
+that need to happen as a part of the upgrade. To do this, use the
 `setup-database` script for your platform. For example, on Mac OS X
 or Linux:
 
@@ -128,7 +128,6 @@ Or on Windows:
 ## If you're using external Solr (required beginning with version 3.2.0)
 
 [Full instructions for using external Solr with ArchivesSpace](https://archivesspace.github.io/tech-docs/provisioning/solr.html)
-
 
 ## If you've deployed to Tomcat
 

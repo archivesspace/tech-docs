@@ -1,4 +1,6 @@
-# UPGRADING TO 2.1.0
+---
+title: UPGRADING TO 2.1.0
+---
 
 (these considerations also apply when upgrading to any version past 2.1.0 from a version prior to 2.1.0)
 
@@ -19,7 +21,6 @@ The migration tools are currently supported through version 1.4.2 only. If you w
 ## Data migrations in this release
 
 The rights statements data model has changed in 2.1.0. If you currently use rights statements, your data will be converted to the new model during the setup-database step of the upgrade process. We strongly urge you to backup your database and run at least one test upgrade before putting 2.1.0 into production.
-
 
 ## For those using an external Solr server
 

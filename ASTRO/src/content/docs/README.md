@@ -1,8 +1,6 @@
 ---
-permalink: /
+title: ArchivesSpace technical documentation
 ---
-
-# ArchivesSpace technical documentation
 
 The technical documentation covers a range of topics of interest to those working with ArchivesSpace in different technical capacities, and is organized in order to help you find the information most appropriate to your role.
 

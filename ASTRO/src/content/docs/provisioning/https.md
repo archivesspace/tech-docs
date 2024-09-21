@@ -1,36 +1,37 @@
-# Serving ArchivesSpace user-facing applications over HTTPS
+---
+title: Serving ArchivesSpace user-facing applications over HTTPS
+---
 
 This document describes the approach for those wishing to install
 ArchivesSpace in such a manner that all end-user requests (i.e., URLs)
 are served over HTTPS rather than HTTP. For the purposes of this documentation, the URLs for the staff and public interfaces will be:
 
-  * `https://staff.myarchive.org` - staff interface
-  * `https://public.myarchive.org` - public interface
+- `https://staff.myarchive.org` - staff interface
+- `https://public.myarchive.org` - public interface
 
 The configuration described in this document is one possible approach,
 and to keep things simple the following are assumed:
 
-  * ArchivesSpace is running on a single Linux server
-  * The server is running Apache or Nginx
-  * You have obtained an SSL certificate and key from an authority
-  * You have ensured that appropriate firewall ports have been opened (80 and 443).
+- ArchivesSpace is running on a single Linux server
+- The server is running Apache or Nginx
+- You have obtained an SSL certificate and key from an authority
+- You have ensured that appropriate firewall ports have been opened (80 and 443).
 
-1. [Configuring the Web Server](#Step-1%3A-Configure-Web-Server-(Apache-or-Nginx))
+1. [Configuring the Web Server](<#Step-1%3A-Configure-Web-Server-(Apache-or-Nginx)>)
    - [Apache](#Apache)
      - [Setting up SSL](#Setting-up-SSL)
      - [Setting up Redirects](#Setting-up-Redirects)
    - [Nginx](#Nginx)
 2. [Configuring ArchivesSpace](#Step-2%3A-Configure-ArchivesSpace)
 
-
 ## Step 1: Configure Web Server (Apache or Nginx)
 
 ### Apache
-Information about configuring Apache for SSL can be found at http://httpd.apache.org/docs/current/ssl/ssl_howto.html.  You should read
+
+Information about configuring Apache for SSL can be found at http://httpd.apache.org/docs/current/ssl/ssl_howto.html. You should read
 that documentation before attempting to configure SSL.
 
 #### Setting up SSL
-
 
 Use the `NameVirtualHost` and `VirtualHost` directives to proxy
 requests to the actual application urls. This requires the use of the `mod_proxy` module in Apache.
@@ -64,6 +65,7 @@ You may optionally set the `Set-Cookie: Secure attribute` by adding `Header edit
 Users may encounter a warning in the browser's console stating `Cookie “archivesspace_session” does not have a proper “SameSite” attribute value. Soon, cookies without the “SameSite” attribute or with an invalid value will be treated as “Lax”. This means that the cookie will no longer be sent in third-party contexts` (example from Firefox 104) or something similar. Some browsers (for example, Chrome version 80 or above) already enforce this. Standard ArchivesSpace installations should be unaffected, but if you encounter problems with integrations and/or customizations of your particular installation, the following directive may be required: `Header edit Set-Cookie ^(.*)$ $1;SameSite=None;Secure`. Alternatively, it may be the case that `SameSite=Lax` (the default) or even `SameSite=Strict` are more appropriate depending on your functional and/or security requirements. Please refer to https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite or other resources for more information.
 
 #### Setting up Redirects
+
 When running a site over HTTPS, it's a good idea to set up a redirect to ensure any outdated HTTP requests are routed to the correct URL. This can be done through Apache as follows:
 
 ```
@@ -84,7 +86,7 @@ RewriteRule (.*) https://public.myarchive.org$1 [R,L]
 
 ### Nginx
 
-Information about configuring nginx for SSL can be found at http://nginx.org/en/docs/http/configuring_https_servers.html  You should read
+Information about configuring nginx for SSL can be found at http://nginx.org/en/docs/http/configuring_https_servers.html You should read
 that documentation before attempting to configure SSL.
 
 ```
@@ -102,7 +104,7 @@ server {
   server_name staff.myarchive.org;
   charset utf-8;
   }
- 
+
   ssl_certificate     /path/to/your/fullchain.pem;
   ssl_certificate_key /path/to/your/key.pem
 
@@ -126,7 +128,7 @@ server {
   server_name staff.myarchive.org;
   charset utf-8;
   }
- 
+
   ssl_certificate     /path/to/your/fullchain.pem;
   ssl_certificate_key /path/to/your/key.pem
 
@@ -142,11 +144,14 @@ server {
 ## Step 2: Configure ArchivesSpace
 
 The following lines need to be altered in the config.rb file:
+
 ```
 AppConfig[:frontend_proxy_url] = "https://staff.myarchive.org"
 AppConfig[:public_proxy_url] = "https://public.myarchive.org"
 ```
+
 These lines don't need to be altered and should remain with their default values. E.g.:
+
 ```
 AppConfig[:frontend_url] = "http://localhost:8080"
 AppConfig[:public_url] = "http://localhost:8081"

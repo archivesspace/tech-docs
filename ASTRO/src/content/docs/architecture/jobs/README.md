@@ -1,8 +1,6 @@
 ---
-permalink: /architecture/jobs/
+title: Background Jobs
 ---
-
-# Background Jobs
 
 ArchivesSpace provides a mechanism for long running processes to run
 asynchronously. These processes are called `Background Jobs`.
@@ -11,18 +9,17 @@ asynchronously. These processes are called `Background Jobs`.
 
 The `Create` menu has a `Background Job` option which shows a submenu of job
 types that the current user has permission to create. (See below for more
-  information about job permissions and hidden jobs.) Selecting one of these
-  options will take the user to a form to enter any parameters required for the
-  job and then to create it.
+information about job permissions and hidden jobs.) Selecting one of these
+options will take the user to a form to enter any parameters required for the
+job and then to create it.
 
 When a job is created it is placed in the `Background Job Queue`. Jobs in the
 queue will be run in the order they were created. (See below for more
-  information about multiple threads and concurrent jobs.)
+information about multiple threads and concurrent jobs.)
 
 The `Browse` menu has a `Background Jobs` option. This takes the user to a list
 of jobs arranged by their status. The user can then view the details of a job,
 and cancel it if they have permission.
-
 
 ## Permissions
 
@@ -34,7 +31,6 @@ permission is included in the `repository_managers` group.
 
 When a JobRunner registers it can specify additional create and cancel
 permissions. (See below for more information)
-
 
 ## Types, Runners and Schemas
 
@@ -49,25 +45,25 @@ classes are located here:
       backend/app/lib/job_runners/
 
 It is possible to define additional job runners from a plugin. (See below for
-  more information about plugins.)
+more information about plugins.)
 
 A job runner class must subclass `JobRunner`, register to run one or more job
 types, and implement a `#run` method for jobs that it handles.
 
 When a job runner registers for a job type, it can set some options:
 
-  * `:hidden`
-      * Defaults to `false`
-      * If this is set then this job type will not be shown in the list of available job types.
-  * `:run_concurrently`
-      * Defaults to `false`
-      * If this is set to true then more than one job of this type can run at the same time.
-  * `:create_permissions`
-      * Defaults to `[]`
-      * A permission or list of permissions required, in addition to `create_job`, to create jobs of this type.
-  * `:cancel_permissions`
-      * Defaults to `[]`
-      * A permission or list of permissions required, in addition to `cancel_job`, to cancel jobs of this type.
+- `:hidden`
+  - Defaults to `false`
+  - If this is set then this job type will not be shown in the list of available job types.
+- `:run_concurrently`
+  - Defaults to `false`
+  - If this is set to true then more than one job of this type can run at the same time.
+- `:create_permissions`
+  - Defaults to `[]`
+  - A permission or list of permissions required, in addition to `create_job`, to create jobs of this type.
+- `:cancel_permissions`
+  - Defaults to `[]`
+  - A permission or list of permissions required, in addition to `cancel_job`, to cancel jobs of this type.
 
 For more information about defining a job runner, see the `JobRunner` superclass:
 
@@ -83,7 +79,6 @@ registers for. For example:
 
 This schema, for `JSONModel(:import_job)`, defines the parameters for running a
 job of type `import_job`.
-
 
 ## Concurrency
 
@@ -103,7 +98,6 @@ and will be run when there are no longer any jobs of its type running.
 
 When set to `true` a job will be run when it comes to the front of the queue
 regardless of whether there is a job of the same type running.
-
 
 ## Plugins
 

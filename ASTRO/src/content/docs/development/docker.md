@@ -1,4 +1,6 @@
-# Docker
+---
+title: Docker
+---
 
 The [Docker](https://www.docker.com/) configuration is used to create [automated builds](https://hub.docker.com/r/archivesspace/archivesspace/) on Docker Hub, which are deployed to [the latest version](http://test.archivesspace.org) when the build completes.
 

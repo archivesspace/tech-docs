@@ -1,10 +1,12 @@
-# Running ArchivesSpace with external Solr
+---
+title: Running ArchivesSpace with external Solr
+---
 
 For ArchivesSpace > 3.1.1 this is **required**. For previous versions it is optional.
 
 ## Supported Solr Versions
 
-**Note: ArchivesSpace does NOT currently support Solr 9. Using the latest version of Solr 8 is recommended at this time.
+\*\*Note: ArchivesSpace does NOT currently support Solr 9. Using the latest version of Solr 8 is recommended at this time.
 
 ArchivesSpace "officially" supports the version indicated in
 [solrconfig.xml](https://github.com/archivesspace/archivesspace/blob/master/solr/solrconfig.xml#L7).
@@ -160,8 +162,8 @@ By default, on startup, ArchivesSpace will check that the Solr configuration
 appears to be correct and will raise an error if not. You can disable this check
 by setting `AppConfig[:solr_verify_checksums] = false` in `config.rb`.
 
-Please note: if you're upgrading an existing installation of ArchivesSpace to use an external Solr, you will need to trigger a full re-index. Instructions for this are in 
- [Indexes](../administration/indexes.html) .
+Please note: if you're upgrading an existing installation of ArchivesSpace to use an external Solr, you will need to trigger a full re-index. Instructions for this are in
+[Indexes](../administration/indexes.html) .
 
 ---
 
