@@ -1,0 +1,375 @@
+[
+  {
+    "label": "Home",
+    "link": "/"
+  },
+  {
+    "label": "Technical Overview",
+    "items": [
+      {
+        "label": "Introduction",
+        "link": "/evaluate"
+      },
+      {
+        "label": "Architecture and components",
+        "items": [
+          {
+            "label": "The ArchivesSpace backend",
+            "link": "/architecture/backend"
+          },
+          {
+            "label": "The ArchivesSpace staff interface",
+            "link": "/architecture/frontend"
+          },
+          {
+            "label": "The ArchivesSpace public user interface",
+            "link": "/architecture/public"
+          },
+          {
+            "label": "Background Jobs",
+            "link": "/architecture/jobs"
+          },
+          {
+            "label": "Search indexing",
+            "link": "/architecture/search"
+          },
+          {
+            "label": "OAI-PMH interface",
+            "link": "/architecture/oai-pmh"
+          },
+          {
+            "label": "Languages, platforms, and included open source projects",
+            "link": "/architecture/languages.html"
+          },
+          {
+            "label": "Working with the ArchivesSpace Database",
+            "link": "/architecture/backend/database.html"
+          },
+          {
+            "label": "Working with the ArchivesSpace API",
+            "link": "/api"
+          }
+        ]
+      },
+      {
+        "label": "Configuration and customization",
+        "items": [
+          {
+            "label": "Running ArchivesSpace as a Unix daemon",
+            "link": "/administration/unix_daemon"
+          },
+          {
+            "label": "Running ArchivesSpace as a Windows service",
+            "link": "/administration/windows"
+          },
+          {
+            "label": "Running ArchivesSpace against MySQL",
+            "link": "/provisioning/mysql"
+          },
+          {
+            "label": "ArchivesSpace Plug-ins",
+            "link": "/customization/plugins"
+          },
+          {
+            "label": "Theming ArchivesSpace",
+            "link": "/customization/theming"
+          },
+          {
+            "label": "Adding support for additional username/password-based authentication backends",
+            "link": "/customization/authentication"
+          },
+          {
+            "label": "Customizing text in ArchivesSpace",
+            "link": "/customization/locales"
+          }
+        ]
+      },
+      {
+        "label": "Migrating from Archivists’ Toolkit and Archon",
+        "items": [
+          {
+            "label": "Migration tools and data mapping",
+            "link": "/migrations/migration_tools"
+          },
+          {
+            "label": "Archivists' Toolkit migration tool instructions",
+            "link": "/migrations/migrate_from_archivists_toolkit"
+          },
+          {
+            "label": "Archon migration tool instructions",
+            "link": "/migrations/migrate_from_archon"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Installing, Configuring and Maintaining ArchivesSpace",
+    "items": [
+      { "label": "Introduction", "link": "/implement" },
+      {
+        "label": "Installation and Configuration",
+        "items": [
+          {
+            "label": "Getting started",
+            "link": "/administration/getting_started"
+          },
+          {
+            "label": "Configuring ArchivesSpace",
+            "link": "/customization/configuration"
+          },
+          {
+            "label": "Running ArchivesSpace against MySQL",
+            "link": "/provisioning/mysql"
+          },
+          {
+            "label": "Running ArchivesSpace with external Solr",
+            "link": "/provisioning/solr"
+          },
+          {
+            "label": "Running ArchivesSpace as a Unix daemon",
+            "link": "/administration/unix_daemon"
+          },
+          {
+            "label": "Running ArchivesSpace as a Windows service",
+            "link": "/administration/windows"
+          },
+          {
+            "label": "Adding support for additional username/password-based authentication backends",
+            "link": "/customization/authentication"
+          },
+          {
+            "label": "Configuring LDAP authentication",
+            "link": "/customization/ldap"
+          }
+        ]
+      },
+      {
+        "label": "Customization and Theming",
+        "items": [
+          {
+            "label": "ArchivesSpace Plug-ins",
+            "link": "/customization/plugins"
+          },
+          {
+            "label": "Customizing text in ArchivesSpace",
+            "link": "/customization/locales"
+          },
+          {
+            "label": "Theming ArchivesSpace",
+            "link": "/customization/theming"
+          },
+          {
+            "label": "Managing frontend assets with Bower",
+            "link": "/customization/bower"
+          },
+          {
+            "label": "Creating Custom Reports",
+            "link": "/customization/reports"
+          },
+          {
+            "label": "ArchivesSpace XSL stylesheets",
+            "link": "/import_export/xsl_stylesheets"
+          }
+        ]
+      },
+      {
+        "label": "Maintenance",
+        "items": [
+          {
+            "label": "Re-creating indexes",
+            "link": "/administration/indexes"
+          },
+          {
+            "label": "Resetting passwords",
+            "link": "/administration/passwords"
+          },
+          { "label": "Upgrading", "link": "/administration/upgrading" },
+          {
+            "label": "Backup and recovery",
+            "link": "/administration/backup"
+          },
+          {
+            "label": "ArchivesSpace releases and database versions",
+            "link": "/development/release_schema_versions"
+          }
+        ]
+      },
+      {
+        "label": "Advanced configuration",
+        "items": [
+          { "label": "Tuning ArchivesSpace", "link": "/provisioning/tuning" },
+          {
+            "label": "Running ArchivesSpace with load balancing and multiple tenants",
+            "link": "/provisioning/clustering"
+          },
+          {
+            "label": "Serving ArchivesSpace over subdomains",
+            "link": "/provisioning/domains"
+          },
+          {
+            "label": "Serving ArchivesSpace user-facing applications over HTTPS",
+            "link": "/provisioning/https"
+          },
+          {
+            "label": "Application monitoring with New Relic",
+            "link": "/provisioning/newrelic"
+          },
+          {
+            "label": "Running ArchivesSpace under a prefix",
+            "link": "/provisioning/prefix"
+          },
+          {
+            "label": "JMeter Test Group Template",
+            "link": "/provisioning/jmeter"
+          }
+        ]
+      },
+      {
+        "label": "Migrating data from Archivists' Toolkit and Archon",
+        "items": [
+          {
+            "label": "Archivists' Toolkit migration tool instructions",
+            "link": "/migrations/migrate_from_archivists_toolkit"
+          },
+          {
+            "label": "Archon migration tool instructions",
+            "link": "/migrations/migrate_from_archon"
+          }
+        ]
+      },
+      {
+        "label": "Other migration resources",
+        "items": [
+          {
+            "label": "Migration tools and data mapping",
+            "link": "/migrations/migration_tools"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Developer Resources",
+    "items": [
+      {
+        "label": "Introduction",
+        "link": "/develop"
+      },
+      {
+        "label": "Setting up a development environment",
+        "items": [
+          {
+            "label": "Running a development version of ArchivesSpace",
+            "link": "/development/dev"
+          },
+          {
+            "label": "Building an ArchivesSpace release",
+            "link": "/development/release"
+          },
+          { "label": "Docker", "link": "/development/docker" },
+          {
+            "label": "DB versions listed by release",
+            "link": "/development/release_schema_versions"
+          },
+          {
+            "label": "User Interface Test Suite",
+            "link": "/development/ui_test"
+          },
+          {
+            "label": "Upgrading Rack for ArchivesSpace",
+            "link": "/development/jruby-rack-build"
+          },
+          {
+            "label": "ArchivesSpace Releases",
+            "link": "/development/releases"
+          },
+          {
+            "label": "Using the VS Code editor for local development",
+            "link": "/development/vscode"
+          }
+        ]
+      },
+      {
+        "label": "Building integrations and plugins",
+        "items": [
+          {
+            "label": "ArchivesSpace Plug-ins",
+            "link": "customization/plugins"
+          },
+          {
+            "label": "Working with the ArchivesSpace Database",
+            "link": "architecture/backend/database"
+          },
+          { "label": "Working with the ArchivesSpace API", "link": "./" },
+          {
+            "label": "Customizing text in ArchivesSpace",
+            "link": "customization/locales"
+          },
+          {
+            "label": "Theming ArchivesSpace",
+            "link": "customization/theming"
+          },
+          {
+            "label": "Managing frontend assets with Bower",
+            "link": "customization/bower"
+          }
+        ]
+      },
+      {
+        "label": "Exporting data from ArchivesSpace",
+        "items": [
+          {
+            "label": "ArchivesSpace repository EAD Exporter",
+            "link": "/import_export/ead_exporter"
+          },
+          {
+            "label": "ArchivesSpace XSL stylesheets",
+            "link": "/import_export/xsl_stylesheets"
+          },
+          {
+            "label": "Creating Custom Reports",
+            "link": "/customization/reports"
+          }
+        ]
+      },
+      {
+        "label": "Repositories and CoC",
+        "items": [
+          {
+            "label": "Code of Conduct",
+            "link": "https://archivesspace.org/archivesspace-code-of-conduct"
+          },
+          {
+            "label": "Main ArchivesSpace Repository",
+            "link": "https://github.com/archivesspace/archivesspace"
+          },
+          {
+            "label": "Plugins supported by the Program Team",
+            "link": "https://github.com/archivesspace-plugins"
+          },
+          {
+            "label": "Repository for community development projects",
+            "link": "https://github.com/archivesspace-labs"
+          },
+          {
+            "label": "Program Team's Youtube channel",
+            "link": "https://www.youtube.com/channel/UCxR6D-UlSx6N6UWTeqHTjzA"
+          },
+          {
+            "label": "Hudson Molonglo's Youtub channel",
+            "link": "https://www.youtube.com/channel/UCMBmBY_CsxwJy9rJKxQrVoQ"
+          },
+          {
+            "label": "Sandbox - latest release",
+            "link": "http://sandbox.archivesspace.org/"
+          },
+          {
+            "label": "Test Server - latest commit",
+            "link": "http://test.archivesspace.org/"
+          }
+        ]
+      }
+    ]
+  }
+]

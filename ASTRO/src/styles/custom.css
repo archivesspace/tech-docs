@@ -1,29 +1,28 @@
 /*
-  Custom colors generated via the 'Color theme editor' in the Starlight docs,
+  Custom colors generated via the Starlight docs 'Color theme editor',
   https://starlight.astro.build/guides/css-and-tailwind/#color-theme-editor.
-  The color #00a1e1 (from the AS logo) was input into the accent color picker,
-  resulting in the color #0071a1, then the Chroma value was bumped up to 0.168.
+  Based on #50c0e8 (dark) and #026cb6 (light) from the AS logo.
 */
 
 /* Dark mode colors. */
 :root {
-  --sl-color-accent-low: #00273b;
-  --sl-color-accent: #0072a2;
-  --sl-color-accent-high: #a7cfe9;
+  --sl-color-accent-low: #002836;
+  --sl-color-accent: #007595;
+  --sl-color-accent-high: #85d5f5;
   --sl-color-white: #ffffff;
-  --sl-color-gray-1: #eceef2;
-  --sl-color-gray-2: #c0c2c7;
-  --sl-color-gray-3: #888b96;
-  --sl-color-gray-4: #545861;
-  --sl-color-gray-5: #353841;
-  --sl-color-gray-6: #24272f;
-  --sl-color-black: #17181c;
+  --sl-color-gray-1: #edeef0;
+  --sl-color-gray-2: #c7c8cb;
+  --sl-color-gray-3: #a2a4a9;
+  --sl-color-gray-4: #56585d;
+  --sl-color-gray-5: #36383c;
+  --sl-color-gray-6: #25272b;
+  --sl-color-black: #17181a;
 }
 /* Light mode colors. */
-:root[data-theme='light'] {
-  --sl-color-accent-low: #bedcef;
-  --sl-color-accent: #0073a3;
-  --sl-color-accent-high: #003750;
+:root[data-theme="light"] {
+  --sl-color-accent-low: #c5d9ee;
+  --sl-color-accent: #00518a;
+  --sl-color-accent-high: #103454;
   --sl-color-white: #17181c;
   --sl-color-gray-1: #24272f;
   --sl-color-gray-2: #353841;
@@ -34,3 +33,6 @@
   --sl-color-gray-7: #f5f6f8;
   --sl-color-black: #ffffff;
 }
+
+/* TODO customize asides color,
+https://github.com/withastro/starlight/blob/main/packages/starlight/style/asides.css */
