@@ -1,6 +1,5 @@
 ---
 title: ArchivesSpace Tech Docs
-description: Get started building your docs site with Starlight.
 tableOfContents: false
 ---
 
