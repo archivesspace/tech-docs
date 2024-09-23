@@ -89,23 +89,23 @@ Because this is a major change in the data model for this portion of the applica
 - Follow the upgrade instructions to run the database migrations. As part of this step, your container data will be converted to the new data model. You can follow along in the log. Windows users can open the archivesspace.out file in a tool like Notepad ++. Mac users can do a tail –f logs/archivesspace.out to get a live update from the log.
 - When the test conversion has been completed, the log will indicate "Completed: existing containers have been migrated to the new container model."
 
-![Image of Conversion Log](../../images/ConversionLog.png)
+![Image of Conversion Log](../../../../images/ConversionLog.png)
 
 - Open ArchivesSpace via your browser and login.
   Retrieve the container conversion error report from the Background Jobs area:
 - Select Background Jobs from the Settings menu.
 
-![Image of Background Jobs](../../images/BackgroundJobs.png)
+![Image of Background Jobs](../../../../images/BackgroundJobs.png)
 
 - The first item listed under Archived Jobs after completing the upgrade should be container_conversion_job. Click View.
 
-![Image of Background Jobs List](../../images/BackgroundJobsList.png)
+![Image of Background Jobs List](../../../../images/BackgroundJobsList.png)
 
 - Under Files, click File to download a CSV file with the errors and a brief explanation.
 
-![Image of Files](../../images/Files.png)
+![Image of Files](../../../../images/Files.png)
 
-![Image of Error Report](../../images/ErrorReport.png)
+![Image of Error Report](../../../../images/ErrorReport.png)
 
 - Go back to your source data and correct any errors that you can before doing another test conversion.
 - When the error report shows no errors, or when you are satisfied with the remaining errors, your production instance is ready to be upgraded.

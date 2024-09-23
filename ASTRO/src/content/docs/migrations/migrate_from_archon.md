@@ -33,20 +33,20 @@ If normalized dates are not recorded correctly (i.e. if the end date and begin d
 
 Review the settings to make sure that each 'level container' is appropriately marked with the correct values for "Intellectual Level" and "Physical Container" and that EAD Values are correctly recorded.
 
-![Level Container Manager](../images/archon_level.jpg)
+![Level Container Manager](../../../images/archon_level.jpg)
 
 Failure to code level container values correctly may result in incorrect nesting of resource components in ArchivesSpace. While the following information does not need to be acted upon prior to migration, please note the following if you find that content is not nested correctly after you migrate:
 
 - Collection content records that have a level container that is 'Intellectual Only' will be migrated to ArchivesSpace as resource components. Each level/container that has 'intellectual level' checked should have a valid value recorded in the "EAD Level" field (i.e. class, collection, file, fonds, item, otherlevel, recordgrp, series, subfonds, subgrp, subseries). These values are case sensitive, and all other values will be migrated as "otherlevel" on the collection content/resource component records to which they apply.
 - Collection content records that have a level container that is 'Physical Only' will be migrated to ArchivesSpace as instance records of the type 'text' attached to a container in ArchivesSpace. These instance/container records will be attached to the intellectual level or levels that are immediate children of the container record as it was previously expressed in Archon. If the instance/container has no children it will be attached to its parent intellectual level instead. For illustrative purposes, the following screenshots show a container record prior to and following migration.
-  ![Archon container example](../images/archon_container.jpg)
+  ![Archon container example](../../../images/archon_container.jpg)
 - Collection content records that have both physical and intellectual levels will be migrated as both resource components and instances. In this case the instance will be attached to the resource component.
 - Collection content records that are neither physical nor intellectual levels will be migrated as if they were 'Intellectual Only'. This is not recommended and should be fixed prior to migration.
 
 ### Collection Content Records
 
 - If a value has not been set in the "Title" or "Inclusive Dates" field of an "intellectual" level/container in Archon, the collection content record being migrated will be supplied a title, based on its "label" value and the "level/container" type set in Archon.
-  ![Collection Content Records](../images/archon_collection.jpg)
+  ![Collection Content Records](../../../images/archon_collection.jpg)
 - Optionally, if a migration fails, check for collection content records that reference invalid 'level/containers'. These records are found in the database tables, but are not visible to staff or end users and must be eliminated prior to migration. If not eliminated, the migration will fail. In order to identify these records, you should follow these steps. **Be very careful. If you are uncertain what you are doing, backup the database first or speak with a systems administrator!**
 - In MySQL or SQL Server, open the table titled 'tblCollections_LevelContainers'. Note the 'ID' value recorded of each row (i.e. LevelContainer).
 - Run a query against tblCollections_Content to find records where the LevelID column references an invalid value. For example, if tblCollections_Level Containers holds 'ID' values1-6 and 8-22:
@@ -131,7 +131,7 @@ The following Archon datatypes will migrate, and all relationships that exist be
 
 Make sure the ArchivesSpace instance that you are migrating into is up and running, then open up the migration tool.
 
-![Archon migrator](../images/archon_migrator.jpg)
+![Archon migrator](../../../images/archon_migrator.jpg)
 
 1. Change the default information in the migration tool user interface:
    - ArchonSource – Supply the base URL for the Archon instance.

@@ -9,8 +9,8 @@ export default defineConfig({
     starlight({
       title: "Tech Docs",
       logo: {
-        light: "./src/assets/logo.svg",
-        dark: "./src/assets/logo-dark.svg",
+        light: "./src/images/logo.svg",
+        dark: "./src/images/logo-dark.svg",
         replacesTitle: false,
       },
       customCss: ["./src/styles/custom.css"],
