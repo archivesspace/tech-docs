@@ -34,5 +34,21 @@
   --sl-color-black: #ffffff;
 }
 
-/* TODO customize asides color,
+/* Custom dark mode aside colors, see
 https://github.com/withastro/starlight/blob/main/packages/starlight/style/asides.css */
+:root[data-theme="dark"] {
+  .starlight-aside--note {
+    --sl-color-asides-border: var(--sl-color-accent-high);
+    background-color: #293171;
+  }
+  .starlight-aside--tip {
+    background-color: #5a2971;
+  }
+  .starlight-aside--caution {
+    background-color: #5b4b23;
+  }
+  .starlight-aside--danger {
+    --sl-color-asides-border: #ff1811;
+    background-color: #6c253e;
+  }
+}
