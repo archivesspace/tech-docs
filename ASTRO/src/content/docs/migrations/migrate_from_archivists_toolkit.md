@@ -38,7 +38,7 @@ These guidelines are for migrating data from Archivists' Toolkit 2.0 Update 16 t
 - Make sure the ArchivesSpace instance that you are migrating into is up and running.
 - Restart the AT instance to load the newly installed plug-in. To run the plug-in go to the "Tools" menu, then select "Script Runtime v1.0", and finally "ArchivesSpace Data Migrator". This will cause the plug-in window to display.
 
-![AT migrator](../images/at_migrator.jpg)
+![AT migrator](../../../images/at_migrator.jpg)
 
 - Change the default information in the Migrator UI:
   - **Threads** – Used to specify the number of clients that are used to copy Resource records simultaneously. The limit on the number of clients depends on the record size and allocated memory. A number from 4 to 6 is generally a good value to use, but can be reduced if an "Out of Memory Exception" occurs.
