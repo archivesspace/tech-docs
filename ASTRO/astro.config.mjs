@@ -17,12 +17,16 @@ export default defineConfig({
       editLink: {
         baseUrl: "https://github.com/archivesspace/tech-docs/edit/master/",
       },
+      credits: true,
       lastUpdated: true,
       social: {
         github: "https://github.com/archivesspace/tech-docs",
         youtube: "https://www.youtube.com/@archivesspace5340",
       },
       sidebar,
+      components: {
+        Footer: "./src/components/overrides/Footer.astro",
+      },
     }),
   ],
 });
