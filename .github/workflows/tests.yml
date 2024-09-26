@@ -1,0 +1,29 @@
+name: Run Cypress tests
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true # runs 'bundle install'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4.0.3
+        with:
+          node-version-file: 'package.json'
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6 # runs 'npm ci'
+        with:
+          start: npm start
+          wait-on: 'http://localhost:4000'

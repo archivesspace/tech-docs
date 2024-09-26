@@ -17,6 +17,12 @@ defaults:
     values:
       layout: "default"
 
+exclude:
+  - cypress/
+  - CYPRESS.md
+  - package*.json
+  - LICENSE
+
 github: # recreate gh-pages api
   is_project_page: true
   repository_url: https://github.com/archivesspace/tech-docs
