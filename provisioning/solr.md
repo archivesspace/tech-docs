@@ -4,20 +4,14 @@ For ArchivesSpace > 3.1.1 this is **required**. For previous versions it is opti
 
 ## Supported Solr Versions
 
-**Note: ArchivesSpace does NOT currently support Solr 9. Using the latest version of Solr 8 is recommended at this time.
+ArchivesSpace is currently tested for compatibility with Solr version: `9 (9.4.1)`.
+This version is being used during development and the ArchivesSpace test suite passes
+with this version therefore is it recommended that you use this version of Solr in
+production.
 
-ArchivesSpace "officially" supports the version indicated in
-[solrconfig.xml](https://github.com/archivesspace/archivesspace/blob/master/solr/solrconfig.xml#L7).
-That refers to a version that is used for development and tested between release cycles.
-
-If you are already running Solr externally using a configuration derived from a 3.1.1 or
-earlier ArchivesSpace then it should continue to work, as for the transition from embedded
-to external Solr the configuration files have only been updated to resolve deprecations.
-To support a custom set of Solr configuration files (i.e. not the exact files provided
-with an ArchivesSpace release), however, you must set `AppConfig[:solr_verify_checksums] = false` in `config.rb`.
-Alternatively if you would like to use the verify checksums feature you can place a copy of your
-schema and solrconfig xml files in the ArchivesSpace release `solr` directory, overwriting those
-provided by ArchivesSpace.
+It may be possible to use ArchivesSpace with an older version of Solr. However in that case it
+is important to check the [release notes](https://github.com/archivesspace/archivesspace/releases)
+for any potential version compatibility issues.
 
 **Note: the ArchivesSpace Program Team can only provide support for Solr deployments
 using the "officially" supported version with the standard configuration provided by
@@ -25,7 +19,7 @@ the application. Everything else will be treated as "best effort" community-led 
 
 ## Install Solr
 
-Refer to the [Solr documentation](https://solr.apache.org/guide/8_11/installing-solr.html)
+Refer to the [Solr documentation](https://solr.apache.org/guide/solr/9_4/deployment-guide/installing-solr.html)
 for instructions on setting up Solr on your server.
 
 You will download the Solr package and extract it to a folder of your choosing. Do not start Solr
@@ -96,6 +90,22 @@ Mode                 LastWriteTime         Length Name
 ```
 
 _Note: your exact output may be slightly different._
+
+## Setup the environment
+
+From Solr v9 ArchivesSpace requires the use of [Solr modules](https://solr.apache.org/guide/solr/latest/configuration-guide/solr-modules.html).
+We recommend using the environment variable option to specify the modules to use:
+
+```
+SOLR_MODULES=analysis-extras
+```
+
+This environment variable needs to be available to the Solr instance at runtime.
+
+For instructions on how set an environment variable here are some recommended articles:
+
+- https://www.freecodecamp.org/news/how-to-set-an-environment-variable-in-linux
+- https://www.java.com/en/download/help/path.html (includes Windows)
 
 ## Setup a Solr core
 
@@ -169,3 +179,31 @@ You can now follow the instructions in the [Getting started](../administration/g
 your ArchivesSpace application.
 
 ---
+
+## Upgrading Solr
+
+If you are using an older version of Solr than is recommended you may need (if called out
+in release notes) or want to upgrade. Before performing an upgrade it is recommended that you review:
+
+- [Solr upgrade notes](https://solr.apache.org/guide/solr/latest/upgrade-notes/solr-upgrade-notes.html)
+- [ArchivesSpace's release notes](https://github.com/archivesspace/archivesspace/releases)
+
+You should also review this document as the installation steps may include
+instructions that were not present in the past. For example, from Solr v9 there is a
+requirement to use Solr modules with instructions to configure the modules using environment
+variables.
+
+The crucial part will be ensuring that ArchivesSpace's schema is being used for the
+ArchivesSpace Solr index. The config setting `AppConfig[:solr_verify_checksums] = true`
+will perform a check on startup that confirms this is the case, otherwise ArchivesSpace
+will not be able to start up.
+
+From ArchivesSpace 3.5+ `AppConfig[:solr_verify_checksums]` does not check the
+`solrconfig.xml` file. Therefore you can make changes to it without ArchivesSpace failing
+on startup. However, for an upgrade you will want to at least compare the ArchivesSpace
+`solrconfig.xml` to the one that is in use in case there are changes that need to be made to
+work with the upgraded-to version of Solr. For example the ArchivesSpace Solr v8 `solrconfig.xml`
+will not work as is with Solr v9.
+
+After upgrading Solr you should trigger a full re-index. Instructions for this are in
+[Indexes](../administration/indexes.html).
