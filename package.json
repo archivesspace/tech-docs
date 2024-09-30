@@ -1,0 +1,20 @@
+{
+  "name": "tech-docs",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "ArchivesSpace technical documentation",
+  "repository": "https://github.com/archivesspace/tech-docs",
+  "license": "ECL-2.0",
+  "engines": {
+    "node": ">=20.17.0"
+  },
+  "scripts": {
+    "test": "cypress run",
+    "dev": "bundle exec jekyll serve",
+    "build": "bundle exec jekyll build",
+    "start": "npm run dev"
+  },
+  "devDependencies": {
+    "cypress": "^13.14.1"
+  }
+}

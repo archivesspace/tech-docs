@@ -69,8 +69,6 @@ d-----        10/25/2021  12:15 PM                conf
 Copy the ArchivesSpace Solr configuration files from the `solr` directory included
 with the release into the `$SOLR_HOME/server/solr/configsets/archivesspace/conf` directory.
 
-[Link to files in GitHub](https://github.com/archivesspace/archivesspace/tree/master/solr)
-
 There should be four files:
 
 - schema.xml
