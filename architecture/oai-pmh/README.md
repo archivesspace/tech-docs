@@ -34,8 +34,15 @@ suggested by the community.
 Here are some example URLs and other information for these requests:
 
 **GetRecord** – needs a record identifier and metadataPrefix
+  Up to ArchivesSpace v3.5.1 OAI identifiers are in this format:
 
-  `http://localhost:8082/oai?verb=GetRecord&identifier=oai:archivesspace//repositories/2/resources/138&metadataPrefix=oai_ead`
+  ```http://localhost:8082/oai?verb=GetRecord&identifier=oai:archivesspace//repositories/2/resources/138&metadataPrefix=oai_ead```
+
+  Starting with ArchivesSpace v4.0.0 OAI identifiers are in the new format (notice the colon after the `oai:archivesspace` namespace part of the identifier):
+
+  `http://localhost:8082/oai?verb=GetRecord&identifier=oai:archivesspace:/repositories/2/resources/138&metadataPrefix=oai_ead`
+
+  see also: https://github.com/code4lib/ruby-oai/releases/tag/v1.0.0
 
 **Identify**
 
@@ -79,26 +86,26 @@ configured sets as shown above or from the following levels of description:
 In addition to the sets based on level of description, you can define sets
 based on repository codes and/or sponsors in the config/config.rb file:
 
-	AppConfig[:oai_sets] = {
-  	'repository_set' => {
-    	:repo_codes => ['hello626'],
-    	:description => "A set of one or more repositories",
-  	},
-  	'sponsor_set' => {
-    	:sponsors => ['The_Sponsor'],
-    	:description => "A set of one or more sponsors",
-  	}
-	}
+    AppConfig[:oai_sets] = {
+    'repository_set' => {
+        :repo_codes => ['hello626'],
+        :description => "A set of one or more repositories",
+    },
+    'sponsor_set' => {
+        :sponsors => ['The_Sponsor'],
+        :description => "A set of one or more sponsors",
+    }
+    }
 
 The interface implements resumption tokens for pagination of results. As an
 example, the following URL format should be used to page through the results
 from a ListRecords request:
 
-  	`http://localhost:8082/oai?verb=ListRecords&metadataPrefix=oai_ead`
+    `http://localhost:8082/oai?verb=ListRecords&metadataPrefix=oai_ead`
 
 using the resumption token:
 
-  	`http://localhost:8082/oai?verb=ListRecords&resumptionToken=eyJtZXRhZGF0YV9wcmVmaXgiOiJvYWlfZWFkIiwiZnJvbSI6IjE5NzAtMDEtMDEgMDA6MDA6MDAgVVRDIiwidW50aWwiOiIyMDE3LTA3LTA2IDE3OjEwOjQxIFVUQyIsInN0YXRlIjoicHJvZHVjaW5nX3JlY29yZHMiLCJsYXN0X2RlbGV0ZV9pZCI6MCwicmVtYWluaW5nX3R5cGVzIjp7IlJlc291cmNlIjoxfSwiaXNzdWVfdGltZSI6MTQ5OTM2MTA0Mjc0OX0=`
+    `http://localhost:8082/oai?verb=ListRecords&resumptionToken=eyJtZXRhZGF0YV9wcmVmaXgiOiJvYWlfZWFkIiwiZnJvbSI6IjE5NzAtMDEtMDEgMDA6MDA6MDAgVVRDIiwidW50aWwiOiIyMDE3LTA3LTA2IDE3OjEwOjQxIFVUQyIsInN0YXRlIjoicHJvZHVjaW5nX3JlY29yZHMiLCJsYXN0X2RlbGV0ZV9pZCI6MCwicmVtYWluaW5nX3R5cGVzIjp7IlJlc291cmNlIjoxfSwiaXNzdWVfdGltZSI6MTQ5OTM2MTA0Mjc0OX0=`
 
 Note: you do not use the metadataPrefix when you use the resumptionToken
 
