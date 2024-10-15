@@ -13,7 +13,11 @@
       "architecture/jobs",
       "architecture/search",
       "architecture/public",
-      "architecture/oai-pmh"
+      "architecture/oai-pmh",
+      "architecture/api",
+      "architecture/database",
+      "architecture/directories",
+      "architecture/languages"
     ]
   },
   {
@@ -26,7 +30,17 @@
       "administration/backup",
       "administration/indexes",
       "administration/passwords",
-      "administration/upgrading",
+      {
+        "label": "Upgrading",
+        "collapsed": true,
+        "items": [
+          "administration/upgrading",
+          "administration/upgrading_1_1_0",
+          "administration/upgrading_1_1_1",
+          "administration/upgrading_1_5_0",
+          "administration/upgrading_2_1_0"
+        ]
+      },
       "administration/logrotate"
     ]
   },
@@ -60,8 +74,8 @@
     "collapsed": true,
     "items": [
       "customization/configuration",
-      "customization/authentication",
       "customization/ldap",
+      "customization/authentication",
       "customization/locales",
       "customization/plugins",
       "customization/theming",
