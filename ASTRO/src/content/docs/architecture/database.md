@@ -1,5 +1,5 @@
 ---
-title: Working with the ArchivesSpace Database
+title: Database
 ---
 
 The ArchivesSpace database stores all data that is created within an ArchivesSpace instance. As described in other sections of this documentation, the backend code - particularly the model layer and `ASModel_crud.rb` file - uses the `Sequel` database toolkit to bridge the gap between this underlying data and the JSON objects which are exchanged by the other components of the system.

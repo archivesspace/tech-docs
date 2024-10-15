@@ -1,5 +1,5 @@
 ---
-title: Running ArchivesSpace under a prefix
+title: Proxy prefix
 ---
 
 **Important Note: Prefixes do NOT work properly in versions between 2.0.1 and 2.2.2**

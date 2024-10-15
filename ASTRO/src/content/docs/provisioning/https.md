@@ -1,5 +1,5 @@
 ---
-title: Serving ArchivesSpace user-facing applications over HTTPS
+title: Serving over HTTPS
 ---
 
 This document describes the approach for those wishing to install

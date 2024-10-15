@@ -1,5 +1,5 @@
 ---
-title: Working with the ArchivesSpace API
+title: Working with the API
 ---
 
 This documentation provides general information on working with the API. For detailed documentation of specific endpoints, see the [API reference](http://archivesspace.github.io/archivesspace/api/), which is maintained separately.

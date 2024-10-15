@@ -1,5 +1,5 @@
 ---
-title: Re-creating indexes
+title: Recreating indexes
 ---
 
 There are two strategies for reindexing ArchivesSpace:

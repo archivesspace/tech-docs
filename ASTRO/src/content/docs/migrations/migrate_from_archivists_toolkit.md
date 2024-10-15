@@ -1,5 +1,5 @@
 ---
-title: Migrating Data from Archivists' Toolkit to ArchivesSpace Using the Migration Tool
+title: Migrating from Archivists' Toolkit
 ---
 
 These guidelines are for migrating data from Archivists' Toolkit 2.0 Update 16 to all ArchivesSpace 2.1.x or 2.2.x releases using the migration tool provided by ArchivesSpace. Migrations of data from earlier versions of the Archivists' Toolkit (AT) or other versions of ArchivesSpace are not supported by these guidelines or migration tool.

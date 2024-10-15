@@ -1,5 +1,5 @@
 ---
-title: Building an ArchivesSpace release
+title: Building a release
 ---
 
 - [Pre-Release Steps](#prerelease)

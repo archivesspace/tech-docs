@@ -1,5 +1,5 @@
 ---
-title: Upgrading to a new release of ArchivesSpace
+title: Upgrading to a new release
 ---
 
 - **[Special considerations when upgrading to v1.1.0](./UPGRADING_1.1.0.md)**

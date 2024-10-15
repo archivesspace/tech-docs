@@ -1,5 +1,5 @@
 ---
-title: Running ArchivesSpace with external Solr
+title: External Solr
 ---
 
 For ArchivesSpace > 3.1.1 this is **required**. For previous versions it is optional.

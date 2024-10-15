@@ -1,5 +1,5 @@
 ---
-title: Migrating Data from Archon to ArchivesSpace Using the Migration Tool
+title: Migrating from Archon
 ---
 
 These guidelines are for migrating data from Archon 3.21-rev3 to all ArchivesSpace 2.2.2 using the migration tool provided by ArchivesSpace. Migrations of data from earlier versions of the Archon or other versions of ArchivesSpace are not supported by these guidelines or migration tool.

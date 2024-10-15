@@ -1,5 +1,5 @@
 ---
-title: The ArchivesSpace public user interface
+title: Public user interface
 ---
 
 The ArchivesSpace Public User Interface (PUI) provides a public

@@ -1,5 +1,5 @@
 ---
-title: Serving ArchivesSpace over subdomains
+title: Serving over subdomains
 ---
 
 This document describes how to configure ArchivesSpace and your web server to serve the application over subdomains (e.g., `http://staff.myarchive.org/` and `http://public.myarchive.org/`), which is the recommended

@@ -1,5 +1,5 @@
 ---
-title: Upgrading Rack for ArchivesSpace
+title: Upgrading Rack
 ---
 
 - Install local JRuby (match aspace version, currently: 9.2.12.0) and switch to it.

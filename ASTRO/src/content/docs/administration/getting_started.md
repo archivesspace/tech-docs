@@ -1,5 +1,5 @@
 ---
-title: Getting started with ArchivesSpace
+title: Getting started
 ---
 
 ## System requirements

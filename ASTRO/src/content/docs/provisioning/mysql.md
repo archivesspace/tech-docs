@@ -1,5 +1,5 @@
 ---
-title: Running ArchivesSpace against MySQL
+title: Using MySQL
 ---
 
 Out of the box, the ArchivesSpace distribution runs against an

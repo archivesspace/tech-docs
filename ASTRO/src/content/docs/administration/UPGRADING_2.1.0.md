@@ -1,5 +1,5 @@
 ---
-title: UPGRADING TO 2.1.0
+title: Upgrading to 2.1.0
 ---
 
 (these considerations also apply when upgrading to any version past 2.1.0 from a version prior to 2.1.0)

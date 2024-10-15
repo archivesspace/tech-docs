@@ -1,5 +1,5 @@
 ---
-title: Working with the ArchivesSpace API
+title: API
 ---
 
 > See **API section** for more detailed documentation

@@ -1,5 +1,5 @@
 ---
-title: Running ArchivesSpace with load balancing and multiple tenants
+title: Load balancing and multiple tenants
 ---
 
 This document describes two aspects of running ArchivesSpace in a

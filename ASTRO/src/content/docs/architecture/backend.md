@@ -1,5 +1,5 @@
 ---
-title: The ArchivesSpace backend
+title: Backend
 ---
 
 The backend is responsible for implementing the ArchivesSpace API, and

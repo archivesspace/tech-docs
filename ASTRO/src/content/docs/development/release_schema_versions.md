@@ -1,5 +1,5 @@
 ---
-title: ArchivesSpace releases and database versions
+title: Database versions by release
 ---
 
 | Release | DB Version |
