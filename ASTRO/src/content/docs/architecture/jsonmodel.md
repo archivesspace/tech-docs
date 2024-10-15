@@ -1,5 +1,5 @@
 ---
-title: JSONModel -- a validated ArchivesSpace record
+title: JSONModel
 ---
 
 The ArchivesSpace system is concerned with managing a number of

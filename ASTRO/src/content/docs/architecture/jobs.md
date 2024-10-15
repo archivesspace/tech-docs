@@ -1,5 +1,5 @@
 ---
-title: Background Jobs
+title: Background jobs
 ---
 
 ArchivesSpace provides a mechanism for long running processes to run

@@ -1,5 +1,5 @@
 ---
-title: ArchivesSpace Plugins
+title: Plugins
 ---
 
 Plugins are a powerful feature, designed to allow you to change

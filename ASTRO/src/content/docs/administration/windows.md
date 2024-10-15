@@ -1,5 +1,5 @@
 ---
-title: Running ArchivesSpace as a Windows service
+title: Running as a Windows service
 ---
 
 Running ArchivesSpace as a Windows service requires some additional configuration.

@@ -1,5 +1,5 @@
 ---
-title: Migration tools and data mapping
+title: Migration tools
 ---
 
 ## Archivists' Toolkit

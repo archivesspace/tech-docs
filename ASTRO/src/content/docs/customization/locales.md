@@ -1,5 +1,5 @@
 ---
-title: Customizing text in ArchivesSpace
+title: Customizing text
 ---
 
 ArchivesSpace has abstracted all the labels, messages and tooltips out of the

@@ -1,5 +1,5 @@
 ---
-title: Running a development version of ArchivesSpace
+title: Development environment
 ---
 
 System requirements:

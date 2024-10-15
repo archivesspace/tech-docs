@@ -1,5 +1,5 @@
 ---
-title: UPGRADING TO 1.5.0
+title: Upgrading to 1.5.0
 ---
 
 Additional upgrade considerations specific to this release, which also apply to upgrading from 1.4.2 or lower to any version through 2.0.1. Refer to the [upgrade documentation](../upgrading.html) for the standard instructions that apply in all cases.

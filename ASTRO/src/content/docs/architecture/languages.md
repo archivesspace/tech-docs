@@ -1,5 +1,5 @@
 ---
-title: Languages, platforms, and included open source projects
+title: Dependencies
 ---
 
 ArchivesSpace components are constructed using several programming languages, platforms, and additional open source projects.

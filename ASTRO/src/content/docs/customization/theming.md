@@ -1,5 +1,5 @@
 ---
-title: Theming ArchivesSpace
+title: Theming
 ---
 
 ## Making small changes

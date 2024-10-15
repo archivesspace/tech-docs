@@ -1,5 +1,5 @@
 ---
-title: ArchivesSpace robots.txt
+title: robots.txt
 ---
 
 The easiest way to add a `robots.txt` to your site is simply create

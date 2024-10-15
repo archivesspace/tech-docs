@@ -1,5 +1,5 @@
 ---
-title: Configuring ArchivesSpace
+title: Configuration
 ---
 
 The primary configuration for ArchivesSpace is done in the config/config.rb
