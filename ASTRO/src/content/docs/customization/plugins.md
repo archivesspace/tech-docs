@@ -1,21 +1,21 @@
 ---
-title: ArchivesSpace Plug-ins
+title: ArchivesSpace Plugins
 ---
 
-Plug-ins are a powerful feature, designed to allow you to change
+Plugins are a powerful feature, designed to allow you to change
 most aspects of how the application behaves.
 
-Plug-ins provide a mechanism to customize ArchivesSpace by overriding or extending functions
+Plugins provide a mechanism to customize ArchivesSpace by overriding or extending functions
 without changing the core codebase. As they are self-contained, they also permit the ready
 sharing of packages of customization between ArchivesSpace instances.
 
-The ArchivesSpace distribution comes with the `hello_world` exemplar plug-in. Please refer to its [README file](https://github.com/archivesspace/archivesspace/blob/master/plugins/hello_world/README.md) for a detailed description of how it is constructed and implemented.
+The ArchivesSpace distribution comes with the `hello_world` exemplar plugin. Please refer to its [README file](https://github.com/archivesspace/archivesspace/blob/master/plugins/hello_world/README.md) for a detailed description of how it is constructed and implemented.
 
 You can find other examples in the following plugin repositories. The ArchivesSpace plugins that are officially supported and maintained by the ArchivesSpace Program Team are in archivesspace-plugins (https://github.com/archivesspace-plugins). Deprecated code which is no longer supported but has been kept for future reference is in archivesspace-deprecated (https://github.com/archivesspace-deprecated). There is an open/unmanaged GitHub repository where community members can share their code called archivesspace-labs (https://github.com/archivesspace-labs). The community developed Python library for interacting with the ArchivesSpace API, called ArchivesSnake, is managed in the archivesspace-labs repository.
 
 ## Enabling plugins
 
-Plug-ins are enabled by placing them in the `plugins` directory, and referencing them in the
+Plugins are enabled by placing them in the `plugins` directory, and referencing them in the
 ArchivesSpace configuration, `config/config.rb`. For example:
 
     AppConfig[:plugins] = ['local', 'hello_world', 'my_plugin']
@@ -27,13 +27,13 @@ This configuration assumes the following directories exist:
       local
       my_plugin
 
-Note that the order that the plug-ins are listed in the `:plugins` configuration option
+Note that the order that the plugins are listed in the `:plugins` configuration option
 determines the order in which they are loaded by the application.
 
 ## Plugin structure
 
-The directory structure within a plug-in is similar to the structure of the core application.
-The following shows the supported plug-in structure. Files contained in these directories can
+The directory structure within a plugin is similar to the structure of the core application.
+The following shows the supported plugin structure. Files contained in these directories can
 be used to override or extend the behavior of the core application.
 
     backend
@@ -68,9 +68,9 @@ be used to override or extend the behavior of the core application.
 A general rule is: to override behavior, rather then extend it, match the path
 to the file that contains the behavior to be overridden.
 
-It is not necessary for a plug-in to have all of these directories. For example, to override
+It is not necessary for a plugin to have all of these directories. For example, to override
 some part of a locale file for the staff interface, you can just add the following structure
-to the local plug-in:
+to the local plugin:
 
     plugins/local/frontend/locales/en.yml
 
@@ -122,7 +122,7 @@ your own template at:
     plugins/local/frontend/views/site/\_branding.html.erb
 
 Files such as images, stylesheets and PDFs can be made available as static resources by
-placing them in an `assets` directory under an enabled plug-in. For example, the following file:
+placing them in an `assets` directory under an enabled plugin. For example, the following file:
 
     plugins/local/frontend/assets/my_logo.png
 
@@ -139,13 +139,13 @@ markup such as:
 
 ## Plugin configuration
 
-Plug-ins can optionally contain a configuration file at `plugins/[plugin-name]/config.yml`.
+Plugins can optionally contain a configuration file at `plugins/[plugin-name]/config.yml`.
 This configuration file supports the following options:
 
     system_menu_controller
-      The name of a controller that will be accessible via a Plug-ins menu in the System toolbar
+      The name of a controller that will be accessible via a Plugins menu in the System toolbar
     repository_menu_controller
-      The name of a controller that will be accessible via a Plug-ins menu in the Repository toolbar
+      The name of a controller that will be accessible via a Plugins menu in the Repository toolbar
     parents
       [record-type]
         name
@@ -153,8 +153,8 @@ This configuration file supports the following options:
       ...
 
 `system_menu_controller` and `repository_menu_controller` specify the names of frontend controllers
-that will be accessible via the system and repository toolbars respectively. A `Plug-ins` dropdown
-will appear in the toolbars if any enabled plug-ins have declared these configuration options. The
+that will be accessible via the system and repository toolbars respectively. A `Plugins` dropdown
+will appear in the toolbars if any enabled plugins have declared these configuration options. The
 controller name follows the standard naming conventions, for example:
 
     repository_menu_controller: hello_world
@@ -163,19 +163,19 @@ Points to a controller file at `plugins/hello_world/frontend/controllers/hello_w
 which implements a controller class called `HelloWorldController`. When the menu item is selected
 by the user, the `index` action is called on the controller.
 
-Note that the URLs for plug-in controllers are scoped under `plugins`, so the URL for the above
+Note that the URLs for plugin controllers are scoped under `plugins`, so the URL for the above
 example is:
 
     http://your.frontend.domain.and:port/plugins/hello_world
 
-Also note that the translation for the plug-in's name in the `Plug-ins` dropdown menu is specified
-in a locale file in the `frontend/locales` directory in the plug-in. For example, in the `hello_world`
+Also note that the translation for the plugin's name in the `Plugins` dropdown menu is specified
+in a locale file in the `frontend/locales` directory in the plugin. For example, in the `hello_world`
 example there is an English locale file at:
 
     plugins/hello_world/frontend/locales/en.yml
 
-The translation for the plug-in name in the `Plug-ins` dropdown menus is specified by the key `label`
-under the plug-in, like this:
+The translation for the plugin name in the `Plugins` dropdown menus is specified by the key `label`
+under the plugin, like this:
 
     en:
       plugins:
@@ -183,17 +183,17 @@ under the plug-in, like this:
           label: Hello World
 
 Note that the example locale file contains other keys that specify translations for text displayed
-as part of the plug-in's user interface. Be sure to place your plug-in's translations as shown, under
+as part of the plugin's user interface. Be sure to place your plugin's translations as shown, under
 `plugins.[your_plugin_name]` in order to avoid accidentally overriding translations for other
 interface elements. In the example above, the translation for the `label` key can be referenced
 directly in an erb view file as follows:
 
     <%= I18n.t("plugins.hello_world.label") %>
 
-Each entry under `parents` specifies a record type that this plug-in provides a new subrecord for.
+Each entry under `parents` specifies a record type that this plugin provides a new subrecord for.
 `[record-type]` is the name of the existing record type, for example `accession`. `name` is the
-name of the plug-in in its role as a subrecord of this parent, for example `hello_worlds`.
-`cardinality` specifies the cardinality of the plug-in records. Currently supported values are
+name of the plugin in its role as a subrecord of this parent, for example `hello_worlds`.
+`cardinality` specifies the cardinality of the plugin records. Currently supported values are
 `zero-to-many` and `zero-to-one`.
 
 ## Changing search behavior
@@ -244,5 +244,5 @@ To make adding new records fields and sections to record forms a little eaiser v
 
 ## Further information
 
-**Be sure to test your plug-in thoroughly as it may have unanticipated impacts on your
+**Be sure to test your plugin thoroughly as it may have unanticipated impacts on your
 ArchivesSpace application.**
