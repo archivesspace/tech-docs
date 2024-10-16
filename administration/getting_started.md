@@ -2,17 +2,57 @@
 
 ## System requirements
 
-* Java 8 or 11 only (OpenJDK should be fine)
-* At least 1024 MB RAM allocated to the application; at least 2 GB for optimal performance.
-* Solr (for ArchivesSpace versions after 3.1)
+### Operating system
 
 ArchivesSpace has been tested on Ubuntu Linux, Mac OS X, and Windows.
+
+### Memory
+
+At least 1024 MB RAM allocated to the application are required. We recommend using at least 2 GB for optimal performance.
+
+### Java Runtime Environment
+
+We recommend using [OpenJDK](https://openjdk.org/projects/jdk/). The following table lists the supported Java versions for each version of ArchivesSpace:
+
+| ArchivesSpace version | OpenJDK version |
+|-----------------------|-----------------|
+| ≤ v3.5.1              | 8 or 11         |
+| ≥ v4.0.0              | 11 or 17        |
+
+### Solr
+
+Up to ArchivesSpace v3.1.1, the zip file distribution includes an embedded Solr v4 instance, which is deprecated and not supported anymore.
+
+ArchivesSpace v3.2.0 or above requires an external Solr instance. The table below summarizes the supported Solr versions for each ArchivesSpace version:
+
+| ArchivesSpace version | External Solr version     |
+|-----------------------|---------------------------|
+| ≤ v3.1.1              | no external solr required |
+| v3.1.1 up to v3.5.1   | 8 (8.11)                  |
+| ≥ v4.0.0              | 9 (9.4.1)                 |
+
+Each ArchivesSpace version is tested for compatibility with the corresponding Solr version listed in the table above.
+That version is being used during development and the ArchivesSpace automated tests run with that version. It is therefore recommended that you use that version of Solr in production.
+
+It may be possible to use ArchivesSpace with an older version of Solr. However in that case it
+is important to check the [release notes](https://github.com/archivesspace/archivesspace/releases)
+for any potential version compatibility issues.
+
+**Note: the ArchivesSpace Program Team can only provide support for Solr deployments
+using the "officially" supported version with the standard configuration provided by
+the application. Everything else will be treated as "best effort" community-led support.**
+
+See [Running with external Solr](../provisioning/solr.html) for more information on installing and upgrading Solr.
+
+### Database
 
 While ArchivesSpace does include an embedded database, MySQL is required for production use.
 
 (While not officially supported by ArchivesSpace, some community members use MariaDB so there is some community support for version 10.4.10 only.)
 
 **The embedded database is for testing purposes only. You should use MySQL or MariaDB for any data intended for production, including data in a test instance that you intend to move over to a production instance.**
+
+All ArchivesSpace versions can run on MySQL version 5.x or 8.x.
 
 ## Getting started
 
@@ -21,12 +61,11 @@ the latest distribution `.zip` file from the following URL:
 
   [https://github.com/archivesspace/archivesspace/releases](https://github.com/archivesspace/archivesspace/releases)
 
-You will need to have Java 1.8 or 1.11 installed on your machine.
-You can check your Java version by running the command:
+You will need to have Java installed on your machine. You can check your Java version by running the command:
 
      java -version
 
-If you are running an earlier version of java upgrade to 1.8 or 1.11 (not the newest version of Java). If you are running a newer version of Java you should revert back to 1.8 or 1.11 or force your machine to use 1.8 or 1.11 for ArchivesSpace.
+See [above](#java-runtime-environment) for the Java version needed. If you are running an earlier version of java upgrade to one of the supported ones (not the newest one). If you are running a newer version of Java you should revert back to or force your machine to use a supported version.
 
 When you extract the `.zip` file, it will create a directory called
 `archivesspace`. Next, follow the instructions for setting up:
