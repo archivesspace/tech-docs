@@ -8,7 +8,7 @@ See the [Solr requirement notes](../administration/getting_started.html#solr)
 
 ## Install Solr
 
-Refer to the [Solr documentation](https://solr.apache.org/guide/solr/9_4/deployment-guide/installing-solr.html)
+Refer to the [Solr documentation](https://solr.apache.org/guide/solr/latest/)
 for instructions on setting up Solr on your server.
 
 You will download the Solr package and extract it to a folder of your choosing. Do not start Solr
