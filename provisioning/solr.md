@@ -4,7 +4,7 @@ For ArchivesSpace > 3.1.1 this is **required**. For previous versions it is opti
 
 ## Supported Solr Versions
 
-See the [Solr requirement notes](../administration/getting_started.html)
+See the [Solr requirement notes](../administration/getting_started.html#solr)
 
 ## Install Solr
 
