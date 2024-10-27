@@ -100,5 +100,9 @@
   {
     "label": "API",
     "slug": "api"
+  },
+  {
+    "label": "Help Center (members only)",
+    "link": "https://archivesspace.atlassian.net/wiki/spaces/ADC/pages/3266445326/ArchivesSpace+Help+Center+ArchivesSpace+members+only"
   }
 ]
