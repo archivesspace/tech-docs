@@ -105,7 +105,7 @@ Note, however, that some tests are dependent on a sequence of ordered steps and 
 
 ### Saved pages on spec failures
 
-When frontend specs fail, a screenshot and an html page is saved for each failed example under `frontend/tmp/capybara`. On the CI, a zip file will be available for each failed CI job run under Summary -> Artifacts. In order to load the assets (and not see plain html) when viewing the saved html pages, a dev server should be running locally on port 3000, see [Running a development version of ArchivesSpace(https://archivesspace.github.io/tech-docs/development/dev.html).
+When frontend specs fail, a screenshot and an html page is saved for each failed example under `frontend/tmp/capybara`. On the CI, a zip file will be available for each failed CI job run under Summary -> Artifacts. In order to load the assets (and not see plain html) when viewing the saved html pages, a dev server should be running locally on port 3000, see [Running a development version of ArchivesSpace](./dev).
 
 ### Keeping the test database up to date
 

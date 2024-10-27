@@ -32,8 +32,15 @@ suggested by the community.
 Here are some example URLs and other information for these requests:
 
 **GetRecord** – needs a record identifier and metadataPrefix
+Up to ArchivesSpace v3.5.1 OAI identifiers are in this format:
 
 `http://localhost:8082/oai?verb=GetRecord&identifier=oai:archivesspace//repositories/2/resources/138&metadataPrefix=oai_ead`
+
+Starting with ArchivesSpace v4.0.0 OAI identifiers are in the new format (notice the colon after the `oai:archivesspace` namespace part of the identifier):
+
+`http://localhost:8082/oai?verb=GetRecord&identifier=oai:archivesspace:/repositories/2/resources/138&metadataPrefix=oai_ead`
+
+see also: https://github.com/code4lib/ruby-oai/releases/tag/v1.0.0
 
 **Identify**
 
@@ -78,16 +85,15 @@ In addition to the sets based on level of description, you can define sets
 based on repository codes and/or sponsors in the config/config.rb file:
 
     AppConfig[:oai_sets] = {
-
-'repository_set' => {
-:repo_codes => ['hello626'],
-:description => "A set of one or more repositories",
-},
-'sponsor_set' => {
-:sponsors => ['The_Sponsor'],
-:description => "A set of one or more sponsors",
-}
-}
+    'repository_set' => {
+        :repo_codes => ['hello626'],
+        :description => "A set of one or more repositories",
+    },
+    'sponsor_set' => {
+        :sponsors => ['The_Sponsor'],
+        :description => "A set of one or more sponsors",
+    }
+    }
 
 The interface implements resumption tokens for pagination of results. As an
 example, the following URL format should be used to page through the results
