@@ -127,7 +127,7 @@ Or on Windows:
 
 ## If you're using external Solr (required beginning with version 3.2.0)
 
-[Full instructions for using external Solr with ArchivesSpace](https://archivesspace.github.io/tech-docs/provisioning/solr.html)
+[Full instructions for using external Solr with ArchivesSpace](../provisioning/solr)
 
 ## If you've deployed to Tomcat
 

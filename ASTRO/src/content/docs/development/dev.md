@@ -4,7 +4,7 @@ title: Development environment
 
 System requirements:
 
-- Java 8 or 11 (11 recommended)
+- Java 8, 11 (11 recommended) or 17
 - [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/) is optional but makes running MySQL and Solr more convenient
 - [Supervisord](http://supervisord.org/) is optional but makes running the development servers more convenient
 
@@ -29,6 +29,18 @@ Installing OpenJDK with jabba will look something like:
 jabba install openjdk@1.11.0-2
 jabba use openjdk@1.11.0-2
 jabba alias default openjdk@1.11.0-2 # [optional] make this the default java
+```
+
+On Linux/Ubuntu it is generally fine to install from system packages:
+
+```bash
+sudo apt install openjdk-$VERSION-jdk-headless
+# example: install 11 & 17
+sudo apt install openjdk-11-jdk-headless
+sudo apt install openjdk-17-jdk-headless
+# update-java-alternatives can be used to switch between versions
+sudo update-java-alternatives --list
+sudo update-java-alternatives --set $version
 ```
 
 If using Docker & Docker Compose install them following the official documentation:
