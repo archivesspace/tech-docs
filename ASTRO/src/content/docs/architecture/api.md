@@ -2,7 +2,9 @@
 title: API
 ---
 
-> See **API section** for more detailed documentation
+:::note
+See the [API section](../api/index.md) for more detailed documentation.
+:::
 
 ## Authentication
 

@@ -6,6 +6,9 @@ import LastUpdated from '@astrojs/starlight/components/LastUpdated.astro';
 import Pagination from '@astrojs/starlight/components/Pagination.astro';
 import config from 'virtual:starlight/user-config';
 import { Icon } from '@astrojs/starlight/components';
+
+const { url } = Astro;
+const isHome = url.pathname === '/';
 ---
 
 <footer class="sl-flex">
@@ -17,7 +20,7 @@ import { Icon } from '@astrojs/starlight/components';
   <Pagination {...Astro.props} />
 
   {
-    config.credits && (
+    isHome && config.credits && (
       <a class="kudos sl-flex" href="https://starlight.astro.build">
         <Icon name={'starlight'} /> {Astro.locals.t('builtWithStarlight.label')}
       </a>
