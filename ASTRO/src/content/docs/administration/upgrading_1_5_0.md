@@ -2,7 +2,7 @@
 title: Upgrading to 1.5.0
 ---
 
-Additional upgrade considerations specific to this release, which also apply to upgrading from 1.4.2 or lower to any version through 2.0.1. Refer to the [upgrade documentation](../upgrading.html) for the standard instructions that apply in all cases.
+Additional upgrade considerations specific to this release, which also apply to upgrading from 1.4.2 or lower to any version through 2.0.1. Refer to the [upgrade documentation](./upgrading) for the standard instructions that apply in all cases.
 
 ## General overview
 
@@ -11,10 +11,10 @@ The upgrade process to the new data model in 1.5.0 requires considerable data tr
 A quick overview of the steps are:
 
 1. Review this document and understand how the upgrade will impact your data, paying particular attention to the [Preparation section](#preparation) .
-2. [Backup your database](../backup.html).
-3. No, really, [backup your database](../backup.html).
-4. It is suggested that [users start with a new solr index](../indexes.html). To do this, delete the data/solr_index/index directory and all files in the data/indexer_state directory. The embedded version of Solr has been upgraded, which should result in a much more compact index size.
-5. Follow the standard [upgrading instructions](../upgrading.html). Important to note: The setup-database.sh|bat script will modify your database schema, but it will not move the data. If you are currently using the container management plugin you will need to remove it from the list of plugins in your config file prior to starting ArchivesSpace.
+2. [Backup your database](./backup).
+3. No, really, [backup your database](./backup).
+4. It is suggested that [users start with a new solr index](./indexes). To do this, delete the data/solr_index/index directory and all files in the data/indexer_state directory. The embedded version of Solr has been upgraded, which should result in a much more compact index size.
+5. Follow the standard [upgrading instructions](./upgrading). Important to note: The setup-database.sh|bat script will modify your database schema, but it will not move the data. If you are currently using the container management plugin you will need to remove it from the list of plugins in your config file prior to starting ArchivesSpace.
 6. Start ArchivesSpace. When 1.5.0 starts for the first time, a conversion process will kick off and move the data into the new table structure. **During this time, the application will be unavailable until it completes**. Duration depends on the size of your data and server resources, with a few minutes for very small databases to several hours for very large ones.
 7. When the conversion is done, the web application will start and the indexer will rebuild your index. Performance might be slower while the indexer runs, depending on your server environment and available resources.
 8. Review the [output of the conversion process](#conversion) following the instructions below. How long it takes for the report to load will depend on the number of entries included in it.
@@ -37,7 +37,7 @@ When your installation is upgraded to 1.5.0, the conversion will happen as part 
 
 _Can I continue to use the current model for containers and not convert to the new model?_
 
-Because it is such a substantial improvement [(see separate announcement for the new features)](../../README_FEATURES_1.5.0.html), the new model is required for all using ArchivesSpace 1.5.0 and higher. The only way to continue using the current model is to never upgrade beyond 1.4.2.
+Because it is such a substantial improvement (see the [new features list](#new-features-in-150) below), the new model is required for all using ArchivesSpace 1.5.0 and higher. The only way to continue using the current model is to never upgrade beyond 1.4.2.
 
 _What if I’m already using the container management plugin made available to the community by Yale University?_
 
@@ -61,7 +61,7 @@ During the conversion, ArchivesSpace will find all the Container 1s in your curr
 - If containers do not have barcodes, one top container is created for each unique combination of container 1 indicator and container type 1 within a resource or accession.
 - Once a top container is created, additional instance records for the same container within an accession or resource will be linked to that top container record.
 
-## Preparation <a name="preparation"></a>
+## Preparation
 
 _What can I do to prepare my ArchivesSpace data for a smoother conversion to top containers?_
 
@@ -77,9 +77,9 @@ _I have EADs I still need to import into ArchivesSpace. How can I get them ready
 
 If you have a box and folder associated with a component (or any other hierarchical relationship of containers), you will need to add identifiers to the container element so that the EAD importer knows which is the top container. If you previously used Archivists' Toolkit to create EAD, your containers probably already have container identifiers. If your container elements do not have identifiers already, Yale University has made available an [XSLT transformation file](https://github.com/YaleArchivesSpace/xslt-files/blob/master/EAD_add_IDs_to_containers.xsl) to add them. You will need to run it before importing the EAD file into ArchivesSpace.
 
-## Conversion <a name="conversion"></a>
+## Conversion
 
-When upgrading from 1.4.2 (and earlier versions) to 1.5.0, the container conversion will happen as part of the upgrade process. You will be able to follow its progress in the log. Instructions for upgrading from a previous version of ArchivesSpace are available at [upgrade documentation](../upgrading.html).
+When upgrading from 1.4.2 (and earlier versions) to 1.5.0, the container conversion will happen as part of the upgrade process. You will be able to follow its progress in the log. Instructions for upgrading from a previous version of ArchivesSpace are available at [upgrade documentation](./upgrading).
 
 Because this is a major change in the data model for this portion of the application, running at least one test conversion is very strongly recommended. Follow these steps to run the upgrade/conversion process:
 
@@ -123,4 +123,24 @@ The conversion process can resolve some of these errors for you by supplying or 
 
 _Are there any known conversion issues?_
 
-Due to a change in the ArchivesSpace EAD importer in 2015, some EADs with hierarchical containers not designated by a @parent attribute were turned into multiple instance records. This has since been corrected in the application, but we are working on a plugin (now available at [Instance Joiner Plug-in](https://github.com/archivesspace-plugins/instance_joiner) that will enable you to turn these back into single instances so that subcontainers are not mistakenly turned into top containers.
+Due to a change in the ArchivesSpace EAD importer in 2015, some EADs with hierarchical containers not designated by a @parent attribute were turned into multiple instance records. This has since been corrected in the application, but we are working on a plugin (now available at [Instance Joiner Plugin](https://github.com/archivesspace-plugins/instance_joiner) that will enable you to turn these back into single instances so that subcontainers are not mistakenly turned into top containers.
+
+## New features in 1.5.0
+
+**Top containers replace Container 1s.** Unlike Container 1s in the current version of ArchivesSpace, top containers in the upcoming version can be defined once and linked many times to various archival objects, resources, and accessions.
+
+**The ability to create container profiles and associate them with top containers.** Optional container profiles allow you to track information about the containers themselves, including dimensions.
+
+**Extent calculator.** In conjunction with container profiles, the new extent calculator allows you to easily see extents for accessions, resources, or resource components. Optionally, you can use the calculator to generate extent records for an accession, resource, or resource component.
+
+**Bulk operations for containers.** The Manage Top Containers area provides more efficient ways to work with multiple containers, including the ability to add or edit barcodes, change locations, and delete top containers in bulk.
+
+**The ability to "share" boxes across collections in a meaningful way.** You can define top containers separately from individual accessions and resources and access them from multiple accession and resource records. For example, this might be helpful for recording information about an oversize box that contains items from many collections.
+
+**The ability to store data that will help you synchronize between ArchivesSpace and item records in your ILS.** If your institution creates item records in its ILS for containers, you can now record that information within ArchivesSpace as well.
+
+**The ability to store data about the restriction status of material associated with a container.** You can now see at a glance whether any portion of the contents of a container is restricted.
+
+**Machine-actionable restrictions.** You will now have the ability to associate begin and end dates with "conditions governing access" and "conditions governing use" Notes. You'll also be able to associate a local restriction type for non-time-bound restrictions. This gives the ability to better manage and re-describe expiring restrictions.
+
+For more information on using the new features, consult the user manual, particularly the new section titled Managing Containers (available late April 2016).

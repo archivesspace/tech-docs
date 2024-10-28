@@ -2,7 +2,7 @@
 title: Upgrading to 1.1.0
 ---
 
-Additional upgrade considerations specific to this release. Refer to the [upgrade documentation](../upgrading.html) for the standard instructions that apply in all cases.
+Additional upgrade considerations specific to this release. Refer to the [upgrade documentation](../upgrading) for the standard instructions that apply in all cases.
 
 ## External Solr
 
@@ -17,7 +17,7 @@ AppConfig[:solr_url] = "http://localhost:8090"
 AppConfig[:public_url] = "http://localhost:8081"
 ```
 
-With the introduction of the [optional external Solr instance](../../provisioning/solr.html) functionality this has been updated to:
+With the introduction of the [optional external Solr instance](../provisioning/solr) functionality this has been updated to:
 
 ```
 AppConfig[:backend_url] = "http://localhost:8089"

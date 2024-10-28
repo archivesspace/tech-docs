@@ -44,7 +44,7 @@ for any potential version compatibility issues.
 using the "officially" supported version with the standard configuration provided by
 the application. Everything else will be treated as "best effort" community-led support.**
 
-See [Running with external Solr](../provisioning/solr.html) for more information on installing and upgrading Solr.
+See [Running with external Solr](../provisioning/solr) for more information on installing and upgrading Solr.
 
 ### Database
 
@@ -72,8 +72,8 @@ See [above](#java-runtime-environment) for the Java version needed. If you are r
 When you extract the `.zip` file, it will create a directory called
 `archivesspace`. Next, follow the instructions for setting up:
 
-- [MySQL](../provisioning/mysql.html)
-- for version 3.2 and above, [Solr](../provisioning/solr.html) is also required
+- [MySQL](../provisioning/mysql)
+- for version 3.2 and above, [Solr](../provisioning/solr) is also required
 
 **From any ArchivesSpace version > 3.1.0 external Solr is required. Earlier versions provided an embedded Solr v4 instance, which is now unsupported due to its age.**
 
