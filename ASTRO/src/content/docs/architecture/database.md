@@ -4,11 +4,11 @@ title: Database
 
 The ArchivesSpace database stores all data that is created within an ArchivesSpace instance. As described in other sections of this documentation, the backend code - particularly the model layer and `ASModel_crud.rb` file - uses the `Sequel` database toolkit to bridge the gap between this underlying data and the JSON objects which are exchanged by the other components of the system.
 
-Often, querying the database directly is the most efficient and powerful way to retrieve data from ArchivesSpace. It is also possible to use raw SQL queries to create custom reports that can be run by users in the staff interface. Please consult the [Custom Reports](../../customization/reports.html) section of this documentation for additional information on creating custom reports.
+Often, querying the database directly is the most efficient and powerful way to retrieve data from ArchivesSpace. It is also possible to use raw SQL queries to create custom reports that can be run by users in the staff interface. Please consult the [Custom Reports](../customization/reports) section of this documentation for additional information on creating custom reports.
 
 <!-- .See this [plugin](link-to-plugin) for an example. Also  -->
 
-It is recommended that ArchivesSpace be run against MySQL in production, not the included demo database. Instructions on setting up ArchivesSpace to run against MySQL are [here](../../provisioning/mysql.html).
+It is recommended that ArchivesSpace be run against MySQL in production, not the included demo database. Instructions on setting up ArchivesSpace to run against MySQL are [here](../provisioning/mysql).
 
 The examples in this section are written for MySQL. There are many freely-available tutorials on the internet which can provide guidance to those unfamiliar with MySQL query syntax and the features of the language.
 
@@ -20,14 +20,21 @@ The ArchivesSpace database schema and it's mapping to the JSONModel objects used
 
 The tables in the ArchivesSpace database can be grouped into several general categories:
 
-- [Main record tables](#Main-record-tables)
-- [Supporting record tables](#Supporting-record-tables)
-- [Subrecord tables](#Subrecord-tables)
-- [Relationship/linking tables](#Relationship-tables)
-- [Enumeration tables](#Enumerations)
-- [User, setting, and permission tables](#User-setting-and-permission-tables)
-- [Job tables](#Job-tables)
-- [System tables](#System-tables)
+- [Database Overview](#database-overview)
+- [Main record tables](#main-record-tables)
+- [Supporting record tables](#supporting-record-tables)
+- [Subrecord tables](#subrecord-tables)
+- [Relationship tables](#relationship-tables)
+- [Enumerations](#enumerations)
+- [User, setting, and permission tables](#user-setting-and-permission-tables)
+- [Job tables](#job-tables)
+- [System tables](#system-tables)
+- [Parent-Child Relationships and Sequencing](#parent-child-relationships-and-sequencing)
+  - [Repository-scoped records](#repository-scoped-records)
+  - [Parent/child relationships](#parentchild-relationships)
+  - [Sequencing](#sequencing)
+- [Boolean fields](#boolean-fields)
+- [Read-Only Fields](#read-only-fields)
 
 One way to get a view of all tables and columns in your ArchivesSpace instance is to run the following query in a MySQL client:
 
@@ -50,7 +57,7 @@ Additionally, a BETA version of an [ArchivesSpace data dictionary](https://githu
 
 These tables hold data about the primary record types in ArchivesSpace. Main record types are distinguished from subrecords in that they have their own persistent URIs - corresponding to their database identifiers/primary keys - that are resolvable via the staff interface, public interface, and API. They are distinguished from supporting records in that they are the primary descriptive record types that users will interact with in the system.
 
-All of these records, except archival objects, can be created independently of any other record. Archival object records represent components of a larger entity, and so they must have a resource record as a root parent. See the [parent/child relationships](#Parent-Child-Relationships-and-Sequencing) section for more information about the representation of hierarchical relationships in the database.
+All of these records, except archival objects, can be created independently of any other record. Archival object records represent components of a larger entity, and so they must have a resource record as a root parent. See the [parent/child relationships](#parent-child-relationships-and-sequencing) section for more information about the representation of hierarchical relationships in the database.
 
 A few common fields occur in several main record tables. These similar fields are defined by the parent schemas in the `common/schemas` directory:
 
