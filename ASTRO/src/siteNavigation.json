@@ -104,7 +104,7 @@
   {
     "label": "About Tech Docs",
     "collapsed": true,
-    "items": ["about/authoring"]
+    "items": ["about/authoring", "about/development"]
   },
   {
     "label": "Help Center (members only)",
