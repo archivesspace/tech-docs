@@ -24,6 +24,7 @@ export default defineConfig({
         youtube: "https://www.youtube.com/@archivesspace5340",
       },
       sidebar,
+      tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 4 },
       components: {
         Footer: "./src/components/overrides/Footer.astro",
       },
