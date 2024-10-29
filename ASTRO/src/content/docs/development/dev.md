@@ -391,7 +391,7 @@ Or a single example with:
 ./build/run backend:test -Dexample="does something important"
 ```
 
-There are specific instructions and requirements for the [UI tests](ui_test.html) to work.
+There are specific instructions and requirements for the [UI tests](./ui_test) to work.
 
 **Advanced: tests and the build directory**
 
@@ -439,8 +439,8 @@ To help make the review go smoothly, here are some general guidelines:
 
 ## Building a distribution
 
-See: [Building an Archivesspace Release](release.html) for information on building a distribution.
+See: [Building an Archivesspace Release](./release) for information on building a distribution.
 
 ## Generating API documentation
 
-See: [Building an Archivesspace Release](release.html) for information on building the documentation.
+See: [Building an Archivesspace Release](./release) for information on building the documentation.
