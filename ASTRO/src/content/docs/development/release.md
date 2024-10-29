@@ -2,11 +2,11 @@
 title: Building a release
 ---
 
-- [Pre-Release Steps](#prerelease)
-- [Build the Docs](#docs)
-- [Build the Release](#release)
-- [Post the Release with Release Notes](#notes)
-- [Post-Release Steps](#postrelease)
+- [Pre-release steps](#pre-release-steps)
+- [Build the docs](#build-and-publish-the-api-and-yard-docs)
+- [Build the release](#building-a-release-yourself)
+- [Post the release with release notes](#create-the-release-with-notes)
+- [Post-release updates](#post-release-updates)
 
 ## Clone the git repository
 
@@ -62,7 +62,7 @@ gh pr create -B master --web
 ( PR is reviewed and merged to the master branch)
 ```
 
-## <a name="prerelease"></a>Pre-Release Steps
+## Pre-release steps
 
 ### Run the ArchivesSpace rake tasks to check for issues
 
@@ -87,7 +87,7 @@ translations or multiple gem versions.
     should be noted and provided prior to a full release. If multiple gem
     versions are reported, that should be addressed prior to moving on.
 
-## <a name="docs"></a>Build and Publish the API and Yard Docs
+## Build and publish the API and Yard Docs
 
 API docs are built using the submodule in `docs/slate` and Docker.
 YARD docs are built using the YARD gem. At this time, they cover a small
@@ -130,7 +130,6 @@ percentage of the code and are not especially useful.
 
 1.  Build the YARD docs in the `docs/build/doc` directory:
 
-
     ```shell
     ./build/run doc:yardoc
     ```
@@ -161,7 +160,7 @@ percentage of the code and are not especially useful.
     git push origin :gh-pages
     ```
 
-## <a name="release"></a>Building a release yourself
+## Building a release yourself
 
 1.  Building the actual release is very simple. Run the following:
 
@@ -172,7 +171,7 @@ percentage of the code and are not especially useful.
     Replace X.X.X with the version number. This will build and package a release
     in a zip file.
 
-## <a name="release"></a>Building a release on Github
+## Building a release on Github
 
 1.  There is no need to build the release yourself. Just push your tag to Github
     and trigger the `release` workflow:
@@ -182,7 +181,7 @@ percentage of the code and are not especially useful.
     Replace X.X.X with the version number. You can set the resulting release page to
     "draft" using the Github API.
 
-## <a name="notes"></a>Create the Release with Notes
+## Create the Release with Notes
 
 ### Build the release notes
 
@@ -209,7 +208,7 @@ correctly. Please follow the [instructions for reindexing](https://archivesspace
 before starting ArchivesSpace with the new version.
 ```
 
-## <a name="postrelease"></a>Post release updates
+## Post release updates
 
 After a release has been put out it's time for some maintenance before the next
 cycle of development clicks into full gear. Consider the following, depending on
