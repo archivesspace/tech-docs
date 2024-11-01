@@ -63,8 +63,12 @@ Create a link by wrapping the link text in brackets (`[ ]`) followed by the exte
 
 There should be no space between the wrapped text and URL. When linking to an internal Tech Docs page, use the relative path from the current page, and omit the page file extension (`.md`).
 
-:::note[Internal link requirement]
-Links to other Tech Docs pages should be relative from the current file, and the markdown file extension (`.md`) should not be included.
+:::note[Internal link requirements]
+Links to other Tech Docs pages should:
+
+1. be relative from the current file
+2. not include the file extension (`.md`)
+
 :::
 
 ```md
@@ -105,7 +109,7 @@ This is another paragraph.
 
 ### Lists
 
-Precede each line in a list with a hyphen (`-`) for a bulleted list, or a number followed by a period (`1.`) for an ordered list.
+Precede each line in a list with a dash (`-`) for a bulleted list, or a number followed by a period (`1.`) for an ordered list.
 
 ```md
 <!-- example.md -->
@@ -123,7 +127,7 @@ Precede each line in a list with a hyphen (`-`) for a bulleted list, or a number
 
 Wrap inline code with a single backtick (`` ` ``).
 
-Wrap code blocks with triple backticks (` ``` `), also known as a "code fence", placed just above and below the code. Append the name of the code's language or its file extension letters to the first set of backticks for syntax highlighting.
+Wrap code blocks with triple backticks (` ``` `), also known as a "code fence", placed just above and below the code. Append the name of the code's language or its file extension to the first set of backticks for syntax highlighting.
 
 ````md
 <!-- example.md -->
@@ -139,7 +143,7 @@ end
 
 ### Asides
 
-Asides are useful for highlighting secondary or meta information within a larger context.
+Asides are useful for highlighting secondary or marketing information.
 
 Wrap content in a pair of triple colons (`:::`) and append one of the aside types (ie: `note`) to the first set of colons. The aside types are `note`, `tip`, `caution`, and `danger`, each of which have their own set of colors and icon. Customize the title by wrapping text in brackets (`[ ]`) placed after the note type.
 
@@ -181,7 +185,7 @@ Show an image using an exclamation point (`!`), followed by the image's [alt tex
 ```
 
 :::note[Put images in `src/images`]
-All local images belong in the `src/images` directory. The relative path to images from this file is `../../../images`.
+All internal images belong in the `src/images` directory. The relative path to images from this file is `../../../images`.
 :::
 
 ## Frontmatter
@@ -200,10 +204,10 @@ title: New page title
 
 ## Image files
 
-All local image files should go in the `src/images` directory, located at the root of this project.
+All internal image files used in Tech Docs content should go in the `src/images` directory, located at the root of this project.
 
 ## Writing conventions
 
 - Plugins, not plug-ins
 - Titles are sentence-case ("Application monitoring with New Relic")
-- Titles prefer '-ing' verb forms ("Using MySQL", "Serving over HTTPS")
+- Page titles prefer '-ing' verb forms ("Using MySQL", "Serving over HTTPS")
