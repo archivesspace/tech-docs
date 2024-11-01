@@ -54,7 +54,11 @@ https://github.com/withastro/starlight/blob/main/packages/starlight/style/asides
 }
 
 /* Sidebar divider between core docs and meta info */
-#starlight__sidebar ul.top-level > li:nth-last-child(2) {
-  border-top: 1px solid var(--sl-color-text);
-  padding-top: 0.75rem;
+#starlight__sidebar ul.top-level > li:nth-last-child(2)::before {
+  content: "";
+  display: block;
+  width: calc(100% - 1rem);
+  height: 1px;
+  margin: 0 auto 0.75rem auto;
+  background-color: var(--sl-color-text);
 }
