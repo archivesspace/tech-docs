@@ -12,13 +12,13 @@ Tech Docs is a [Node.js](https://nodejs.org) application, built with [Astro](htt
 
 ## Dependencies
 
-Tech Docs depends on the following open source software (see [package.json](../../../../package.json) for version information):
+Tech Docs depends on the following open source software (see [package.json](https://github.com/archivesspace/tech-docs/blob/master/package.json) for current version information):
 
 1. [Node.js](https://nodejs.org) - JavaScript development platform and build tool chain
-2. [Astro](https://astro.build/) - Static site generator
-3. [Starlight](https://starlight.astro.build/) - Documentation site toolkit
-4. [Sharp](https://sharp.pixelplumbing.com/) - Image transformation library
-5. [Prettier](https://prettier.io/) - Source code formatter
+2. [Astro](https://astro.build/) - Static site generator and JavaScript framework
+3. [Starlight](https://starlight.astro.build/) - Astro plugin for building a documentation website
+4. [Sharp](https://sharp.pixelplumbing.com/) - Image transformation library used by Astro
+5. [Prettier](https://prettier.io/) - Source code formatter used locally in text editors and in CI for testing and build purposes
 
 ## Local development
 
@@ -36,16 +36,40 @@ npm install
 npm start
 ```
 
-Now go to [localhost:4321](http://localhost:4321) to see Tech Docs running locally.
+Now go to [localhost:4321](http://localhost:4321) to see Tech Docs running locally. Changes to the source code will be immediately reflected in the browser.
 
-### Build the site locally
+### Building the site
 
-Sometimes building the site surfaces errors not found in the development environment.
+Building the site creates a set of static files, found in `src/dist` after build, that can be served locally or deployed to a server. Sometimes building the site surfaces errors not found in the development environment.
 
 ```sh
 # Build the site and output it to src/dist
 npm run build
 ```
+
+## Theme customization
+
+Starlight can be customized in various ways, including:
+
+- [Settings](https://starlight.astro.build/guides/customization/) -- see `astro.config.mjs`
+- [CSS](https://starlight.astro.build/guides/css-and-tailwind/) -- see `src/styles/custom.css`
+- [UI components](https://starlight.astro.build/guides/customization/) -- see `src/components`
+
+## Static assets
+
+### Images
+
+Most image files should be stored in `src/images`. This allows for [processing by Astro](https://docs.astro.build/en/guides/images/) which includes performance optimizations.
+
+Images that should not be processed by Astro, like favicons, should be stored in `public`.
+
+:::note[Use `src/images` for all content images]
+Put all images used in Tech Docs content in `src/images`.
+:::
+
+### The `public` directory
+
+Files placed in `public` are not processed by Astro. They are copied directly to the output and made available from the root of the site, so `public/favicon.svg` becomes available at `docs.archivesspace.org/favicon.svg`, while `public/example/slides.pdf` becomes available at `docs.archivesspace.org/example/slides.pdf`.
 
 ## Update dependencies
 
