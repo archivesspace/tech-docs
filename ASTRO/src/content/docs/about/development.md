@@ -8,15 +8,15 @@ next:
   label: Home
 ---
 
-Tech Docs is a [Node.js](https://nodejs.org) application, built with [Astro](https://astro.build/) and its [Starlight](https://starlight.astro.build/) documentation site framework. The source code is hosted on [GitHub](https://github.com/archivesspace/tech-docs). The site is statically built and hosted via [Cloudflare Pages](https://pages.cloudflare.com/) with the custom domain [docs.archivesspace.org](docs.archivesspace.org). Content is written in [Markdown](./authoring#commonly-used-markdown-syntax). When the source code changes, a new set of static files are generated and published shortly after.
+Tech Docs is a [Node.js](https://nodejs.org) application, built with [Astro](https://astro.build/) and its [Starlight](https://starlight.astro.build/) documentation site framework. The source code is hosted on [GitHub](https://github.com/archivesspace/tech-docs). The site is statically built and hosted via [Cloudflare Pages](https://pages.cloudflare.com/). Content is written in [Markdown](./authoring#commonly-used-markdown-syntax). When the source code changes, a new set of static files are generated and published shortly after.
 
 ## Dependencies
 
 Tech Docs depends on the following open source software (see [package.json](https://github.com/archivesspace/tech-docs/blob/master/package.json) for current version information):
 
-1. [Node.js](https://nodejs.org) - JavaScript development platform and build tool chain
-2. [Astro](https://astro.build/) - Static site generator and JavaScript framework
-3. [Starlight](https://starlight.astro.build/) - Astro plugin for building a documentation website
+1. [Node.js](https://nodejs.org) - JavaScript development and build environment
+2. [Astro](https://astro.build/) - Static site generator conceptually based on "components" (React, Vue, Svelte, etc.) rather than "templates" (Handlebars, Pug, Haml, etc.)
+3. [Starlight](https://starlight.astro.build/) - Astro plugin and theme for documentation websites
 4. [Sharp](https://sharp.pixelplumbing.com/) - Image transformation library used by Astro
 5. [Prettier](https://prettier.io/) - Source code formatter used locally in text editors and in CI for testing and build purposes
 
@@ -47,6 +47,18 @@ Building the site creates a set of static files, found in `src/dist` after build
 npm run build
 ```
 
+## Search
+
+Site search is a [Starlight feature](https://starlight.astro.build/guides/site-search/):
+
+> By default, Starlight sites include full-text search powered by [Pagefind](https://pagefind.app/), which is a fast and low-bandwidth search tool for static sites.
+>
+> No configuration is required to enable search. Build and deploy your site, then use the search bar in the site header to find content.
+
+:::note
+Tech Docs search does not run in local development.
+:::
+
 ## Theme customization
 
 Starlight can be customized in various ways, including:
@@ -71,9 +83,9 @@ Put all images used in Tech Docs content in `src/images`.
 
 Files placed in `public` are not processed by Astro. They are copied directly to the output and made available from the root of the site, so `public/favicon.svg` becomes available at `docs.archivesspace.org/favicon.svg`, while `public/example/slides.pdf` becomes available at `docs.archivesspace.org/example/slides.pdf`.
 
-## Update dependencies
+## Update npm dependencies
 
-Run the following commands locally to update dependencies, then push the changes upstream.
+Run the following commands locally to update the npm dependencies, then push the changes upstream.
 
 ```sh
 # List outdated dependencies

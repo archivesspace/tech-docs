@@ -147,14 +147,6 @@ Asides are useful for highlighting secondary or marketing information.
 
 Wrap content in a pair of triple colons (`:::`) and append one of the aside types (ie: `note`) to the first set of colons. The aside types are `note`, `tip`, `caution`, and `danger`, each of which have their own set of colors and icon. Customize the title by wrapping text in brackets (`[ ]`) placed after the note type.
 
-:::note
-Asides are a custom Markdown feature provided by the underlying [Starlight framework](https://starlight.astro.build/guides/authoring-content/#asides) that builds the Tech Docs.
-:::
-
-:::tip[Customize the aside title]
-Customize the the aside title by wrapping text in brackets (`[ ]`) after the note type, in this case `tip`.
-:::
-
 ```md
 <!-- example.md -->
 
@@ -171,6 +163,14 @@ Become an ArchivesSpace member today! 🎉
 Lorem ipsum dolor sit amet consectetur, adipisicing elit.
 :::
 ```
+
+:::note
+Asides are a custom Markdown feature provided by the underlying [Starlight framework](https://starlight.astro.build/guides/authoring-content/#asides) that builds the Tech Docs.
+:::
+
+:::tip[Customize the aside title]
+Customize the the aside title by wrapping text in brackets (`[ ]`) after the note type, in this case `tip`.
+:::
 
 ### Images
 
@@ -192,15 +192,15 @@ All internal images belong in the `src/images` directory. The relative path to i
 
 Tech Docs uses [YAML](https://yaml.org/) frontmatter as a way to add metadata to pages for dynamic purposes. Frontmatter is a block of YAML syntax used to assign variables and more, wrapped in triple dashes (`---`). Every page must have at least its `title` defined in frontmatter.
 
-:::note[Frontmatter `title` requirement]
-Every page must have frontmatter that defines the page `title`.
-:::
-
 ```md
 ---
 title: New page title
 ---
 ```
+
+:::note[Frontmatter `title` requirement]
+Every page must have frontmatter that defines the page `title`.
+:::
 
 ## Image files
 
