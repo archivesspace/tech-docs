@@ -4,7 +4,7 @@
   Based on #50c0e8 (dark) and #026cb6 (light) from the AS logo.
 */
 
-/* Dark mode colors. */
+/* Dark mode colors */
 :root {
   --sl-color-accent-low: #002836;
   --sl-color-accent: #007595;
@@ -17,8 +17,16 @@
   --sl-color-gray-5: #36383c;
   --sl-color-gray-6: #25272b;
   --sl-color-black: #17181a;
+
+  --as-color-hairline: var(--sl-color-gray-4);
+  --as-color-search-btn-bg: var(--sl-color-gray-6);
+  --as-color-search-btn-border: var(--sl-color-gray-3);
+  --as-color-search-btn-border-hover: var(--sl-color-gray-1);
+  --as-color-pagination-border: var(--sl-color-gray-3);
+  --as-color-pagination-border-hover: var(--sl-color-gray-1);
 }
-/* Light mode colors. */
+
+/* Light mode colors */
 :root[data-theme="light"] {
   --sl-color-accent-low: #c5d9ee;
   --sl-color-accent: #00518a;
@@ -32,6 +40,80 @@
   --sl-color-gray-6: #eceef2;
   --sl-color-gray-7: #f5f6f8;
   --sl-color-black: #ffffff;
+
+  --as-color-hairline: var(--sl-color-gray-5);
+  --as-color-search-btn-bg: var(--sl-color-gray-6);
+  --as-color-search-btn-border: var(--sl-color-gray-4);
+  --as-color-search-btn-border-hover: var(--sl-color-gray-2);
+  --as-color-pagination-border: var(--sl-color-gray-4);
+  --as-color-pagination-border-hover: var(--sl-color-gray-2);
+}
+
+/* Custom header and sidebar colors */
+body > .page > .header {
+  border-bottom: 1px solid var(--as-color-hairline);
+  background-color: var(--sl-color-bg);
+}
+
+#starlight__sidebar {
+  background-color: var(--sl-color-bg);
+  border-inline-end: 1px solid var(--as-color-hairline);
+}
+
+#starlight__sidebar ul.top-level ul > li {
+  border-inline-start-color: var(--sl-color-gray-4);
+}
+
+/* Increase search button contrast */
+@media (min-width: 50rem) {
+  body > .page > .header button[data-open-modal] {
+    background: var(--as-color-search-btn-bg);
+    border-color: var(--as-color-hairline);
+    border-color: var(--as-color-search-btn-border);
+
+    &:hover {
+      border-color: var(--as-color-search-btn-border-hover);
+    }
+  }
+}
+
+/* Increase contrast of social icons divider */
+header .social-icons::after {
+  border-inline-end-color: var(--as-color-hairline);
+}
+
+/* Sidebar divider between core docs and meta info */
+#starlight__sidebar ul.top-level > li:nth-last-child(2)::before {
+  content: "";
+  display: block;
+  width: calc(100% - 1rem);
+  height: 1px;
+  margin: 0 auto 0.75rem auto;
+  background-color: var(--sl-color-text);
+}
+
+/* Remove border between page title and content */
+main > .content-panel:nth-of-type(2) {
+  border-top: none;
+}
+
+/* Remove Table of Contents border */
+.right-sidebar {
+  border-left: 0;
+}
+
+/* Increase pagination contrast */
+.pagination-links > a {
+  border-color: var(--as-color-pagination-border);
+
+  &:hover {
+    border-color: var(--as-color-pagination-border-hover);
+  }
+}
+
+/* Blockquote */
+.sl-markdown-content blockquote:not(:where(.not-content *)) {
+  border-inline-start: 0.25rem solid var(--sl-color-text);
 }
 
 /* Custom dark mode aside colors, see
@@ -53,12 +135,8 @@ https://github.com/withastro/starlight/blob/main/packages/starlight/style/asides
   }
 }
 
-/* Sidebar divider between core docs and meta info */
-#starlight__sidebar ul.top-level > li:nth-last-child(2)::before {
-  content: "";
-  display: block;
-  width: calc(100% - 1rem);
-  height: 1px;
-  margin: 0 auto 0.75rem auto;
-  background-color: var(--sl-color-text);
+/* Add vertical space to asides */
+.sl-markdown-content .starlight-aside {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
