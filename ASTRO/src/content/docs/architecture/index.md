@@ -1,5 +1,5 @@
 ---
-title: ArchivesSpace architecture and components
+title: Architecture and components
 ---
 
 ArchivesSpace is divided into several components: the backend, which

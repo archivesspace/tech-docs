@@ -1,5 +1,5 @@
 ---
-title: Information for ArchivesSpace developers and code contributors
+title: Development
 ---
 
 - [Running a development version of ArchivesSpace](./dev.html)

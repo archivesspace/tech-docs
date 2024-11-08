@@ -1,5 +1,5 @@
 ---
-title: Basic ArchivesSpace administration
+title: Administration basics
 ---
 
 - [Getting started](./getting_started)
