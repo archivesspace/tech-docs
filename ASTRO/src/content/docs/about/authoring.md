@@ -4,7 +4,7 @@ title: Authoring content
 
 Tech Docs content is written in [Markdown](https://en.wikipedia.org/wiki/Markdown) which is a markup language used for formatting plain text that aims to be easy to read and write.
 
-Tech Docs uses [GitHub-flavored Markdown](https://github.github.com/gfm/), a variant of Markdown syntax, and [SmartyPants](https://daringfireball.net/projects/smartypants/), a typographic punctuation plugin. These tools provide authors niceties like generating clickable links from text, creating lists and tables, formatting for quotations and em-dashes, and much more.
+Tech Docs uses [GitHub-flavored Markdown](https://github.github.com/gfm/), a variant of Markdown syntax, and [SmartyPants](https://daringfireball.net/projects/smartypants/), a typographic punctuation plugin. These tools provide authors niceties like generating clickable links from text, creating lists and tables, formatting for quotations and em-dashes, and more.
 
 ## Commonly-used Markdown syntax
 
@@ -21,13 +21,13 @@ Common use of Markdown throughout Tech Docs includes:
 
 ### Headings
 
-Start a new line with between 2 and 6 number/hash/pound signs (`#`), followed by a single space, and then the heading text.
+Start a new line with between 2 and 6 `#` symbols, followed by a single space, and then the heading text.
 
 ```md
-## Example heading
+## Example second-level heading
 ```
 
-The number of `#` signs corresponds to the heading level in the document hierarchy. **The first heading level (`#`) is reserved for the page title** (available in the page [frontmatter](#frontmatter)). Therefore the first _authored_ heading on every page should be a second level heading (`##`).
+The number of `#` symbols corresponds to the heading level in the document hierarchy. **The first heading level is reserved for the page title** (available in the page [frontmatter](#frontmatter)). Therefore the first _authored_ heading on every page should be a second level heading (`##`).
 
 :::note[Second level heading requirement]
 Authored headings should start at the second level (`##`) on every page, since the first level (`#`) is reserved for the page title which is machine-generated.
@@ -81,7 +81,7 @@ Here's an [external link](https://github.com/archivesspace/tech-docs).
 
 ### Emphasizing text
 
-Wrap text to be emphasized with `*` for italics, `**` for bold, and `~~` for strikethrough.
+Wrap text to be emphasized with `_ ` for italics, `**` for bold, and `~~` for strikethrough.
 
 ```md
 <!-- example.md -->

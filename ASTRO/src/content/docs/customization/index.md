@@ -1,5 +1,5 @@
 ---
-title: ArchivesSpace customization and configuration
+title: Customization and configuration
 ---
 
 - [Configuring ArchivesSpace](./configuration)

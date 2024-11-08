@@ -1,5 +1,5 @@
 ---
-title: ArchivesSpace provisioning and server configuration
+title: Provisioning and server configuration
 ---
 
 - [Running ArchivesSpace with load balancing and multiple tenants](./clustering.html)
