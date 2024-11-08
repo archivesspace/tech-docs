@@ -24,6 +24,7 @@
   --as-color-search-btn-border-hover: var(--sl-color-gray-1);
   --as-color-pagination-border: var(--sl-color-gray-3);
   --as-color-pagination-border-hover: var(--sl-color-gray-1);
+  --as-color-card-border: var(--sl-color-gray-3);
 }
 
 /* Light mode colors */
@@ -47,6 +48,7 @@
   --as-color-search-btn-border-hover: var(--sl-color-gray-2);
   --as-color-pagination-border: var(--sl-color-gray-4);
   --as-color-pagination-border-hover: var(--sl-color-gray-2);
+  --as-color-card-border: var(--sl-color-gray-4);
 }
 
 /* Custom header and sidebar colors */
@@ -60,8 +62,13 @@ body > .page > .header {
   border-inline-end: 1px solid var(--as-color-hairline);
 }
 
+/* Remove sidebar tree indentation marker except on hover */
 #starlight__sidebar ul.top-level ul > li {
-  border-inline-start-color: var(--sl-color-gray-4);
+  border-color: transparent;
+
+  &:hover {
+    border-inline-start-color: var(--sl-color-gray-4);
+  }
 }
 
 /* Increase search button contrast */
@@ -82,14 +89,12 @@ header .social-icons::after {
   border-inline-end-color: var(--as-color-hairline);
 }
 
-/* Sidebar divider between core docs and meta info */
-#starlight__sidebar ul.top-level > li:nth-last-child(2)::before {
-  content: "";
-  display: block;
-  width: calc(100% - 1rem);
-  height: 1px;
-  margin: 0 auto 0.75rem auto;
-  background-color: var(--sl-color-text);
+/* Separate core docs from meta info in sidebar */
+#starlight__sidebar ul.top-level > li:first-child {
+  margin-bottom: 2rem;
+}
+#starlight__sidebar ul.top-level > li:nth-last-child(2) {
+  margin-top: 2rem;
 }
 
 /* Remove border between page title and content */
@@ -116,8 +121,10 @@ main > .content-panel:nth-of-type(2) {
   border-inline-start: 0.25rem solid var(--sl-color-text);
 }
 
-/* Custom dark mode aside colors, see
-https://github.com/withastro/starlight/blob/main/packages/starlight/style/asides.css */
+/*
+Custom dark mode aside colors, see
+https://github.com/withastro/starlight/blob/main/packages/starlight/style/asides.css
+*/
 :root[data-theme="dark"] {
   .starlight-aside--note {
     --sl-color-asides-border: var(--sl-color-accent-high);
@@ -139,4 +146,27 @@ https://github.com/withastro/starlight/blob/main/packages/starlight/style/asides
 .sl-markdown-content .starlight-aside {
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+
+/* Hide generated page title on home page */
+body:has(section[data-is-homepage]) .content-panel:has(h1#_top) {
+  display: none;
+}
+
+/*
+Hide custom Report an issue link on home page since it's not configurable
+like `editUrl`, `lastUpdated`, etc.
+*/
+body:has(section[data-is-homepage]) footer > .meta:first-child {
+  display: none;
+}
+
+/* Let the home page component control its width */
+main > .content-panel > .sl-container:has(section[data-is-homepage]) {
+  max-width: 100%;
+}
+
+/* Increase card border contrast */
+body:has(section[data-is-homepage]) .card {
+  border-color: var(--as-color-card-border);
 }

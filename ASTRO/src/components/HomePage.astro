@@ -1,0 +1,175 @@
+---
+import { Image } from 'astro:assets';
+import { Card, CardGrid } from '@astrojs/starlight/components';
+import A from '@images/A_logo.svg';
+---
+
+<section data-is-homepage>
+  <header class="hero">
+    <Image src={A} alt="ArchivesSpace logo" />
+    <h1>ArchivesSpace Technical Documentation</h1>
+    <div class="hero__blurb">
+      <p>
+        🏗️ Learn the <a href="/architecture/jsonmodel">architecture</a> fundamentals.
+      </p>
+      <p>
+        ⚙️ <a href="/administration/getting_started">Administer</a> and <a
+          href="/provisioning/clustering">provision</a
+        > an instance.
+      </p>
+      <p>
+        🔄 <a href="/migrations/migrate_from_archivists_toolkit">Migrate</a> data
+        from other platforms.
+      </p>
+      <p>
+        🛠️ <a href="/customization/configuration">Customize</a> and <a
+          href="/development/dev">develop</a
+        > plugins or features.
+      </p>
+      <p>
+        🤖 Use the <a href="/api">API</a> to automate tasks.
+      </p>
+    </div>
+  </header>
+</section>
+
+<h2 style="margin-top: 0; text-align: center;">More documentation</h2>
+
+<CardGrid>
+  <Card title="Help Center for ArchivesSpace members" icon="rocket">
+    The <a
+      href="https://archivesspace.atlassian.net/wiki/spaces/ADC/pages/917045261/ArchivesSpace+Help+Center"
+      >ArchivesSpace Help Center</a
+    > contains the user manual, tutorial videos, and recordings of past trainings.
+    Help Center access is a <a
+      href="https://archivesspace.org/membership/member-benefits"
+      >benefit of ArchivesSpace membership</a
+    > and requires a member login.
+  </Card>
+  <Card title="API reference" icon="list-format">
+    ArchivesSpace <a href="https://archivesspace.github.io/archivesspace/api/"
+      >REST API reference</a
+    > that documents the endpoints used by the backend server to edit records in
+    the application.
+  </Card>
+  <Card title="Yard docs" icon="open-book">
+    Ruby <a href="https://archivesspace.github.io/archivesspace/doc/"
+      >Yard-generated documentation</a
+    > for the ArchivesSpace codebase.
+  </Card>
+</CardGrid>
+
+<style>
+  .hero {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+
+    img {
+      object-fit: contain;
+      width: 70px;
+      height: auto;
+      margin-inline: auto;
+    }
+
+    h1 {
+      max-width: 400px;
+      margin: 0 !important;
+      margin-inline: auto;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    .hero__blurb {
+      margin-top: 0;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+
+      p {
+        margin-top: 0.5rem;
+        font-size: 1.1rem;
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 600px) {
+    .hero {
+      gap: 1.5rem;
+
+      img {
+        width: 80px;
+      }
+
+      h1 {
+        max-width: 100%;
+        font-size: 1.75rem;
+      }
+
+      .hero__blurb {
+        p {
+          margin-top: 1rem;
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 60rem) {
+    .hero {
+      gap: 2rem;
+
+      img {
+        width: 115px;
+      }
+
+      h1 {
+        max-width: 100%;
+        font-size: 1.875rem;
+      }
+
+      .hero__blurb {
+        p {
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 72rem) {
+    .hero {
+      grid-template-columns: 4fr 8fr;
+      grid-template-rows: auto auto;
+      column-gap: 3rem;
+      row-gap: 1rem;
+      padding-block: clamp(2.5rem, calc(1rem + 10vmin), 10rem);
+      padding-right: 1rem;
+      padding-left: 1rem;
+
+      img {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        align-self: center;
+        width: min(100%, 25rem);
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        text-align: start;
+      }
+
+      .hero__blurb {
+        margin: 0;
+
+        p {
+        }
+      }
+    }
+  }
+</style>
