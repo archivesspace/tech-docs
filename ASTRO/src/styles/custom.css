@@ -153,14 +153,6 @@ body:has(section[data-is-homepage]) .content-panel:has(h1#_top) {
   display: none;
 }
 
-/*
-Hide custom Report an issue link on home page since it's not configurable
-like `editUrl`, `lastUpdated`, etc.
-*/
-body:has(section[data-is-homepage]) footer > .meta:first-child {
-  display: none;
-}
-
 /* Let the home page component control its width */
 main > .content-panel > .sl-container:has(section[data-is-homepage]) {
   max-width: 100%;
