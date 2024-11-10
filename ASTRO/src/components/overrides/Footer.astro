@@ -14,7 +14,7 @@ const isHome = url.pathname === '/';
 <footer class="sl-flex">
   <div class="meta sl-flex">
     <EditLink {...Astro.props} />
-    <IssueLink {...Astro.props} />
+    {!isHome && <IssueLink {...Astro.props} />}
     <LastUpdated {...Astro.props} />
   </div>
   <Pagination {...Astro.props} />

@@ -94,3 +94,18 @@ npm outdated
 # Update dependencies
 npm update
 ```
+
+## Import aliases
+
+Astro supports [import aliases](https://docs.astro.build/en/guides/imports/#aliases) which provide shortcuts to writing long relative import paths.
+
+```astro title="src/components/overrides/Example.astro" del="../../images" ins="@images"
+---
+import relativeA from '../../images/A_logo.svg'; // no alias
+import aliasA from '@images/A_logo.svg' // alias
+---
+```
+
+## Sitemap
+
+Starlight has built-in [sitemap support](https://starlight.astro.build/guides/customization/#enable-sitemap) which is enabled via the top-level `site` key in `astro.config.mjs`. This key generates `/sitemap-index.xml` and `/sitemap-0.xml` when Tech Docs is [built](#building-the-site), and adds the sitemap link to the `<head>` of every page. `public/robots.txt` also points to the sitemap.
