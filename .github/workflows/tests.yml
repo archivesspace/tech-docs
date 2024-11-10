@@ -12,18 +12,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true # runs 'bundle install'
-
       - name: Set up Node.js
         uses: actions/setup-node@v4.0.3
         with:
-          node-version-file: 'package.json'
+          node-version-file: "package.json"
 
       - name: Cypress run
         uses: cypress-io/github-action@v6 # runs 'npm ci'
         with:
-          start: npm start
-          wait-on: 'http://localhost:4000'
+          build: npm run build
+          start: npm run preview
+          wait-on: "http://localhost:4321"
