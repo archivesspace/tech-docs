@@ -19,37 +19,9 @@ cd tech-docs
 
 **All of the remaining commands within this document should be run from the tech-docs root directory.**
 
-## Setup the Ruby environment
-
-The currently required Ruby version for this project is listed in the [.ruby-version](./.ruby-version) file.
-
-It is strongly recommended to use a Ruby version manager to be able to switch to any version that a given project uses.
-
-The most popular version manager available for macOS and Linux is `rbenv`. You can find the installation guide here [https://github.com/rbenv/rbenv#readme](https://github.com/rbenv/rbenv#readme).
-
-For Windows, a separate `rbenv` installer exists here: [https://github.com/RubyMetric/rbenv-for-windows#readme](https://github.com/RubyMetric/rbenv-for-windows#readme).
-
-If you wish to use a different manager or installation method, you can choose one of the following: [https://www.ruby-lang.org/en/documentation/installation/](https://www.ruby-lang.org/en/documentation/installation/)
-
-### Install Ruby
-
-Install Ruby using `rbenv`:
-
-```sh
-rbenv install
-```
-
-### Install Ruby gems
-
-Install the project specific Ruby dependencies listed in [Gemfile](./Gemfile) which are used for building and serving the site.
-
-```sh
-bundle install
-```
-
 ## Set up the Node.js environment
 
-The currently required Node.js version for this project is listed in [.nvmrc](./.nvmrc) and under the `engines.node` key in [package.json](./package.json).
+The currently required Node.js version for this project is listed in [.nvmrc](./.nvmrc), [.node-version](./ASTRO/.node-version), and under the `engines.node` key in [package.json](./package.json).
 
 It is strongly recommended to use a Node.js version manager to be able to switch to any version that a given project uses.
 
