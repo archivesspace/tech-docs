@@ -7,7 +7,7 @@ Use this CSV template for importing Accession data into ArchivesSpace.
 Keep the header information. Rows below header provide example usage but should
 be delete prior to import.
 
-*** PLEASE NOTE ***
+**_ PLEASE NOTE _**
 
 The importer requires a specific order to the columns. If you modify the
-template, but sure that you keep the columns in the same sequence.  
+template, but sure that you keep the columns in the same sequence.

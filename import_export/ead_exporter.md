@@ -5,8 +5,7 @@ repository into a zip archive. This zip file will be saved in the ArchivesSpace
 data directory (as defined in `config.rb`) and include the repository id in the
 filename.
 
-Usage
------
+## Usage
 
 ```
 ./scripts/ead_export.sh user password repository_id
