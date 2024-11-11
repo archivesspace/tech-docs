@@ -12,13 +12,19 @@ Tech Docs is a [Node.js](https://nodejs.org) application, built with [Astro](htt
 
 ## Dependencies
 
-Tech Docs depends on the following open source software (see `.nvmrc` and `package.json` for version information):
+Tech Docs depends on the following open source software (see `.nvmrc` and `package.json` for versions):
 
 1. [Node.js](https://nodejs.org) - JavaScript development and build environment
 2. [Astro](https://astro.build/) - Static site generator conceptually based on "components" (React, Vue, Svelte, etc.) rather than "templates" (Handlebars, Pug, Haml, etc.)
 3. [Starlight](https://starlight.astro.build/) - Astro plugin and theme for documentation websites
 4. [Sharp](https://sharp.pixelplumbing.com/) - Image transformation library used by Astro
-5. [Prettier](https://prettier.io/) - Source code formatter used locally in text editors and in CI for testing and build purposes
+5. [Cypress](https://www.cypress.io/) - End-to-end testing framework
+6. [Stylelint](https://stylelint.io/) - CSS linter used locally in text editors and in CI for testing
+   1. [stylelint-config-recommended](https://github.com/stylelint/stylelint-config-recommended) - Base set of lint rules
+   2. [postcss-html](https://github.com/ota-meshi/postcss-html) - PostCSS syntax for parsing HTML (and HTML-like including .astro files)
+   3. [stylelint-config-html](https://github.com/ota-meshi/stylelint-config-html) - Allows Stylelint to parse .astro files
+7. [Prettier](https://prettier.io/) - Source code formatter used locally in text editors and in CI for testing
+   1. [prettier-plugin-astro](https://github.com/withastro/prettier-plugin-astro) - Allows Prettier to parse .astro files via the command line
 
 ## Local development
 
@@ -40,12 +46,16 @@ Now go to [localhost:4321](http://localhost:4321) to see Tech Docs running local
 
 ### Building the site
 
-Building the site creates a set of static files, found in `src/dist` after build, that can be served locally or deployed to a server. Sometimes building the site surfaces errors not found in the development environment.
+Building the site creates a set of static files, found in `dist` after build, that can be served locally or deployed to a server. Sometimes building the site surfaces errors not found in the development environment.
 
 ```sh
-# Build the site and output it to src/dist
+# Build the site and output it to dist/
 npm run build
 ```
+
+:::tip
+Serve the built output by running `npm run preview` after a build.
+:::
 
 ## Search
 
@@ -112,4 +122,21 @@ Starlight has built-in [sitemap support](https://starlight.astro.build/guides/cu
 
 ## Tests
 
-Tech Docs uses [Cypress](https://www.cypress.io/) for end-to-end testing customizations made to the underlying Starlight framework and other project needs. Add new tests to `cypress/e2e`.
+Tech Docs uses [Cypress](https://www.cypress.io/) for end-to-end testing customizations made to the underlying Starlight framework and other project needs. New tests are added to `cypress/e2e`.
+
+Run the tests locally by first building and serving the site:
+
+```sh
+# Build the site
+npm run build
+
+# Serve dist/
+npm run preview
+```
+
+Then **in a different terminal** initiate the tests:
+
+```sh
+# Run the tests
+npm test
+```
