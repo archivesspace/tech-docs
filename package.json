@@ -6,7 +6,7 @@
   "type": "module",
   "license": "ECL-2.0",
   "engines": {
-    "node": "22.11.0"
+    "node": "^18.17.1 || ^20.3.0 || >=21.0.0"
   },
   "scripts": {
     "dev": "astro dev",

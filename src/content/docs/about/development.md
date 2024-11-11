@@ -12,7 +12,7 @@ Tech Docs is a [Node.js](https://nodejs.org) application, built with [Astro](htt
 
 ## Dependencies
 
-Tech Docs depends on the following open source software (see [package.json](https://github.com/archivesspace/tech-docs/blob/master/package.json) for current version information):
+Tech Docs depends on the following open source software (see `.nvmrc` and `package.json` for version information):
 
 1. [Node.js](https://nodejs.org) - JavaScript development and build environment
 2. [Astro](https://astro.build/) - Static site generator conceptually based on "components" (React, Vue, Svelte, etc.) rather than "templates" (Handlebars, Pug, Haml, etc.)
@@ -109,3 +109,7 @@ import aliasA from '@images/A_logo.svg' // alias
 ## Sitemap
 
 Starlight has built-in [sitemap support](https://starlight.astro.build/guides/customization/#enable-sitemap) which is enabled via the top-level `site` key in `astro.config.mjs`. This key generates `/sitemap-index.xml` and `/sitemap-0.xml` when Tech Docs is [built](#building-the-site), and adds the sitemap link to the `<head>` of every page. `public/robots.txt` also points to the sitemap.
+
+## Tests
+
+Tech Docs uses [Cypress](https://www.cypress.io/) for end-to-end testing customizations made to the underlying Starlight framework and other project needs. Add new tests to `cypress/e2e`.
