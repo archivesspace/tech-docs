@@ -15,7 +15,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4.0.3
         with:
-          node-version-file: "package.json"
+          node-version-file: ".nvmrc"
 
       - name: Cypress run
         uses: cypress-io/github-action@v6 # runs 'npm ci'
