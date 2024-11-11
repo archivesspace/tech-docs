@@ -28,7 +28,7 @@
 }
 
 /* Light mode colors */
-:root[data-theme="light"] {
+:root[data-theme='light'] {
   --sl-color-accent-low: #c5d9ee;
   --sl-color-accent: #00518a;
   --sl-color-accent-high: #103454;
@@ -75,7 +75,6 @@ body > .page > .header {
 @media (min-width: 50rem) {
   body > .page > .header button[data-open-modal] {
     background: var(--as-color-search-btn-bg);
-    border-color: var(--as-color-hairline);
     border-color: var(--as-color-search-btn-border);
 
     &:hover {
@@ -90,12 +89,14 @@ header .social-icons::after {
 }
 
 /* Separate core docs from meta info in sidebar */
+/* stylelint-disable no-descending-specificity */
 #starlight__sidebar ul.top-level > li:first-child {
   margin-bottom: 2rem;
 }
 #starlight__sidebar ul.top-level > li:nth-last-child(2) {
   margin-top: 2rem;
 }
+/* stylelint-enable no-descending-specificity */
 
 /* Remove border between page title and content */
 main > .content-panel:nth-of-type(2) {
@@ -125,7 +126,7 @@ main > .content-panel:nth-of-type(2) {
 Custom dark mode aside colors, see
 https://github.com/withastro/starlight/blob/main/packages/starlight/style/asides.css
 */
-:root[data-theme="dark"] {
+:root[data-theme='dark'] {
   .starlight-aside--note {
     --sl-color-asides-border: var(--sl-color-accent-high);
     background-color: #293171;

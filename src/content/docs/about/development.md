@@ -101,7 +101,7 @@ Astro supports [import aliases](https://docs.astro.build/en/guides/imports/#alia
 
 ```astro title="src/components/overrides/Example.astro" del="../../images" ins="@images"
 ---
-import relativeA from '../../images/A_logo.svg'; // no alias
+import relativeA from '../../images/A_logo.svg' // no alias
 import aliasA from '@images/A_logo.svg' // alias
 ---
 ```

@@ -1,14 +1,14 @@
 ---
-import type { Props } from '@astrojs/starlight/props';
-import EditLink from './EditLink.astro';
-import IssueLink from '../IssueLink.astro';
-import LastUpdated from '@astrojs/starlight/components/LastUpdated.astro';
-import Pagination from '@astrojs/starlight/components/Pagination.astro';
-import config from 'virtual:starlight/user-config';
-import { Icon } from '@astrojs/starlight/components';
+import type { Props } from '@astrojs/starlight/props'
+import EditLink from './EditLink.astro'
+import IssueLink from '../IssueLink.astro'
+import LastUpdated from '@astrojs/starlight/components/LastUpdated.astro'
+import Pagination from '@astrojs/starlight/components/Pagination.astro'
+import config from 'virtual:starlight/user-config'
+import { Icon } from '@astrojs/starlight/components'
 
-const { url } = Astro;
-const isHome = url.pathname === '/';
+const { url } = Astro
+const isHome = url.pathname === '/'
 ---
 
 <footer class="sl-flex">

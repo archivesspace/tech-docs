@@ -23,14 +23,14 @@ the current repository. They must be of type resource, archival_object, accessio
 
 The reference must take the form: type_id.
 
-It is also permitted to use '/', '.' or space, in place of the '_'. For example, the following
+It is also permitted to use '/', '.' or space, in place of the '\_'. For example, the following
 are valid record references (assuming the corresponding records exist in the current repository):
 
     resource_12
     accession/5
     archival_object 2970
 
-The 'basic', 'surveyed_by' and 'reviewer'  columns must contain usernames of existing users
+The 'basic', 'surveyed_by' and 'reviewer' columns must contain usernames of existing users
 in the ArchivesSpace instance.
 
 The fields for other sections refer to attribute definitions.
@@ -47,5 +47,5 @@ defined an assessment rating called "Comedic Value", add a column to your CSV wi
 in the first row, and 'Comedic Value' in the second.
 
 'rating' type definitions support an associated note field. To import into this field
-the field must end with '_note'. In the example above, add another column with 'rating'
+the field must end with '\_note'. In the example above, add another column with 'rating'
 in the first row, and 'Comedic Value_note' in the second.
