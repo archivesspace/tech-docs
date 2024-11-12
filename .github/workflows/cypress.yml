@@ -1,11 +1,11 @@
-name: Run Cypress tests
+name: End-to-end
 
 on:
   pull_request:
   workflow_dispatch:
 
 jobs:
-  build-and-test:
+  test:
     runs-on: ubuntu-latest
 
     steps:
