@@ -79,8 +79,9 @@
       "customization/locales",
       "customization/plugins",
       "customization/theming",
-      "customization/bower",
-      "customization/reports"
+      "customization/reports",
+      "customization/xsl",
+      "customization/bower"
     ]
   },
   {
@@ -92,6 +93,7 @@
       "development/docker",
       "development/release_schema_versions",
       "development/ui_test",
+      "development/ead-exporter",
       "development/jruby-rack-build",
       "development/releases",
       "development/vscode"
