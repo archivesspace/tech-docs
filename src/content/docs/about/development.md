@@ -16,21 +16,23 @@ Tech Docs depends on the following open source software (see `.nvmrc` and `packa
 
 1. [Node.js](https://nodejs.org) - JavaScript development and build environment
 2. [Astro](https://astro.build/) - Static site generator conceptually based on "components" (React, Vue, Svelte, etc.) rather than "templates" (Handlebars, Pug, Haml, etc.)
-3. [Starlight](https://starlight.astro.build/) - Astro plugin and theme for documentation websites
-4. [Sharp](https://sharp.pixelplumbing.com/) - Image transformation library used by Astro
-5. [Cypress](https://www.cypress.io/) - End-to-end testing framework
-6. [Stylelint](https://stylelint.io/) - CSS linter used locally in text editors and in CI for testing
+   1. [Starlight](https://starlight.astro.build/) - Astro plugin and theme for documentation websites
+   2. [Sharp](https://sharp.pixelplumbing.com/) - Image transformation library used by Astro
+3. [Cypress](https://www.cypress.io/) - End-to-end testing framework
+4. [Stylelint](https://stylelint.io/) - CSS linter used locally in text editors and in CI for testing
    1. [stylelint-config-recommended](https://github.com/stylelint/stylelint-config-recommended) - Base set of lint rules
    2. [postcss-html](https://github.com/ota-meshi/postcss-html) - PostCSS syntax for parsing HTML (and HTML-like including .astro files)
    3. [stylelint-config-html](https://github.com/ota-meshi/stylelint-config-html) - Allows Stylelint to parse .astro files
-7. [Prettier](https://prettier.io/) - Source code formatter used locally in text editors and in CI for testing
+5. [Prettier](https://prettier.io/) - Source code formatter used locally in text editors and in CI for testing
    1. [prettier-plugin-astro](https://github.com/withastro/prettier-plugin-astro) - Allows Prettier to parse .astro files via the command line
 
 ## Local development
 
-Run Tech Docs locally by cloning the repository, installing project dependencies, and spinning up a development server.
+Run Tech Docs locally by cloning the Tech Docs repository, installing project dependencies, and spinning up a development server:
 
 ```sh
+# Requires git and Node.js
+
 # Clone Tech Docs and move to it
 git clone https://github.com/archivesspace/tech-docs.git
 cd tech-docs
@@ -66,7 +68,7 @@ Site search is a [Starlight feature](https://starlight.astro.build/guides/site-s
 > No configuration is required to enable search. Build and deploy your site, then use the search bar in the site header to find content.
 
 :::note
-Tech Docs search does not run in local development.
+Search only runs in production builds not in the dev server.
 :::
 
 ## Theme customization
@@ -75,7 +77,7 @@ Starlight can be customized in various ways, including:
 
 - [Settings](https://starlight.astro.build/guides/customization/) -- see `astro.config.mjs`
 - [CSS](https://starlight.astro.build/guides/css-and-tailwind/) -- see `src/styles/custom.css`
-- [UI components](https://starlight.astro.build/guides/customization/) -- see `src/components`
+- [Components](https://starlight.astro.build/guides/overriding-components/) -- see `src/components`
 
 ## Static assets
 
@@ -120,17 +122,19 @@ import aliasA from '@images/A_logo.svg' // alias
 
 Starlight has built-in [sitemap support](https://starlight.astro.build/guides/customization/#enable-sitemap) which is enabled via the top-level `site` key in `astro.config.mjs`. This key generates `/sitemap-index.xml` and `/sitemap-0.xml` when Tech Docs is [built](#building-the-site), and adds the sitemap link to the `<head>` of every page. `public/robots.txt` also points to the sitemap.
 
-## Tests
+## Testing
 
-Tech Docs uses [Cypress](https://www.cypress.io/) for end-to-end testing customizations made to the underlying Starlight framework and other project needs. New tests are added to `cypress/e2e`.
+### End-to-end
 
-Run the tests locally by first building and serving the site:
+Tech Docs uses [Cypress](https://www.cypress.io/) for end-to-end testing customizations made to the underlying Starlight framework and other project needs. End-to-end tests are located in `cypress/e2e`.
+
+Run the Cypress tests locally by first building and serving the site:
 
 ```sh
 # Build the site
 npm run build
 
-# Serve dist/
+# Serve the build output
 npm run preview
 ```
 
@@ -140,3 +144,29 @@ Then **in a different terminal** initiate the tests:
 # Run the tests
 npm test
 ```
+
+### Code style
+
+Nearly all files in the Tech Docs code base get formatted by [Prettier](https://prettier.io/) to ensure consistent readability and syntax. Run Prettier locally to find errors and automatically fix errors where possible:
+
+```sh
+# Check formatting of .md, .css, .astro, .js, .yml files, etc.
+npm run prettier:check
+
+# Fix any errors that can be overwritten automatically
+npm run prettier:fix
+```
+
+All CSS in .css and .astro files are linted by [Stylelint](https://stylelint.io/) to help avoid errors and enforce conventions. Run Stylelint locally to find lint errors and automatically fix errors where possible:
+
+```sh
+# Check all CSS
+npm run stylelint:check
+
+# Fix any errors that can be overwritten automatically
+npm run stylelint:fix
+```
+
+### CI/CD
+
+Before new changes are accepted into the code base, the [end-to-end](#end-to-end) and [code style](#code-style) tests need to pass. Tech Docs uses [GitHub Actions](https://docs.github.com/en/actions) for its continuous integration and continuous delivery (CI/CD) platform, which automates the testing and deployment process. The tests are defined in yaml files found in `.github/workflows` and are run automatically when new changes are proposed.
