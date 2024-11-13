@@ -4,6 +4,10 @@
     "link": "/"
   },
   {
+    "label": "Getting started",
+    "link": "administration/getting_started"
+  },
+  {
     "label": "Architecture",
     "collapsed": true,
     "items": [
@@ -24,7 +28,6 @@
     "label": "Administration",
     "collapsed": true,
     "items": [
-      "administration/getting_started",
       "administration/unix_daemon",
       "administration/windows",
       "administration/backup",
