@@ -1,5 +1,5 @@
 ---
-title: Development and maintenance
+title: Development
 
 # This is the last page in the sidebar, so point to Home next instead of
 # the Help Center which comes after this page in the sidebar
@@ -8,7 +8,7 @@ next:
   label: Home
 ---
 
-Tech Docs is a [Node.js](https://nodejs.org) application, built with [Astro](https://astro.build/) and its [Starlight](https://starlight.astro.build/) documentation site framework. The source code is hosted on [GitHub](https://github.com/archivesspace/tech-docs). The site is statically built and hosted via [Cloudflare Pages](https://pages.cloudflare.com/). Content is written in [Markdown](./authoring#commonly-used-markdown-syntax). When the source code changes, a new set of static files are generated and published shortly after.
+Tech Docs is a [Node.js](https://nodejs.org) application, built with [Astro](https://astro.build/) and its [Starlight](https://starlight.astro.build/) documentation site framework. The source code is hosted on [GitHub](https://github.com/archivesspace/tech-docs). The site is statically built and (temporarily) hosted via [Cloudflare Pages](https://pages.cloudflare.com/). Content is written in [Markdown](./authoring#commonly-used-markdown-syntax). When the source code changes, a new set of static files are generated and published shortly after.
 
 ## Dependencies
 
@@ -147,17 +147,17 @@ npm test
 
 ### Code style
 
-Nearly all files in the Tech Docs code base get formatted by [Prettier](https://prettier.io/) to ensure consistent readability and syntax. Run Prettier locally to find errors and automatically fix errors where possible:
+Nearly all files in the Tech Docs code base get formatted by [Prettier](https://prettier.io/) to ensure consistent readability and syntax. Run Prettier locally to find format errors and automatically fix them when possible:
 
 ```sh
-# Check formatting of .md, .css, .astro, .js, .yml files, etc.
+# Check formatting of .md, .css, .astro, .js, .yml, etc. files
 npm run prettier:check
 
 # Fix any errors that can be overwritten automatically
 npm run prettier:fix
 ```
 
-All CSS in .css and .astro files are linted by [Stylelint](https://stylelint.io/) to help avoid errors and enforce conventions. Run Stylelint locally to find lint errors and automatically fix errors where possible:
+All CSS in .css and .astro files are linted by [Stylelint](https://stylelint.io/) to help avoid errors and enforce conventions. Run Stylelint locally to find lint errors and automatically fix them when possible:
 
 ```sh
 # Check all CSS
