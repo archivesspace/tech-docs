@@ -26,7 +26,8 @@ export default defineConfig({
       sidebar,
       tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 4 },
       components: {
-        Footer: './src/components/overrides/Footer.astro'
+        Footer: './src/components/overrides/Footer.astro',
+        Sidebar: './src/components/overrides/Sidebar.astro'
       }
     })
   ]
