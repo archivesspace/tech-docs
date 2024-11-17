@@ -11,7 +11,7 @@ export default defineConfig({
       logo: {
         light: './src/images/logo.svg',
         dark: './src/images/logo-dark.svg',
-        replacesTitle: false
+        replacesTitle: true
       },
       customCss: ['./src/styles/custom.css'],
       editLink: {
