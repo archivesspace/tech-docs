@@ -178,8 +178,7 @@ percentage of the code and are not especially useful.
     ```shell
     git push vX.X.X
     ```
-    Replace X.X.X with the version number. You can set the resulting release page to
-    "draft" using the Github API.
+    Replace X.X.X with the version number. The release will be created as a **draft**, it will not be automatically published.
 
 ## Create the Release with Notes
 
@@ -188,6 +187,8 @@ percentage of the code and are not especially useful.
 **As of v3.4.0, it should no longer necessary to build release notes manually.**
 
 To manually generate release notes:
+
+Create a deployment token on your [github developer settings](https://github.com/settings/tokens).
 
 ```shell
 export GITHUB_TOKEN={YOUR DEPLOYMENT TOKEN ON GITHUB}
