@@ -159,6 +159,11 @@ main > .content-panel > .sl-container:has(section[data-is-homepage]) {
   max-width: 100%;
 }
 
+/* Extend home page Help Center card to full grid width */
+[data-is-homepage] ~ .card-grid > article.card:first-child {
+  grid-column: 1 / -1;
+}
+
 /* Increase card border contrast */
 body:has(section[data-is-homepage]) .card {
   border-color: var(--as-color-card-border);
