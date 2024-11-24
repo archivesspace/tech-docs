@@ -9,7 +9,7 @@
   },
   {
     "label": "Architecture",
-    "collapsed": true,
+    "collapsed": false,
     "items": [
       "architecture/jsonmodel",
       "architecture/backend",
