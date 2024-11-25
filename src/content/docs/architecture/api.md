@@ -3,7 +3,7 @@ title: API
 ---
 
 :::note
-See the [API section](../api/index) for more detailed documentation.
+See the [API section](/api/index) for more detailed documentation.
 :::
 
 ## Authentication
