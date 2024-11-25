@@ -2,7 +2,7 @@
 title: Upgrading to 2.1.0
 ---
 
-Additional upgrade considerations specific to this release. Refer to the [upgrade documentation](./upgrading) for the standard instructions that apply in all cases.
+Additional upgrade considerations specific to this release. Refer to the [upgrade documentation](/administration/upgrading) for the standard instructions that apply in all cases.
 
 :::note
 These considerations also apply when upgrading to any version past 2.1.0 from a version prior to 2.1.0.

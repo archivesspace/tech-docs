@@ -74,7 +74,7 @@ to the local plugin:
 
     plugins/local/frontend/locales/en.yml
 
-More detailed information about overriding locale files is found in [Customizing text in ArchivesSpace](./locales)
+More detailed information about overriding locale files is found in [Customizing text in ArchivesSpace](/customization/locales)
 
 ## Overriding the visual (web) presentation
 

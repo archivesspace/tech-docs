@@ -106,7 +106,7 @@ This video covers the staff frontend UI, but the same steps can be applied to
 the public UI as well.
 
 Also become a little familiar with the
-[build system instructions ](../development/dev)
+[build system instructions ](/development/dev)
 
 First, pull down a new copy of ArchivesSpace using git and be sure to checkout
 a tag matching the version you're using or wanting to use.
