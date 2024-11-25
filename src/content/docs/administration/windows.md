@@ -16,7 +16,7 @@ To add Java to your path, edit you %PATH% environment variable to include the di
 
 Environement varialbe be found by "Start" > "Control Panel" , search for environment. Click "edit the system environment variables". In the section System Variables, find the `PATH` environment variable and select it. Click Edit. If the `PATH` environment variable does not exist, click New. In the Edit System Variable (or New System Variable) window, specify the value of the `PATH` environment variable. Click OK. Close all remaining windows by clicking OK. Do the same for `JAVA_HOME`
 
-Before setting up the ArchivesSpace service, you should also [configure ArchivesSpace to run against MySQL](../provisioning/mysql).
+Before setting up the ArchivesSpace service, you should also [configure ArchivesSpace to run against MySQL](/provisioning/mysql).
 Be sure that the MySQL connector jar file is in the lib directory, in order for
 the service setup script to add it to the application's classpath.
 

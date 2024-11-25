@@ -55,29 +55,40 @@ This is demo text under the Third level heading section.
 
 ### Links
 
-Create a link by wrapping the link text in brackets (`[ ]`) followed by the external link URL, or internal link path, wrapped in parentheses (`( )`).
+Create a link by wrapping the link text in brackets (`[ ]`) immediately followed by the external link URL, or internal link path, wrapped in parentheses (`( )`).
 
 ```md
 [text](URL or path)
 ```
 
-There should be no space between the wrapped text and URL. When linking to an internal Tech Docs page, use the relative path from the current page, and omit the page file extension (`.md`).
-
-:::note[Internal link requirements]
-Links to other Tech Docs pages should:
-
-1. be relative from the current file
-2. not include the file extension (`.md`)
-
-:::
+Be sure not to include any space between the wrapped text and URL.
 
 ```md
 <!-- example.md -->
 
-Here's an internal link to the [releases page](../development/releases).
-
-Here's an [external link](https://github.com/archivesspace/tech-docs).
+See the [TechDocs source code](https://github.com/archivesspace/tech-docs).
 ```
+
+#### Internal links
+
+When linking to another Tech Docs page, start with a forward slash (`/`), follwed by the location of the page as found in the `src/content/docs/` directory, and omit the file extension (`.md`).
+
+```md
+✅ [Running with external Solr](/provisioning/solr)
+
+❌ [Running with external Solr](provisioning/solr)
+❌ [Running with external Solr](./provisioning/solr)
+❌ [Running with external Solr](../provisioning/solr)
+❌ [Running with external Solr](/provisioning/solr.md)
+```
+
+:::note[Internal link requirements]
+Links to other Tech Docs pages should:
+
+1. start with a forward slash (`/`)
+2. not include the file extension (`.md`)
+
+:::
 
 ### Emphasizing text
 

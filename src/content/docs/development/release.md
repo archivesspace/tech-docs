@@ -204,7 +204,7 @@ Example content:
 
 ```md
 This release requires a **full reindex** of ArchivesSpace for all functionality to work
-correctly. Please follow the [instructions for reindexing](https://archivesspace.github.io/tech-docs/administration/indexes.html)
+correctly. Please follow the [instructions for reindexing](/administration/indexes)
 before starting ArchivesSpace with the new version.
 ```
 
