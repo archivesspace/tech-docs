@@ -71,23 +71,42 @@ See the [TechDocs source code](https://github.com/archivesspace/tech-docs).
 
 #### Internal links
 
+##### Other pages
+
 When linking to another Tech Docs page, start with a forward slash (`/`), follwed by the location of the page as found in the `src/content/docs/` directory, and omit the file extension (`.md`).
 
 ```md
-✅ [Running with external Solr](/provisioning/solr)
+✅ [Public user interface](/architecture/public)
 
-❌ [Running with external Solr](provisioning/solr)
-❌ [Running with external Solr](./provisioning/solr)
-❌ [Running with external Solr](../provisioning/solr)
-❌ [Running with external Solr](/provisioning/solr.md)
+❌ [Public user interface](architecture/public)
+❌ [Public user interface](./architecture/public)
+❌ [Public user interface](../architecture/public)
+❌ [Public user interface](/architecture/public.md)
 ```
 
 :::note[Internal link requirements]
 Links to other Tech Docs pages should:
 
 1. start with a forward slash (`/`)
-2. not include the file extension (`.md`)
+2. reflect the location of the page as found in `src/content/docs/`
+3. not include the file extension (`.md`)
 
+:::
+
+##### Within a page
+
+Starlight provides [automatic heading anchor links](https://starlight.astro.build/guides/authoring-content/#automatic-heading-anchor-links). To link to a section within a page, use the `#` symbol followed by the HTML `id` of the relevant section heading.
+
+```md
+<!-- src/content/docs/about/authoring.md -->
+
+See the [Internal links](#internal-links) section on this page.
+
+See the [Public configuration options](/architecture/public#configuration).
+```
+
+:::tip
+A section heading's `id` is usually the same text string as the heading itself, but in all lowercase letters and with all single spaces converted to single hyphens. See the actual HTML `id` by right clicking on the heading to "inspect" it.
 :::
 
 ### Emphasizing text
