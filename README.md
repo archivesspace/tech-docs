@@ -2,9 +2,6 @@
 permalink: /
 ---
 
-> [!NOTE]
-> We recently launched a [new technical documentation site](https://docs.archivesspace.org). For now both sites will be live, but we encourage you to take a look at the new site and leave feedback or suggestions. 
-
 # ArchivesSpace technical documentation
 
 The technical documentation covers a range of topics of interest to those working with ArchivesSpace in different technical capacities, and is organized in order to help you find the information most appropriate to your role.

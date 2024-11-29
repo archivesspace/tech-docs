@@ -2,6 +2,8 @@ theme: jekyll-theme-minimal
 title: tech-docs
 description: Technical documentation for ArchivesSpace
 
+baseurl: '/tech-docs'
+
 plugins:
   - jekyll-optional-front-matter
 
@@ -13,9 +15,9 @@ include:
 
 defaults:
   - scope:
-      path: "" # all files
+      path: '' # all files
     values:
-      layout: "default"
+      layout: 'default'
 
 exclude:
   - cypress/
