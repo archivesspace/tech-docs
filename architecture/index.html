@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tech-docs | Technical documentation for ArchivesSpace</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="tech-docs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:site_name" content="tech-docs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="tech-docs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Technical documentation for ArchivesSpace","headline":"tech-docs","url":"/tech-docs/architecture/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/tech-docs/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/tech-docs/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <style>
+  /* Styles via https://getbootstrap.com/docs/5.3/components/alerts/#icons */
+  .deprecation-alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #58151c;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    border-radius: 0.375rem;
+  }
+  .deprecation-alert__svg {
+    flex-shrink: 0 !important;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5rem !important;
+    fill: currentcolor;
+  }
+</style>
+
+<aside class="deprecation-alert">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="exclamation-triangle-fill"
+    viewBox="0 0 16 16"
+    class="deprecation-alert__svg"
+    role="img"
+    aria-label="Danger:"
+  >
+    <path
+      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+    />
+  </svg>
+
+  <p style="margin-bottom: 0">
+    <em style="margin-right: 0.25rem; font-weight: 700">NOTE!</em> We recently
+    launched a
+    <a href="https://docs.archivesspace.org"
+      >new technical documentation site</a
+    >
+    as part of the ArchivesSpace v4.0.0 release.
+    <br />
+    For now both sites will be live, but we encourage you to take a look at the
+    new site and leave feedback or suggestions.
+  </p>
+</aside>
+
+
+      <header>
+        <h1><a href="/tech-docs/">tech-docs</a></h1>
+
+        
+
+        <p>Technical documentation for ArchivesSpace</p>
+
+        
+        <p class="view"><a href="https://github.com/archivesspace/tech-docs">View the Project on GitHub <small>archivesspace/tech-docs</small></a></p>
+        
+
+        
+
+        
+
+        <p>
+          <a
+            href="https://github.com/archivesspace/tech-docs/edit/master/architecture/README.md"
+            title="Edit architecture/README.md on GitHub"
+          >
+            Edit this page on GitHub
+            <small>architecture/README.md</small>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://archivesspace.atlassian.net/jira/software/projects/TD/issues"
+            title="Report issue with architecture/README.md on Jira"
+          >
+            Report issue on Jira
+            <small>architecture/README.md</small>
+          </a>
+        </p>
+      </header>
+      <section>
+
+      <h1 id="archivesspace-architecture-and-components">ArchivesSpace architecture and components</h1>
+
+<p>ArchivesSpace is divided into several components: the backend, which
+exposes the major workflows and data types of the system via a
+REST API, a staff interface, a public interface, and a search system,
+consisting of Solr and an indexer application.</p>
+
+<p>These components interact by exchanging JSON data.  The format of this
+data is defined by a class called JSONModel.</p>
+
+<ul>
+  <li><a href="./jsonmodel.html">JSONModel – a validated ArchivesSpace record</a></li>
+  <li><a href="./backend">The ArchivesSpace backend</a></li>
+  <li><a href="./frontend">The ArchivesSpace staff interface</a></li>
+  <li><a href="./jobs">Background Jobs</a></li>
+  <li><a href="./search">Search indexing</a></li>
+  <li><a href="./public">The ArchivesSpace public user interface</a></li>
+  <li><a href="./oai-pmh">OAI-PMH interface</a></li>
+</ul>
+
+<h2 id="languages-platforms-and-included-open-source-projects">Languages, platforms, and included open source projects</h2>
+
+<p>ArchivesSpace components are constructed using several programming languages, platforms, and additional open source projects.</p>
+
+<h3 id="languages">Languages</h3>
+
+<p>The languages used are Java, JRuby, Ruby, JavaScript, and CSS.</p>
+
+<h3 id="platforms">Platforms</h3>
+
+<p>The backend, OAI harvester, and indexer are Sinatra apps. The staff and public user interfaces are Ruby on Rails apps.</p>
+
+<h3 id="additional-open-source-projects">Additional open source projects</h3>
+
+<p>The database used out of the box and for testing is Apache Derby. The database suggested for production is MySQL. The index platform is Apache Solr.</p>
+
+<h2 id="directory-structure">Directory Structure</h2>
+
+<p>ArchivesSpace is made up of several components that are kept in separate directories.</p>
+
+<h3 id="_yard">_yard</h3>
+
+<p>This directory contains the code for the documentation tool used to generate the github io pages here: https://archivesspace.github.io/archivesspace/api/ and https://archivesspace.github.io/archivesspace/doc/</p>
+
+<h3 id="backend">backend</h3>
+
+<p>This directory contains the code that handles the database and the API.</p>
+
+<h3 id="build">build</h3>
+
+<p>This directory contains the code used to build the application. It includes the commands that are used to run the development servers, the test suites, and to build the releases. ArchivesSpace is a JRuby application and Apache Ant is used to build it.</p>
+
+<h3 id="clustering">clustering</h3>
+
+<p>This directory contains code that can be used when clustering an ArchivesSpace installation.</p>
+
+<h3 id="common">common</h3>
+
+<p>This directory contains code that is used across two or more of the components. It includes configuration options, database schemas and migrations, and translation files.</p>
+
+<h3 id="contribution_files">contribution_files</h3>
+
+<p>This directory contains the documentation and PDFs of the license agreement files.</p>
+
+<h3 id="docs">docs</h3>
+
+<p>This directory contains documentation files that are included in a release.</p>
+
+<h3 id="frontend">frontend</h3>
+
+<p>This directory contains the staff interface Ruby on Rails application.</p>
+
+<h3 id="indexer">indexer</h3>
+
+<p>This directory contains the indexer Sinatra application.</p>
+
+<h3 id="jmeter">jmeter</h3>
+
+<p>This directory contains an example that can be used to set up Apache JMeter to load test functional behavior and measure performance.</p>
+
+<h3 id="launcher">launcher</h3>
+
+<p>This directory contains the code that launches (starts, restarts, and stops) an ArchivesSpace application.</p>
+
+<h3 id="oai">oai</h3>
+
+<p>This directory contains the OAI-PMH Sinatra application.</p>
+
+<h3 id="plugins">plugins</h3>
+
+<p>This directory contains ArchivesSpace Program Team supported plugins.</p>
+
+<h3 id="proxy">proxy</h3>
+
+<p>This directory contains the Docker proxy code.</p>
+
+<h3 id="public">public</h3>
+
+<p>This directory contains the public interface Ruby on Rails application.</p>
+
+<h3 id="reports">reports</h3>
+
+<p>This directory contains the reports code.</p>
+
+<h3 id="scripts">scripts</h3>
+
+<p>This directory contains scripts necessary for building, deploying, and other ArchivesSpace tasks.</p>
+
+<h3 id="selenium">selenium</h3>
+
+<p>This directory contains the selenium tests.</p>
+
+<h3 id="solr">solr</h3>
+
+<p>This directory contains the solr code.</p>
+
+<h3 id="stylesheets">stylesheets</h3>
+
+<p>This directory contains XSL stylesheets used by ArchivesSpace.</p>
+
+<h3 id="supervisord">supervisord</h3>
+
+<p>This directory contains a tool that can be used to run the development servers.</p>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/archivesspace">ArchivesSpace</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/tech-docs/assets/js/scale.fix.js"></script>
+  </body>
+</html>

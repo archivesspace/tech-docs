@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tech-docs | Technical documentation for ArchivesSpace</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="tech-docs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:site_name" content="tech-docs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="tech-docs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Technical documentation for ArchivesSpace","headline":"tech-docs","url":"/tech-docs/customization/authentication.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/tech-docs/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/tech-docs/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <style>
+  /* Styles via https://getbootstrap.com/docs/5.3/components/alerts/#icons */
+  .deprecation-alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #58151c;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    border-radius: 0.375rem;
+  }
+  .deprecation-alert__svg {
+    flex-shrink: 0 !important;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5rem !important;
+    fill: currentcolor;
+  }
+</style>
+
+<aside class="deprecation-alert">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="exclamation-triangle-fill"
+    viewBox="0 0 16 16"
+    class="deprecation-alert__svg"
+    role="img"
+    aria-label="Danger:"
+  >
+    <path
+      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+    />
+  </svg>
+
+  <p style="margin-bottom: 0">
+    <em style="margin-right: 0.25rem; font-weight: 700">NOTE!</em> We recently
+    launched a
+    <a href="https://docs.archivesspace.org"
+      >new technical documentation site</a
+    >
+    as part of the ArchivesSpace v4.0.0 release.
+    <br />
+    For now both sites will be live, but we encourage you to take a look at the
+    new site and leave feedback or suggestions.
+  </p>
+</aside>
+
+
+      <header>
+        <h1><a href="/tech-docs/">tech-docs</a></h1>
+
+        
+
+        <p>Technical documentation for ArchivesSpace</p>
+
+        
+        <p class="view"><a href="https://github.com/archivesspace/tech-docs">View the Project on GitHub <small>archivesspace/tech-docs</small></a></p>
+        
+
+        
+
+        
+
+        <p>
+          <a
+            href="https://github.com/archivesspace/tech-docs/edit/master/customization/authentication.md"
+            title="Edit customization/authentication.md on GitHub"
+          >
+            Edit this page on GitHub
+            <small>customization/authentication.md</small>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://archivesspace.atlassian.net/jira/software/projects/TD/issues"
+            title="Report issue with customization/authentication.md on Jira"
+          >
+            Report issue on Jira
+            <small>customization/authentication.md</small>
+          </a>
+        </p>
+      </header>
+      <section>
+
+      <h1 id="adding-support-for-additional-usernamepassword-based-authentication-backends">Adding support for additional username/password-based authentication backends</h1>
+
+<p>ArchivesSpace supports LDAP-based authentication out of the box, but you can
+authenticate against other password-based user directories by defining your own
+authentication handler, creating a plug-in, and configuring your ArchivesSpace
+instance to use it.  If you would rather not have to create your own handler,
+there is a <a href="https://github.com/lyrasis/aspace-oauth">plug-in</a> available that uses OAUTH user authentication that you can add
+to your ArchivesSpace installation.</p>
+
+<h2 id="creating-a-new-authentication-handler-class-to-use-in-a-plug-in">Creating a new authentication handler class to use in a plug-in</h2>
+
+<p>An authentication handler is just a class that implements a couple of
+key methods:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">initialize(opts)</code> – An object constructor which receives the
+configuration block specified in the system’s configuration.</li>
+  <li><code class="language-plaintext highlighter-rouge">name</code> – A zero-argument method which just returns a string that
+identifies the instance of your handler.  The format of this
+string isn’t important: it just gets stored as a user attribute
+(in the ArchivesSpace database) to make it possible to tell which
+authentication source a user last successfully authenticated
+against.</li>
+  <li><code class="language-plaintext highlighter-rouge">authenticate(username, password)</code> – a method which checks
+whether <code class="language-plaintext highlighter-rouge">password</code> is the correct password for <code class="language-plaintext highlighter-rouge">username</code>.  If the
+password is correct, returns an instance of <code class="language-plaintext highlighter-rouge">JSONModel(:user)</code>.
+Otherwise, returns <code class="language-plaintext highlighter-rouge">nil</code>.</li>
+</ul>
+
+<p>A new instance of your handler will be created for each login attempt,
+so there’s no need to handle concurrency in your implementation.</p>
+
+<p>Your <code class="language-plaintext highlighter-rouge">authenticate</code> method can do whatever is required to check that
+the provided password is correct, with the only constraint being that
+it must return either <code class="language-plaintext highlighter-rouge">nil</code> or a <code class="language-plaintext highlighter-rouge">JSONModel(:user)</code> instance.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">JSONModel(:user)</code> class (whose JSON schema is defined in
+<code class="language-plaintext highlighter-rouge">common/schemas/user.rb</code>) defines the set of properties that the
+system needs for a user.  When you return a <code class="language-plaintext highlighter-rouge">JSONModel(:user)</code> object,
+its values will be used to create an ArchivesSpace user (if a user by
+that name didn’t exist already), or update the existing user (if they
+were already known).</p>
+
+<p><strong>Note</strong>: <code class="language-plaintext highlighter-rouge">The JSONModel(:user)</code> class validates the values you give it
+against its JSON schema and throws an <code class="language-plaintext highlighter-rouge">JSONModel::ValidationException</code>
+if anything isn’t right.  If this happens within your handler, the
+exception will be logged and the authentication request will fail.</p>
+
+<h3 id="a-skeleton-implementation">A skeleton implementation</h3>
+
+<p>Suppose you already have a database with a table containing users that
+should be able to log in to ArchivesSpace.  Below is a sketch of an
+authentication handler that will connect to this database and use it
+for authentication.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  # For this example we'll use the Sequel database toolkit.  Note that
+  # this isn't necessary--you could use whatever database library you
+  # like here.
+  require 'sequel'
+
+  class MyDatabaseAuth
+
+    # For easy access to the JSONModel(:user) class
+    include JSONModel
+
+
+    def initialize(definition)
+      # Store the database connection details for use at
+      # authentication time.
+      @db_url = definition[:db_url] or raise "Need a value for :db_url"
+    end
+
+
+    # Just for informational purposes.  Return a string containing our
+    # database URL.
+    def name
+      "MyDatabaseAuth - #{@db_url}"
+    end
+
+
+    def authenticate(username, password)
+      # Open a connection to the database
+      Sequel.connect(@db_url) do |db|
+
+        # Check whether we have an entry for the given username
+        # and password in our database's "users" table
+        user = db[:users].filter(:username =&gt; username,
+                                 :password =&gt; password).
+                          first
+
+        if !user
+          # The user couldn't be found, or their password was wrong.
+          # Authentication failed.
+          return nil
+        end
+
+        # Build and return a JSONModel(:user) instance from fields in the database
+        JSONModel(:user).from_hash(:username =&gt; username,
+                                   :name =&gt; user[:user_full_name])
+
+      end
+    end
+
+  end
+</code></pre></div></div>
+
+<p>In order to use your new authentication handler, you’ll need to add it to the plug-in
+architecture in ArchivesSpace and enable it. Create a new directory, called our_auth
+perhaps, in the plugins directory of your ArchivesSpace installation. Inside
+that directory create this directory hierarchy <code class="language-plaintext highlighter-rouge">backend/model/</code> and place the
+new class file there. Next, configure the new handler.</p>
+
+<h2 id="modifying-your-configuration">Modifying your configuration</h2>
+
+<p>To have ArchivesSpace invoke your new authentication handler, just add
+a new entry to the <code class="language-plaintext highlighter-rouge">:authentication_sources</code> configuration block in the
+<code class="language-plaintext highlighter-rouge">config/config.rb</code> file.</p>
+
+<p>A configuration for the above example might be as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> AppConfig[:authentication_sources] = [{
+                                         :model =&gt; 'MyDatabaseAuth',
+                                         :db_url =&gt; 'jdbc:mysql://localhost:3306/somedb?user=myuser&amp;password=mypassword',
+                                       }]
+</code></pre></div></div>
+
+<h2 id="add-the-plug-in-to-the-list-of-plug-ins-already-enabled">Add the plug-in to the list of plug-ins already enabled</h2>
+
+<p>In the <code class="language-plaintext highlighter-rouge">config/config.rb</code> file, find the setting of AppConfig[:plugins] and add
+a reference to the new plug-in there. For example, if you named it our_auth, the
+AppConfig[:plugins] setting may look something like this:</p>
+
+<p>AppConfig[:plugins] = [‘local’, ‘hello_world’, ‘our_auth’]</p>
+
+<p>Restart your ArchivesSpace installation and you should now see authentication
+requests hitting your new handler.</p>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/archivesspace">ArchivesSpace</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/tech-docs/assets/js/scale.fix.js"></script>
+  </body>
+</html>

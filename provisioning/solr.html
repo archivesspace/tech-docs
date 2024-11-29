@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tech-docs | Technical documentation for ArchivesSpace</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="tech-docs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:site_name" content="tech-docs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="tech-docs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Technical documentation for ArchivesSpace","headline":"tech-docs","url":"/tech-docs/provisioning/solr.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/tech-docs/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/tech-docs/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <style>
+  /* Styles via https://getbootstrap.com/docs/5.3/components/alerts/#icons */
+  .deprecation-alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #58151c;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    border-radius: 0.375rem;
+  }
+  .deprecation-alert__svg {
+    flex-shrink: 0 !important;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5rem !important;
+    fill: currentcolor;
+  }
+</style>
+
+<aside class="deprecation-alert">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="exclamation-triangle-fill"
+    viewBox="0 0 16 16"
+    class="deprecation-alert__svg"
+    role="img"
+    aria-label="Danger:"
+  >
+    <path
+      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+    />
+  </svg>
+
+  <p style="margin-bottom: 0">
+    <em style="margin-right: 0.25rem; font-weight: 700">NOTE!</em> We recently
+    launched a
+    <a href="https://docs.archivesspace.org"
+      >new technical documentation site</a
+    >
+    as part of the ArchivesSpace v4.0.0 release.
+    <br />
+    For now both sites will be live, but we encourage you to take a look at the
+    new site and leave feedback or suggestions.
+  </p>
+</aside>
+
+
+      <header>
+        <h1><a href="/tech-docs/">tech-docs</a></h1>
+
+        
+
+        <p>Technical documentation for ArchivesSpace</p>
+
+        
+        <p class="view"><a href="https://github.com/archivesspace/tech-docs">View the Project on GitHub <small>archivesspace/tech-docs</small></a></p>
+        
+
+        
+
+        
+
+        <p>
+          <a
+            href="https://github.com/archivesspace/tech-docs/edit/master/provisioning/solr.md"
+            title="Edit provisioning/solr.md on GitHub"
+          >
+            Edit this page on GitHub
+            <small>provisioning/solr.md</small>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://archivesspace.atlassian.net/jira/software/projects/TD/issues"
+            title="Report issue with provisioning/solr.md on Jira"
+          >
+            Report issue on Jira
+            <small>provisioning/solr.md</small>
+          </a>
+        </p>
+      </header>
+      <section>
+
+      <h1 id="running-archivesspace-with-external-solr">Running ArchivesSpace with external Solr</h1>
+
+<p>For ArchivesSpace &gt; 3.1.1 this is <strong>required</strong>. For previous versions it is optional.</p>
+
+<h2 id="supported-solr-versions">Supported Solr Versions</h2>
+
+<p>See the <a href="../administration/getting_started.html#solr">Solr requirement notes</a></p>
+
+<h2 id="install-solr">Install Solr</h2>
+
+<p>Refer to the <a href="https://solr.apache.org/guide/solr/latest/">Solr documentation</a>
+for instructions on setting up Solr on your server.</p>
+
+<p>You will download the Solr package and extract it to a folder of your choosing. Do not start Solr
+until you have added the ArchivesSpace configuration files.</p>
+
+<p><strong>We strongly recommend a standalone mode installation. No support will be provided for Solr
+Cloud deployments specifically (i.e. we cannot help troubleshoot Zookeeper).</strong></p>
+
+<h2 id="create-a-configset">Create a configset</h2>
+
+<p>Before running Solr you will need to
+setup a <a href="https://solr.apache.org/guide/8_10/config-sets.html#configsets-in-standalone-mode">configset</a>.</p>
+
+<h3 id="linux">Linux</h3>
+
+<p>Using the command line:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir -p /$path/$to/$solr/server/solr/configsets/archivesspace/conf
+</code></pre></div></div>
+
+<p>Be sure to replace <code class="language-plaintext highlighter-rouge">/$path/$to/$solr</code> with your actual Solr location, which might be something like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir -p /opt/solr/server/solr/configsets/archivesspace/conf
+</code></pre></div></div>
+
+<h3 id="windows">Windows</h3>
+
+<p>Right click on your Solr directory and open in Windows Terminal (Powershell).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir -p .\server\solr\configsets\archivesspace\conf
+</code></pre></div></div>
+
+<p>You should see something like this in response:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Directory: C:\Users\archivesspace\Projects\solr-8.10.1\server\solr\configsets\archivesspace
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        10/25/2021  12:15 PM                conf
+</code></pre></div></div>
+
+<hr />
+
+<p>Copy the ArchivesSpace Solr configuration files from the <code class="language-plaintext highlighter-rouge">solr</code> directory included
+with the release into the <code class="language-plaintext highlighter-rouge">$SOLR_HOME/server/solr/configsets/archivesspace/conf</code> directory.</p>
+
+<p>There should be four files:</p>
+
+<ul>
+  <li>schema.xml</li>
+  <li>solrconfig.xml</li>
+  <li>stopwords.txt</li>
+  <li>synonyms.txt</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ls .\server\solr\configsets\archivesspace\conf\
+
+Directory: C:\Users\archivesspace\Projects\solr-8.10.1\server\solr\configsets\archivesspace\conf
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        10/25/2021  12:18 PM          18291 schema.xml
+-a----        10/25/2021  12:18 PM           3046 solrconfig.xml
+-a----        10/25/2021  12:18 PM              0 stopwords.txt
+-a----        10/25/2021  12:18 PM              0 synonyms.txt
+</code></pre></div></div>
+
+<p><em>Note: your exact output may be slightly different.</em></p>
+
+<h2 id="setup-the-environment">Setup the environment</h2>
+
+<p>From Solr v9 ArchivesSpace requires the use of <a href="https://solr.apache.org/guide/solr/latest/configuration-guide/solr-modules.html">Solr modules</a>.
+We recommend using the environment variable option to specify the modules to use:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SOLR_MODULES=analysis-extras
+</code></pre></div></div>
+
+<p>This environment variable needs to be available to the Solr instance at runtime.</p>
+
+<p>For instructions on how set an environment variable here are some recommended articles:</p>
+
+<ul>
+  <li>https://www.freecodecamp.org/news/how-to-set-an-environment-variable-in-linux</li>
+  <li>https://www.java.com/en/download/help/path.html (includes Windows)</li>
+</ul>
+
+<h2 id="setup-a-solr-core">Setup a Solr core</h2>
+
+<p>With the <code class="language-plaintext highlighter-rouge">configset</code> in place run the command to create an ArchivesSpace core:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bin/solr start
+</code></pre></div></div>
+
+<p>Wait for Solr to start (running as a non-admin user):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.\bin\solr start
+"java version info is 11.0.12"
+"Extracted major version is 11"
+OpenJDK 64-Bit Server VM warning: JVM cannot use large page memory because it does not have enough privilege to lock pages in memory.
+Waiting up to 30 to see Solr running on port 8983
+Started Solr server on port 8983. Happy searching!
+</code></pre></div></div>
+
+<p>You can check that Solr is running on <a href="http://localhost:8983">http://localhost:8983</a>.</p>
+
+<p>Now create the core:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bin/solr create -c archivesspace -d archivesspace
+</code></pre></div></div>
+
+<p>You should see confirmation:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"java version info is 11.0.12"
+"Extracted major version is 11"
+
+Created new core 'archivesspace'
+</code></pre></div></div>
+
+<p>In the browser you should be able to access the <a href="http://localhost:8983/solr/#/archivesspace/files?file=schema.xml">ArchivesSpace schema</a>.</p>
+
+<h2 id="disable-the-embedded-server-solr-instance-optional--311-only">Disable the embedded server Solr instance (optional &lt;= 3.1.1 only)</h2>
+
+<p>Edit the ArchivesSpace config.rb file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AppConfig[:enable_solr] = false
+</code></pre></div></div>
+
+<p>Note that doing this means that you will have to backup Solr manually.</p>
+
+<h2 id="set-the-solr-url-in-your-configrb-file">Set the Solr url in your config.rb file</h2>
+
+<p>This config setting should point to your Solr instance:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AppConfig[:solr_url] = "http://localhost:8983/solr/archivesspace"
+</code></pre></div></div>
+
+<p>If you are not running ArchivesSpace and Solr on the same server, update
+<code class="language-plaintext highlighter-rouge">localhost</code> to your Solr address.</p>
+
+<p>By default, on startup, ArchivesSpace will check that the Solr configuration
+appears to be correct and will raise an error if not. You can disable this check
+by setting <code class="language-plaintext highlighter-rouge">AppConfig[:solr_verify_checksums] = false</code> in <code class="language-plaintext highlighter-rouge">config.rb</code>.</p>
+
+<p>Please note: if you’re upgrading an existing installation of ArchivesSpace to use an external Solr, you will need to trigger a full re-index.
+See <a href="../administration/indexes.html">Indexes</a> for more details.</p>
+
+<hr />
+
+<p>You can now follow the instructions in the <a href="../administration/getting_started.html">Getting started</a> section to start
+your ArchivesSpace application.</p>
+
+<hr />
+
+<h2 id="upgrading-solr">Upgrading Solr</h2>
+
+<p>If you are using an older version of Solr than is recommended you may need (if called out
+in release notes) or want to upgrade. Before performing an upgrade it is recommended that you review:</p>
+
+<ul>
+  <li><a href="https://solr.apache.org/guide/solr/latest/upgrade-notes/solr-upgrade-notes.html">Solr upgrade notes</a></li>
+  <li><a href="https://github.com/archivesspace/archivesspace/releases">ArchivesSpace’s release notes</a></li>
+</ul>
+
+<p>You should also review this document as the installation steps may include
+instructions that were not present in the past. For example, from Solr v9 there is a
+requirement to use Solr modules with instructions to configure the modules using environment
+variables.</p>
+
+<p>The crucial part will be ensuring that ArchivesSpace’s schema is being used for the
+ArchivesSpace Solr index. The config setting <code class="language-plaintext highlighter-rouge">AppConfig[:solr_verify_checksums] = true</code>
+will perform a check on startup that confirms this is the case, otherwise ArchivesSpace
+will not be able to start up.</p>
+
+<p>From ArchivesSpace 3.5+ <code class="language-plaintext highlighter-rouge">AppConfig[:solr_verify_checksums]</code> does not check the
+<code class="language-plaintext highlighter-rouge">solrconfig.xml</code> file. Therefore you can make changes to it without ArchivesSpace failing
+on startup. However, for an upgrade you will want to at least compare the ArchivesSpace
+<code class="language-plaintext highlighter-rouge">solrconfig.xml</code> to the one that is in use in case there are changes that need to be made to
+work with the upgraded-to version of Solr. For example the ArchivesSpace Solr v8 <code class="language-plaintext highlighter-rouge">solrconfig.xml</code>
+will not work as is with Solr v9.</p>
+
+<p>After upgrading Solr you should trigger a full re-index. Instructions for this are in
+<a href="../administration/indexes.html">Indexes</a>.</p>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/archivesspace">ArchivesSpace</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/tech-docs/assets/js/scale.fix.js"></script>
+  </body>
+</html>

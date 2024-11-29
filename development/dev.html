@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tech-docs | Technical documentation for ArchivesSpace</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="tech-docs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:site_name" content="tech-docs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="tech-docs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Technical documentation for ArchivesSpace","headline":"tech-docs","url":"/tech-docs/development/dev.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/tech-docs/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/tech-docs/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <style>
+  /* Styles via https://getbootstrap.com/docs/5.3/components/alerts/#icons */
+  .deprecation-alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #58151c;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    border-radius: 0.375rem;
+  }
+  .deprecation-alert__svg {
+    flex-shrink: 0 !important;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5rem !important;
+    fill: currentcolor;
+  }
+</style>
+
+<aside class="deprecation-alert">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="exclamation-triangle-fill"
+    viewBox="0 0 16 16"
+    class="deprecation-alert__svg"
+    role="img"
+    aria-label="Danger:"
+  >
+    <path
+      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+    />
+  </svg>
+
+  <p style="margin-bottom: 0">
+    <em style="margin-right: 0.25rem; font-weight: 700">NOTE!</em> We recently
+    launched a
+    <a href="https://docs.archivesspace.org"
+      >new technical documentation site</a
+    >
+    as part of the ArchivesSpace v4.0.0 release.
+    <br />
+    For now both sites will be live, but we encourage you to take a look at the
+    new site and leave feedback or suggestions.
+  </p>
+</aside>
+
+
+      <header>
+        <h1><a href="/tech-docs/">tech-docs</a></h1>
+
+        
+
+        <p>Technical documentation for ArchivesSpace</p>
+
+        
+        <p class="view"><a href="https://github.com/archivesspace/tech-docs">View the Project on GitHub <small>archivesspace/tech-docs</small></a></p>
+        
+
+        
+
+        
+
+        <p>
+          <a
+            href="https://github.com/archivesspace/tech-docs/edit/master/development/dev.md"
+            title="Edit development/dev.md on GitHub"
+          >
+            Edit this page on GitHub
+            <small>development/dev.md</small>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://archivesspace.atlassian.net/jira/software/projects/TD/issues"
+            title="Report issue with development/dev.md on Jira"
+          >
+            Report issue on Jira
+            <small>development/dev.md</small>
+          </a>
+        </p>
+      </header>
+      <section>
+
+      <h1 id="running-a-development-version-of-archivesspace">Running a development version of ArchivesSpace</h1>
+
+<p>System requirements:</p>
+
+<ul>
+  <li>Java 8, 11 (11 recommended) or 17</li>
+  <li><a href="https://www.docker.com/">Docker</a> &amp; <a href="https://docs.docker.com/compose/">Docker Compose</a> is optional but makes running MySQL and Solr more convenient</li>
+  <li><a href="http://supervisord.org/">Supervisord</a> is optional but makes running the development servers more convenient</li>
+</ul>
+
+<p>Currently supported platforms for development:</p>
+
+<ul>
+  <li>Linux (although generally only Ubuntu is actually used / tested)</li>
+  <li>Mac (x86)</li>
+</ul>
+
+<p>Windows is not supported because of issues building gems with C extensions (such as sassc).</p>
+
+<p>For Mac (arm) see <a href="https://teaspoon-consulting.com/articles/archivesspace-on-the-m1.html">https://teaspoon-consulting.com/articles/archivesspace-on-the-m1.html</a>.</p>
+
+<p>When installing Java OpenJDK is strongly recommended. Other vendors may work, but OpenJDK is
+most extensively used and tested. It is highly recommended that you use <a href="https://github.com/shyiko/jabba">Jabba</a>
+to install Java (OpenJDK). This has proven to be a reliable way of resolving cross platform
+issues (looking at you Mac :/) that have occured via other means of installing Java.</p>
+
+<p>Installing OpenJDK with jabba will look something like:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># assuming you have jabba installed</span>
+jabba <span class="nb">install </span>openjdk@1.11.0-2
+jabba use openjdk@1.11.0-2
+jabba <span class="nb">alias </span>default openjdk@1.11.0-2 <span class="c"># [optional] make this the default java</span>
+</code></pre></div></div>
+
+<p>On Linux/Ubuntu it is generally fine to install from system packages:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>openjdk-<span class="nv">$VERSION</span><span class="nt">-jdk-headless</span>
+<span class="c"># example: install 11 &amp; 17</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>openjdk-11-jdk-headless
+<span class="nb">sudo </span>apt <span class="nb">install </span>openjdk-17-jdk-headless
+
+<span class="c"># update-java-alternatives can be used to switch between versions</span>
+<span class="nb">sudo </span>update-java-alternatives <span class="nt">--list</span>
+<span class="nb">sudo </span>update-java-alternatives <span class="nt">--set</span> <span class="nv">$version</span>
+</code></pre></div></div>
+
+<p>If using Docker &amp; Docker Compose install them following the official documentation:</p>
+
+<ul>
+  <li><a href="https://docs.docker.com/get-docker/">https://docs.docker.com/get-docker/</a></li>
+  <li><a href="https://docs.docker.com/compose/install/">https://docs.docker.com/compose/install/</a></li>
+</ul>
+
+<p><em>Do not use system packages or any other unofficial source as these have been found to be inconsistent with standard Docker.</em></p>
+
+<p>The recommended way of developing ArchivesSpace is to fork the repository and clone it locally.</p>
+
+<p><em>Note: all commands in the following instructions assume you are in the root directory of your local fork
+unless otherwise specified.</em></p>
+
+<p><strong>Quickstart</strong></p>
+
+<p>This is an abridged reference for getting started with a limited explanation of the steps:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Build images (required one time only for most use cases)</span>
+docker-compose <span class="nt">-f</span> docker-compose-dev.yml build
+<span class="c"># Run MySQL and Solr in the background</span>
+docker-compose <span class="nt">-f</span> docker-compose-dev.yml up <span class="nt">--detach</span>
+<span class="c"># Download the MySQL connector</span>
+<span class="nb">cd</span> ./common/lib <span class="o">&amp;&amp;</span> wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.23/mysql-connector-java-8.0.23.jar <span class="o">&amp;&amp;</span> <span class="nb">cd</span> -
+<span class="c"># Download all application dependencies</span>
+./build/run bootstrap
+<span class="c"># OPTIONAL: load dev database</span>
+<span class="nb">gzip</span> <span class="nt">-dc</span> ./build/mysql_db_fixtures/accessibility.sql.gz | mysql <span class="nt">--host</span><span class="o">=</span>127.0.0.1 <span class="nt">--port</span><span class="o">=</span>3306  <span class="nt">-u</span> root <span class="nt">-p123456</span> archivesspace
+<span class="c"># Setup the development database</span>
+./build/run db:migrate
+<span class="c"># Clear out any existing Solr state (only needed after a database setup / restore after previous development)</span>
+./build/run solr:reset
+<span class="c"># Run the development servers</span>
+supervisord <span class="nt">-c</span> supervisord/archivesspace.conf
+<span class="c"># OPTIONAL: Run a backend (api) test (for checking setup is correct)</span>
+./build/run backend:test <span class="nt">-Dexample</span><span class="o">=</span><span class="s2">"User model"</span>
+</code></pre></div></div>
+
+<h2 id="step-by-step-explanation">Step by Step explanation</h2>
+
+<h3 id="run-mysql-and-solr">Run MySQL and Solr</h3>
+
+<p>ArchivesSpace development requires MySQL and Solr to be running. The easiest and
+recommended way to run them is using the Docker Compose configuration provided by ArchivesSpace.</p>
+
+<p>Start by building the images. This creates a custom Solr image that includes ArchivesSpace’s configuration:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose <span class="nt">-f</span> docker-compose-dev.yml build
+</code></pre></div></div>
+
+<p><em>Note: you only need to run the above command once. You would only need to rerun this command if a)
+you delete the image and therefore need to recreate it, or b) you make a change to ArchivesSpace’s Solr
+configuration and therefore need to rebuild the image to include the updated configuration.</em></p>
+
+<p>Run MySQL and Solr in the background:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose <span class="nt">-f</span> docker-compose-dev.yml up <span class="nt">--detach</span>
+</code></pre></div></div>
+
+<p>By using Docker Compose to run MySQL and Solr you are guaranteed to have the correct connection settings
+and don’t otherwise need to define connection settings for MySQL or Solr.</p>
+
+<p>Verify that MySQL &amp; Solr are running: <code class="language-plaintext highlighter-rouge">docker ps</code>. It should list the running containers:</p>
+
+<pre><code class="language-txt">CONTAINER ID   IMAGE                       COMMAND                  CREATED       STATUS       PORTS                               NAMES
+ec76bd09d73b   mysql:8.0                   "docker-entrypoint.s…"   8 hours ago   Up 8 hours   33060/tcp, 0.0.0.0:3307-&gt;3306/tcp   as_test_db
+30574171530f   archivesspace/solr:latest   "docker-entrypoint.s…"   8 hours ago   Up 8 hours   0.0.0.0:8984-&gt;8983/tcp              as_test_solr
+d84a6a183bb0   archivesspace/solr:latest   "docker-entrypoint.s…"   8 hours ago   Up 8 hours   0.0.0.0:8983-&gt;8983/tcp              as_dev_solr
+7df930293875   mysql:8.0                   "docker-entrypoint.s…"   8 hours ago   Up 8 hours   0.0.0.0:3306-&gt;3306/tcp, 33060/tcp   as_dev_db
+</code></pre>
+
+<p>To check the servers are online:</p>
+
+<ul>
+  <li>MYSQL: <code class="language-plaintext highlighter-rouge">mysql -h 127.0.0.1 -u as -pas123 archivesspace</code></li>
+  <li>SOLR: <code class="language-plaintext highlighter-rouge">curl http://localhost:8983/solr/admin/cores</code></li>
+</ul>
+
+<p>To stop and / or remove the servers:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose <span class="nt">-f</span> docker-compose-dev.yml stop <span class="c"># shutdowns the servers (data will be preserved)</span>
+docker-compose <span class="nt">-f</span> docker-compose-dev.yml <span class="nb">rm</span> <span class="c"># deletes the containers (all data will be removed)</span>
+</code></pre></div></div>
+
+<p><strong>Advanced: running MySQL and Solr outside of Docker</strong></p>
+
+<p>You are not required to use Docker for MySQL and Solr. If you run them another way the default
+requirements are:</p>
+
+<ul>
+  <li>dev MySQL, localhost:3306 create db: archivesspace, username: as, password: as123</li>
+  <li>test MySQL, localhost:3307 create db: archivesspace, username: as, password: as123</li>
+  <li>dev Solr, localhost:8983 create archivesspace core using ArchivesSpace configuration</li>
+  <li>test Solr, localhost:8984, create archivesspace core using ArchivesSpace configuration</li>
+</ul>
+
+<p>The defaults can be changed using <a href="https://github.com/archivesspace/archivesspace/blob/master/build/build.xml#L43-L46">environment variables</a> located in the build file.</p>
+
+<h3 id="download-the-mysql-connector">Download the MySQL connector</h3>
+
+<p>For licensing reasons the MySQL connector must be downloaded separately:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ./common/lib
+wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.23/mysql-connector-java-8.0.23.jar
+<span class="nb">cd</span> -
+</code></pre></div></div>
+
+<h3 id="run-bootstrap">Run bootstrap</h3>
+
+<p>The bootstrap task:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./build/run bootstrap
+</code></pre></div></div>
+
+<p>Will bootstrap your development environment by downloading all
+dependencies–JRuby, Gems, etc. This one command creates a fully
+self-contained development environment where everything is downloaded
+within the ArchivesSpace project <code class="language-plaintext highlighter-rouge">build</code> directory.</p>
+
+<p><em>It is not necessary and generally incorrect to manually install JRuby
+&amp; bundler etc. for ArchivesSpace (whether with a version manager or
+otherwise).</em></p>
+
+<p><em>The self contained ArchivesSpace development environment typically does
+not interact with other J/Ruby environments you may have on your system
+(such as those managed by rbenv or similar).</em></p>
+
+<p>This is the starting point for all ArchivesSpace development. You may need
+to re-run this command after fetching updates, or when making changes to
+Gemfiles or other dependencies such as those in the <code class="language-plaintext highlighter-rouge">./build/build.xml</code> file.</p>
+
+<p><strong>Errors running bootstrap</strong></p>
+
+<pre><code class="language-txt">     [java] INFO: jetty-9.4.44.v20210927; built: 2021-09-27T23:02:44.612Z; git: 8da83308eeca865e495e53ef315a249d63ba9332; jvm 11+28
+     [java] Exiting
+     [java] LoadError: no such file to load -- rails/commands
+     [java]   require at org/jruby/RubyKernel.java:974
+     [java]    &lt;main&gt; at script/rails:8
+</code></pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./build/run backend:devserver
+ ./build/run frontend:devserver
+ ./build/run public:devserver
+ ./build/run indexer
+</code></pre></div></div>
+
+<p>There have been various forms of the same <code class="language-plaintext highlighter-rouge">LoadError</code>. It’s a transient error
+that is resolved by rerunning bootstrap.</p>
+
+<pre><code class="language-txt">     [java] org.jruby.Main -I uri:classloader://META-INF/jruby.home/lib/ruby/stdlib -r
+     [java] ./siteconf20220407-5224-13f6qi7.rb extconf.rb
+     [java] sh: /Library/Internet: No such file or directory
+     [java] sh: line 0: exec: /Library/Internet: cannot execute: No such file or directory
+     [java]
+     [java] extconf failed, exit code 126
+</code></pre>
+
+<p>This has been seen on Mac platforms resulting from the installation method
+for Java. Installing the OpenJDK via Jabba has been effective in resolving
+this error.</p>
+
+<p><strong>Advanced: bootstrap &amp; the build directory</strong></p>
+
+<p>Running bootstrap will download jars to the build directory, including:</p>
+
+<ul>
+  <li>jetty-runner</li>
+  <li>jruby</li>
+  <li>jruby-rack</li>
+</ul>
+
+<p>Gems will be downloaded to: <code class="language-plaintext highlighter-rouge">./build/gems/jruby/$version/gems/</code>.</p>
+
+<h3 id="setup-the-development-database">Setup the development database</h3>
+
+<p>The migrate task:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./build/run db:migrate
+</code></pre></div></div>
+
+<p>Will setup the development database, creating all of the tables etc.
+required by the application.</p>
+
+<p>There is a task for resetting the database:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./build/run db:nuke
+</code></pre></div></div>
+
+<p>Which will first delete then migrate the database.</p>
+
+<p><strong>Advanced: Loading data fixtures into dev database</strong></p>
+
+<p>When loading a database into the development MySQL instance always ensure that ArchivesSpace
+is <strong>not</strong> running. Stop ArchivesSpace if it is running. Run <code class="language-plaintext highlighter-rouge">./build/run solr:reset</code> to
+clear indexer state (a more thorough explanation of this step is described below).</p>
+
+<p>If you are loading a database and MySQL has already been used for development you’ll want to
+drop and create an empty database first.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysql <span class="nt">-h</span> 127.0.0.1 <span class="nt">-u</span> as <span class="nt">-pas123</span> <span class="nt">-e</span> <span class="s2">"DROP DATABASE archivesspace"</span>
+mysql <span class="nt">-h</span> 127.0.0.1 <span class="nt">-u</span> as <span class="nt">-pas123</span> <span class="nt">-e</span> <span class="s2">"CREATE DATABASE IF NOT EXISTS archivesspace DEFAULT CHARACTER SET utf8mb4"</span>
+</code></pre></div></div>
+
+<p><em>Note: you can skip the above step if MySQL was just started for the first time or any time you
+have an empty ArchivesSpace (one where <code class="language-plaintext highlighter-rouge">db:migrate</code> has not been run).</em></p>
+
+<p>Assuming you have MySQL running and an empty <code class="language-plaintext highlighter-rouge">archivesspace</code> database available you can proceed
+to restore:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">gzip</span> <span class="nt">-dc</span> ./build/mysql_db_fixtures/accessibility.sql.gz | mysql <span class="nt">--host</span><span class="o">=</span>127.0.0.1 <span class="nt">--port</span><span class="o">=</span>3306  <span class="nt">-u</span> root <span class="nt">-p123456</span> archivesspace
+./build/run db:migrate
+</code></pre></div></div>
+
+<p><em>Note: The above instructions should work out-of-the-box. If you want to use your own database
+and / or have configured MySQL differently then adjust the commands as needed.</em></p>
+
+<p>After the restore <code class="language-plaintext highlighter-rouge">./build/run db:migrate</code> is run to catch any migration updates. You can now
+proceed to run the application dev servers, as described below, with data already
+populated in ArchivesSpace.</p>
+
+<h3 id="clear-out-existing-solr-state">Clear out existing Solr state</h3>
+
+<p>The Solr reset task:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./build/run solr:reset
+</code></pre></div></div>
+
+<p>Will wipe out any existing Solr state. This is not required when setting
+up for the first time, but is often required after a database reset (such as
+after running the <code class="language-plaintext highlighter-rouge">./build/run db:nuke</code> task).</p>
+
+<p><em>More specifically what this does is submit a delete all request to Solr and empty
+out the contents of the <code class="language-plaintext highlighter-rouge">./build/dev/indexer*_state</code> directories, which is described
+below.</em></p>
+
+<h3 id="run-the-development-servers">Run the development servers</h3>
+
+<p>Use <a href="http://supervisord.org/">Supervisord</a> for a simpler way of running the development servers with output
+for all servers sent to a single terminal window:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># run all of the services</span>
+supervisord <span class="nt">-c</span> supervisord/archivesspace.conf
+
+<span class="c"># run in api mode (backend + indexer only)</span>
+supervisord <span class="nt">-c</span> supervisord/api.conf
+
+<span class="c"># run just the backend (useful for trying out endpoints that don't require Solr)</span>
+supervisord <span class="nt">-c</span> supervisord/backend.conf
+</code></pre></div></div>
+
+<p>ArchivesSpace is started with:</p>
+
+<ul>
+  <li>the staff interface on <a href="http://localhost:3000/">http://localhost:3000/</a></li>
+  <li>the PUI on <a href="http://localhost:3001/">http://localhost:3001/</a></li>
+  <li>the API on <a href="http://localhost:4567/">http://localhost:4567/</a></li>
+</ul>
+
+<p>To stop supervisord: <code class="language-plaintext highlighter-rouge">Ctrl-c</code>.</p>
+
+<p><strong>Advanced: running the development servers directly</strong></p>
+
+<p>Supervisord is not required, or ideal for every situation. You can run the development
+servers directly via build tasks:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./build/run backend:devserver <span class="c"># This is the REST API</span>
+./build/run frontend:devserver <span class="c"># This is the staff user interface</span>
+./build/run public:devserver <span class="c"># This is the public user interface</span>
+./build/run indexer <span class="c"># This is the indexer (converts ASpace records to Solr Docs and ships to Solr)</span>
+</code></pre></div></div>
+
+<p>These should be run in different terminal sessions and do not need to be run
+in a specific order or are all required.</p>
+
+<p><em>An example use case for running a server directly is to use the pry debugger.</em></p>
+
+<p><strong>Advanced: debugging with pry</strong></p>
+
+<p>To debug with pry you cannot use supervisord to run the application devserver,
+however you can mix and match:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># run the backend and indexer with supervisord</span>
+supervisord <span class="nt">-c</span> supervisord/api.conf
+
+<span class="c"># in a separate terminal run the frontend directly</span>
+./build/run frontend:devserver
+</code></pre></div></div>
+
+<p>Add <code class="language-plaintext highlighter-rouge">binding.pry</code> to set breakpoints in the code. This can also be used in views:
+<code class="language-plaintext highlighter-rouge">&lt;% binding.pry %&gt;</code>. Using pry you can easily inspect the <code class="language-plaintext highlighter-rouge">request</code>, <code class="language-plaintext highlighter-rouge">params</code> and
+in scope instance variables that are available.</p>
+
+<p><strong>Advanced: development servers and the build directory</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./build/run db:migrate
+</code></pre></div></div>
+
+<p>Running the developments servers will create directories in <code class="language-plaintext highlighter-rouge">./build/dev</code>:</p>
+
+<ul>
+  <li>indexer_pui_state: latest timestamps for PUI indexer activity</li>
+  <li>indexer_state: latest timestamps for (SUI) indexer activity</li>
+  <li>
+    <p>shared: background job files</p>
+
+    <p>./build/run db:nuke</p>
+  </li>
+</ul>
+
+<p><em>Note: the folders will be created as they are needed, so they may not all be present
+at all times.</em></p>
+
+<h2 id="running-the-tests">Running the tests</h2>
+
+<p>ArchivesSpace uses a combination of RSpec, integration and Selenium
+tests.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./build/run travis:test
+</code></pre></div></div>
+
+<p>It’s also useful to be able to run the backend unit tests separately.
+To do this, run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./build/run backend:test
+</code></pre></div></div>
+
+<p>You can also run a single spec file with:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./build/run backend:test -Dspec="myfile_spec.rb"
+</code></pre></div></div>
+
+<p><em>By default the tests are configured to run using a separate MySQL &amp; Solr from the
+development servers. This means that the development and test environments will not
+interfere with each other.</em></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># run the backend / api tests</span>
+./build/run backend:test
+</code></pre></div></div>
+
+<p>You can also run a single spec file with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./build/run backend:test <span class="nt">-Dspec</span><span class="o">=</span><span class="s2">"myfile_spec.rb"</span>
+</code></pre></div></div>
+
+<p>Or a single example with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./build/run backend:test <span class="nt">-Dexample</span><span class="o">=</span><span class="s2">"does something important"</span>
+</code></pre></div></div>
+
+<p>There are specific instructions and requirements for the <a href="ui_test.html">UI tests</a> to work.</p>
+
+<p><strong>Advanced: tests and the build directory</strong></p>
+
+<p>Running the tests may create directories in <code class="language-plaintext highlighter-rouge">./build/test</code>. These will be
+the same as for the development servers as described above.</p>
+
+<h2 id="coverage-reports">Coverage reports</h2>
+
+<p>You can run the coverage reports using:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./build/run coverage
+</code></pre></div></div>
+
+<p>This runs all of the above tests in coverage mode and, when the run
+finishes, produces a set of HTML reports within the <code class="language-plaintext highlighter-rouge">coverage</code>
+directory in your ArchivesSpace project directory.</p>
+
+<h2 id="linting-and-formatting-with-rubocop">Linting and formatting with Rubocop</h2>
+
+<p>If you are editing or adding source files that you intend to contribute via a pull request,
+you should make sure your changes conform to the layout and style rules by running:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./build/run rubocop
+</code></pre></div></div>
+
+<p>Most errors can be auto-corrected by running:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./build/run rubocop -Dcorrect=true
+</code></pre></div></div>
+
+<h2 id="submitting-a-pull-request">Submitting a Pull Request</h2>
+
+<p>When you have code ready to be reviewed, open a pull request to ask for it to be
+merged into the codebase.</p>
+
+<p>To help make the review go smoothly, here are some general guidelines:</p>
+
+<ul>
+  <li><strong>Your pull request should address a single issue.</strong>
+It’s better to split large or complicated PRs into discrete steps if possible. This
+makes review more manageable and reduces the risk of conflicts with other changes.</li>
+  <li><strong>Give your pull request a brief title, referencing any JIRA or Github issues resolved
+by the pull request.</strong>
+Including JIRA numbers (e.g. ‘ANW-123’) explicitly in your pull request title ensures the
+PR will be linked to the original issue in JIRA. Similarly, referencing GitHub issue numbers
+(e.g. ‘Fixes #123’) will automatically close that issue when the PR is merged.</li>
+  <li><strong>Fill out as much of the Pull Request template as is possible/relevant.</strong>
+This makes it easier to understand the full context of your PR, including any discussions or supporting documentation that went into developing the functionality or resolving the bug.</li>
+</ul>
+
+<h2 id="building-a-distribution">Building a distribution</h2>
+
+<p>See: <a href="release.html">Building an Archivesspace Release</a> for information on building a distribution.</p>
+
+<h2 id="generating-api-documentation">Generating API documentation</h2>
+
+<p>See: <a href="release.html">Building an Archivesspace Release</a> for information on building the documentation.</p>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/archivesspace">ArchivesSpace</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/tech-docs/assets/js/scale.fix.js"></script>
+  </body>
+</html>

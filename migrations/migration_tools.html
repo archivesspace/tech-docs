@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tech-docs | Technical documentation for ArchivesSpace</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="tech-docs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:site_name" content="tech-docs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="tech-docs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Technical documentation for ArchivesSpace","headline":"tech-docs","url":"/tech-docs/migrations/migration_tools.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/tech-docs/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/tech-docs/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <style>
+  /* Styles via https://getbootstrap.com/docs/5.3/components/alerts/#icons */
+  .deprecation-alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #58151c;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    border-radius: 0.375rem;
+  }
+  .deprecation-alert__svg {
+    flex-shrink: 0 !important;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5rem !important;
+    fill: currentcolor;
+  }
+</style>
+
+<aside class="deprecation-alert">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="exclamation-triangle-fill"
+    viewBox="0 0 16 16"
+    class="deprecation-alert__svg"
+    role="img"
+    aria-label="Danger:"
+  >
+    <path
+      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+    />
+  </svg>
+
+  <p style="margin-bottom: 0">
+    <em style="margin-right: 0.25rem; font-weight: 700">NOTE!</em> We recently
+    launched a
+    <a href="https://docs.archivesspace.org"
+      >new technical documentation site</a
+    >
+    as part of the ArchivesSpace v4.0.0 release.
+    <br />
+    For now both sites will be live, but we encourage you to take a look at the
+    new site and leave feedback or suggestions.
+  </p>
+</aside>
+
+
+      <header>
+        <h1><a href="/tech-docs/">tech-docs</a></h1>
+
+        
+
+        <p>Technical documentation for ArchivesSpace</p>
+
+        
+        <p class="view"><a href="https://github.com/archivesspace/tech-docs">View the Project on GitHub <small>archivesspace/tech-docs</small></a></p>
+        
+
+        
+
+        
+
+        <p>
+          <a
+            href="https://github.com/archivesspace/tech-docs/edit/master/migrations/migration_tools.md"
+            title="Edit migrations/migration_tools.md on GitHub"
+          >
+            Edit this page on GitHub
+            <small>migrations/migration_tools.md</small>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://archivesspace.atlassian.net/jira/software/projects/TD/issues"
+            title="Report issue with migrations/migration_tools.md on Jira"
+          >
+            Report issue on Jira
+            <small>migrations/migration_tools.md</small>
+          </a>
+        </p>
+      </header>
+      <section>
+
+      <h1 id="migration-tools-and-data-mapping">Migration tools and data mapping</h1>
+
+<h2 id="archivists-toolkit">Archivists’ Toolkit</h2>
+
+<ul>
+  <li><a href="migrate_from_archivists_toolkit.html">AT migration tool instructions</a></li>
+  <li><a href="https://github.com/archivesspace/at-migration/releases">AT migration plugin</a></li>
+  <li><a href="https://github.com/archivesspace/at-migration">AT migration source code</a></li>
+  <li><a href="https://github.com/archivesspace/at-migration/blob/master/docs/ATMappingDocument.xlsx">AT migration mapping (for 2.x versions of the tool and ArchivesSpace</a></li>
+</ul>
+
+<h3 id="older-information">Older information</h3>
+
+<ul>
+  <li><a href="http://archivesspace.org/wp-content/uploads/2016/08/ATMigrationGuidelines-REV-20140417.pdf">AT migration guidelines (for migrations using the original migration tool through version 1.4.2; only supports migrations to version 1.4.2 or lower of ArchivesSpace)</a></li>
+  <li><a href="http://archivesspace.org/wp-content/uploads/2016/08/ATMappingDocument_AT-ASPACE_BETA.xls">AT migration mapping (for migrations through version 1.4.2 or lower of the tool and ArchivesSpace)</a></li>
+</ul>
+
+<h2 id="archon">Archon</h2>
+
+<ul>
+  <li><a href="migrate_from_archon.html">Archon migration tool instructions</a></li>
+  <li><a href="https://github.com/archivesspace/archon-migration/releases/latest">Archon migration tool</a></li>
+  <li><a href="https://github.com/archivesspace/archon-migration/">Archon migration source code</a></li>
+  <li><a href="https://docs.google.com/spreadsheets/d/13soN5djk16QYmRoSajtyAc_nBrNldyL58ViahKFJAog/edit?usp=sharing">Archon migration mapping (for 2.x versions of the tool and ArchivesSpace)</a></li>
+</ul>
+
+<h3 id="older-information-1">Older information</h3>
+
+<ul>
+  <li><a href="https://github.com/archivesspace-deprecated/ArchonMigrator/releases">refactored Archon migration plugin</a></li>
+  <li><a href="https://archivesspace.atlassian.net/browse/AR-1278">information about refactoring project</a></li>
+  <li><a href="https://github.com/archivesspace/archon-migration/releases">previous Archon migration plugin</a></li>
+  <li><a href="https://github.com/archivesspace-deprecated/ArchonMigrator/blob/master/README.md">Plugin read me text</a></li>
+  <li><a href="http://archivesspace.org/wp-content/uploads/2016/05/Archon_Migration_Guidelines-7_13_2017.docx">Archon migration guidelines</a></li>
+  <li><a href="http://archivesspace.org/wp-content/uploads/2016/08/ArchonSchemaMappingsPublic.xlsx">Archon migration mapping</a></li>
+</ul>
+
+<h2 id="data-import-and-export-maps">Data Import and Export Maps</h2>
+
+<ul>
+  <li><a href="http://archivesspace.org/wp-content/uploads/2016/05/Accession-CSV-mapping-2013-08-05.xlsx">Accession CSV Map</a></li>
+  <li><a href="https://github.com/archivesspace/archivesspace/tree/master/templates">Accession CSV Template</a></li>
+  <li><a href="https://github.com/archivesspace/archivesspace/tree/master/templates">Archival Objects from Excel or CSV with Load Via Spreadsheet</a></li>
+  <li><a href="https://github.com/archivesspace/archivesspace/tree/master/templates">Assessment CSV Template</a></li>
+  <li><a href="http://archivesspace.org/wp-content/uploads/2016/08/DigitalObject-CSV-mapping-2013-02-26.xlsx">Digital Object CSV Map</a></li>
+  <li><a href="https://github.com/archivesspace/archivesspace/tree/master/templates">Digital Object CSV Template</a></li>
+  <li><a href="http://archivesspace.org/wp-content/uploads/2016/08/ASpace-Dig-Object-Exports.xlsx">Digital Objects Export Maps</a></li>
+  <li><a href="https://archivesspace.org/wp-content/uploads/2021/06/EAD-Import-Export-Mapping-20171030.xlsx">EAD Import / Export Map</a></li>
+  <li><a href="https://github.com/archivesspace/archivesspace/tree/master/templates">Location Record CSV Template</a></li>
+  <li>(newly reviewed) <a href="https://archivesspace.org/wp-content/uploads/2021/06/AS-MARC-import-mappings-2021-06-15.xlsx">MARCXML Import Map</a></li>
+  <li><a href="https://archivesspace.org/wp-content/uploads/2021/06/MARCXML-Export-Mapping-20130715.xlsx">MARCXML Export Map</a></li>
+  <li><a href="https://archivesspace.org/wp-content/uploads/2021/05/Agents-ASpace-to-MARCXMLMay2021.xlsx">MARCXML Authority Import / Export Map</a></li>
+  <li><a href="https://archivesspace.org/wp-content/uploads/2021/05/Agents-ASpace-to-EAC-CPFMay2021.xlsx">EAC-CPF Import / Export Map</a></li>
+</ul>
+
+<p>(newly reviewed) MARCXML Import Map
+MARCXML Export Map</p>
+
+<h3 id="oai-pmh-only-maps">OAI-PMH-only maps</h3>
+
+<p>Most ArchivesSpace OAI-PMH responses are based on the export maps above, but there are a few that are only available through OAI-PMH</p>
+
+<p><a href="https://archivesspace.org/wp-content/uploads/2019/06/MODS-OAI-Export-Mapping-20190610.xlsx">MODS for resources and resource components</a>
+<a href="https://archivesspace.org/wp-content/uploads/2019/06/DC-OAI-Export-Mapping-20190610.xlsx">Dublin Core for resources and resource components</a>
+<a href="https://archivesspace.org/wp-content/uploads/2019/06/DCTerms-OAI-Export-Mapping-20190611.xlsx">DCMI Metadata Terms for resources and resource components</a></p>
+
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/archivesspace">ArchivesSpace</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/tech-docs/assets/js/scale.fix.js"></script>
+  </body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tech-docs | Technical documentation for ArchivesSpace</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="tech-docs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:site_name" content="tech-docs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="tech-docs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Technical documentation for ArchivesSpace","headline":"tech-docs","url":"/tech-docs/architecture/oai-pmh/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/tech-docs/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/tech-docs/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <style>
+  /* Styles via https://getbootstrap.com/docs/5.3/components/alerts/#icons */
+  .deprecation-alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #58151c;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    border-radius: 0.375rem;
+  }
+  .deprecation-alert__svg {
+    flex-shrink: 0 !important;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5rem !important;
+    fill: currentcolor;
+  }
+</style>
+
+<aside class="deprecation-alert">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="exclamation-triangle-fill"
+    viewBox="0 0 16 16"
+    class="deprecation-alert__svg"
+    role="img"
+    aria-label="Danger:"
+  >
+    <path
+      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+    />
+  </svg>
+
+  <p style="margin-bottom: 0">
+    <em style="margin-right: 0.25rem; font-weight: 700">NOTE!</em> We recently
+    launched a
+    <a href="https://docs.archivesspace.org"
+      >new technical documentation site</a
+    >
+    as part of the ArchivesSpace v4.0.0 release.
+    <br />
+    For now both sites will be live, but we encourage you to take a look at the
+    new site and leave feedback or suggestions.
+  </p>
+</aside>
+
+
+      <header>
+        <h1><a href="/tech-docs/">tech-docs</a></h1>
+
+        
+
+        <p>Technical documentation for ArchivesSpace</p>
+
+        
+        <p class="view"><a href="https://github.com/archivesspace/tech-docs">View the Project on GitHub <small>archivesspace/tech-docs</small></a></p>
+        
+
+        
+
+        
+
+        <p>
+          <a
+            href="https://github.com/archivesspace/tech-docs/edit/master/architecture/oai-pmh/README.md"
+            title="Edit architecture/oai-pmh/README.md on GitHub"
+          >
+            Edit this page on GitHub
+            <small>architecture/oai-pmh/README.md</small>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://archivesspace.atlassian.net/jira/software/projects/TD/issues"
+            title="Report issue with architecture/oai-pmh/README.md on Jira"
+          >
+            Report issue on Jira
+            <small>architecture/oai-pmh/README.md</small>
+          </a>
+        </p>
+      </header>
+      <section>
+
+      <h1 id="oai-pmh-interface">OAI-PMH interface</h1>
+
+<p>A starter OAI-PMH interface for ArchivesSpace allowing other systems to harvest
+your records is included in version 2.1.0. Additional features and functionality
+will be added in later releases.</p>
+
+<p>By default, the OAI-PMH interface runs on port 8082. A sample request page is
+available at http://localhost:8082/sample. (To access it, make sure that you
+have set the AppConfig[:oai_proxy_url] appropriately.)</p>
+
+<p>The system provides responses to a number of standard OAI-PMH requests,
+including GetRecord, Identify, ListIdentifiers, ListMetadataFormats,
+ListRecords, and ListSets. Unpublished and suppressed records and elements are
+not included in any of the OAI-PMH responses.</p>
+
+<p>Some responses require the URL parameter metadataPrefix. There are five
+different metadata responses available:</p>
+
+<ul>
+  <li>EAD – oai_ead (resources in EAD)</li>
+  <li>Dublin Core – oai_dc (archival objects and resources in Dublin Core)</li>
+  <li>extended DCMI Terms – oai_dcterms (archival objects and resources in DCMI Metadata Terms format)</li>
+  <li>MARC – oai_marc (archival objects and resources in MARC)</li>
+  <li>MODS – oai_mods (archival objects and resources in MODS)</li>
+</ul>
+
+<p>The EAD response for resources and MARC response for resources and archival
+objects use the mappings from the built-in exporter for resources. The DC,
+DCMI terms, and MODS responses for resources and archival objects use mappings
+suggested by the community.</p>
+
+<p>Here are some example URLs and other information for these requests:</p>
+
+<p><strong>GetRecord</strong> – needs a record identifier and metadataPrefix
+  Up to ArchivesSpace v3.5.1 OAI identifiers are in this format:</p>
+
+<p><code class="language-plaintext highlighter-rouge">http://localhost:8082/oai?verb=GetRecord&amp;identifier=oai:archivesspace//repositories/2/resources/138&amp;metadataPrefix=oai_ead</code></p>
+
+<p>Starting with ArchivesSpace v4.0.0 OAI identifiers are in the new format (notice the colon after the <code class="language-plaintext highlighter-rouge">oai:archivesspace</code> namespace part of the identifier):</p>
+
+<p><code class="language-plaintext highlighter-rouge">http://localhost:8082/oai?verb=GetRecord&amp;identifier=oai:archivesspace:/repositories/2/resources/138&amp;metadataPrefix=oai_ead</code></p>
+
+<p>see also: https://github.com/code4lib/ruby-oai/releases/tag/v1.0.0</p>
+
+<p><strong>Identify</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">http://localhost:8082/oai?verb=Identify</code></p>
+
+<p><strong>ListIdentifiers</strong> – needs a metadataPrefix</p>
+
+<p><code class="language-plaintext highlighter-rouge">http://localhost:8082/oai?verb=ListIdentifiers&amp;metadataPrefix=oai_dc</code></p>
+
+<p><strong>ListMetadataFormats</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">http://localhost:8082/oai?verb=ListMetadataFormats</code></p>
+
+<p><strong>ListRecords</strong> – needs a metadataPrefix</p>
+
+<p><code class="language-plaintext highlighter-rouge">http://localhost:8082/oai?verb=ListRecords&amp;metadataPrefix=oai_dcterms</code></p>
+
+<p><strong>ListSets</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">http://localhost:8082/oai?verb=ListSets</code></p>
+
+<p>Harvesting the ArchivesSpace OAI-PMH server without specifying a set will yield
+all published records across all repositories.
+Predefined sets can be accessed using the set parameter. In order to retrieve
+records from sets include a set parameter in the URL and the DC metadataPrefix,
+such as “&amp;set=collection&amp;metadataPrefix=oai_dc”. These sets can be from
+configured sets as shown above or from the following levels of description:</p>
+
+<ul>
+  <li>Class – class</li>
+  <li>Collection – collection</li>
+  <li>File – file</li>
+  <li>Fonds – fonds</li>
+  <li>Item – item</li>
+  <li>Other_Level – otherlevel</li>
+  <li>Record_Group – recordgrp</li>
+  <li>Series – series</li>
+  <li>Sub-Fonds – subfonds</li>
+  <li>Sub-Group – subgrp</li>
+  <li>Sub-Series – subseries</li>
+</ul>
+
+<p>In addition to the sets based on level of description, you can define sets
+based on repository codes and/or sponsors in the config/config.rb file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AppConfig[:oai_sets] = {
+'repository_set' =&gt; {
+    :repo_codes =&gt; ['hello626'],
+    :description =&gt; "A set of one or more repositories",
+},
+'sponsor_set' =&gt; {
+    :sponsors =&gt; ['The_Sponsor'],
+    :description =&gt; "A set of one or more sponsors",
+}
+}
+</code></pre></div></div>
+
+<p>The interface implements resumption tokens for pagination of results. As an
+example, the following URL format should be used to page through the results
+from a ListRecords request:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>`http://localhost:8082/oai?verb=ListRecords&amp;metadataPrefix=oai_ead`
+</code></pre></div></div>
+
+<p>using the resumption token:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>`http://localhost:8082/oai?verb=ListRecords&amp;resumptionToken=eyJtZXRhZGF0YV9wcmVmaXgiOiJvYWlfZWFkIiwiZnJvbSI6IjE5NzAtMDEtMDEgMDA6MDA6MDAgVVRDIiwidW50aWwiOiIyMDE3LTA3LTA2IDE3OjEwOjQxIFVUQyIsInN0YXRlIjoicHJvZHVjaW5nX3JlY29yZHMiLCJsYXN0X2RlbGV0ZV9pZCI6MCwicmVtYWluaW5nX3R5cGVzIjp7IlJlc291cmNlIjoxfSwiaXNzdWVfdGltZSI6MTQ5OTM2MTA0Mjc0OX0=`
+</code></pre></div></div>
+
+<p>Note: you do not use the metadataPrefix when you use the resumptionToken</p>
+
+<p>The ArchivesSpace OAI-PMH server supports persistent deletes, so harvesters
+will be notified of any records that were deleted since
+they last harvested.</p>
+
+<p>Mixed content is removed from Dublin Core, dcterms, MARC, and MODS field outputs
+in the OAI-PMH response (e.g., a scope note mapped to a DC description field
+  would not include <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;abbr&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;address&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;archref&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;bibref&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;blockquote&gt;</code>,
+  <code class="language-plaintext highlighter-rouge">&lt;chronlist&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;corpname&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;date&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;emph&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;expan&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;extptr&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;extref&gt;</code>,
+  <code class="language-plaintext highlighter-rouge">&lt;famname&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;function&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;genreform&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;geogname&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;lb&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;linkgrp&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;list&gt;</code>,
+  <code class="language-plaintext highlighter-rouge">&lt;name&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;note&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;num&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;occupation&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;origination&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;persname&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;ptr&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;ref&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;repository&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;subject&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;table&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;title&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;unitdate&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;unittitle&gt;</code>).</p>
+
+<p>The component level records include inherited data from superior hierarchical
+levels of the finding aid. Element inheritance is determined by institutional
+system configuration (editable in the config/config.rb file) as implemented for
+the Public User Interface.</p>
+
+<p>ARKs have not yet been implemented, pending more discussion of how they should
+be formulated.</p>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/archivesspace">ArchivesSpace</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/tech-docs/assets/js/scale.fix.js"></script>
+  </body>
+</html>

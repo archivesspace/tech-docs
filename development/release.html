@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tech-docs | Technical documentation for ArchivesSpace</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="tech-docs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:site_name" content="tech-docs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="tech-docs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Technical documentation for ArchivesSpace","headline":"tech-docs","url":"/tech-docs/development/release.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/tech-docs/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/tech-docs/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <style>
+  /* Styles via https://getbootstrap.com/docs/5.3/components/alerts/#icons */
+  .deprecation-alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #58151c;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    border-radius: 0.375rem;
+  }
+  .deprecation-alert__svg {
+    flex-shrink: 0 !important;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5rem !important;
+    fill: currentcolor;
+  }
+</style>
+
+<aside class="deprecation-alert">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="exclamation-triangle-fill"
+    viewBox="0 0 16 16"
+    class="deprecation-alert__svg"
+    role="img"
+    aria-label="Danger:"
+  >
+    <path
+      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+    />
+  </svg>
+
+  <p style="margin-bottom: 0">
+    <em style="margin-right: 0.25rem; font-weight: 700">NOTE!</em> We recently
+    launched a
+    <a href="https://docs.archivesspace.org"
+      >new technical documentation site</a
+    >
+    as part of the ArchivesSpace v4.0.0 release.
+    <br />
+    For now both sites will be live, but we encourage you to take a look at the
+    new site and leave feedback or suggestions.
+  </p>
+</aside>
+
+
+      <header>
+        <h1><a href="/tech-docs/">tech-docs</a></h1>
+
+        
+
+        <p>Technical documentation for ArchivesSpace</p>
+
+        
+        <p class="view"><a href="https://github.com/archivesspace/tech-docs">View the Project on GitHub <small>archivesspace/tech-docs</small></a></p>
+        
+
+        
+
+        
+
+        <p>
+          <a
+            href="https://github.com/archivesspace/tech-docs/edit/master/development/release.md"
+            title="Edit development/release.md on GitHub"
+          >
+            Edit this page on GitHub
+            <small>development/release.md</small>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://archivesspace.atlassian.net/jira/software/projects/TD/issues"
+            title="Report issue with development/release.md on Jira"
+          >
+            Report issue on Jira
+            <small>development/release.md</small>
+          </a>
+        </p>
+      </header>
+      <section>
+
+      <h1 id="building-an-archivesspace-release">Building an ArchivesSpace release</h1>
+
+<ul>
+  <li><a href="#prerelease">Pre-Release Steps</a></li>
+  <li><a href="#docs">Build the Docs</a></li>
+  <li><a href="#release">Build the Release</a></li>
+  <li><a href="#notes">Post the Release with Release Notes</a></li>
+  <li><a href="#postrelease">Post-Release Steps</a></li>
+</ul>
+
+<h2 id="clone-the-git-repository">Clone the git repository</h2>
+
+<p>When building a release it is important to start from a clean repository. The
+safest way of ensuring this is to clone the repo:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/archivesspace/archivesspace.git
+</code></pre></div></div>
+
+<h2 id="checkout-the-release-branch-and-create-release-tag">Checkout the release branch and create release tag</h2>
+
+<p>If you are building a major or minor version (see <a href="https://semver.org">https://semver.org</a>),
+start by creating a branch for the release and all future patch releases:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout <span class="nt">-b</span> release-v1.0.x
+git tag v1.0.0
+</code></pre></div></div>
+<p>If you are building a patch version, just check out the existing branch and see below:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout release-v1.0.x
+</code></pre></div></div>
+
+<p>Patch versions typically arise because a regression or critical bug has arisen since
+the last major or minor release. We try to ensure that the “hotfix” is merged into both
+master and the release branch without the need to cherry-pick commits from one branch to
+the other. The reason is that cherry-picking creates a new commit (with a new commit id)
+that contains identical changes, which is not optimal for the repository history.</p>
+
+<p>It is therefore preferable to start from the release branch when creating a “hotfix”
+that needs to be merged into both the release branch and master. The Pull Request should
+then be based on the release branch. After that Pull Request has been through Code review,
+QA and merged, a second Pull Request should be created to merge the updated release branch
+to master.</p>
+
+<p>Consider the following scenario. The current production release is v1.0.0 and a critical
+bug has been discovered. In the time since v1.0.0 was released, new features have been
+added to the master branch, intended for release in v1.1.0:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout <span class="nt">-b</span> oh-no-some-migration-corrupts-some-data origin/release-v1.0.0
+<span class="o">(</span> fixes problem <span class="o">)</span>
+git commit <span class="nt">-m</span> <span class="s2">"fix bad migration and add a migration to repair corrupted data"</span>
+gh <span class="nb">pr </span>create <span class="nt">-B</span> release-v1.0.x <span class="nt">--web</span>
+<span class="o">(</span> PR is reviewed and merged to the release branch<span class="o">)</span>
+git checkout release-v1.0.x
+git pull
+git tag v1.0.1
+gh <span class="nb">pr </span>create <span class="nt">-B</span> master <span class="nt">--web</span>
+<span class="o">(</span> PR is reviewed and merged to the master branch<span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="pre-release-steps"><a name="prerelease"></a>Pre-Release Steps</h2>
+
+<h3 id="run-the-archivesspace-rake-tasks-to-check-for-issues">Run the ArchivesSpace rake tasks to check for issues</h3>
+
+<p>Before proceeding further, it’s a good idea to check that there aren’t missing
+translations or multiple gem versions.</p>
+
+<ol>
+  <li>Bootstrap your current development environment on the latest master branch
+by downloading all dependencies–JRuby, Gems, Solr, etc.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>build/run bootstrap
+</code></pre></div>    </div>
+  </li>
+  <li>Run the following checks (recommended):
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>build/run rake <span class="nt">-Dtask</span><span class="o">=</span>check:locales
+build/run rake <span class="nt">-Dtask</span><span class="o">=</span>check:multiple_gem_versions
+</code></pre></div>    </div>
+  </li>
+  <li>Missing locales do not need to be addressed for a Release Candidate, but
+should be noted and provided prior to a full release.  If multiple gem
+versions are reported, that should be addressed prior to moving on.</li>
+</ol>
+
+<h2 id="build-and-publish-the-api-and-yard-docs"><a name="docs"></a>Build and Publish the API and Yard Docs</h2>
+
+<p>API docs are built using the submodule in <code class="language-plaintext highlighter-rouge">docs/slate</code> and Docker.
+YARD docs are built using the YARD gem. At this time, they cover a small
+percentage of the code and are not especially useful.</p>
+
+<h3 id="build-the-api-docs">Build the API docs</h3>
+
+<ol>
+  <li>API documentation depends on the <a href="https://github.com/archivesspace/slate">archivesspace/slate</a> submodule
+and on Docker. Slate cannot run on JRuby.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git submodule init
+git submodule update
+</code></pre></div>    </div>
+  </li>
+  <li>Run the <code class="language-plaintext highlighter-rouge">doc:api</code> task to generate Slate API and Yard documentation. (Note: the
+API generation requires a DB connection with standard enumeration values.)
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">ARCHIVESSPACE_VERSION</span><span class="o">=</span>X.Y.Z <span class="nv">APPCONFIG_DB_URL</span><span class="o">=</span><span class="nv">$APPCONFIG_DB_URL</span> build/run doc:api
+</code></pre></div>    </div>
+    <p>This generates <code class="language-plaintext highlighter-rouge">docs/slate/source/index.html.md</code> (Slate source document).</p>
+  </li>
+  <li>(Optional) Run a docker container to preview API docs.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose <span class="nt">-f</span> docker-compose-docs.yml up
+</code></pre></div>    </div>
+    <p>Visit <code class="language-plaintext highlighter-rouge">http://localhost:4568</code> to preview the api docs.</p>
+  </li>
+  <li>Build the static api files. The api markdown document should already be in <code class="language-plaintext highlighter-rouge">docs/slate/source</code> (step 2 above).
+The api markdown will be rendered to html and moved to <code class="language-plaintext highlighter-rouge">docs/build/api</code>.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">--rm</span> <span class="nt">--name</span> slate <span class="nt">-v</span> <span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span>/docs/build/api:/srv/slate/build <span class="nt">-v</span> <span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span>/docs/slate/source:/srv/slate/source slatedocs/slate build
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="build-the-yard-docs">Build the YARD docs</h3>
+
+<ol>
+  <li>Build the YARD docs in the <code class="language-plaintext highlighter-rouge">docs/build/doc</code> directory:
+    <code class="language-plaintext highlighter-rouge">shell
+    ./build/run doc:yardoc
+   </code></li>
+</ol>
+
+<h3 id="commit-built-docs-and-push-to-github-pages">Commit built docs and push to Github pages</h3>
+
+<ol>
+  <li>Double check that you are on a release branch (we don’t need this stuff in master) and
+commit the newly built documentation:
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add docs/build
+git commit <span class="nt">-m</span> <span class="s2">"release-vx.y.z api and yard documentation"</span>
+</code></pre></div>    </div>
+
+    <p>Use <code class="language-plaintext highlighter-rouge">git subtree</code> to push the documentation to the <code class="language-plaintext highlighter-rouge">gh-pages</code> branch:</p>
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git subtree push <span class="nt">--prefix</span> docs/build origin gh-pages
+</code></pre></div>    </div>
+    <p>Published documents should appear a short while later at:
+<a href="http://archivesspace.github.io/archivesspace/api">http://archivesspace.github.io/archivesspace/api</a>
+<a href="http://archivesspace.github.io/archivesspace/doc">http://archivesspace.github.io/archivesspace/doc</a></p>
+
+    <p>Note: if the push command fails you may need to delete <code class="language-plaintext highlighter-rouge">gh-pages</code> in the remote repo:</p>
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin :gh-pages
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="building-a-release-yourself"><a name="release"></a>Building a release yourself</h2>
+
+<ol>
+  <li>Building the actual release is very simple. Run the following:
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./scripts/build_release vX.X.X
+</code></pre></div>    </div>
+
+    <p>Replace X.X.X with the version number. This will build and package a release
+in a zip file.</p>
+  </li>
+</ol>
+
+<h2 id="building-a-release-on-github"><a name="release"></a>Building a release on Github</h2>
+
+<ol>
+  <li>There is no need to build the release yourself. Just push your tag to Github
+and trigger the <code class="language-plaintext highlighter-rouge">release</code> workflow:
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push vX.X.X
+</code></pre></div>    </div>
+    <p>Replace X.X.X with the version number. You can set the resulting release page to
+“draft” using the Github API.</p>
+  </li>
+</ol>
+
+<h2 id="create-the-release-with-notes"><a name="notes"></a>Create the Release with Notes</h2>
+
+<h3 id="build-the-release-notes">Build the release notes</h3>
+
+<p><strong>As of v3.4.0, it should no longer necessary to build release notes manually.</strong></p>
+
+<p>To manually generate release notes:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">GITHUB_TOKEN</span><span class="o">={</span>YOUR DEPLOYMENT TOKEN ON GITHUB<span class="o">}</span>
+./build/run doc:release_notes <span class="nt">-Dcurrent_tag</span><span class="o">=</span>v3.4.0 <span class="nt">-Doutfile</span><span class="o">=</span>RELEASE_NOTES.md <span class="nt">-Dtoken</span><span class="o">=</span><span class="nv">$GITHUB_TOKEN</span>
+</code></pre></div></div>
+
+<h4 id="edit-release-page-as-neccessary">Edit Release Page As Neccessary</h4>
+
+<p>If there are any special considerations add them to the release page manually. Special considerations
+might include changes that will require 3rd party plugins to be updated or a
+that a full reindex is required.</p>
+
+<p>Example content:</p>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This release requires a <span class="gs">**full reindex**</span> of ArchivesSpace for all functionality to work
+correctly. Please follow the <span class="p">[</span><span class="nv">instructions for reindexing</span><span class="p">](</span><span class="sx">https://archivesspace.github.io/tech-docs/administration/indexes.html</span><span class="p">)</span>
+before starting ArchivesSpace with the new version.
+</code></pre></div></div>
+
+<h2 id="post-release-updates"><a name="postrelease"></a>Post release updates</h2>
+
+<p>After a release has been put out it’s time for some maintenance before the next
+cycle of development clicks into full gear. Consider the following, depending on
+current team consensus:</p>
+
+<h3 id="branches">Branches</h3>
+
+<p>Delete merged and stale branches in Github as appropriate.</p>
+
+<h3 id="milestones">Milestones</h3>
+
+<p>Close the just-released Milestone, adding a due date of today’s date.  Create a
+new Milestone for the anticipated next release (this can be changed later if the
+version numbering is changed for some reason).</p>
+
+<h3 id="test-servers">Test Servers</h3>
+
+<p>Review existing test servers, and request the removal of any that are no longer
+needed (e.g. feature branches that have been merged for the release).</p>
+
+<h3 id="github-issues">GitHub Issues</h3>
+
+<p>Review existing opening GH issues and close any that have been resolved by
+the new release (linking to a specific PR if possible).  For the remaining open
+issues, review if they are still a problem, apply labels, link to known JIRA
+issues, and add comments as necessary/relevant.</p>
+
+<h3 id="accessibility-scan">Accessibility Scan</h3>
+
+<p>Run accessibility scans for both the public and staff sites and file a ticket
+for any new and ongoing accessibility errors.</p>
+
+<h3 id="pr-assignments">PR Assignments</h3>
+
+<p>Begin assigning queued PRs to members of the Core Committers group, making
+sure to include the appropriate milestone for the anticipated next release.</p>
+
+<h3 id="dependencies">Dependencies</h3>
+
+<h4 id="gems">Gems</h4>
+
+<p>Take a look at all the Gemfile.lock files ( in backend, frontend, public,
+etc ) and review the gem versions. Pay close attention to the Rails &amp; Friends
+( ActiveSupport, ActionPack, etc ), Rack, and Sinatra versions and make sure
+there have not been any security patch versions. There usually are, especially
+since Rails sends fix updates rather frequently.</p>
+
+<p>To update the gems, update the version in Gemfile, delete the Gemfile.lock, and
+run ./build/run bootstrap to download everything. Then make sure your test
+suite passes.</p>
+
+<p>Once everything passes, commit your Gemfiles and Gemfile.lock files.</p>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/archivesspace">ArchivesSpace</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/tech-docs/assets/js/scale.fix.js"></script>
+  </body>
+</html>

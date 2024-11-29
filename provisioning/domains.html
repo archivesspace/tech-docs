@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tech-docs | Technical documentation for ArchivesSpace</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="tech-docs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:site_name" content="tech-docs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="tech-docs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Technical documentation for ArchivesSpace","headline":"tech-docs","url":"/tech-docs/provisioning/domains.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/tech-docs/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/tech-docs/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <style>
+  /* Styles via https://getbootstrap.com/docs/5.3/components/alerts/#icons */
+  .deprecation-alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #58151c;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    border-radius: 0.375rem;
+  }
+  .deprecation-alert__svg {
+    flex-shrink: 0 !important;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5rem !important;
+    fill: currentcolor;
+  }
+</style>
+
+<aside class="deprecation-alert">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="exclamation-triangle-fill"
+    viewBox="0 0 16 16"
+    class="deprecation-alert__svg"
+    role="img"
+    aria-label="Danger:"
+  >
+    <path
+      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+    />
+  </svg>
+
+  <p style="margin-bottom: 0">
+    <em style="margin-right: 0.25rem; font-weight: 700">NOTE!</em> We recently
+    launched a
+    <a href="https://docs.archivesspace.org"
+      >new technical documentation site</a
+    >
+    as part of the ArchivesSpace v4.0.0 release.
+    <br />
+    For now both sites will be live, but we encourage you to take a look at the
+    new site and leave feedback or suggestions.
+  </p>
+</aside>
+
+
+      <header>
+        <h1><a href="/tech-docs/">tech-docs</a></h1>
+
+        
+
+        <p>Technical documentation for ArchivesSpace</p>
+
+        
+        <p class="view"><a href="https://github.com/archivesspace/tech-docs">View the Project on GitHub <small>archivesspace/tech-docs</small></a></p>
+        
+
+        
+
+        
+
+        <p>
+          <a
+            href="https://github.com/archivesspace/tech-docs/edit/master/provisioning/domains.md"
+            title="Edit provisioning/domains.md on GitHub"
+          >
+            Edit this page on GitHub
+            <small>provisioning/domains.md</small>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://archivesspace.atlassian.net/jira/software/projects/TD/issues"
+            title="Report issue with provisioning/domains.md on Jira"
+          >
+            Report issue on Jira
+            <small>provisioning/domains.md</small>
+          </a>
+        </p>
+      </header>
+      <section>
+
+      <h1 id="serving-archivesspace-over-subdomains">Serving ArchivesSpace over subdomains</h1>
+
+<p>This document describes how to configure ArchivesSpace and your web server to serve the application over subdomains (e.g., <code class="language-plaintext highlighter-rouge">http://staff.myarchive.org/</code> and <code class="language-plaintext highlighter-rouge">http://public.myarchive.org/</code>), which is the  recommended
+practice. Separate documentation is available if you wish to <a href="prefix.html">serve ArchivesSpace under a prefix</a> (e.g., <code class="language-plaintext highlighter-rouge">http://aspace.myarchive.org/staff</code> and
+<code class="language-plaintext highlighter-rouge">http://aspace.myarchive.org/public</code>).</p>
+
+<ol>
+  <li><a href="#Step-1%3A-Configuring-Your-Firewall">Configuring Your Firewall</a></li>
+  <li><a href="#Step-2%3A-Configuring-Your-Web-Server">Configuring Your Web Server</a>
+    <ul>
+      <li><a href="#Apache">Apache</a></li>
+      <li><a href="#Nginx">Nginx</a></li>
+    </ul>
+  </li>
+  <li><a href="#Step-3%3A-Configuring-ArchivesSpace">Configuring ArchivesSpace</a></li>
+</ol>
+
+<h2 id="step-1-configuring-your-firewall">Step 1: Configuring Your Firewall</h2>
+
+<p>Since using subdomains negates the need for users to access the application directly on ports 8080 and 8081, these should be locked down to access by localhost only. On a Linux server, this can be done using iptables:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> iptables -A INPUT -p tcp -s localhost --dport 8080 -j ACCEPT
+ iptables -A INPUT -p tcp --dport 8080 -j DROP
+ iptables -A INPUT -p tcp -s localhost --dport 8081 -j ACCEPT
+ iptables -A INPUT -p tcp --dport 8081 -j DROP
+</code></pre></div></div>
+
+<h2 id="step-2-configuring-your-web-server">Step 2: Configuring Your Web Server</h2>
+
+<h3 id="apache">Apache</h3>
+
+<p>The <a href="https://httpd.apache.org/docs/2.4/mod/mod_proxy.html">mod_proxy module</a> is necessary for Apache to route public web traffic to ArchivesSpace’s ports as designated in your config.rb file (ports 8080 and 8081 by default).</p>
+
+<p>This can be set up as a reverse proxy in the Apache configuration like so:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &lt;VirtualHost *:80&gt;
+  ServerName public.myarchive.org
+  ProxyPass / http://localhost:8081/
+  ProxyPassReverse / http://localhost:8081/
+  &lt;/VirtualHost&gt;
+
+  &lt;VirtualHost *:80&gt;
+  ServerName staff.myarchive.org
+  ProxyPass / http://localhost:8080/
+  ProxyPassReverse / http://localhost:8080/
+  &lt;/VirtualHost&gt;
+</code></pre></div></div>
+
+<p>The purpose of ProxyPass is to route <em>incoming</em> traffic on the public URL (public.myarchive.org) to port 8081 of your server, where ArchivesSpace’s public interface sits. The purpose of ProxyPassReverse is to intercept <em>outgoing</em> traffic and rewrite the header to match the URL that the browser is expecting to see (public.myarchive.org).</p>
+
+<h3 id="nginx">nginx</h3>
+
+<p>Using nginx as a reverse proxy needs a configuration file like so:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  server {
+  listen 80;
+  listen [::]:80;
+  server_name staff.myarchive.org;
+  location / {
+      proxy_pass http://localhost:8080/;
+    }
+  }
+        server {
+  listen 80;
+  listen [::]:80;
+  server_name public.myarchive.org;
+  location / {
+      proxy_pass http://localhost:8081/;
+    }
+  }
+</code></pre></div></div>
+
+<h2 id="step-3-configuring-archivesspace">Step 3: Configuring ArchivesSpace</h2>
+
+<p>The only configuration within ArchivesSpace that needs to occur is adding your domain names to the following lines in config.rb:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> AppConfig[:frontend_proxy_url] = 'http://staff.myarchive.org'
+ AppConfig[:public_proxy_url] = 'http://public.myarchive.org'
+</code></pre></div></div>
+
+<p>This configuration allows the staff edit links to appear on the public site to users logged in to the staff interface.</p>
+
+<p>Do <strong>not</strong> change <code class="language-plaintext highlighter-rouge">AppConfig[:public_url]</code> or <code class="language-plaintext highlighter-rouge">AppConfig[:frontend_url]</code>; these must retain their port numbers in order for the application to run.</p>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/archivesspace">ArchivesSpace</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/tech-docs/assets/js/scale.fix.js"></script>
+  </body>
+</html>

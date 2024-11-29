@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tech-docs | Technical documentation for ArchivesSpace</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="tech-docs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:site_name" content="tech-docs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="tech-docs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Technical documentation for ArchivesSpace","headline":"tech-docs","url":"/tech-docs/customization/locales.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/tech-docs/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/tech-docs/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <style>
+  /* Styles via https://getbootstrap.com/docs/5.3/components/alerts/#icons */
+  .deprecation-alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #58151c;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    border-radius: 0.375rem;
+  }
+  .deprecation-alert__svg {
+    flex-shrink: 0 !important;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5rem !important;
+    fill: currentcolor;
+  }
+</style>
+
+<aside class="deprecation-alert">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="exclamation-triangle-fill"
+    viewBox="0 0 16 16"
+    class="deprecation-alert__svg"
+    role="img"
+    aria-label="Danger:"
+  >
+    <path
+      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+    />
+  </svg>
+
+  <p style="margin-bottom: 0">
+    <em style="margin-right: 0.25rem; font-weight: 700">NOTE!</em> We recently
+    launched a
+    <a href="https://docs.archivesspace.org"
+      >new technical documentation site</a
+    >
+    as part of the ArchivesSpace v4.0.0 release.
+    <br />
+    For now both sites will be live, but we encourage you to take a look at the
+    new site and leave feedback or suggestions.
+  </p>
+</aside>
+
+
+      <header>
+        <h1><a href="/tech-docs/">tech-docs</a></h1>
+
+        
+
+        <p>Technical documentation for ArchivesSpace</p>
+
+        
+        <p class="view"><a href="https://github.com/archivesspace/tech-docs">View the Project on GitHub <small>archivesspace/tech-docs</small></a></p>
+        
+
+        
+
+        
+
+        <p>
+          <a
+            href="https://github.com/archivesspace/tech-docs/edit/master/customization/locales.md"
+            title="Edit customization/locales.md on GitHub"
+          >
+            Edit this page on GitHub
+            <small>customization/locales.md</small>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://archivesspace.atlassian.net/jira/software/projects/TD/issues"
+            title="Report issue with customization/locales.md on Jira"
+          >
+            Report issue on Jira
+            <small>customization/locales.md</small>
+          </a>
+        </p>
+      </header>
+      <section>
+
+      <h1 id="customizing-text-in-archivesspace">Customizing text in ArchivesSpace</h1>
+
+<p>ArchivesSpace has abstracted all the labels, messages and tooltips out of the
+application into the locale files, which are part of the
+<a href="http://guides.rubyonrails.org/i18n.html">Rails Internationalization (I18n)</a> API.
+The locales in this directory represent the
+basis of translations for use by all Archives Space applications.  Each
+application may then add to or override these values with their own locales files.</p>
+
+<p>For a guide on managing these “i18n” files, please visit http://guides.rubyonrails.org/i18n.html</p>
+
+<p>You can see the source files for both the <a href="https://github.com/archivesspace/archivesspace/tree/master/frontend/config/locales">Staff Frontend Application</a> and
+<a href="https://github.com/archivesspace/archivesspace/tree/master/public/config/locales">Public Application</a>. There is also a <a href="https://github.com/archivesspace/archivesspace/blob/master/common/locales/en.yml">common locale file</a> for some values used throughout the ArchivesSpace applications.</p>
+
+<p>The base translations are broken up:</p>
+
+<ul>
+  <li>The top most file “en.yml” contains the translations for all the record labels, messages and tooltips in English</li>
+  <li>“enums/en.yml” contains the entries for the dynamic enumeration codes - add your translations to this file after importing your enumeration codes</li>
+</ul>
+
+<p>These values are pulled into the views using the I18n.t() method, like  I18n.t(“brand.welcome_message”).</p>
+
+<p>If the value you want to override is in the common locale file (like the “digital object title” field label, for example) , you can change this by simply editing the locales/en.yml file in your ArchivesSpace distribution home directory. A restart is required to have the changes take effect.</p>
+
+<p>If the value you want to change is in either the public or staff specific en.yml files,  you can override these values using the plugins directory. For example, if you want to change the welcome message on the public frontend, make a file in your ArchivesSpace distribution called ‘plugins/local/public/locales/en.yml’ and put the following values:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>en:
+	brand:
+	title: My Archive
+	home: Home
+ 		welcome_message: HEY HEY HEY!!
+</code></pre></div></div>
+
+<p>If you restart ArchivesSpace, these values will take effect.</p>
+
+<p>If you are adding a new value you will also need to add the value into the Staff Frontend Application by clicking on the System dropdown menu and choosing Manage Controlled Value Lists. Select the list and add the value. If you restart ArchivesSpace the translation value that you set in the yml file should appear.</p>
+
+<p>If you’re using a different language, simply swap out the en.yml for something else ( like fr.yml ) and update locale setting in the config.rb file ( i.e.,  AppConfig[:locale] = :fr )</p>
+
+<h2 id="tooltips">Tooltips</h2>
+
+<p>To add a tooltip to a record label, simply add a new entry with “_tooltip”
+appended to the label’s code.  For example, to add a tooltip for the Accession’s
+Title field:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>en:
+  accession:
+    title: Title
+    title_tooltip: |
+        &lt;p&gt;The title assigned to an accession or resource. The accession title
+        need not be the same as the resource title. Moreover, a title need not
+        be expressed for the accession record, as it can be implicitly
+        inherited from the resource record to which the accession is
+        linked.&lt;/p&gt;
+</code></pre></div></div>
+
+<h2 id="placeholders">Placeholders</h2>
+
+<p>For text fields or text areas, you may like to have some placeholder text to be
+displayed when the field is empty (for more details see
+http://www.w3.org/html/wg/drafts/html/master/forms.html#the-placeholder-attribute).
+Please note while most modern browser releases support this feature,
+older version will not.</p>
+
+<p>To add a placeholder to a record’s text field, add a new entry of the label’s
+code append with “_placeholder”. For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>en:
+  accession:
+    title: Title
+    title_placeholder: See DACS 2.3.18-2.3.22
+</code></pre></div></div>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/archivesspace">ArchivesSpace</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/tech-docs/assets/js/scale.fix.js"></script>
+  </body>
+</html>

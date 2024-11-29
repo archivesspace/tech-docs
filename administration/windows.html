@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tech-docs | Technical documentation for ArchivesSpace</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="tech-docs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:site_name" content="tech-docs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="tech-docs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Technical documentation for ArchivesSpace","headline":"tech-docs","url":"/tech-docs/administration/windows.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/tech-docs/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/tech-docs/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <style>
+  /* Styles via https://getbootstrap.com/docs/5.3/components/alerts/#icons */
+  .deprecation-alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #58151c;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    border-radius: 0.375rem;
+  }
+  .deprecation-alert__svg {
+    flex-shrink: 0 !important;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5rem !important;
+    fill: currentcolor;
+  }
+</style>
+
+<aside class="deprecation-alert">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="exclamation-triangle-fill"
+    viewBox="0 0 16 16"
+    class="deprecation-alert__svg"
+    role="img"
+    aria-label="Danger:"
+  >
+    <path
+      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+    />
+  </svg>
+
+  <p style="margin-bottom: 0">
+    <em style="margin-right: 0.25rem; font-weight: 700">NOTE!</em> We recently
+    launched a
+    <a href="https://docs.archivesspace.org"
+      >new technical documentation site</a
+    >
+    as part of the ArchivesSpace v4.0.0 release.
+    <br />
+    For now both sites will be live, but we encourage you to take a look at the
+    new site and leave feedback or suggestions.
+  </p>
+</aside>
+
+
+      <header>
+        <h1><a href="/tech-docs/">tech-docs</a></h1>
+
+        
+
+        <p>Technical documentation for ArchivesSpace</p>
+
+        
+        <p class="view"><a href="https://github.com/archivesspace/tech-docs">View the Project on GitHub <small>archivesspace/tech-docs</small></a></p>
+        
+
+        
+
+        
+
+        <p>
+          <a
+            href="https://github.com/archivesspace/tech-docs/edit/master/administration/windows.md"
+            title="Edit administration/windows.md on GitHub"
+          >
+            Edit this page on GitHub
+            <small>administration/windows.md</small>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://archivesspace.atlassian.net/jira/software/projects/TD/issues"
+            title="Report issue with administration/windows.md on Jira"
+          >
+            Report issue on Jira
+            <small>administration/windows.md</small>
+          </a>
+        </p>
+      </header>
+      <section>
+
+      <h1 id="running-archivesspace-as-a-windows-service">Running ArchivesSpace as a Windows service</h1>
+
+<p>Running ArchivesSpace as a Windows service requires some additional configuration.</p>
+
+<p>You can use Apache <a href="http://commons.apache.org/proper/commons-daemon/procrun.html">procrun</a> to configure ArchivesSpace to run as a Windows service. We have provided a service.bat script that will attempt to configure procrun for you (under <code class="language-plaintext highlighter-rouge">launcher\service.bat</code>).</p>
+
+<p>To run this script, first you need to <a href="http://www.apache.org/dist/commons/daemon/binaries/windows/">download procrun</a>.
+Extract the files and copy the prunsrv.exe and prunmgr.exe to your ArchivesSpace directory.</p>
+
+<p>To find the path to Java, “Start” &gt; “Control Panel” &gt; “Java”, Select “Java” tab. You’ll see the path there. It will look something like <code class="language-plaintext highlighter-rouge">C:\Program Files (x86)\Java</code></p>
+
+<p>You also need to be sure that Java is in your system path and also to create <code class="language-plaintext highlighter-rouge">JAVA_HOME</code> as a global environment variable.
+To add Java to your path, edit you %PATH% environment variable to include the directory of your java executable ( it will be something like <code class="language-plaintext highlighter-rouge">C:\Program Files (x86)\Java</code> ). To add <code class="language-plaintext highlighter-rouge">JAVA_HOME</code>, add a new system variable and put the directory where java was installed ( something like <code class="language-plaintext highlighter-rouge">C:\Program Files (x86)\Java</code> ).</p>
+
+<p>Environement varialbe be found by  “Start” &gt; “Control Panel” , search for environment. Click “edit the system environment variables”. In the section System Variables, find the <code class="language-plaintext highlighter-rouge">PATH</code> environment variable and select it. Click Edit. If the <code class="language-plaintext highlighter-rouge">PATH</code> environment variable does not exist, click New. In the Edit System Variable (or New System Variable) window, specify the value of the <code class="language-plaintext highlighter-rouge">PATH</code> environment variable. Click OK. Close all remaining windows by clicking OK. Do the same for <code class="language-plaintext highlighter-rouge">JAVA_HOME</code></p>
+
+<p>Before setting up the ArchivesSpace service, you should also <a href="../provisioning/mysql.html">configure ArchivesSpace to run against MySQL</a>.
+Be sure that the MySQL connector jar file is in the lib directory, in order for
+the service setup script to add it to the application’s classpath.</p>
+
+<p>Lastly, for the service to shutdown cleanly, uncomment and change these lines in
+config/config.rb:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AppConfig[:use_jetty_shutdown_handler] = true
+AppConfig[:jetty_shutdown_path] = "/xkcd"
+</code></pre></div></div>
+
+<p>This enables a shutdown hook for Jetty to respond to when the shutdown action
+is taken.</p>
+
+<p>You can now execute the batch script from your ArchivesSpace root directory from
+the command line with <code class="language-plaintext highlighter-rouge">launcher\service.bat</code>. This  will configure the service and
+provide two executables: <code class="language-plaintext highlighter-rouge">ArchivesSpaceService.exe</code> (the service) and
+<code class="language-plaintext highlighter-rouge">ArchivesSpaceServicew.exe</code> (a GUI monitor)</p>
+
+<p>There are several options to launch the service. The easiest is to open the GUI
+monitor and click “Launch”.</p>
+
+<p>Alternatively, you can start the GUI monitor and minimize it in your
+system tray with:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ArchivesSpaceServicew.exe //MS//
+</code></pre></div></div>
+
+<p>To execute the service from the command line, you can invoke:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ArchivesSpaceService.exe //ES//
+</code></pre></div></div>
+
+<p>Log output will be placed in your ArchivesSpace log directory.</p>
+
+<p>Please see the <a href="http://commons.apache.org/proper/commons-daemon/procrun.html">procrun
+documentation</a>
+for more information.</p>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/archivesspace">ArchivesSpace</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/tech-docs/assets/js/scale.fix.js"></script>
+  </body>
+</html>

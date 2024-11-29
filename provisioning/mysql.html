@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tech-docs | Technical documentation for ArchivesSpace</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="tech-docs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:site_name" content="tech-docs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="tech-docs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Technical documentation for ArchivesSpace","headline":"tech-docs","url":"/tech-docs/provisioning/mysql.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/tech-docs/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/tech-docs/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <style>
+  /* Styles via https://getbootstrap.com/docs/5.3/components/alerts/#icons */
+  .deprecation-alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #58151c;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    border-radius: 0.375rem;
+  }
+  .deprecation-alert__svg {
+    flex-shrink: 0 !important;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5rem !important;
+    fill: currentcolor;
+  }
+</style>
+
+<aside class="deprecation-alert">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="exclamation-triangle-fill"
+    viewBox="0 0 16 16"
+    class="deprecation-alert__svg"
+    role="img"
+    aria-label="Danger:"
+  >
+    <path
+      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+    />
+  </svg>
+
+  <p style="margin-bottom: 0">
+    <em style="margin-right: 0.25rem; font-weight: 700">NOTE!</em> We recently
+    launched a
+    <a href="https://docs.archivesspace.org"
+      >new technical documentation site</a
+    >
+    as part of the ArchivesSpace v4.0.0 release.
+    <br />
+    For now both sites will be live, but we encourage you to take a look at the
+    new site and leave feedback or suggestions.
+  </p>
+</aside>
+
+
+      <header>
+        <h1><a href="/tech-docs/">tech-docs</a></h1>
+
+        
+
+        <p>Technical documentation for ArchivesSpace</p>
+
+        
+        <p class="view"><a href="https://github.com/archivesspace/tech-docs">View the Project on GitHub <small>archivesspace/tech-docs</small></a></p>
+        
+
+        
+
+        
+
+        <p>
+          <a
+            href="https://github.com/archivesspace/tech-docs/edit/master/provisioning/mysql.md"
+            title="Edit provisioning/mysql.md on GitHub"
+          >
+            Edit this page on GitHub
+            <small>provisioning/mysql.md</small>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://archivesspace.atlassian.net/jira/software/projects/TD/issues"
+            title="Report issue with provisioning/mysql.md on Jira"
+          >
+            Report issue on Jira
+            <small>provisioning/mysql.md</small>
+          </a>
+        </p>
+      </header>
+      <section>
+
+      <h1 id="running-archivesspace-against-mysql">Running ArchivesSpace against MySQL</h1>
+
+<p>Out of the box, the ArchivesSpace distribution runs against an
+embedded database, but this is only suitable for demonstration
+purposes.  When you are ready to starting using ArchivesSpace with
+real users and data, you should switch to using MySQL.  MySQL offers
+significantly better performance when multiple people are using the
+system, and will ensure that your data is kept safe.</p>
+
+<p>ArchivesSpace is currently able to run on MySQL version 5.x &amp; 8.x.</p>
+
+<h2 id="download-mysql-connector">Download MySQL Connector</h2>
+
+<p>ArchivesSpace requires the
+<a href="http://dev.mysql.com/downloads/connector/j/">MySQL Connector for Java</a>,
+which must be downloaded separately because of its licensing agreement.
+Download the Connector and place it in a location where ArchivesSpace can
+find it on its classpath:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     $ cd lib
+     $ curl -Oq https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar
+</code></pre></div></div>
+
+<p>Note that the version of the MySQL connector may be different by the
+time you read this.</p>
+
+<h2 id="set-up-your-mysql-database">Set up your MySQL database</h2>
+
+<p>Next, create an empty database in MySQL and grant access to a dedicated
+ArchivesSpace user. The following example uses username <code class="language-plaintext highlighter-rouge">as</code>
+and password <code class="language-plaintext highlighter-rouge">as123</code>.</p>
+
+<p><strong>NOTE: WHEN CREATING THE DATABASE, YOU MUST SET THE DEFAULT CHARACTER
+ENCODING FOR THE DATABASE TO BE <code class="language-plaintext highlighter-rouge">utf8</code>.</strong> This is particularly important
+if you use a MySQL client to create the database (e.g. Navicat, MySQL
+Workbench, phpMyAdmin, etc.).</p>
+
+<!-- This is also true of MySQL 8 in general... -->
+
+<p><strong>NOTE: If using AWS RDS MySQL databases, binary logging is not enabled by default and updates will fail.</strong> To enable binary logging, you must create a custom db parameter group for the database and set the <code class="language-plaintext highlighter-rouge">log_bin_trust_function_creators = 1</code>. See <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html">Working with DB Parameter Groups</a> for information about RDS parameter groups. Within a MySQL session you can also try <code class="language-plaintext highlighter-rouge">SET GLOBAL log_bin_trust_function_creators = 1;</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     $ mysql -uroot -p
+
+     mysql&gt; create database archivesspace default character set utf8mb4;
+     Query OK, 1 row affected (0.08 sec)
+</code></pre></div></div>
+
+<p>If using MySQL 5.7 and below:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     mysql&gt; grant all on archivesspace.* to 'as'@'localhost' identified by 'as123';
+     Query OK, 0 rows affected (0.21 sec)
+</code></pre></div></div>
+
+<p>If using MySQL 8+:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     mysql&gt; create user 'as'@'localhost' identified by 'as123';
+     Query OK, 0 rows affected (0.08 sec)
+
+     mysql&gt; grant all privileges on archivesspace.* to 'as'@'localhost';
+     Query OK, 0 rows affected (0.21 sec)
+</code></pre></div></div>
+
+<p>Then, modify your <code class="language-plaintext highlighter-rouge">config/config.rb</code> file to refer to your MySQL
+database. When you modify your configuration file, <strong>MAKE SURE THAT YOU
+SPECIFY THAT THE CHARACTER ENCODING FOR THE DATABASE TO BE <code class="language-plaintext highlighter-rouge">UTF-8</code></strong> as shown
+below:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> AppConfig[:db_url] = "jdbc:mysql://localhost:3306/archivesspace?user=as&amp;password=as123&amp;useUnicode=true&amp;characterEncoding=UTF-8"
+</code></pre></div></div>
+
+<p>There is a database setup script that will create all the tables that
+ArchivesSpace requires.  Run this with:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scripts/setup-database.sh  # or setup-database.bat under Windows
+</code></pre></div></div>
+
+<p>You can now follow the instructions in the “Getting Started” section to start
+your ArchivesSpace application.</p>
+
+<p>**NOTE: For MySQL 8. MySQL 8 uses a new method (caching_sha2_password) as the default authentication plugin instead of the old mysql_native_password that MySQL 5.7 and older used. This may require starting a MySQL 8 server with the <code class="language-plaintext highlighter-rouge">--default-authentication-plugin=mysql_native_password</code> option. You may also be able to change the auth mechanism on a per user basis by logging into mysql and running <code class="language-plaintext highlighter-rouge">ALTER USER 'as'@'localhost' IDENTIFIED WITH mysql_native_password BY 'as123';</code>. Also be sure to have the LATEST <a href="http://dev.mysql.com/downloads/connector/j/">MySQL Connector for Java</a> from MySQL in your /lib/ directory for ArchivesSpace.</p>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/archivesspace">ArchivesSpace</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/tech-docs/assets/js/scale.fix.js"></script>
+  </body>
+</html>

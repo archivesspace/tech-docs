@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tech-docs | Technical documentation for ArchivesSpace</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="tech-docs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:site_name" content="tech-docs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="tech-docs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Technical documentation for ArchivesSpace","headline":"tech-docs","url":"/tech-docs/administration/upgrading.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/tech-docs/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/tech-docs/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <style>
+  /* Styles via https://getbootstrap.com/docs/5.3/components/alerts/#icons */
+  .deprecation-alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #58151c;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    border-radius: 0.375rem;
+  }
+  .deprecation-alert__svg {
+    flex-shrink: 0 !important;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5rem !important;
+    fill: currentcolor;
+  }
+</style>
+
+<aside class="deprecation-alert">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="exclamation-triangle-fill"
+    viewBox="0 0 16 16"
+    class="deprecation-alert__svg"
+    role="img"
+    aria-label="Danger:"
+  >
+    <path
+      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+    />
+  </svg>
+
+  <p style="margin-bottom: 0">
+    <em style="margin-right: 0.25rem; font-weight: 700">NOTE!</em> We recently
+    launched a
+    <a href="https://docs.archivesspace.org"
+      >new technical documentation site</a
+    >
+    as part of the ArchivesSpace v4.0.0 release.
+    <br />
+    For now both sites will be live, but we encourage you to take a look at the
+    new site and leave feedback or suggestions.
+  </p>
+</aside>
+
+
+      <header>
+        <h1><a href="/tech-docs/">tech-docs</a></h1>
+
+        
+
+        <p>Technical documentation for ArchivesSpace</p>
+
+        
+        <p class="view"><a href="https://github.com/archivesspace/tech-docs">View the Project on GitHub <small>archivesspace/tech-docs</small></a></p>
+        
+
+        
+
+        
+
+        <p>
+          <a
+            href="https://github.com/archivesspace/tech-docs/edit/master/administration/upgrading.md"
+            title="Edit administration/upgrading.md on GitHub"
+          >
+            Edit this page on GitHub
+            <small>administration/upgrading.md</small>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://archivesspace.atlassian.net/jira/software/projects/TD/issues"
+            title="Report issue with administration/upgrading.md on Jira"
+          >
+            Report issue on Jira
+            <small>administration/upgrading.md</small>
+          </a>
+        </p>
+      </header>
+      <section>
+
+      <h1 id="upgrading-to-a-new-release-of-archivesspace">Upgrading to a new release of ArchivesSpace</h1>
+
+<ul>
+  <li><strong><a href="upgrading/UPGRADING_1.1.0.html">Special considerations when upgrading to v1.1.0</a></strong></li>
+  <li><strong><a href="upgrading/UPGRADING_1.1.1.html">Special considerations when upgrading to v1.1.1</a></strong></li>
+  <li><strong><a href="upgrading/UPGRADING_1.5.0.html">Special considerations when upgrading from v1.4.2 to 1.5.x (these considerations also apply when upgrading from 1.4.2 to any version through 2.0.1)</a></strong></li>
+  <li><strong><a href="upgrading/UPGRADING_2.1.0.html">Special considerations when upgrading to 2.1.0</a></strong></li>
+</ul>
+
+<h2 id="create-a-backup-of-your-archivesspace-instance">Create a backup of your ArchivesSpace instance</h2>
+
+<p>You should make sure you have a working backup of your ArchivesSpace
+installation before attempting an upgrade.  Follow the steps
+under the <a href="backup.html">Backup and recovery section</a> to do this.</p>
+
+<h2 id="unpack-the-new-version">Unpack the new version</h2>
+
+<p>It’s a good idea to unpack a fresh copy of the version of
+ArchivesSpace you are upgrading to.  This will ensure that you are
+running the latest versions of all files.  In the examples below,
+replace the lower case x with the version number updating to. For example,
+1.5.2 or 1.5.3.</p>
+
+<p>For example, on Mac OS X or Linux:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ mkdir archivesspace-1.5.x
+ $ cd archivesspace-1.5.x
+ $ curl -LJO https://github.com/archivesspace/archivesspace/releases/download/v1.5.x/archivesspace-v1.5.x.zip
+ $ unzip -x archivesspace-v1.5.x.zip
+</code></pre></div></div>
+
+<p>( The curl step is optional and simply downloads the distribution from github. You can also
+ simply download the zip file in your browser and copy it to the directory )</p>
+
+<p>On Windows, you can do the same by extracting ArchivesSpace into a new
+folder you create in Windows Explorer.</p>
+
+<h2 id="shut-down-your-archivesspace-instance">Shut down your ArchivesSpace instance</h2>
+
+<p>To ensure you get a consistent copy, you will need to shut down your
+running ArchivesSpace instance now.</p>
+
+<h2 id="copy-your-configuration-and-data-files">Copy your configuration and data files</h2>
+
+<p>You will need to bring across the following files and directories from
+your original ArchivesSpace installation:</p>
+
+<ul>
+  <li>the <code class="language-plaintext highlighter-rouge">data</code> directory (see <strong>Indexes note</strong> below)</li>
+  <li>the <code class="language-plaintext highlighter-rouge">config</code> directory (see <strong>Configuration note</strong> below)</li>
+  <li>your <code class="language-plaintext highlighter-rouge">lib/mysql-connector*.jar</code> file (if using MySQL)</li>
+  <li>any plugins and local modifications you have installed in your <code class="language-plaintext highlighter-rouge">plugins</code> directory</li>
+</ul>
+
+<p>For example, on Mac OS X or Linux:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ cd archivesspace-1.5.x/archivesspace
+ $ cp -a /path/to/archivesspace-1.4.2/archivesspace/data/* data/
+ $ cp -a /path/to/archivesspace-1.4.2/archivesspace/config/* config/
+ $ cp -a /path/to/archivesspace-1.4.2/archivesspace/lib/mysql-connector* lib/
+ $ cp -a /path/to/archivesspace-1.4.2/archivesspace/plugins/local plugins/
+ $ cp -a /path/to/archivesspace-1.4.2/archivesspace/plugins/wonderful_plugin plugins/
+</code></pre></div></div>
+
+<p>Or on Windows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ cd archivesspace-1.5.x\archivesspace
+ $ xcopy \path\to\archivesspace-1.4.2\archivesspace\data\* data /i /k /h /s /e /o /x /y
+ $ xcopy \path\to\archivesspace-1.4.2\archivesspace\config\* config /i /k /h /s /e /o /x /y
+ $ xcopy \path\to\archivesspace-1.4.2\archivesspace\lib\mysql-connector* lib /i /k /h /s /e /o /x /y
+ $ xcopy \path\to\archivesspace-1.4.2\archivesspace\plugins\local plugins\local /i /k /h /s /e /o /x /y
+ $ xcopy \path\to\archivesspace-1.4.2\archivesspace\plugins\wonderful_plugin plugins\wonderful_plugin /i /k /h /s /e /o /x /y
+</code></pre></div></div>
+
+<p>Note that you may want to preserve the logs file (<code class="language-plaintext highlighter-rouge">logs/archivesspace.out</code>
+by default) from your previous installation–just in case you need to
+refer to it later.</p>
+
+<h3 id="configuration-note">Configuration note</h3>
+
+<p>Sometimes a new release of ArchivesSpace will introduce new
+configuration settings that weren’t present in previous releases.
+Before you replace the distribution <code class="language-plaintext highlighter-rouge">config/config.rb</code> with your
+original version, it’s a good idea to review the distribution version
+to see if there are any new configuration settings of interest.</p>
+
+<p>Upgrade notes will generally draw attention to any configuration
+settings you need to set explicitly, but you never know when you’ll
+discover a new, exciting feature!  Documentation might also refer to
+uncommenting configuration options that won’t be in your file if you
+keep your older version.</p>
+
+<h3 id="indexes-note">Indexes note</h3>
+
+<p>Sometimes a new release of ArchivesSpace will require a FULL reindex
+which means you do not want to copy over anything from your data directory
+to your new release. The data directory contains the indexes created by Solr.
+Check the release notes of the new version for any details about reindexing.</p>
+
+<h2 id="transfer-your-locales-data">Transfer your locales data</h2>
+
+<p>If you’ve made modifications to you locales file ( en.yml ) with customized
+labels, titles, tooltips, etc., you’ll need to transfer those to your new
+locale file.</p>
+
+<p>A good way to do this is to use a Diff tool, like Notepad++, TextMate, or just
+Linux diff command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ diff /path/to/archivesspace-1.4.2/locales/en.yml /path/to/archivesspace-1.5.x/archivesspace/locales/en.yml
+ $ diff /path/to/archivesspace-1.4.2/locales/enums/en.yml /path/to/archivesspace-v1.5.x/archivesspace/locales/enums/en.yml
+</code></pre></div></div>
+
+<p>This will show you the differences in your current locales files, as well as the
+new additions in the new version locales files. Simply copy the values you wish
+to keep from your old ArchivesSpace locales to your new ArchivesSpace locales
+files.</p>
+
+<h2 id="run-the-database-migrations">Run the database migrations</h2>
+
+<p>With everything copied, the final step is to run the database
+migrations.  This will apply any schema changes and data migrations
+that need to happen as a part of the upgrade.  To do this, use the
+<code class="language-plaintext highlighter-rouge">setup-database</code> script for your platform. For example, on Mac OS X
+or Linux:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ cd archivesspace-1.5.x/archivesspace
+ $ scripts/setup-database.sh
+</code></pre></div></div>
+
+<p>Or on Windows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ cd archivesspace-1.5.x\archivesspace
+ $ scripts\setup-database.bat
+</code></pre></div></div>
+
+<h2 id="if-youre-using-external-solr-required-beginning-with-version-320">If you’re using external Solr (required beginning with version 3.2.0)</h2>
+
+<p><a href="https://archivesspace.github.io/tech-docs/provisioning/solr.html">Full instructions for using external Solr with ArchivesSpace</a></p>
+
+<h2 id="if-youve-deployed-to-tomcat">If you’ve deployed to Tomcat</h2>
+
+<p>The steps to deploy to Tomcat are esentially the same as in the
+<a href="https://github.com/archivesspace-labs/archivesspace_tomcat">archivesspace_tomcat</a></p>
+
+<p>But, prior to running your setup-tomcat script, you’ll need to be sure to clean out the
+any libraries from the previous ASpace version from your Tomcat classpath.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 1. Stop Tomcat
+ 2. Unpack your new version of ArchivesSpace
+ 3. Configure your MySQL database in the config.rb ( just like in the
+    install instructions )
+ 4. Make sure all you other local configuration settings are in your
+    config.rb file ( check your Tomcat conf/config.rb file for your current
+    settings. )
+ 5. Make sure you MySQL connector jar in the lib directory
+ 6. Run your setup-database script to migration your database.
+ 7. Delete all ASpace related jar libraries in your Tomcat's lib directory. These
+    will include the "gems" folder, as well as "common.jar" and some
+    [others](https://github.com/archivesspace/archivesspace/tree/master/common/lib).
+    This will make sure your running the correct version of the dependent
+    libraries for your new ASpace version.
+    Just be sure not to delete any of the Apache Tomcat libraries.
+ 8. Run your setup-tomcat script ( just like in the install instructions ).
+    This will copy all the files over to Tomcat.
+ 9. Start Tomcat
+</code></pre></div></div>
+
+<h2 id="thats-it">That’s it!</h2>
+
+<p>You can now start your new ArchivesSpace version as normal.</p>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/archivesspace">ArchivesSpace</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/tech-docs/assets/js/scale.fix.js"></script>
+  </body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tech-docs | Technical documentation for ArchivesSpace</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="tech-docs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:site_name" content="tech-docs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="tech-docs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Technical documentation for ArchivesSpace","headline":"tech-docs","url":"/tech-docs/development/jruby-rack-build.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/tech-docs/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/tech-docs/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <style>
+  /* Styles via https://getbootstrap.com/docs/5.3/components/alerts/#icons */
+  .deprecation-alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #58151c;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    border-radius: 0.375rem;
+  }
+  .deprecation-alert__svg {
+    flex-shrink: 0 !important;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5rem !important;
+    fill: currentcolor;
+  }
+</style>
+
+<aside class="deprecation-alert">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="exclamation-triangle-fill"
+    viewBox="0 0 16 16"
+    class="deprecation-alert__svg"
+    role="img"
+    aria-label="Danger:"
+  >
+    <path
+      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+    />
+  </svg>
+
+  <p style="margin-bottom: 0">
+    <em style="margin-right: 0.25rem; font-weight: 700">NOTE!</em> We recently
+    launched a
+    <a href="https://docs.archivesspace.org"
+      >new technical documentation site</a
+    >
+    as part of the ArchivesSpace v4.0.0 release.
+    <br />
+    For now both sites will be live, but we encourage you to take a look at the
+    new site and leave feedback or suggestions.
+  </p>
+</aside>
+
+
+      <header>
+        <h1><a href="/tech-docs/">tech-docs</a></h1>
+
+        
+
+        <p>Technical documentation for ArchivesSpace</p>
+
+        
+        <p class="view"><a href="https://github.com/archivesspace/tech-docs">View the Project on GitHub <small>archivesspace/tech-docs</small></a></p>
+        
+
+        
+
+        
+
+        <p>
+          <a
+            href="https://github.com/archivesspace/tech-docs/edit/master/development/jruby-rack-build.md"
+            title="Edit development/jruby-rack-build.md on GitHub"
+          >
+            Edit this page on GitHub
+            <small>development/jruby-rack-build.md</small>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://archivesspace.atlassian.net/jira/software/projects/TD/issues"
+            title="Report issue with development/jruby-rack-build.md on Jira"
+          >
+            Report issue on Jira
+            <small>development/jruby-rack-build.md</small>
+          </a>
+        </p>
+      </header>
+      <section>
+
+      <h1 id="upgrading-rack-for-archivesspace">Upgrading Rack for ArchivesSpace</h1>
+
+<ul>
+  <li>Install local JRuby (match aspace version, currently: 9.2.12.0) and switch to it.</li>
+  <li>Install Maven.</li>
+  <li>Download jruby-rack.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout 1.1-stable
+# install bundler version to match 1.1-stable Gemfile.lock
+gem install bundler --version=1.14.6
+</code></pre></div></div>
+
+<p>Should result in:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Fetching bundler-1.14.6.gem
+Successfully installed bundler-1.14.6
+Parsing documentation for bundler-1.14.6
+Installing ri documentation for bundler-1.14.6
+Done installing documentation for bundler after 5 seconds
+1 gem installed
+</code></pre></div></div>
+
+<p>Set environment to target rack version (the version being upgraded to):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export RACK_VERSION=2.2.3
+bundle
+</code></pre></div></div>
+
+<p>Should result in:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Fetching gem metadata from https://rubygems.org/.............
+Fetching version metadata from https://rubygems.org/..
+Resolving dependencies...
+Installing rake 10.4.2
+Using bundler 1.14.6
+Using diff-lcs 1.2.5
+Installing jruby-openssl 0.9.21 (java)
+Using rack 2.2.3 (was 1.6.8)
+Using rspec-core 2.14.8
+Using rspec-mocks 2.14.6
+Using appraisal 0.5.2
+Using rspec-expectations 2.14.5
+Using rspec 2.14.1
+Bundle complete! 5 Gemfile dependencies, 10 gems now installed.
+Use `bundle show [gemname]` to see where a bundled gem is installed.
+</code></pre></div></div>
+
+<p>This will have bumped the Rack version in Gemfile.lock:</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gh">diff --git a/Gemfile.lock b/Gemfile.lock
+index 493c667..f016925 100644
+</span><span class="gd">--- a/Gemfile.lock
+</span><span class="gi">+++ b/Gemfile.lock
+</span><span class="p">@@ -6,7 +6,7 @@</span> GEM
+       rake
+     diff-lcs (1.2.5)
+     jruby-openssl (0.9.21-java)
+<span class="gd">-    rack (1.6.8)
+</span><span class="gi">+    rack (2.2.3)
+</span>     rake (10.4.2)
+     rspec (2.14.1)
+       rspec-core (~&gt; 2.14.0)
+<span class="p">@@ -23,7 +23,7 @@</span> PLATFORMS
+ DEPENDENCIES
+   appraisal
+   jruby-openssl (~&gt; 0.9.20)
+<span class="gd">-  rack (~&gt; 1.6.8)
+</span><span class="gi">+  rack (= 2.2.3)
+</span>   rake (~&gt; 10.4.2)
+   rspec (~&gt; 2.14.1)
+</code></pre></div></div>
+
+<p>Build the jruby-rack jar:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle exec jruby -S rake clean gem SKIP_SPECS=true
+</code></pre></div></div>
+
+<p>This creates <code class="language-plaintext highlighter-rouge">target/jruby-rack-1.1.21.jar</code> with Rack 2.2.3.</p>
+
+<p>Upload the jar to the public s3 bucket, specifying the rack version:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 <span class="nb">cp </span>target/jruby-rack-1.1.21.jar <span class="se">\</span>
+  s3://as-public-shared-files/jruby-rack-1.1.21_rack-2.2.3.jar <span class="se">\</span>
+  <span class="nt">--profile</span> archivesspace
+</code></pre></div></div>
+
+<p>Finally, update <code class="language-plaintext highlighter-rouge">rack_version</code> in the aspace <code class="language-plaintext highlighter-rouge">build.xml</code> file.</p>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/archivesspace">ArchivesSpace</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/tech-docs/assets/js/scale.fix.js"></script>
+  </body>
+</html>

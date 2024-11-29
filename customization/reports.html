@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tech-docs | Technical documentation for ArchivesSpace</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="tech-docs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:site_name" content="tech-docs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="tech-docs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Technical documentation for ArchivesSpace","headline":"tech-docs","url":"/tech-docs/customization/reports.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/tech-docs/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/tech-docs/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <style>
+  /* Styles via https://getbootstrap.com/docs/5.3/components/alerts/#icons */
+  .deprecation-alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #58151c;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    border-radius: 0.375rem;
+  }
+  .deprecation-alert__svg {
+    flex-shrink: 0 !important;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5rem !important;
+    fill: currentcolor;
+  }
+</style>
+
+<aside class="deprecation-alert">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="exclamation-triangle-fill"
+    viewBox="0 0 16 16"
+    class="deprecation-alert__svg"
+    role="img"
+    aria-label="Danger:"
+  >
+    <path
+      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+    />
+  </svg>
+
+  <p style="margin-bottom: 0">
+    <em style="margin-right: 0.25rem; font-weight: 700">NOTE!</em> We recently
+    launched a
+    <a href="https://docs.archivesspace.org"
+      >new technical documentation site</a
+    >
+    as part of the ArchivesSpace v4.0.0 release.
+    <br />
+    For now both sites will be live, but we encourage you to take a look at the
+    new site and leave feedback or suggestions.
+  </p>
+</aside>
+
+
+      <header>
+        <h1><a href="/tech-docs/">tech-docs</a></h1>
+
+        
+
+        <p>Technical documentation for ArchivesSpace</p>
+
+        
+        <p class="view"><a href="https://github.com/archivesspace/tech-docs">View the Project on GitHub <small>archivesspace/tech-docs</small></a></p>
+        
+
+        
+
+        
+
+        <p>
+          <a
+            href="https://github.com/archivesspace/tech-docs/edit/master/customization/reports.md"
+            title="Edit customization/reports.md on GitHub"
+          >
+            Edit this page on GitHub
+            <small>customization/reports.md</small>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://archivesspace.atlassian.net/jira/software/projects/TD/issues"
+            title="Report issue with customization/reports.md on Jira"
+          >
+            Report issue on Jira
+            <small>customization/reports.md</small>
+          </a>
+        </p>
+      </header>
+      <section>
+
+      <h1 id="reports">Reports</h1>
+
+<p>Adding a report is intended to be a fairly simple process. The requirements for creating a report are outlined below.</p>
+
+<h2 id="adding-a-report">Adding a Report</h2>
+<h3 id="required">Required</h3>
+<ul>
+  <li>Create a class for your report that is a subclass of AbstractReport.</li>
+  <li>Call register_report. If your report has any parameters, specify them here.</li>
+  <li>Implement query_string
+    <ul>
+      <li>This should be a raw SQL string</li>
+      <li>To prevent SQL injection, use db.literal for any user input i.e. use <code class="language-plaintext highlighter-rouge">"select * from table where column = #{db.literal(value)}"</code> instead of <code class="language-plaintext highlighter-rouge">"select * from table where column = '#{value}'"</code></li>
+    </ul>
+  </li>
+  <li>Provide translations for column headers and the title of your report
+    <ul>
+      <li>They should be in yml files under <em>language</em>.reports.<em>report name</em></li>
+      <li>The translation for title should be whatever you want the name of the report to be.</li>
+      <li>If the translation you want is already in <em>language</em>.reports.translation_defaults (found in the static folder) you do not need to specify it.</li>
+      <li>Translations specific to the individual report are given priority over translation defaults.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="optional">Optional</h3>
+<ul>
+  <li>Implement your own initializer if your report has any parameters.</li>
+  <li>Implement fix_row in order to clean up data and add subreports.
+    <ul>
+      <li>Each result will be passed to fix_row as a hash</li>
+      <li>ReportUtils offers various class methods to simplify cleaning up data.</li>
+      <li>You can also add subreports here with something like <code class="language-plaintext highlighter-rouge">row[:subreport_name] = SubreportClassName.new(self, row[:id]).get_content</code> where row is the result as a hash which was a parameter to fix_row. See <a href="#adding-a-subreport">Adding a Subreport</a> for more information on adding subreports.</li>
+      <li>Sometimes you will want to delete something from the result that you needed in order to generate a subreport but do not want to show up in the final report (such as id). To do this use <code class="language-plaintext highlighter-rouge">row.delete(:id)</code>.</li>
+    </ul>
+  </li>
+  <li>Special implementation of query - The default implementation is simply <code class="language-plaintext highlighter-rouge">db.fetch(query_string)</code> but implementing it yourself may give you more flexibility. In the end, it needs to return a result set.</li>
+  <li>There is a hash called info that controls what shows up in the header at the top of the report. Examples may include total record count, total extent, or any parameters that are provided by the user for your report. Add anything you want to show up in the report header to info. Repository name will be included automatically. Be sure to provide translations for the keys you add to info.</li>
+  <li>after_tasks is run after fix_row executes on all the results. Implement this if you have anything that needs to get done here before the report is rendered</li>
+  <li>Specify identifier_field if you want to add a heading to each individual record. For instance, identifier_field might be <code class="language-plaintext highlighter-rouge">:accession_number</code> for a report on accessions.</li>
+  <li>Implement page_break to be false if you do not want a page break after each record in the PDF of the report.</li>
+  <li>Implement special_translation if there is anything you want translate in a special way (i.e. it can’t be accomplished by the yml file).</li>
+</ul>
+
+<h2 id="adding-a-subreport">Adding A Subreport</h2>
+
+<h3 id="required-1">Required</h3>
+<ul>
+  <li>Create a class for your subreport that is a subclass of AbstractSubreport.</li>
+  <li>Create an initializer that takes in the parent report/subreport as well as any parameters you need to run the subreport (usually this is just an id from the result in the parent report/subreport). Your initializer should call <code class="language-plaintext highlighter-rouge">super(parent_report)</code>.</li>
+  <li>Implement query_string. This works the same way as it does for reports.</li>
+  <li>Provide necessary translations.</li>
+</ul>
+
+<h3 id="optional-1">Optional</h3>
+<ul>
+  <li>Special implementation of query</li>
+  <li>fix_row works just like in reports
+    <ul>
+      <li>note that you can add nested subreports</li>
+    </ul>
+  </li>
+</ul>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/archivesspace">ArchivesSpace</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/tech-docs/assets/js/scale.fix.js"></script>
+  </body>
+</html>

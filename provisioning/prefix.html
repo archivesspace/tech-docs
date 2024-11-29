@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tech-docs | Technical documentation for ArchivesSpace</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="tech-docs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:site_name" content="tech-docs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="tech-docs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Technical documentation for ArchivesSpace","headline":"tech-docs","url":"/tech-docs/provisioning/prefix.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/tech-docs/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/tech-docs/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <style>
+  /* Styles via https://getbootstrap.com/docs/5.3/components/alerts/#icons */
+  .deprecation-alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #58151c;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    border-radius: 0.375rem;
+  }
+  .deprecation-alert__svg {
+    flex-shrink: 0 !important;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5rem !important;
+    fill: currentcolor;
+  }
+</style>
+
+<aside class="deprecation-alert">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="exclamation-triangle-fill"
+    viewBox="0 0 16 16"
+    class="deprecation-alert__svg"
+    role="img"
+    aria-label="Danger:"
+  >
+    <path
+      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+    />
+  </svg>
+
+  <p style="margin-bottom: 0">
+    <em style="margin-right: 0.25rem; font-weight: 700">NOTE!</em> We recently
+    launched a
+    <a href="https://docs.archivesspace.org"
+      >new technical documentation site</a
+    >
+    as part of the ArchivesSpace v4.0.0 release.
+    <br />
+    For now both sites will be live, but we encourage you to take a look at the
+    new site and leave feedback or suggestions.
+  </p>
+</aside>
+
+
+      <header>
+        <h1><a href="/tech-docs/">tech-docs</a></h1>
+
+        
+
+        <p>Technical documentation for ArchivesSpace</p>
+
+        
+        <p class="view"><a href="https://github.com/archivesspace/tech-docs">View the Project on GitHub <small>archivesspace/tech-docs</small></a></p>
+        
+
+        
+
+        
+
+        <p>
+          <a
+            href="https://github.com/archivesspace/tech-docs/edit/master/provisioning/prefix.md"
+            title="Edit provisioning/prefix.md on GitHub"
+          >
+            Edit this page on GitHub
+            <small>provisioning/prefix.md</small>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://archivesspace.atlassian.net/jira/software/projects/TD/issues"
+            title="Report issue with provisioning/prefix.md on Jira"
+          >
+            Report issue on Jira
+            <small>provisioning/prefix.md</small>
+          </a>
+        </p>
+      </header>
+      <section>
+
+      <h1 id="running-archivesspace-under-a-prefix">Running ArchivesSpace under a prefix</h1>
+
+<p><strong>Important Note: Prefixes do NOT work properly in versions between 2.0.1 and 2.2.2</strong></p>
+
+<p>This document describes a simple approach for those wishing to deviate from the recommended
+practice of running each user-facing ArchivesSpace application on its own subdomain, and instead
+serve each application under a prefix, e.g.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://aspace.myarchive.org/staff
+http://aspace.myarchive.org/public
+</code></pre></div></div>
+
+<p>This configuration described in this document is one possible approach,
+and to keep things simple the following are assumed:</p>
+
+<ul>
+  <li>ArchivesSpace is running on a single Linux server</li>
+  <li>The server is running the Apache 2.2+ webserver</li>
+</ul>
+
+<p>Unless otherwise stated, it is assumed that you have root access on
+your machines, and all commands are to be run as root (or with sudo).</p>
+
+<h2 id="step-1-setup-proxies-in-your-apache-configuration">Step 1: Setup proxies in your Apache configuration</h2>
+
+<p>The following edits can be made in the httpd.conf file itself, or in an included file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ProxyPass /staff http://localhost:8080/staff
+ProxyPassReverse /staff http://localhost:8080/
+ProxyPass /public http://localhost:8081/public
+ProxyPassReverse /public http://localhost:8081/
+</code></pre></div></div>
+
+<p>Now restart Apache.</p>
+
+<h2 id="step-2-install-and-configure-archivesspace">Step 2: Install and configure ArchivesSpace</h2>
+
+<p>Follow the instructions in the main README to download and install ArchivesSpace.</p>
+
+<p>Open the file <code class="language-plaintext highlighter-rouge">archivesspace/config/config.rb</code> and add the following lines:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AppConfig[:frontend_proxy_url] = 'http://aspace.myarchive.org/staff'
+AppConfig[:public_proxy_url] = 'http://aspace.myarchive.org/public'
+</code></pre></div></div>
+
+<p>(Note: These lines should NOT begin with a ‘#’ character.)</p>
+
+<p>Start ArchivesSpace.</p>
+
+<h2 id="step-3-optional-lock-down-ports-8080-and-8081">Step 3: (Optional) Lock down ports 8080 and 8081</h2>
+
+<p>By default, the staff and public applications are accessible on ports 8080 and 8081</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://aspace.myarchive.org:8080
+http://aspace.myarchive.org:8081
+</code></pre></div></div>
+
+<p>Since these are not the URLs at which users should access the application, you will probably
+want to close them off. See README_HTTPS for more information on closing ports using iptables.</p>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/archivesspace">ArchivesSpace</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/tech-docs/assets/js/scale.fix.js"></script>
+  </body>
+</html>

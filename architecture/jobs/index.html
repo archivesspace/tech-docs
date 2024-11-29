@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tech-docs | Technical documentation for ArchivesSpace</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="tech-docs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:site_name" content="tech-docs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="tech-docs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Technical documentation for ArchivesSpace","headline":"tech-docs","url":"/tech-docs/architecture/jobs/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/tech-docs/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/tech-docs/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <style>
+  /* Styles via https://getbootstrap.com/docs/5.3/components/alerts/#icons */
+  .deprecation-alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #58151c;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    border-radius: 0.375rem;
+  }
+  .deprecation-alert__svg {
+    flex-shrink: 0 !important;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5rem !important;
+    fill: currentcolor;
+  }
+</style>
+
+<aside class="deprecation-alert">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="exclamation-triangle-fill"
+    viewBox="0 0 16 16"
+    class="deprecation-alert__svg"
+    role="img"
+    aria-label="Danger:"
+  >
+    <path
+      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+    />
+  </svg>
+
+  <p style="margin-bottom: 0">
+    <em style="margin-right: 0.25rem; font-weight: 700">NOTE!</em> We recently
+    launched a
+    <a href="https://docs.archivesspace.org"
+      >new technical documentation site</a
+    >
+    as part of the ArchivesSpace v4.0.0 release.
+    <br />
+    For now both sites will be live, but we encourage you to take a look at the
+    new site and leave feedback or suggestions.
+  </p>
+</aside>
+
+
+      <header>
+        <h1><a href="/tech-docs/">tech-docs</a></h1>
+
+        
+
+        <p>Technical documentation for ArchivesSpace</p>
+
+        
+        <p class="view"><a href="https://github.com/archivesspace/tech-docs">View the Project on GitHub <small>archivesspace/tech-docs</small></a></p>
+        
+
+        
+
+        
+
+        <p>
+          <a
+            href="https://github.com/archivesspace/tech-docs/edit/master/architecture/jobs/README.md"
+            title="Edit architecture/jobs/README.md on GitHub"
+          >
+            Edit this page on GitHub
+            <small>architecture/jobs/README.md</small>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://archivesspace.atlassian.net/jira/software/projects/TD/issues"
+            title="Report issue with architecture/jobs/README.md on Jira"
+          >
+            Report issue on Jira
+            <small>architecture/jobs/README.md</small>
+          </a>
+        </p>
+      </header>
+      <section>
+
+      <h1 id="background-jobs">Background Jobs</h1>
+
+<p>ArchivesSpace provides a mechanism for long running processes to run
+asynchronously. These processes are called <code class="language-plaintext highlighter-rouge">Background Jobs</code>.</p>
+
+<h2 id="managing-jobs-in-the-staff-ui">Managing Jobs in the Staff UI</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">Create</code> menu has a <code class="language-plaintext highlighter-rouge">Background Job</code> option which shows a submenu of job
+types that the current user has permission to create. (See below for more
+  information about job permissions and hidden jobs.) Selecting one of these
+  options will take the user to a form to enter any parameters required for the
+  job and then to create it.</p>
+
+<p>When a job is created it is placed in the <code class="language-plaintext highlighter-rouge">Background Job Queue</code>. Jobs in the
+queue will be run in the order they were created. (See below for more
+  information about multiple threads and concurrent jobs.)</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Browse</code> menu has a <code class="language-plaintext highlighter-rouge">Background Jobs</code> option. This takes the user to a list
+of jobs arranged by their status. The user can then view the details of a job,
+and cancel it if they have permission.</p>
+
+<h2 id="permissions">Permissions</h2>
+
+<p>A user must have the <code class="language-plaintext highlighter-rouge">create_job</code> permission to create a job. By default, this
+permission is included in the <code class="language-plaintext highlighter-rouge">repository_basic_data_entry</code> group.</p>
+
+<p>A user must have the <code class="language-plaintext highlighter-rouge">cancel_job</code> permission to cancel a job. By default, this
+permission is included in the <code class="language-plaintext highlighter-rouge">repository_managers</code> group.</p>
+
+<p>When a JobRunner registers it can specify additional create and cancel
+permissions. (See below for more information)</p>
+
+<h2 id="types-runners-and-schemas">Types, Runners and Schemas</h2>
+
+<p>Each job has a type, and each type has a registered runner to run jobs of that
+type and JSONModel schema to define its parameters.</p>
+
+<h4 id="registered-jobrunners">Registered JobRunners</h4>
+
+<p>All jobs of a type are handled by a registered <code class="language-plaintext highlighter-rouge">JobRunner</code>. The job runner
+classes are located here:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  backend/app/lib/job_runners/
+</code></pre></div></div>
+
+<p>It is possible to define additional job runners from a plugin. (See below for
+  more information about plugins.)</p>
+
+<p>A job runner class must subclass <code class="language-plaintext highlighter-rouge">JobRunner</code>, register to run one or more job
+types, and implement a <code class="language-plaintext highlighter-rouge">#run</code> method for jobs that it handles.</p>
+
+<p>When a job runner registers for a job type, it can set some options:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">:hidden</code>
+    <ul>
+      <li>Defaults to <code class="language-plaintext highlighter-rouge">false</code></li>
+      <li>If this is set then this job type will not be shown in the list of available job types.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">:run_concurrently</code>
+    <ul>
+      <li>Defaults to <code class="language-plaintext highlighter-rouge">false</code></li>
+      <li>If this is set to true then more than one job of this type can run at the same time.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">:create_permissions</code>
+    <ul>
+      <li>Defaults to <code class="language-plaintext highlighter-rouge">[]</code></li>
+      <li>A permission or list of permissions required, in addition to <code class="language-plaintext highlighter-rouge">create_job</code>, to create jobs of this type.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">:cancel_permissions</code>
+    <ul>
+      <li>Defaults to <code class="language-plaintext highlighter-rouge">[]</code></li>
+      <li>A permission or list of permissions required, in addition to <code class="language-plaintext highlighter-rouge">cancel_job</code>, to cancel jobs of this type.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>For more information about defining a job runner, see the <code class="language-plaintext highlighter-rouge">JobRunner</code> superclass:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  backend/app/lib/job_runner.rb
+</code></pre></div></div>
+
+<h4 id="jsonmodel-schemas">JSONModel Schemas</h4>
+
+<p>A job type also requires a JSONModel schema that defines the parameters to run a
+job of the type. The schema name must be the same as the type that the runner
+registers for. For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  common/schemas/import_job.rb
+</code></pre></div></div>
+
+<p>This schema, for <code class="language-plaintext highlighter-rouge">JSONModel(:import_job)</code>, defines the parameters for running a
+job of type <code class="language-plaintext highlighter-rouge">import_job</code>.</p>
+
+<h2 id="concurrency">Concurrency</h2>
+
+<p>ArchivesSpace can be configured to run more than one background job at a time.
+By default, there will be two threads available to run background jobs.
+The configuration looks like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  AppConfig[:job_thread_count] = 2
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">BackgroundJobQueue</code> will start this number of threads at start up. Those
+threads will then poll for queued jobs and run them.</p>
+
+<p>When a job runner registers, it can set an option called <code class="language-plaintext highlighter-rouge">:run_concurrently</code>.
+This is <code class="language-plaintext highlighter-rouge">false</code> by default. When set to <code class="language-plaintext highlighter-rouge">false</code> a job thread will not run a job
+if there is already a job of that type running. The job will remain on the queue
+and will be run when there are no longer any jobs of its type running.</p>
+
+<p>When set to <code class="language-plaintext highlighter-rouge">true</code> a job will be run when it comes to the front of the queue
+regardless of whether there is a job of the same type running.</p>
+
+<h2 id="plugins">Plugins</h2>
+
+<p>It is possible to add a new job type from a plugin. ArchivesSpace includes a
+plugin that demonstrates how to do this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  plugins/jobs_example
+</code></pre></div></div>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/archivesspace">ArchivesSpace</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/tech-docs/assets/js/scale.fix.js"></script>
+  </body>
+</html>

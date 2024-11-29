@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tech-docs | Technical documentation for ArchivesSpace</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="tech-docs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:site_name" content="tech-docs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="tech-docs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Technical documentation for ArchivesSpace","headline":"tech-docs","url":"/tech-docs/customization/plugins.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/tech-docs/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/tech-docs/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <style>
+  /* Styles via https://getbootstrap.com/docs/5.3/components/alerts/#icons */
+  .deprecation-alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #58151c;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    border-radius: 0.375rem;
+  }
+  .deprecation-alert__svg {
+    flex-shrink: 0 !important;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5rem !important;
+    fill: currentcolor;
+  }
+</style>
+
+<aside class="deprecation-alert">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="exclamation-triangle-fill"
+    viewBox="0 0 16 16"
+    class="deprecation-alert__svg"
+    role="img"
+    aria-label="Danger:"
+  >
+    <path
+      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+    />
+  </svg>
+
+  <p style="margin-bottom: 0">
+    <em style="margin-right: 0.25rem; font-weight: 700">NOTE!</em> We recently
+    launched a
+    <a href="https://docs.archivesspace.org"
+      >new technical documentation site</a
+    >
+    as part of the ArchivesSpace v4.0.0 release.
+    <br />
+    For now both sites will be live, but we encourage you to take a look at the
+    new site and leave feedback or suggestions.
+  </p>
+</aside>
+
+
+      <header>
+        <h1><a href="/tech-docs/">tech-docs</a></h1>
+
+        
+
+        <p>Technical documentation for ArchivesSpace</p>
+
+        
+        <p class="view"><a href="https://github.com/archivesspace/tech-docs">View the Project on GitHub <small>archivesspace/tech-docs</small></a></p>
+        
+
+        
+
+        
+
+        <p>
+          <a
+            href="https://github.com/archivesspace/tech-docs/edit/master/customization/plugins.md"
+            title="Edit customization/plugins.md on GitHub"
+          >
+            Edit this page on GitHub
+            <small>customization/plugins.md</small>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://archivesspace.atlassian.net/jira/software/projects/TD/issues"
+            title="Report issue with customization/plugins.md on Jira"
+          >
+            Report issue on Jira
+            <small>customization/plugins.md</small>
+          </a>
+        </p>
+      </header>
+      <section>
+
+      <h1 id="archivesspace-plug-ins">ArchivesSpace Plug-ins</h1>
+
+<p>Plug-ins are a powerful feature, designed to allow you to change
+most aspects of how the application behaves.</p>
+
+<p>Plug-ins provide a mechanism to customize ArchivesSpace by overriding or extending functions
+without changing the core codebase. As they are self-contained, they also permit the ready
+sharing of packages of customization between ArchivesSpace instances.</p>
+
+<p>The ArchivesSpace distribution comes with the <code class="language-plaintext highlighter-rouge">hello_world</code> exemplar plug-in. Please refer to its <a href="https://github.com/archivesspace/archivesspace/blob/master/plugins/hello_world/README.md">README file</a> for a detailed description of how it is constructed and implemented.</p>
+
+<p>You can find other examples in the following plugin repositories. The ArchivesSpace plugins that are officially supported and maintained by the ArchivesSpace Program Team are in archivesspace-plugins (https://github.com/archivesspace-plugins). Deprecated code which is no longer supported but has been kept for future reference is in archivesspace-deprecated (https://github.com/archivesspace-deprecated). There is an open/unmanaged GitHub repository where community members can share their code called archivesspace-labs (https://github.com/archivesspace-labs). The community developed Python library for interacting with the ArchivesSpace API, called ArchivesSnake, is managed in the archivesspace-labs repository.</p>
+
+<h2 id="enabling-plugins">Enabling plugins</h2>
+
+<p>Plug-ins are enabled by placing them in the <code class="language-plaintext highlighter-rouge">plugins</code> directory, and referencing them in the
+ArchivesSpace configuration, <code class="language-plaintext highlighter-rouge">config/config.rb</code>. For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AppConfig[:plugins] = ['local', 'hello_world', 'my_plugin']
+</code></pre></div></div>
+
+<p>This configuration assumes the following directories exist:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugins
+  hello_world
+  local
+  my_plugin
+</code></pre></div></div>
+
+<p>Note that the order that the plug-ins are listed in the <code class="language-plaintext highlighter-rouge">:plugins</code> configuration option
+determines the order in which they are loaded by the application.</p>
+
+<h2 id="plugin-structure">Plugin structure</h2>
+
+<p>The directory structure within a plug-in is similar to the structure of the core application.
+The following shows the supported plug-in structure. Files contained in these directories can
+be used to override or extend the behavior of the core application.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>backend
+  controllers ......... backend endpoints
+  model ............... database mapping models
+  converters .......... classes for importing data
+  job_runners ......... classes for defining background jobs
+  plugin_init.rb ...... if present, loaded when the backend first starts
+  lib/bulk_import ..... bulk import processor
+frontend
+  assets .............. static assets (such as images, javascript) in the staff interface
+  controllers ......... controllers for the staff interface
+  locales ............. locale translations for the staff interface
+  views ............... templates for the staff interface
+  plugin_init.rb ...... if present, loaded when the staff interface first starts
+public
+  assets .............. static assets (such as images, javascript) in the public interface
+  controllers ......... controllers for the public interface
+  locales ............. locale translations for the public interface
+  views ............... templates for the public interface
+  plugin_init.rb ...... if present, loaded when the public interface first starts
+migrations ............ database migrations
+schemas ............... JSONModel schema definitions
+search_definitions.rb . Advanced search fields
+</code></pre></div></div>
+
+<p><strong>Note</strong> that <code class="language-plaintext highlighter-rouge">backend/lib/bulk_import</code> is the only directory in <code class="language-plaintext highlighter-rouge">backend/lib/</code> that is loaded by the plugin manager.  Other files in <code class="language-plaintext highlighter-rouge">backend/lib/</code> will not be loaded during startup.</p>
+
+<p><strong>Note</strong> that, in order to override or extend the behavior of core models and controllers, you cannot simply put your replacement with the same name in the corresponding directory path.  Core models and controllers can be overridden by adding an <code class="language-plaintext highlighter-rouge">after_initialize</code> block to <code class="language-plaintext highlighter-rouge">plugin_init.rb</code> (e.g. <a href="https://github.com/harvard-library/aspace-hvd-pui/blob/master/public/plugin_init.rb#L43">aspace-hvd-pui</a>).</p>
+
+<h2 id="overriding-behavior">Overriding behavior</h2>
+
+<p>A general rule is: to override behavior, rather then extend it, match the path
+to the file that contains the behavior to be overridden.</p>
+
+<p>It is not necessary for a plug-in to have all of these directories. For example, to override
+some part of a locale file for the staff interface, you can just add the following structure
+to the local plug-in:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugins/local/frontend/locales/en.yml
+</code></pre></div></div>
+
+<p>More detailed information about overriding locale files is found in <a href="./locales.html">Customizing text in ArchivesSpace</a></p>
+
+<h2 id="overriding-the-visual-web-presentation">Overriding the visual (web) presentation</h2>
+
+<p>You can directly override any view file in the core application by placing an erb file of the same name in the analogous path.
+For example, if you want to override the appearance of the “Welcome” [home] page of the Public User Interface, you can make your changes to a file <code class="language-plaintext highlighter-rouge">show.html.erb</code> and place it at <code class="language-plaintext highlighter-rouge">plugins/my_fine_plugin/public/views/welcome/show.html.erb</code>. (Where <em>my_fine_plugin</em> is the name of your plugin)</p>
+
+<h3 id="implementing-a-broadly-applied-style-or-javascript-change">Implementing a broadly-applied style or javascript change</h3>
+
+<p>Unless you want to write inline style or javascript (which may be practiceable for a template or two), best practice is to create <code class="language-plaintext highlighter-rouge">plugins/my_fine_plugin/public/views/layout_head.html.erb</code> or <code class="language-plaintext highlighter-rouge">plugins/my_fine_plugin/frontend/views/layout_head.html.erb</code>, which contains the HTML statements to incorporate your javascript or css into the <code class="language-plaintext highlighter-rouge">&lt;HEAD&gt;</code> element of the template.  Here’s an example:</p>
+
+<ul>
+  <li>For the public interface, I want to change the size of the text in all links when the user is hovering.
+    <ul>
+      <li>I create <code class="language-plaintext highlighter-rouge">plugins/my_fine_plugin/public/assets/my.css</code>:
+        <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span><span class="nl">font-size</span><span class="p">:</span> <span class="m">2em</span><span class="p">;}</span>
+</code></pre></div>        </div>
+      </li>
+      <li>I create <code class="language-plaintext highlighter-rouge">plugins/my_fine_plugin/public/views/layout_head.html.erb</code>, and insert:
+        <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="sx">%= stylesheet_link_tag "#{@base_url}/assets/my.css", media: :all %&gt;
+</span></code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>For the public interface, I want to add some javascript behavior such that, when the user hovers over a list item, astericks appear
+    <ul>
+      <li>I create <code class="language-plaintext highlighter-rouge">plugins/my_fine_plugin/public/assets/my.js</code>”
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+     <span class="nx">$</span><span class="p">(</span> <span class="dl">"</span><span class="s2">li</span><span class="dl">"</span> <span class="p">).</span><span class="nx">hover</span><span class="p">(</span>
+       <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+          <span class="nx">$</span><span class="p">(</span> <span class="k">this</span> <span class="p">).</span><span class="nx">append</span><span class="p">(</span> <span class="nx">$</span><span class="p">(</span> <span class="dl">"</span><span class="s2">&lt;span&gt; ***&lt;/span&gt;</span><span class="dl">"</span> <span class="p">)</span> <span class="p">);</span>
+      <span class="p">},</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+     <span class="nx">$</span><span class="p">(</span> <span class="k">this</span> <span class="p">).</span><span class="nx">find</span><span class="p">(</span> <span class="dl">"</span><span class="s2">span:last</span><span class="dl">"</span> <span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="p">);</span>
+   <span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+      <li>I add to <code class="language-plaintext highlighter-rouge">plugins/my_fine_plugin/public/views/layout_head.html.erb</code>:
+        <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="o">&lt;</span><span class="sx">%= javascript_include_tag "#{@base_url}/assets/my.js" %&gt;
+</span></code></pre></div>        </div>
+        <h2 id="adding-your-own-branding">Adding your own branding</h2>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Another example, to override the branding of the staff interface, add
+your own template at:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugins/local/frontend/views/site/\_branding.html.erb
+</code></pre></div></div>
+
+<p>Files such as images, stylesheets and PDFs can be made available as static resources by
+placing them in an <code class="language-plaintext highlighter-rouge">assets</code> directory under an enabled plug-in. For example, the following file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugins/local/frontend/assets/my_logo.png
+</code></pre></div></div>
+
+<p>Will be available via the following URL:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://your.frontend.domain.and:port/assets/my_logo.png
+</code></pre></div></div>
+
+<p>For example, to reference this logo from the custom branding file, use
+markup such as:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> &lt;div class="container branding"&gt;
+   &lt;img src="&lt;%= #{AppConfig[:frontend_proxy_prefix]} %&gt;assets/my_logo.png" alt="My logo" /&gt;
+ &lt;/div&gt;
+</code></pre></div></div>
+
+<h2 id="plugin-configuration">Plugin configuration</h2>
+
+<p>Plug-ins can optionally contain a configuration file at <code class="language-plaintext highlighter-rouge">plugins/[plugin-name]/config.yml</code>.
+This configuration file supports the following options:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>system_menu_controller
+  The name of a controller that will be accessible via a Plug-ins menu in the System toolbar
+repository_menu_controller
+  The name of a controller that will be accessible via a Plug-ins menu in the Repository toolbar
+parents
+  [record-type]
+    name
+    cardinality
+  ...
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">system_menu_controller</code> and <code class="language-plaintext highlighter-rouge">repository_menu_controller</code> specify the names of frontend controllers
+that will be accessible via the system and repository toolbars respectively. A <code class="language-plaintext highlighter-rouge">Plug-ins</code> dropdown
+will appear in the toolbars if any enabled plug-ins have declared these configuration options. The
+controller name follows the standard naming conventions, for example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>repository_menu_controller: hello_world
+</code></pre></div></div>
+
+<p>Points to a controller file at <code class="language-plaintext highlighter-rouge">plugins/hello_world/frontend/controllers/hello_world_controller.rb</code>
+which implements a controller class called <code class="language-plaintext highlighter-rouge">HelloWorldController</code>. When the menu item is selected
+by the user, the <code class="language-plaintext highlighter-rouge">index</code> action is called on the controller.</p>
+
+<p>Note that the URLs for plug-in controllers are scoped under <code class="language-plaintext highlighter-rouge">plugins</code>, so the URL for the above
+example is:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://your.frontend.domain.and:port/plugins/hello_world
+</code></pre></div></div>
+
+<p>Also note that the translation for the plug-in’s name in the <code class="language-plaintext highlighter-rouge">Plug-ins</code> dropdown menu is specified
+in a locale file in the <code class="language-plaintext highlighter-rouge">frontend/locales</code> directory in the plug-in. For example, in the <code class="language-plaintext highlighter-rouge">hello_world</code>
+example there is an English locale file at:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugins/hello_world/frontend/locales/en.yml
+</code></pre></div></div>
+
+<p>The translation for the plug-in name in the <code class="language-plaintext highlighter-rouge">Plug-ins</code> dropdown menus is specified by the key <code class="language-plaintext highlighter-rouge">label</code>
+under the plug-in, like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>en:
+  plugins:
+    hello_world:
+      label: Hello World
+</code></pre></div></div>
+
+<p>Note that the example locale file contains other keys that specify translations for text displayed
+as part of the plug-in’s user interface. Be sure to place your plug-in’s translations as shown, under
+<code class="language-plaintext highlighter-rouge">plugins.[your_plugin_name]</code> in order to avoid accidentally overriding translations for other
+interface elements. In the example above, the translation for the <code class="language-plaintext highlighter-rouge">label</code> key can be referenced
+directly in an erb view file as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= I18n.t("plugins.hello_world.label") %&gt;
+</code></pre></div></div>
+
+<p>Each entry under <code class="language-plaintext highlighter-rouge">parents</code> specifies a record type that this plug-in provides a new subrecord for.
+<code class="language-plaintext highlighter-rouge">[record-type]</code> is the name of the existing record type, for example <code class="language-plaintext highlighter-rouge">accession</code>. <code class="language-plaintext highlighter-rouge">name</code> is the
+name of the plug-in in its role as a subrecord of this parent, for example <code class="language-plaintext highlighter-rouge">hello_worlds</code>.
+<code class="language-plaintext highlighter-rouge">cardinality</code> specifies the cardinality of the plug-in records. Currently supported values are
+<code class="language-plaintext highlighter-rouge">zero-to-many</code> and <code class="language-plaintext highlighter-rouge">zero-to-one</code>.</p>
+
+<h2 id="changing-search-behavior">Changing search behavior</h2>
+
+<p>A plugin can add additional fields to the advanced search interface by
+including a <code class="language-plaintext highlighter-rouge">search_definitions.rb</code> file at the top-level of the
+plugin directory.  This file can contain definitions such as the
+following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AdvancedSearch.define_field(:name =&gt; 'payment_fund_code', :type =&gt; :enum, :visibility =&gt; [:staff], :solr_field =&gt; 'payment_fund_code_u_utext')
+AdvancedSearch.define_field(:name =&gt; 'payment_authorizers', :type =&gt; :text, :visibility =&gt; [:staff], :solr_field =&gt; 'payment_authorizers_u_utext')
+</code></pre></div></div>
+
+<p>Each field defined will appear in the advanced search interface as a
+searchable field.  The <code class="language-plaintext highlighter-rouge">:visibility</code> option controls whether the field
+is presented in the staff or public interface (or both), while the
+<code class="language-plaintext highlighter-rouge">:type</code> parameter determines what sort of search is being performed.
+Valid values are <code class="language-plaintext highlighter-rouge">:text:</code>, <code class="language-plaintext highlighter-rouge">:boolean</code>, <code class="language-plaintext highlighter-rouge">:date</code> and <code class="language-plaintext highlighter-rouge">:enum</code>.  Finally,
+the <code class="language-plaintext highlighter-rouge">:solr_field</code> parameter controls which field is used from the
+underlying index.</p>
+
+<h2 id="adding-custom-reports">Adding Custom Reports</h2>
+
+<p>Custom reports may be added to plug-ins by adding a new report model as a subclass of <code class="language-plaintext highlighter-rouge">AbstractReport</code> to <code class="language-plaintext highlighter-rouge">plugins/[plugin-name]/backend/model/</code>, and the translations for said model to <code class="language-plaintext highlighter-rouge">plugins/[plugin-name]/frontend/locales/[language].yml</code>. Look to existing reports in reports subdirectory of the ArchivesSpace base directory for examples of how to structure a report model.</p>
+
+<p>There are several limitations to adding reports to plug-ins, including that reports from plug-ins may only use the generic report template. ArchivesSpace only searches for report templates in the reports subdirectory of the ArchivesSpace base directory, not in plug-in directories. If you would like to implement a custom report with a custom template, consider adding the report to <code class="language-plaintext highlighter-rouge">archivesspace/reports/</code> instead of <code class="language-plaintext highlighter-rouge">archivesspace/plugins/[plugin-name]/backend/model/</code>.</p>
+
+<h2 id="frontend-specific-hooks">Frontend Specific Hooks</h2>
+
+<p>To make adding new records fields and sections to record forms a little eaiser via your plugin, the ArchivesSpace frontend provides a series of hooks via the <code class="language-plaintext highlighter-rouge">frontend/config/initializers/plugin.rb</code> module. These are as follows:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Plugins.add_search_base_facets(*facets)</code> - add to the base facets list to include extra facets for all record searches and listing pages.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Plugins.add_search_facets(jsonmodel_type, *facets)</code> - add facets for a particular JSONModel type to be included in searches and listing pages for that record type.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Plugins.add_resolve_field(field_name)</code> - use this when you have added a new field/relationship and you need it to be resolved when the record is retrieved from the API.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Plugins.register_edit_role_for_type(jsonmodel_type, role)</code> - when you add a new top level JSONModel, register it and its edit role so the listing view can determine if the “Edit” button can be displayed to the user.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Plugins.register_note_types_handler(proc)</code> where proc handles parameters <code class="language-plaintext highlighter-rouge">jsonmodel_type, note_types, context</code> - allow a plugin to customize the note types shown for particular JSONModel type. For example, you can filter those that do not apply to your institution.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Plugins.register_plugin_section(section)</code> - allows you define a template to be inserted as a section for a given JSONModel record. A section is a type of <code class="language-plaintext highlighter-rouge">Plugins::AbstractPluginSection</code> which defines the source <code class="language-plaintext highlighter-rouge">plugin</code>, section <code class="language-plaintext highlighter-rouge">name</code>, the <code class="language-plaintext highlighter-rouge">jsonmodel_types</code> for which the section should show and any <code class="language-plaintext highlighter-rouge">opts</code> required by the templates at the time of render. These new sections (readonly, edit and sidebar additions) are output as part of the <code class="language-plaintext highlighter-rouge">PluginHelper</code> render methods.</p>
+
+    <p><code class="language-plaintext highlighter-rouge">Plugins::AbstractPluginSection</code> can be subclassed to allow flexible inclusion of arbitrary HTML. There are two examples provided with ArchivesSpace:</p>
+
+    <ul>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">Plugins::PluginSubRecord</code> - uses the <code class="language-plaintext highlighter-rouge">shared/subrecord</code> partial to output a standard styled ArchivesSpace section. <code class="language-plaintext highlighter-rouge">opts</code> requires the jsonmodel field to be defined.</p>
+      </li>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">Plugins::PluginReadonlySearch</code> - uses the <code class="language-plaintext highlighter-rouge">search/embedded</code> partial to output a search listing as a section. <code class="language-plaintext highlighter-rouge">opts</code> requires the custom filter terms for this search to be defined.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="further-information">Further information</h2>
+
+<p><strong>Be sure to test your plug-in thoroughly as it may have unanticipated impacts on your
+ArchivesSpace application.</strong></p>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/archivesspace">ArchivesSpace</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/tech-docs/assets/js/scale.fix.js"></script>
+  </body>
+</html>

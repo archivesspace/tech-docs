@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>tech-docs | Technical documentation for ArchivesSpace</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="tech-docs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:description" content="Technical documentation for ArchivesSpace" />
+<meta property="og:site_name" content="tech-docs" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="tech-docs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Technical documentation for ArchivesSpace","headline":"tech-docs","url":"/tech-docs/administration/backup.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/tech-docs/assets/css/style.css?v=">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/tech-docs/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <style>
+  /* Styles via https://getbootstrap.com/docs/5.3/components/alerts/#icons */
+  .deprecation-alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #58151c;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    border-radius: 0.375rem;
+  }
+  .deprecation-alert__svg {
+    flex-shrink: 0 !important;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5rem !important;
+    fill: currentcolor;
+  }
+</style>
+
+<aside class="deprecation-alert">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="exclamation-triangle-fill"
+    viewBox="0 0 16 16"
+    class="deprecation-alert__svg"
+    role="img"
+    aria-label="Danger:"
+  >
+    <path
+      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+    />
+  </svg>
+
+  <p style="margin-bottom: 0">
+    <em style="margin-right: 0.25rem; font-weight: 700">NOTE!</em> We recently
+    launched a
+    <a href="https://docs.archivesspace.org"
+      >new technical documentation site</a
+    >
+    as part of the ArchivesSpace v4.0.0 release.
+    <br />
+    For now both sites will be live, but we encourage you to take a look at the
+    new site and leave feedback or suggestions.
+  </p>
+</aside>
+
+
+      <header>
+        <h1><a href="/tech-docs/">tech-docs</a></h1>
+
+        
+
+        <p>Technical documentation for ArchivesSpace</p>
+
+        
+        <p class="view"><a href="https://github.com/archivesspace/tech-docs">View the Project on GitHub <small>archivesspace/tech-docs</small></a></p>
+        
+
+        
+
+        
+
+        <p>
+          <a
+            href="https://github.com/archivesspace/tech-docs/edit/master/administration/backup.md"
+            title="Edit administration/backup.md on GitHub"
+          >
+            Edit this page on GitHub
+            <small>administration/backup.md</small>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://archivesspace.atlassian.net/jira/software/projects/TD/issues"
+            title="Report issue with administration/backup.md on Jira"
+          >
+            Report issue on Jira
+            <small>administration/backup.md</small>
+          </a>
+        </p>
+      </header>
+      <section>
+
+      <h1 id="backup-and-recovery">Backup and recovery</h1>
+
+<h2 id="managing-your-own-backups">Managing your own backups</h2>
+
+<p>Performing regular backups of your MySQL database is critical.  ArchivesSpace stores
+all of your records data in the database, so as long as you have backups of your
+database then you can always recover from errors and failures.</p>
+
+<p>If you are running MySQL, the <code class="language-plaintext highlighter-rouge">mysqldump</code> utility can dump the database
+schema and data to a file.  It’s a good idea to run this with the
+<code class="language-plaintext highlighter-rouge">--single-transaction</code> option to avoid locking your database tables
+while your backups run. It is also essential to use the <code class="language-plaintext highlighter-rouge">--routines</code>
+flag, which will include functions and stored procedures in the
+backup. The <code class="language-plaintext highlighter-rouge">mysqldump</code> utility is widely used, and there are many tutorials
+available. As an example, something like this in your <code class="language-plaintext highlighter-rouge">crontab</code> would backup your
+database twice daily:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  # Dump archivesspace database 6am and 6pm
+ 30 06,18 * * * mysqldump -u as -pas123 archivesspace | gzip &gt; ~/backups/db.$(date +%F.%H%M%S).sql.gz
+</code></pre></div></div>
+
+<p>You should store backups in a safe location.</p>
+
+<p>If you are running with the demo database (NEVER run the demo database in production),
+you can create periodic database snapshots using the following configuration settings:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> # In this example, we create a snapshot at 4am each day and keep
+ # 7 days' worth of backups
+ #
+ # Database snapshots are written to 'data/demo_db_backups' by
+ # default.
+ AppConfig[:demo_db_backup_schedule] = "0 4 \* \* \*"
+ AppConfig[:demo\_db\_backup\_number\_to\_keep] = 7
+</code></pre></div></div>
+
+<p>Solr indexes can always be recreated from the contents of the
+database, but backing them up can reduce your recovery time if
+disaster strikes on a large site.  You can create periodic Solr
+snapshots using the following configuration settings:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> # Create one snapshot at midnight and keep only one.
+ #
+ # Solr snapshots are written to 'data/solr_backups' by default.
+ AppConfig[:solr_backup_schedule] = "0 0 \* \* \*"
+ AppConfig[:solr\_backup\_number\_to\_keep] = 1
+</code></pre></div></div>
+
+<h2 id="creating-backups-using-the-provided-script">Creating backups using the provided script</h2>
+
+<p>ArchivesSpace provides some simple scripts for backing up a single
+instance to a <code class="language-plaintext highlighter-rouge">.zip</code> file.  You can run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> scripts/backup.sh --output /path/to/backup-yyyymmdd.zip
+</code></pre></div></div>
+
+<p>and the script will generate a file containing:</p>
+
+<ul>
+  <li>A snapshot of the demo database (if you’re using the demo database).
+NEVER use the demo database in production.</li>
+  <li>A snapshot of the Solr index and related indexer files</li>
+</ul>
+
+<p>If you are running against MySQL and have <code class="language-plaintext highlighter-rouge">mysqldump</code> installed, you
+can also provide the <code class="language-plaintext highlighter-rouge">--mysqldump</code> option.  This will read the
+database settings from your configuration file and add a dump of your
+MySQL database to the resulting <code class="language-plaintext highlighter-rouge">.zip</code> file.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> scripts/backup.sh --mysqldump --output ~/backups/backup-yyyymmdd.zip
+</code></pre></div></div>
+
+<h2 id="recovering-from-backup">Recovering from backup</h2>
+
+<p>When recovering an ArchivesSpace installation from backup, you will
+need to restore:</p>
+
+<ul>
+  <li>Your database (either the demo database or MySQL)</li>
+  <li>The search indexes and related indexer files (optional)</li>
+</ul>
+
+<p>Of the two, the database backup is the most crucial, your ArchivesSpace records
+are all stored in your MySQL database. The solr search indexes are worth restoring
+if you have backups, but they can be recreated from scratch if necessary.</p>
+
+<h3 id="recovering-your-database">Recovering your database</h3>
+
+<p>If you are using MySQL, recovering your database just requires loading
+your <code class="language-plaintext highlighter-rouge">mysqldump</code> backup into an empty database.  If you are using the
+<code class="language-plaintext highlighter-rouge">scripts/backup.sh</code> script (described above), this dump file is named
+<code class="language-plaintext highlighter-rouge">mysqldump.sql</code> in your backup <code class="language-plaintext highlighter-rouge">.zip</code> file.</p>
+
+<p>To load a MySQL dump file, follow the directions in <em>Set up your MySQL
+database</em> to create an empty database with the appropriate
+permissions.  Then, populate the database from your backup file using
+the MySQL client:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>`mysql -uas -p archivesspace &lt; mysqldump.sql`, where
+  `as` is the user name
+  `archivesspace` is the database name
+  `mysqldump.sql` is the mysqldump filename
+</code></pre></div></div>
+
+<p>You will be prompted for the password of the user.</p>
+
+<p>If you are using the demo database, your backup <code class="language-plaintext highlighter-rouge">.zip</code> file will
+contain a directory called <code class="language-plaintext highlighter-rouge">demo_db_backups</code>.  Each subdirectory of
+<code class="language-plaintext highlighter-rouge">demo_db_backups</code> contains a backup of the demo database.  To
+restore from a backup, copy its <code class="language-plaintext highlighter-rouge">archivesspace_demo_db</code> directory back
+to your ArchivesSpace data directory.  For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> cp -a /unpacked/zip/demo_db_backups/demo_db_backup_1373323208_25926/archivesspace_demo_db \
+       /path/to/archivesspace/data/
+</code></pre></div></div>
+
+<h3 id="recovering-the-search-indexes-and-related-indexer-files">Recovering the search indexes and related indexer files</h3>
+
+<p>This step is optional since indexes can be rebuilt from the contents
+of the database.  However, recovering your search indexes can reduce
+the time needed to get your system running again.</p>
+
+<p>The backup <code class="language-plaintext highlighter-rouge">.zip</code> file contains two directories used by the
+ArchivesSpace indexer:</p>
+
+<ul>
+  <li>solr.backup-[timestamp]/snapshot.[timestamp] – a snapshot of the
+index files.</li>
+  <li>solr.backup-[timestamp]/indexer_state – the files used by the
+indexer to remember what it last indexed.</li>
+</ul>
+
+<p>To restore these directories from backup:</p>
+
+<ul>
+  <li>Copy your index snapshot to <code class="language-plaintext highlighter-rouge">/path/to/archivesspace/data/solr_index/index</code></li>
+  <li>Copy your indexer_state backup to <code class="language-plaintext highlighter-rouge">/path/to/archivesspace/data/indexer_state</code></li>
+</ul>
+
+<p>For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> mkdir -p /path/to/archivesspace/data/solr_index
+
+ cp -a /unpacked/zip/solr.backup-26475-1373323208/snapshot.20130709084008464 \
+       /path/to/archivesspace/data/solr_index/index
+
+ cp -a /unpacked/zip/solr.backup-26475-1373323208/indexer_state \
+       /path/to/archivesspace/data/
+</code></pre></div></div>
+
+<h3 id="checking-your-search-indexes">Checking your search indexes</h3>
+
+<p>ArchivesSpace ships with a script that can run Lucene’s CheckIndex
+tool for you, verifying that a given Solr index is free from
+corruption.  To test an index, run the following command from your
+<code class="language-plaintext highlighter-rouge">archivesspace</code> directory:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> # Or scripts/checkindex.bat for Windows
+ scripts/checkindex.sh data/solr_index/index
+</code></pre></div></div>
+
+<p>You can use the same script to check that your Solr backups are valid:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> scripts/checkindex.sh /unpacked/zip/solr.backup-26475-1373323208/snapshot.20130709084008464
+</code></pre></div></div>
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/archivesspace">ArchivesSpace</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/tech-docs/assets/js/scale.fix.js"></script>
+  </body>
+</html>
