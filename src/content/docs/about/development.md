@@ -15,15 +15,15 @@ Tech Docs is a [Node.js](https://nodejs.org) application, built with [Astro](htt
 Tech Docs depends on the following open source software (see `.nvmrc` and `package.json` for versions):
 
 1. [Node.js](https://nodejs.org) - JavaScript development and build environment
-2. [Astro](https://astro.build/) - Static site generator conceptually based on "components" (React, Vue, Svelte, etc.) rather than "templates" (Handlebars, Pug, Haml, etc.)
+2. [Astro](https://astro.build/) - Static site generator conceptually based on "components" (React, Vue, Svelte, etc.) rather than "templates" (Jekyll, Handlebars, Pug, etc.)
    1. [Starlight](https://starlight.astro.build/) - Astro plugin and theme for documentation websites
    2. [Sharp](https://sharp.pixelplumbing.com/) - Image transformation library used by Astro
 3. [Cypress](https://www.cypress.io/) - End-to-end testing framework
-4. [Stylelint](https://stylelint.io/) - CSS linter used locally in text editors and in CI for testing
+4. [Stylelint](https://stylelint.io/) - CSS linter used locally in text editors and remotely in [CI](#cicd) for testing
    1. [stylelint-config-recommended](https://github.com/stylelint/stylelint-config-recommended) - Base set of lint rules
    2. [postcss-html](https://github.com/ota-meshi/postcss-html) - PostCSS syntax for parsing HTML (and HTML-like including .astro files)
    3. [stylelint-config-html](https://github.com/ota-meshi/stylelint-config-html) - Allows Stylelint to parse .astro files
-5. [Prettier](https://prettier.io/) - Source code formatter used locally in text editors and in CI for testing
+5. [Prettier](https://prettier.io/) - Source code formatter used locally in text editors and remotely in [CI](#cicd) for testing
    1. [prettier-plugin-astro](https://github.com/withastro/prettier-plugin-astro) - Allows Prettier to parse .astro files via the command line
 
 ## Local development
@@ -58,6 +58,22 @@ npm run build
 :::tip
 Serve the built output by running `npm run preview` after a build.
 :::
+
+### Available `npm` scripts
+
+The following scripts are made available via `package.json`. Invoke any script on the command line from the project root by prepending it with the `npm run` command, ie: `npm run start`.
+
+- `start` -- run Astro dev server
+- `build` -- build Tech Docs for production
+- `preview` -- serve the static build
+- `astro` -- get Astro help
+- `test:dev` -- run tests in development mode
+- `test:prod` -- run tests in production mode
+- `test` -- defaults to run tests in production mode
+- `prettier:check` -- check formatting with Prettier
+- `prettier:fix` -- fix possible format errors with Prettier
+- `stylelint:check` -- lint CSS with Stylelint
+- `stylelint:fix` -- fix possible CSS lint errors with Stylelint
 
 ## Search
 
@@ -169,4 +185,4 @@ npm run stylelint:fix
 
 ### CI/CD
 
-Before new changes are accepted into the code base, the [end-to-end](#end-to-end) and [code style](#code-style) tests need to pass. Tech Docs uses [GitHub Actions](https://docs.github.com/en/actions) for its continuous integration and continuous delivery (CI/CD) platform, which automates the testing and deployment process. The tests are defined in yaml files found in `.github/workflows` and are run automatically when new changes are proposed.
+Before new changes are accepted into the code base, the [end-to-end](#end-to-end) and [code style](#code-style) tests need to pass. Tech Docs uses [GitHub Actions](https://docs.github.com/en/actions) for its continuous integration and continuous delivery (CI/CD) platform, which automates the testing and deployment processes. The tests are defined in yaml files found in `.github/workflows/` and are run automatically when new changes are proposed.
