@@ -1,0 +1,25 @@
+name: End-to-end
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4.0.3
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6 # runs 'npm ci'
+        with:
+          build: npm run build
+          start: npm run preview
+          wait-on: 'http://localhost:4321'

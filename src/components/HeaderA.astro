@@ -1,0 +1,14 @@
+---
+import A from './A.astro'
+
+const url = 'https://archivesspace.org'
+const label = 'ArchivesSpace'
+
+// Below markup adapted from
+// https://github.com/withastro/starlight/blob/main/packages/starlight/components/SocialIcons.astro
+---
+
+<a href={url} rel="me" class="sl-flex" title={label}>
+  <span class="sr-only">{label}</span>
+  <A width="1rem" />
+</a>

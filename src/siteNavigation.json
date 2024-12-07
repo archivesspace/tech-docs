@@ -1,0 +1,118 @@
+[
+  {
+    "label": "Home",
+    "link": "/"
+  },
+  {
+    "label": "Getting started",
+    "link": "administration/getting_started"
+  },
+  {
+    "label": "Architecture",
+    "collapsed": false,
+    "items": [
+      "architecture/jsonmodel",
+      "architecture/backend",
+      "architecture/frontend",
+      "architecture/jobs",
+      "architecture/search",
+      "architecture/public",
+      "architecture/oai-pmh",
+      "architecture/api",
+      "architecture/database",
+      "architecture/directories",
+      "architecture/languages"
+    ]
+  },
+  {
+    "label": "Administration",
+    "collapsed": true,
+    "items": [
+      "administration/unix_daemon",
+      "administration/windows",
+      "administration/backup",
+      "administration/indexes",
+      "administration/passwords",
+      {
+        "label": "Upgrading",
+        "collapsed": true,
+        "items": [
+          "administration/upgrading",
+          "administration/upgrading_1_1_0",
+          "administration/upgrading_1_1_1",
+          "administration/upgrading_1_5_0",
+          "administration/upgrading_2_1_0"
+        ]
+      },
+      "administration/logrotate"
+    ]
+  },
+  {
+    "label": "Provisioning",
+    "collapsed": true,
+    "items": [
+      "provisioning/clustering",
+      "provisioning/domains",
+      "provisioning/https",
+      "provisioning/jmeter",
+      "provisioning/mysql",
+      "provisioning/newrelic",
+      "provisioning/prefix",
+      "provisioning/robots",
+      "provisioning/solr",
+      "provisioning/tuning"
+    ]
+  },
+  {
+    "label": "Migrations",
+    "collapsed": true,
+    "items": [
+      "migrations/migrate_from_archivists_toolkit",
+      "migrations/migrate_from_archon",
+      "migrations/migration_tools"
+    ]
+  },
+  {
+    "label": "Customization",
+    "collapsed": true,
+    "items": [
+      "customization/configuration",
+      "customization/ldap",
+      "customization/authentication",
+      "customization/locales",
+      "customization/plugins",
+      "customization/theming",
+      "customization/reports",
+      "customization/xsl",
+      "customization/bower"
+    ]
+  },
+  {
+    "label": "Development",
+    "collapsed": true,
+    "items": [
+      "development/dev",
+      "development/release",
+      "development/docker",
+      "development/release_schema_versions",
+      "development/ui_test",
+      "development/ead-exporter",
+      "development/jruby-rack-build",
+      "development/releases",
+      "development/vscode"
+    ]
+  },
+  {
+    "label": "API",
+    "slug": "api"
+  },
+  {
+    "label": "About Tech Docs",
+    "collapsed": true,
+    "items": ["about/authoring", "about/development"]
+  },
+  {
+    "label": "Help Center (members only)",
+    "link": "https://archivesspace.atlassian.net/wiki/spaces/ADC/pages/917045261/ArchivesSpace+Help+Center"
+  }
+]
