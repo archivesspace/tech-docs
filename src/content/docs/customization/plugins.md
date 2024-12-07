@@ -137,6 +137,88 @@ markup such as:
        <img src="<%= #{AppConfig[:frontend_proxy_prefix]} %>assets/my_logo.png" alt="My logo" />
      </div>
 
+## Customizing the favicon
+
+A favicon is an icon associated with a web page that browser and operating systems display (ie: in a browser's address bar or tab, next to the web page name in a bookmark list, etc.).
+
+### Default images
+
+The ArchivesSpace favicons are stored in the top-level `public/` directory of the frontend and public applications.
+
+1. `frontend/public/favicon-AS.png`
+2. `frontend/public/favicon-AS.svg`
+3. `public/public/favicon-AS.png`
+4. `public/public/favicon-AS.svg`
+
+### Markup
+
+Favicon markup is found in each application's favicon partial template:
+
+1. `frontend/app/views/site/\_favicon.html.erb`
+2. `public/app/views/shared/\_favicon.html.erb`
+
+### Configuration
+
+Favicons are shown by default via the configuration options in `config.rb` (or `common/config/config-defaults.rb` in development). Set the respective option to `false` to not show a favicon.
+
+```rb
+# config.rb
+AppConfig[:pui_show_favicon] = true # whether or not to show a favicon
+AppConfig[:frontend_show_favicon] = true # whether or not to show a favicon
+```
+
+### Plugin examples
+
+Replace the default favicon with your own via a plugin.
+
+:::caution[Reserved favicon filenames]
+Custom favicon files must be named something other than `favicon-AS.png` and `favicon-AS.svg` in order to override the default favicon.
+:::
+
+#### Frontend
+
+The frontend plugin should have the following directory structure:
+
+```
+plugins/local/frontend/
+├── assets
+│   ├── favicon.png
+│   └── favicon.svg
+└── views
+    └── site
+        └── _favicon.html.erb
+```
+
+The frontend favicon template should look something like:
+
+```erb
+<!-- plugins/local/frontend/views/site/_favicon.html.erb -->
+<link rel="icon" type="image/png" href="<%= AppConfig[:frontend_proxy_prefix] %>assets/favicon.png">
+<link rel="icon" type="text/svg+xml" href="<%= AppConfig[:frontend_proxy_prefix] %>assets/favicon.svg">
+```
+
+#### Public
+
+The public plugin should have the following directory structure:
+
+```
+plugins/local/public/
+├── assets
+│   ├── favicon.png
+│   └── favicon.svg
+└── views
+    └── shared
+        └── _favicon.html.erb
+```
+
+The public favicon template should look something like:
+
+```erb
+<!-- plugins/local/public/views/shared/_favicon.html.erb -->
+<link rel="icon" type="image/png" href="<%= asset_path('favicon.png', skip_pipeline: true) %>">
+<link rel="icon" type="image/svg+xml" href="<%= asset_path('favicon.svg', skip_pipeline: true) %>">
+```
+
 ## Plugin configuration
 
 Plugins can optionally contain a configuration file at `plugins/[plugin-name]/config.yml`.
