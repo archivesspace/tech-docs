@@ -5,11 +5,18 @@
   },
   {
     "label": "Getting started",
-    "link": "administration/getting_started"
+    "collapsed": false,
+    "items": [
+      "getting_started/overview",
+      "getting_started/system_requirements",
+      "getting_started/docker",
+      "getting_started/zip_distribution",
+      "getting_started/first_steps"
+    ]
   },
   {
     "label": "Architecture",
-    "collapsed": false,
+    "collapsed": true,
     "items": [
       "architecture/jsonmodel",
       "architecture/backend",
@@ -28,8 +35,18 @@
     "label": "Administration",
     "collapsed": true,
     "items": [
-      "administration/unix_daemon",
-      "administration/windows",
+      {
+        "label": "Running as a service",
+        "collapsed": true,
+        "items": [
+          "administration/dockerized_service",
+          {
+            "label": "Using the zip distribution",
+            "collapsed": true,
+            "items": ["administration/unix_daemon", "administration/windows"]
+          }
+        ]
+      },
       "administration/backup",
       "administration/indexes",
       "administration/passwords",
