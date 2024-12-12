@@ -30,6 +30,7 @@
     "items": [
       "administration/unix_daemon",
       "administration/windows",
+      "administration/docker",
       "administration/backup",
       "administration/indexes",
       "administration/passwords",
