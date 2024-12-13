@@ -15,8 +15,7 @@ export default defineConfig({
       },
       customCss: ['./src/styles/custom.css'],
       editLink: {
-        baseUrl:
-          'https://github.com/archivesspace/tech-docs/edit/astro-starlight/'
+        baseUrl: 'https://github.com/archivesspace/tech-docs/edit/master/'
       },
       credits: true,
       lastUpdated: true,
