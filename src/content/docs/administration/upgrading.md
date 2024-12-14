@@ -2,10 +2,13 @@
 title: Upgrading to a new release
 ---
 
+You can upgrade most versions of ArchivesSpace to a later version using these general instructions. Typically you do not need to progress through other versions of ArchivesSpace to get to a later one, unless there are special considerations for a specific version. Special considerations for these versions are noted here and in release notes.
+
 - **[Special considerations when upgrading to v1.1.0](/administration/upgrading_1_1_0)**
 - **[Special considerations when upgrading to v1.1.1](/administration/upgrading_1_1_1)**
 - **[Special considerations when upgrading from v1.4.2 to 1.5.x (these considerations also apply when upgrading from 1.4.2 to any version through 2.0.1)](/administration/upgrading_1_5_0)**
 - **[Special considerations when upgrading to 2.1.0](/administration/upgrading_2_1_0)**
+- **[Changing to external Solr when upgrading to 3.2.0 or later versions](https://docs.archivesspace.org/provisioning/solr/).**
 
 ## Create a backup of your ArchivesSpace instance
 
