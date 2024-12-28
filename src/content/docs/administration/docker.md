@@ -34,19 +34,25 @@ Unzipping the downloaded file will create an `archivespace-docker-vX.X.X` direct
 .
 ├── config
 │   └── config.rb
+├── data
+├── database
+├── plugins
+├── solr
+├── sql
 ├── docker-compose.yml
 ├── .env.docker.db
-├── .env.docker.prod
-├── plugins
-└── sql
+└── .env.docker.prod
 ```
 
 - The `config.rb` file contains the [main configuration](/customization/configuration/) of ArchivesSpace.
+- The `data` directory is the ArchivesSpace [data directory](/customization/configuration/#appconfigdata_directory).
+- The `database` directory is the storage of the MySQL instance.
+- The `plugins` directory is there to accommodate any [plugins](/customization/plugins/) you wish to install.
+- The `solr` directory is where the solr index is persisted.
+- In the `sql` directory you can put your `.sql` database dump file to initialize the new database, see next section.
 - `docker-compose.yml` contains all the information required by Docker to build and run ArchivesSpace.
 - `.env.docker.db` contains the credentials used by archivespace to access its MySQL database. It is recommended to change the default root and user passwords to something safer.
 - `.env.docker.prod` contains the database connection URI which should also be [updated accordingly](/customization/configuration/#database-config) after the database user password is updated in the step above.
-- The `plugins` directory is there to accommodate any [plugins](/customization/plugins/) you wish to install.
-- In the `sql` directory you can put your `.sql` database dump file to initialize the new database, see next section.
 
 ## Migrating from the zip distribution to docker
 
