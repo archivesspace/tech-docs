@@ -14,7 +14,7 @@ Tech Docs is a [Node.js](https://nodejs.org) application, built with [Astro](htt
 
 Tech Docs depends on the following open source software (see `.nvmrc` and `package.json` for versions):
 
-1. [Node.js](https://nodejs.org) - JavaScript development and build environment
+1. [Node.js](https://nodejs.org) - JavaScript development and build environment; the version noted in `.nvmrc` reflects the default version of Node.js in the Cloudflare Pages build image
 2. [Astro](https://astro.build/) - Static site generator conceptually based on "components" (React, Vue, Svelte, etc.) rather than "templates" (Jekyll, Handlebars, Pug, etc.)
    1. [Starlight](https://starlight.astro.build/) - Astro plugin and theme for documentation websites
    2. [Sharp](https://sharp.pixelplumbing.com/) - Image transformation library used by Astro
