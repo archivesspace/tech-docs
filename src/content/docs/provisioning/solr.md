@@ -25,7 +25,9 @@ Cloud deployments specifically (i.e. we cannot help troubleshoot Zookeeper).**
 Before running Solr you will need to
 setup a [configset](https://solr.apache.org/guide/8_10/config-sets.html#configsets-in-standalone-mode).
 
-### Linux
+### Create a new directory
+
+#### Linux
 
 Using the command line:
 
@@ -39,7 +41,7 @@ Be sure to replace `/$path/$to/$solr` with your actual Solr location, which migh
 mkdir -p /opt/solr/server/solr/configsets/archivesspace/conf
 ```
 
-### Windows
+#### Windows
 
 Right click on your Solr directory and open in Windows Terminal (Powershell).
 
@@ -56,7 +58,7 @@ Mode                 LastWriteTime         Length Name
 d-----        10/25/2021  12:15 PM                conf
 ```
 
----
+### Copy the config files
 
 Copy the ArchivesSpace Solr configuration files from the `solr` directory included
 with the release into the `$SOLR_HOME/server/solr/configsets/archivesspace/conf` directory.
@@ -82,22 +84,6 @@ Mode                 LastWriteTime         Length Name
 ```
 
 _Note: your exact output may be slightly different._
-
-## Setup the environment
-
-From Solr v9 ArchivesSpace requires the use of [Solr modules](https://solr.apache.org/guide/solr/latest/configuration-guide/solr-modules.html).
-We recommend using the environment variable option to specify the modules to use:
-
-```
-SOLR_MODULES=analysis-extras
-```
-
-This environment variable needs to be available to the Solr instance at runtime.
-
-For instructions on how set an environment variable here are some recommended articles:
-
-- https://www.freecodecamp.org/news/how-to-set-an-environment-variable-in-linux
-- https://www.java.com/en/download/help/path.html (includes Windows)
 
 ## Setup a Solr core
 
