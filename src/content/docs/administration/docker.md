@@ -114,11 +114,3 @@ They can be started again with:
 ```
 docker compose start
 ```
-
-## Force a solr re-index
-
-To force a re-index of your solr instance while running with Docker, use the following request to delete all documents from your solr index:
-
-```
-curl -X POST -H 'Content-Type: application/json' --data-binary '{"delete":{"query":"*:*" }}' http://localhost:8983/solr/archivesspace/update
-```
