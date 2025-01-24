@@ -15,7 +15,7 @@ export default defineConfig({
       },
       customCss: ['./src/styles/custom.css'],
       editLink: {
-        baseUrl: 'https://github.com/archivesspace/tech-docs/edit/master/'
+        baseUrl: 'https://github.com/archivesspace/tech-docs/edit/main/'
       },
       credits: true,
       lastUpdated: true,
