@@ -1,12 +1,15 @@
 ---
-import config from 'virtual:starlight/user-config'
-import type { Props } from '../props'
+// Via https://github.com/withastro/starlight/blob/23bf960aed36445600b6ccecb2138a5b461e2929/packages/starlight/components/Header.astro
 
-import LanguageSelect from 'virtual:starlight/components/LanguageSelect'
-import Search from 'virtual:starlight/components/Search'
-import SiteTitle from 'virtual:starlight/components/SiteTitle'
-import SocialIcons from 'virtual:starlight/components/SocialIcons'
-import ThemeSelect from 'virtual:starlight/components/ThemeSelect'
+import config from 'virtual:starlight/user-config'
+import type { Props } from '@astrojs/starlight/props'
+
+import LanguageSelect from '@astrojs/starlight/components/LanguageSelect.astro'
+import Search from '@astrojs/starlight/components/Search.astro'
+import SiteTitle from '@astrojs/starlight/components/SiteTitle.astro'
+import ReleaseBadge from '../ReleaseBadge.astro'
+import SocialIcons from './SocialIcons.astro'
+import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro'
 
 /**
  * Render the `Search` component if Pagefind is enabled or the default search component has been overridden.
@@ -24,6 +27,7 @@ const shouldRenderSearch =
     {shouldRenderSearch && <Search {...Astro.props} />}
   </div>
   <div class="sl-hidden md:sl-flex print:hidden right-group">
+    <ReleaseBadge />
     <div class="sl-flex social-icons">
       <SocialIcons {...Astro.props} />
     </div>

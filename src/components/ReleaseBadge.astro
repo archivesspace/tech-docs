@@ -1,0 +1,28 @@
+---
+const releaseUrl =
+  'https://github.com/archivesspace/archivesspace/releases/latest'
+const label = 'ArchivesSpace'
+const color = '007595' // dark `--sl-color-accent` via custom.css
+const badgeSrc = `https://img.shields.io/github/v/release/archivesspace/archivesspace?label=${label}&color=${color}`
+const altText = 'The latest ArchivesSpace release version'
+const title = 'Go to the latest ArchivesSpace release'
+---
+
+<a href={releaseUrl} title={title}>
+  <img alt={altText} src={badgeSrc} />
+</a>
+
+<style>
+  a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  @media (min-width: 800px) {
+    a::after {
+      content: '';
+      height: 2rem;
+      border-inline-end: 1px solid var(--as-color-hairline);
+    }
+  }
+</style>
