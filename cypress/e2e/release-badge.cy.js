@@ -1,7 +1,7 @@
 const releaseUrl =
   'https://github.com/archivesspace/archivesspace/releases/latest'
 const title = 'Go to the latest ArchivesSpace release'
-const badgeSrc = `https://img.shields.io/github/v/release/archivesspace/archivesspace?label=ArchivesSpace&color=007595`
+const badgeSrc = `https://img.shields.io/github/v/release/archivesspace/archivesspace?label=ArchivesSpace&color=026cb6`
 const altText = 'The latest ArchivesSpace release version'
 
 describe('Release Badge', () => {
