@@ -85,6 +85,23 @@ Mode                 LastWriteTime         Length Name
 
 _Note: your exact output may be slightly different._
 
+## Setup the environment
+
+When using Solr v9 or later, the use of [Solr modules](https://solr.apache.org/guide/solr/latest/configuration-guide/solr-modules.html) is required.
+We recommend using the environment variable option to specify the modules to use:
+
+```
+SOLR_MODULES=analysis-extras
+```
+
+This environment variable needs to be available to the Solr instance at runtime.
+
+For instructions on how set an environment variable here are some recommended articles:
+
+- When using [linux](https://www.freecodecamp.org/news/how-to-set-an-environment-variable-in-linux)
+- When using a [mac](https://phoenixnap.com/kb/set-environment-variable-mac)
+- When using [windows](https://docs.oracle.com/cd/E83411_01/OREAD/creating-and-modifying-environment-variables-on-windows.htm#OREAD158). Note that on windows, the variable name should be: `SOLR_MODULES` and the variable value: `analysis-extras`
+
 ## Setup a Solr core
 
 With the `configset` in place run the command to create an ArchivesSpace core:
