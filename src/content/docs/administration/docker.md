@@ -17,7 +17,7 @@ ArchivesSpace Docker images are available on the [Docker hub](https://hub.docker
 
 ### System requirements
 
-See [System Requirements](/administration/getting_started/#system-requirements).
+ArchivesSpace on Docker has been tested on Ubuntu Linux, Mac OS X, and Windows. At least 1024 MB RAM are required. We recommend using at least 2 GB for optimal performance.
 
 ### Software Dependencies
 
@@ -33,7 +33,6 @@ The downloaded configuration package contains a simple yet configurable and prod
 Unzipping the downloaded file will create an `archivesspace` directory with the following contents:
 
 ```
-
 .
 ├── backups
 ├── config
