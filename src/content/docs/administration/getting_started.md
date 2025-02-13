@@ -2,6 +2,18 @@
 title: Getting started
 ---
 
+## Two ways to get up and running
+
+### Installing on Docker
+
+Starting with ArchivesSpace v4.0.0, the easiest - and recommended way to get up and running is [using Docker](/administration/docker/). Docker eases installing, upgrading, starting and stopping ArchivesSpace. It also makes it easy to setup ArchivesSpace as a system service that starts automatically on every reboot.
+
+### Installing the zip distribution
+
+The older (more involved) way to get ArchivesSpace up and running is installing the latest distribution `.zip` file. If you prefer this way, read on!
+
+# Using the zip distribution
+
 ## System requirements
 
 ### Operating system
@@ -11,6 +23,8 @@ ArchivesSpace has been tested on Ubuntu Linux, Mac OS X, and Windows.
 ### Memory
 
 At least 1024 MB RAM allocated to the application are required. We recommend using at least 2 GB for optimal performance.
+
+## Software Requirements
 
 ### Java Runtime Environment
 
