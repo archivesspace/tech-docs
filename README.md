@@ -1,6 +1,6 @@
 # ArchivesSpace technical documentation
 
-This repository contains the content and source code for the [ArchiveSpace TechDocs site](https://docs.archivesspace.org/).
+This repository contains the content and source code for the [ArchivesSpace TechDocs site](https://docs.archivesspace.org/).
 
 ## Content
 
