@@ -78,6 +78,10 @@ If you created the dump on an earlier ArchivesSpace version, the system will app
 
 ## Running
 
+### Note on migrating from the zip distribution
+
+If migrating from the zip distribution to Docker, you most probably have local MySQL and Solr instances running. Starting ArchivesSpace with Docker will start Docker-based MySQL and Solr instances. In order to avoid port binding conflicts, make sure that you stop your local MySQL and Solr instances before proceeding.
+
 ### Start
 
 Open a terminal, change to the `archivespace` directory that contains the `docker-compose.yml` file and run:
