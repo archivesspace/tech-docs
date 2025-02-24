@@ -108,6 +108,14 @@
     "slug": "api"
   },
   {
+    "label": "Release Notes",
+    "collapsed": true,
+    "autogenerate": {
+      "directory": "release-notes",
+      "sort": "asc"
+    }
+  },
+  {
     "label": "About Tech Docs",
     "collapsed": true,
     "items": ["about/authoring", "about/development"]
