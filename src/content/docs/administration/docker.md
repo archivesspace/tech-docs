@@ -30,6 +30,8 @@ To run ArchivesSpace with Docker, first download the ArchivesSpace docker config
 
 The downloaded configuration package contains a simple yet configurable and production ready docker-based setup intended to run on a single computer.
 
+### Contents of the configuration package
+
 Unzipping the downloaded file will create an `archivesspace` directory with the following contents:
 
 ```
@@ -37,6 +39,7 @@ Unzipping the downloaded file will create an `archivesspace` directory with the 
 ├── backups
 ├── config
 │   └── config.rb
+├── locales
 ├── plugins
 ├── proxy-config
 │   └── default.conf
@@ -47,7 +50,8 @@ Unzipping the downloaded file will create an `archivesspace` directory with the 
 
 - The `backups` directory is first created once you start the application and it will contain the automatically performed backups of the database. See [Automated Backups section](#automated-database-backups).
 - `config/config.rb` file contains the [main configuration](/customization/configuration/) of ArchivesSpace.
-- The `plugins` directory is there to accommodate additional ArchivesSpace [plugins](/customization/plugins/)
+- The `locales` directory allows [customization of the UI text](/customization/locales/).
+- The `plugins` directory is there to accommodate additional ArchivesSpace [plugins](/customization/plugins/). By default, it contains the [`local`](/customization/plugins/#adding-your-own-branding) and [`lcnaf`](https://github.com/archivesspace-plugins/lcnaf) plugins.
 - `proxy-config/default.conf` contains the configuration of the bundled `nginx` see also [proxy configuration](#proxy-configuration).
 - In the `sql` directory you can put your `.sql` database dump file to initialize the new database, see [next section](migrating-from-the-zip-distribution-to-docker).
 - `docker-compose.yml` contains all the information required by Docker to build and run ArchivesSpace.
@@ -110,6 +114,21 @@ Watch the logs for the welcome message:
 
 Using the default proxy configuration, the Public User interface becomes available at http://localhost/ and the Staff User Interface at: http://localhost/staff/ (default login with: admin / admin)
 
+You can see the status of your running containers with:
+
+    docker ps
+
+Which will give a listing like this:
+
+```
+CONTAINER ID   IMAGE                               COMMAND                  CREATED        STATUS                    PORTS                                                  NAMES
+6cd7114c1796   nginx:1.21                          "/docker-entrypoint.…"   26 hours ago   Up 29 minutes             0.0.0.0:80->80/tcp, :::80->80/tcp                      proxy
+9ed453c46a9f   archivesspace/archivesspace:4.0.0   "/archivesspace/star…"   26 hours ago   Up 29 minutes (healthy)   8080-8081/tcp, 8089-8090/tcp, 8092/tcp                 archivesspace
+ec71dd3030b7   databack/mysql-backup:latest        "/entrypoint dump"       26 hours ago   Up 29 minutes                                                                    db-backup
+8b74aa374ec8   archivesspace/solr:4.0.0            "docker-entrypoint.s…"   26 hours ago   Up 29 minutes             0.0.0.0:8983->8983/tcp, :::8983->8983/tcp              solr
+d2cf634744fe   mysql:8                             "docker-entrypoint.s…"   26 hours ago   Up 29 minutes             0.0.0.0:3306->3306/tcp, :::3306->3306/tcp, 33060/tcp   mysql
+```
+
 If you have also [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed, you can use it to start, stop and manage the ArchivesSpace containers after they have been created for the first time. At the time of writing this, there is no way to call `docker compose` using Docker Desktop, it has to be called on a terminal as described above.
 
 ### Stop
@@ -126,9 +145,38 @@ They can be started again with:
 docker compose up --detach
 ```
 
+### Start a shell within a container to run the provided scripts
+
+You can get a `bash` shell on the container running the archivespace application and run the any of the scripts in the scripts directory with:
+
+```
+$ docker exec -it archivesspace bash
+archivesspace@9ed453c46a9f:/$ cd archivesspace/scripts/
+archivesspace@9ed453c46a9f:/archivesspace/scripts$ ls
+backup.bat  backup.sh  ead_export.bat  ead_export.sh  find-base.sh  initialize-plugin.bat  initialize-plugin.sh  password-reset.bat  password-reset.sh  rb  setup-database.bat  setup-database.sh
+archivesspace@9ed453c46a9f:/archivesspace/scripts$ ./setup-database.sh
+NOTE: Picked up JDK_JAVA_OPTIONS: --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED
+Loading ArchivesSpace configuration file from path: /archivesspace/config/config.rb
+Loading ArchivesSpace configuration file from path: /archivesspace/config/config.rb
+Loading ArchivesSpace configuration file from path: /archivesspace/config/config.rb
+Detected MySQL connector 8+
+Running migrations against jdbc:mysql://db:3306/archivesspace?useUnicode=true&characterEncoding=UTF-8&user=[REDACTED]&password=[REDACTED]&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+All done.
+```
+
+### Copy files from and to your data directory
+
+The archivespace `data` directory is not exposed in the Docker Configuration package (as are `locales`, `config`, and `locales` making them easily accessible). This is due to issues we have had on Windows when exposing
+the `data` directory instead of using a Docker volume for it.
+
+If you need to copy files from/to the `data` directory, or any other directory of the archivesspace installation, you can use [`docker cp`](https://docs.docker.com/reference/cli/docker/container/cp/) commands, such as:
+
+    docker cp archivesspace:/archivesspace/data/indexer_state /tmp/indexer_state
+    docker cp ~/Desktop/test.png archivesspace:/archivesspace/data
+
 ## Automated database backups
 
-The Docker configuration package includes a mechanism that will perform periodic backups of your MySQL database, using: [databacker/mysql-backup](https://github.com/databacker/mysql-backup). It is by default configured to perform a dump every two hours. See [configuration](https://github.com/databacker/mysql-backup/blob/master/docs/configuration.md) for more options.
+The Docker configuration package includes a mechanism that will perform periodic backups of your MySQL database, see the [Backup and Recovery](/administration/backup/#backups-when-using-the-docker-configuration-package) for more information.
 
 ## Proxy Configuration
 
