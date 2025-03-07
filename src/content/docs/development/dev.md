@@ -335,9 +335,16 @@ supervisord -c supervisord/api.conf
 ./build/run frontend:devserver
 ```
 
-Add `binding.pry` to set breakpoints in the code. This can also be used in views:
-`<% binding.pry %>`. Using pry you can easily inspect the `request`, `params` and
-in scope instance variables that are available.
+Add `require 'pry-debugger-jruby'; binding.pry` to set breakpoints in the code. This can also be used in views:
+`<% require 'pry-debugger-jruby'; binding.pry %>`. Using pry you can easily inspect the `request`, `params` and
+in scope instance variables that are available. Typical debugger commands are available:
+
+- `step`: Step execution into the next line or method. Takes an optional numeric argument to step multiple times.
+- `next`: Step over to the next line within the same frame. Takes an optional numeric argument to step multiple times. Differs from step in that it always stays within the same frame (e.g. does not go into other method calls).
+- `finish`: Execute until current stack frame returns.
+- `continue`: Continue program execution and end the Pry session.
+
+See also [pry-debugger-jruby docs](https://gitlab.com/ivoanjo/pry-debugger-jruby).
 
 **Advanced: development servers and the build directory**
 
