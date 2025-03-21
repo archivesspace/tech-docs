@@ -82,6 +82,14 @@ If you created the dump on an earlier ArchivesSpace version, the system will app
 
 ## Running
 
+### Resource limits
+
+We recommend allocating at least 2GB per container for optimal performance. If the host instance is devoted to running ArchivesSpace, it is advisable to configure no memory limit for Docker containers.
+
+When using Docker Desktop, a default memory limit is set to 50% of your host's memory. To increase the RAM and other resource limits when using Docker Desktop, see [the documentation](https://docs.docker.com/desktop/settings-and-maintenance/settings/#resources).
+
+When using Docker without Docker Desktop, no memory limit is set by default. See [Docker documenentation](https://docs.docker.com/engine/containers/resource_constraints/) if you need to set limits to the resources used by ArchivesSpace containers.
+
 ### Note on migrating from the zip distribution
 
 If migrating from the zip distribution to Docker, you most probably have local MySQL and Solr instances running. Starting ArchivesSpace with Docker will start Docker-based MySQL and Solr instances. In order to avoid port binding conflicts, make sure that you stop your local MySQL and Solr instances before proceeding.
