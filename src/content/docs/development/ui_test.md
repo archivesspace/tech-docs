@@ -4,11 +4,13 @@ title: UI tests
 
 ArchivesSpace's staff and public interfaces use [Selenium](http://docs.seleniumhq.org/) to run automated browser tests. These tests can be run using [Firefox via geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/geckodriver/index.html) and [Chrome](https://sites.google.com/a/chromium.org/chromedriver/home) (either regular Chrome or headless).
 
+## UI tests with firefox (default)
+
 Firefox is the default used in our [CI workflows](https://github.com/archivesspace/archivesspace/actions).
 
-On Ubuntu 22.04 or later, the included Firefox deb package is a transition package that actually installs Firefox through [snap](https://snapcraft.io/). Snap has security restrictions that do not work with automated testing without additional configuration.
+On Ubuntu Linux 22.04 or later, the included Firefox deb package is a transition package that actually installs Firefox through [snap](https://snapcraft.io/). Snap has security restrictions that do not work with automated testing without additional configuration.
 
-To uninstall the Firefox snap package and reinstall it as a traditional deb package on Ubuntu use:
+To uninstall the Firefox snap package and reinstall it as a traditional deb package on Ubuntu Linux use:
 
 ```bash
 # remove old snap firefox package (if installed)
@@ -28,11 +30,17 @@ Pin: origin packages.mozilla.org
 Pin-Priority: 1000
 ' | sudo tee /etc/apt/preferences.d/mozilla
 
-# install firefox and geckdriver as a standard deb package
-sudo apt update && sudo apt install firefox firefox-geckodriver
+# install firefox
+sudo apt update && sudo apt install firefox
 ```
 
+When using firefox, you need to make sure that the version of geckodriver you are using works with your firefox version, see this [compatibility table](https://firefox-source-docs.mozilla.org/testing/geckodriver/Support.html). Get your installed firefox version by running: `firefox --version`.
+
+On Linux, you can download the geckodriver version that corresponds to your firefox version [here](https://github.com/mozilla/geckodriver/releases).
+
 On Mac you can use: `brew install geckodriver`.
+
+## UI tests with Chrome
 
 To run using Chrome, you must first download the appropriate [ChromeDriver
 executable](https://sites.google.com/a/chromium.org/chromedriver/downloads)
