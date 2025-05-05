@@ -93,7 +93,8 @@ keep your older version.
 Sometimes a new release of ArchivesSpace will require a FULL reindex
 which means you do not want to copy over anything from your data directory
 to your new release. The data directory contains the indexes created by Solr.
-Check the release notes of the new version for any details about reindexing.
+Check the release notes of the new version for any details about reindexing and
+the [recreating indexes section](/administration/indexes/) for instructions on recreating indexes.
 
 ## Transfer your locales data
 
@@ -109,7 +110,7 @@ Linux diff command:
 
 This will show you the differences in your current locales files, as well as the
 new additions in the new version locales files. Simply copy the values you wish
-to keep from your old ArchivesSpace locales to your new ArchivesSpace locales
+to keep from your old ArchivesSpace locales to your new ArchivesSpace locales/provisioning/solr/#copy-the-config-files
 files.
 
 ## Run the database migrations
@@ -128,9 +129,12 @@ Or on Windows:
      $ cd archivesspace-1.5.x\archivesspace
      $ scripts\setup-database.bat
 
-## If you're using external Solr (required beginning with version 3.2.0)
+## Solr configuration updates
 
-[Full instructions for using external Solr with ArchivesSpace](/provisioning/solr)
+If the release you are upgrading to includes updates in the solr schema or other configuration files (see the release notes)
+and you're using external Solr (required beginning with version 3.2.0), you will need to update the solr schema and configuration files
+accordingly, by [copying the solr configuration files](/provisioning/solr/#copy-the-config-files) from the release package to your external solr configuration.
+See also the [Full instructions for using external Solr with ArchivesSpace](/provisioning/solr).
 
 ## If you've deployed to Tomcat
 

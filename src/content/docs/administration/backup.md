@@ -2,11 +2,11 @@
 title: Backup and recovery
 ---
 
-## Backups when using the docker configuration package
+## Using the docker configuration package
 
 ### Database backups
 
-The Docker configuration package includes a mechanism that will perform periodic backups of your MySQL database,
+The [Docker configuration package](/administration/docker) includes a mechanism that performs periodic backups of your MySQL database,
 using: [databacker/mysql-backup](https://github.com/databacker/mysql-backup). It is by default configured to perform
 a dump every two hours. See [configuration](https://github.com/databacker/mysql-backup/blob/master/docs/configuration.md) for more options.
 
