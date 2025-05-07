@@ -1,5 +1,6 @@
 ---
 title: JSONModel
+description: Describes the rules and structure behind the JSONModel class, which expresses the rules for different types of archival records. JSONModel instances are the primary data interchange mechanism for ArchivesSpace.
 ---
 
 The ArchivesSpace system is concerned with managing a number of

@@ -1,5 +1,6 @@
 ---
 title: Upgrading when using the zip distribution
+description: Instructions on how to update ArchivesSpace.
 ---
 
 If you have installed ArchivesSpace using the Docker Configuration Package, refer to [upgrading with Docker](/administration/docker/#upgrading). If you have installed ArchivesSpace using the zip distribution, read on! (In case you do not know what the difference is, see the [getting started page](/administration/getting_started/#two-ways-to-get-up-and-running)).
@@ -106,7 +107,7 @@ the [recreating indexes section](/administration/indexes/) for instructions on r
 
 ## Transfer your locales data
 
-If you've made modifications to you locales file ( en.yml ) with customized
+If you've made modifications to your locales file ( en.yml ) with customized
 labels, titles, tooltips, etc., you'll need to transfer those to your new
 locale file.
 

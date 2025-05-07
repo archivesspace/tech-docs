@@ -1,6 +1,6 @@
 ---
 title: Development
-
+description: This page describes how to set up the tech-docs repostory, build the website, update dependencies, and run tests
 # This is the last page in the sidebar, so point to Home next instead of
 # the Help Center which comes after this page in the sidebar
 next:

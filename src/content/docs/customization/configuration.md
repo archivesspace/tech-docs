@@ -1,5 +1,6 @@
 ---
 title: Configuration
+description: Lists all available configuration options available within the config/config.rb file, including configuration names, values, and suggestions for setup.
 ---
 
 The primary configuration for ArchivesSpace is done in the config/config.rb
@@ -1017,7 +1018,7 @@ Repository-specific examples. Replace {repo_code} with your repository code, i.e
 
 Examples:
 
-for a particular repository, only enable requests for certain record types (Note this configuration will override AppConfig[:pui_requests_permitted_for_types] for the repository)
+For a particular repository, only enable requests for certain record types (Note this configuration will override AppConfig[:pui_requests_permitted_for_types] for the repository)
 
 ```ruby
 AppConfig[:pui_repos]['foo'][:requests_permitted_for_types] = [:resource, :archival_object, :accession, :digital_object, :digital_object_component]
@@ -1074,13 +1075,13 @@ Enable / disable PUI resource/archival object page 'print' action
 
 #### `AppConfig[:pui_enable_staff_link]`
 
-when a user is authenticated, add a link back to the staff interface from the specified record
+When a user is authenticated, add a link back to the staff interface from the specified record
 
 `AppConfig[:pui_enable_staff_link] = true`
 
 #### `AppConfig[:pui_staff_link_mode]`
 
-by default, staff link will open record in staff interface in edit mode,
+By default, staff link will open record in staff interface in edit mode,
 change this to 'readonly' for it to open in readonly mode
 
 `AppConfig[:pui_staff_link_mode] = 'edit'`

@@ -1,5 +1,6 @@
 ---
 title: Additional authentication
+description: Instructions on how to install and configure a custom authentication handler via a plugin.
 ---
 
 ArchivesSpace supports LDAP-based authentication out of the box, but you can

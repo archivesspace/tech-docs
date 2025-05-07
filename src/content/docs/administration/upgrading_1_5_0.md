@@ -1,5 +1,6 @@
 ---
 title: Upgrading to 1.5.0
+description: Upgrade instructions for upgrading from ArchivesSpace 1.4.2 or lower to 1.5.0, including details on the newest container management feature.
 ---
 
 Additional upgrade considerations specific to this release, which also apply to upgrading from 1.4.2 or lower to any version through 2.0.1. Refer to the [upgrade documentation](/administration/upgrading) for the standard instructions that apply in all cases.
@@ -10,7 +11,7 @@ The upgrade process to the new data model in 1.5.0 requires considerable data tr
 
 A quick overview of the steps are:
 
-1. Review this document and understand how the upgrade will impact your data, paying particular attention to the [Preparation section](#preparation) .
+1. Review this document and understand how the upgrade will impact your data, paying particular attention to the [Preparation section](#preparation).
 2. [Backup your database](/administration/backup).
 3. No, really, [backup your database](/administration/backup).
 4. It is suggested that [users start with a new solr index](/administration/indexes). To do this, delete the data/solr_index/index directory and all files in the data/indexer_state directory. The embedded version of Solr has been upgraded, which should result in a much more compact index size.
