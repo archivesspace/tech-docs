@@ -1,5 +1,6 @@
 ---
 title: Running with Docker
+description: Instructions on setting up, running, and managing an ArchivesSpace installation using Docker.
 ---
 
 ## Docker images

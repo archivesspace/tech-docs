@@ -1,5 +1,6 @@
 ---
 title: Dependencies
+description: Lists the technical stack of the application, including programming languages and platforms.
 ---
 
 ArchivesSpace components are constructed using several programming languages, platforms, and additional open source projects.

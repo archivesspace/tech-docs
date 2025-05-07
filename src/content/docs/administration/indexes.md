@@ -1,5 +1,6 @@
 ---
 title: Recreating indexes
+description: Steps for performing soft reindexes and full reindexes of Solr, including internal and external Solr.
 ---
 
 There are two strategies for reindexing ArchivesSpace:

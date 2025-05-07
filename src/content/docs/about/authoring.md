@@ -1,5 +1,6 @@
 ---
 title: Authoring content
+description: This page outlines best practices for updating and writing markdown files for the tech-docs repository.
 ---
 
 Tech Docs content is written in [Markdown](https://en.wikipedia.org/wiki/Markdown) which is a markup language used for formatting plain text that aims to be easy to read and write.

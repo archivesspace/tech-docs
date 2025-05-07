@@ -1,5 +1,6 @@
 ---
 title: Backend
+description: Describes the architecture behind the backend of ArchivesSpace, including the main.rb and rest.rb files for initiating ArchivesSpace and defining API mechanisms, controllers, models, nested records, relationships, agents, validation, optimistic concurrency control, and the permissions model.
 ---
 
 The backend is responsible for implementing the ArchivesSpace API, and

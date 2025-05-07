@@ -1,5 +1,6 @@
 ---
 title: Resetting passwords
+description: How to run a script that resets a user's password within ArchivesSpace.
 ---
 
 Under the `scripts` directory you will find a script that lets you

@@ -1,5 +1,6 @@
 ---
 title: Log rotation
+description: Details an example of how to set up log rotation, which helps keep the ArchivesSpace log file from growing excessively.
 ---
 
 In order to prevent your ArchivesSpace log file from growing excessively, you can set up log rotation. How to set up log rotation is specific to your institution but here is an example logrotate config file with an explanation of what it does.

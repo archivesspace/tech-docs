@@ -1,8 +1,13 @@
 ---
 title: Upgrading to a new release
+description: Instructions on how to update ArchivesSpace.
 ---
 
-You can upgrade most versions of ArchivesSpace to a later version using these general instructions. Typically you do not need to progress through other versions of ArchivesSpace to get to a later one, unless there are special considerations for a specific version. Special considerations for these versions are noted here and in release notes.
+You can upgrade most versions of ArchivesSpace to a later version using 
+these general instructions. Typically, you do not need to progress through 
+other versions of ArchivesSpace to get to a later one, unless there are 
+special considerations for a specific version. Special considerations for 
+these versions are noted here and in release notes.
 
 - **[Special considerations when upgrading to v1.1.0](/administration/upgrading_1_1_0)**
 - **[Special considerations when upgrading to v1.1.1](/administration/upgrading_1_1_1)**
@@ -98,7 +103,7 @@ the [recreating indexes section](/administration/indexes/) for instructions on r
 
 ## Transfer your locales data
 
-If you've made modifications to you locales file ( en.yml ) with customized
+If you've made modifications to your locales file ( en.yml ) with customized
 labels, titles, tooltips, etc., you'll need to transfer those to your new
 locale file.
 
