@@ -1,5 +1,6 @@
 ---
 title: LDAP authentication
+description: Instructions on how to manage and authenticate against one or more LDAP directories.
 ---
 
 ArchivesSpace can manage its own user directory, but can also be

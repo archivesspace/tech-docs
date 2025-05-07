@@ -1,5 +1,6 @@
 ---
 title: Upgrading to 2.1.0
+description: Instructions on upgrading to ArchivesSpace 2.1.0 if coming from 1.4.2 or below, Archivists' Toolkit or Archon, or if using an external Solr server, in addition to notes on rights statement data migration.
 ---
 
 Additional upgrade considerations specific to this release. Refer to the [upgrade documentation](/administration/upgrading) for the standard instructions that apply in all cases.

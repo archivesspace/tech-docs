@@ -1,5 +1,6 @@
 ---
 title: Database
+description: Describes the structure of the ArchivesSpace database, including a breakdown between the main, supporting, subrecord, relationship, enumerations, user-setting-permissions, job, and system tables. It also breaks down the specific fields present in the different tables.
 ---
 
 The ArchivesSpace database stores all data that is created within an ArchivesSpace instance. As described in other sections of this documentation, the backend code - particularly the model layer and `ASModel_crud.rb` file - uses the `Sequel` database toolkit to bridge the gap between this underlying data and the JSON objects which are exchanged by the other components of the system.

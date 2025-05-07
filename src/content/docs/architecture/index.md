@@ -1,5 +1,6 @@
 ---
 title: Architecture and components
+description: Abbreviated description of how the different parts of ArchivesSpace interact with each other with links to each section.
 ---
 
 ArchivesSpace is divided into several components: the backend, which
