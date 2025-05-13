@@ -189,3 +189,23 @@ The Docker configuration package includes a mechanism that will perform periodic
 ## Proxy Configuration
 
 The Docker configuration package includes an `nginx` based proxy that is by default binding on port 80 of the host machine (see `NGINX_PORT` variable in `.env` file). See `proxy-config/default.conf` and the [nginx docker page](https://hub.docker.com/_/nginx) for more configuration options.
+
+## Upgrading
+
+If you are already using the Docker configuration package and upgrading to a newer ArchivesSpace version, [download and extract](#downloading-the-configuration-package) the latest version of the Docker configuration package.
+
+### With solr configuration / schema changes
+
+If the ArchivesSpace version you are upgrading to includes solr configuration or schema changes (see the [release notes](https://github.com/archivesspace/archivesspace/releases)), then you need to recreate your solr core and re-index. Change to the `archivespace` directory where you extraced the fresh downloaded Docker configuration package and run:
+
+    docker compose down solr app
+    docker volume rm archivesspace_app-data archivesspace_solr-data
+    docker compose pull
+    docker compose up -d --build --force-recreate
+
+### Without solr configuration / schema changes
+
+If no solr configuration or schema changes are included, change to the extracted `architecture` directory and run:
+
+    docker compose pull
+    docker compose up -d --build --force-recreate
