@@ -1,6 +1,8 @@
 ---
-title: Upgrading to a new release
+title: Upgrading when using the zip distribution
 ---
+
+If you have installed ArchivesSpace using the Docker Configuration Package, refer to [upgrading with Docker](/administration/docker/#upgrading). If you have installed ArchivesSpace using the zip distribution, read on! (In case you do not know what the difference is, see the [getting started page](/administration/getting_started/#two-ways-to-get-up-and-running)).
 
 You can upgrade most versions of ArchivesSpace to a later version using these general instructions. Typically you do not need to progress through other versions of ArchivesSpace to get to a later one, unless there are special considerations for a specific version. Special considerations for these versions are noted here and in release notes.
 
