@@ -58,7 +58,7 @@ In that case, you also need to backup and restore the files used by the indexers
 
 ## Creating backups of your database using the provided script
 
-ArchivesSpace provides simple scripts for windows and unix-like systems for backing up a the database to a `.zip` file.
+ArchivesSpace provides simple scripts for windows and unix-like systems for backing up the database to a `.zip` file.
 
 ### When using the embedded demo database
 
