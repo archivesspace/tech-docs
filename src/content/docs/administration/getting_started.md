@@ -73,7 +73,8 @@ All ArchivesSpace versions can run on MySQL version 5.x or 8.x.
 
 ## Getting started
 
-[//]: # (This should probably be re-written for new instructions using docker)
+[//]: # 'This should probably be re-written for new instructions using docker'
+
 The quickest way to get ArchivesSpace up and running is to download
 the latest distribution `.zip` file from the following URL:
 
