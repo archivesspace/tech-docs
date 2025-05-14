@@ -3,10 +3,10 @@ title: Upgrading to a new release
 description: Instructions on how to update ArchivesSpace.
 ---
 
-You can upgrade most versions of ArchivesSpace to a later version using 
-these general instructions. Typically, you do not need to progress through 
-other versions of ArchivesSpace to get to a later one, unless there are 
-special considerations for a specific version. Special considerations for 
+You can upgrade most versions of ArchivesSpace to a later version using
+these general instructions. Typically, you do not need to progress through
+other versions of ArchivesSpace to get to a later one, unless there are
+special considerations for a specific version. Special considerations for
 these versions are noted here and in release notes.
 
 - **[Special considerations when upgrading to v1.1.0](/administration/upgrading_1_1_0)**
