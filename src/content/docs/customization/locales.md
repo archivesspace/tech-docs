@@ -24,6 +24,7 @@ These values are pulled into the views using the I18n.t() method, like I18n.t("b
 If the value you want to override is in the common locale file (like the "digital object title" field label, for example) , you can change this by simply editing the locales/en.yml file in your ArchivesSpace distribution home directory. A restart is required to have the changes take effect.
 
 If the value you want to change is in either the public or staff specific en.yml files, you can override these values using the plugins directory. For example, if you want to change the welcome message on the public frontend, make a file in your ArchivesSpace distribution called 'plugins/local/public/locales/en.yml' and put the following values:
+
 ```yaml
 en:
   brand:
@@ -32,6 +33,7 @@ en:
 
 welcome_message: HEY HEY HEY!!
 ```
+
 If you restart ArchivesSpace, these values will take effect.
 
 If you are adding a new value you will also need to add the value into the Staff Frontend Application by clicking on the System dropdown menu and choosing Manage Controlled Value Lists. Select the list and add the value. If you restart ArchivesSpace the translation value that you set in the yml file should appear.
@@ -49,11 +51,11 @@ en:
   accession:
     title: Title
     title_tooltip: |
-        <p>The title assigned to an accession or resource. The accession title
-        need not be the same as the resource title. Moreover, a title need not
-        be expressed for the accession record, as it can be implicitly
-        inherited from the resource record to which the accession is
-        linked.</p>
+      <p>The title assigned to an accession or resource. The accession title
+      need not be the same as the resource title. Moreover, a title need not
+      be expressed for the accession record, as it can be implicitly
+      inherited from the resource record to which the accession is
+      linked.</p>
 ```
 
 ## Placeholders

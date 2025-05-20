@@ -70,9 +70,11 @@ To do that, create a file called
 `archivesspace/plugins/local/frontend/views/layout_head.html.erb` for the staff
 side or `archivesspace/plugins/local/public/views/layout_head.html.erb` for the
 public. Then you can add the line to include the CSS in the site:
+
 ```erb
 <%= stylesheet_link_tag "#{@base_url}/assets/custom.css" %>
 ```
+
 Then place your CSS in the file:
 
      staff side:
@@ -110,17 +112,21 @@ Also become a little familiar with the
 
 First, pull down a new copy of ArchivesSpace using git and be sure to checkout
 a tag matching the version you're using or wanting to use.
-``` shell
+
+```shell
 $ git clone https://github.com/archivesspace/archivesspace.git
 $ git checkout v2.5.2
 ```
+
 You can start your application development server by executing:
+
 ```shell
 $ ./build/run bootstrap
 $ ./build/run backend:devserver
 $ ./build/run frontend:devserver
 $ ./build/run public:devserver
 ```
+
 **Note:** You don't have to run all these commands all the time. The bootstrap
 command really only has to be run the first time your pull down the code --
 it will also take awhile. You also don't have to start the frontend or public

@@ -41,9 +41,11 @@ type and JSONModel schema to define its parameters.
 
 All jobs of a type are handled by a registered `JobRunner`. The job runner
 classes are located here:
+
 ```
 backend/app/lib/job_runners/
 ```
+
 It is possible to define additional job runners from a plugin. (See below for
 more information about plugins.)
 
@@ -66,17 +68,21 @@ When a job runner registers for a job type, it can set some options:
   - A permission or list of permissions required, in addition to `cancel_job`, to cancel jobs of this type.
 
 For more information about defining a job runner, see the `JobRunner` superclass:
+
 ```
 backend/app/lib/job_runner.rb
 ```
+
 #### JSONModel Schemas
 
 A job type also requires a JSONModel schema that defines the parameters to run a
 job of the type. The schema name must be the same as the type that the runner
 registers for. For example:
+
 ```
 common/schemas/import_job.rb
 ```
+
 This schema, for `JSONModel(:import_job)`, defines the parameters for running a
 job of type `import_job`.
 
@@ -85,9 +91,11 @@ job of type `import_job`.
 ArchivesSpace can be configured to run more than one background job at a time.
 By default, there will be two threads available to run background jobs.
 The configuration looks like this:
+
 ```
 AppConfig[:job_thread_count] = 2
 ```
+
 The `BackgroundJobQueue` will start this number of threads at start up. Those
 threads will then poll for queued jobs and run them.
 
@@ -103,6 +111,7 @@ regardless of whether there is a job of the same type running.
 
 It is possible to add a new job type from a plugin. ArchivesSpace includes a
 plugin that demonstrates how to do this:
+
 ```
 plugins/jobs_example
 ```

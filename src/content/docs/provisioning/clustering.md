@@ -82,12 +82,14 @@ We'll assume you already have the following ready to go:
 Start by copying the directory structure from `files/` into your
 `/aspace` volume. This will contain all of the configuration files
 shared between servers:
+
 ```shell
 mkdir /var/tmp/aspace/
 cd /var/tmp/aspace/
 unzip -x /path/to/archivesspace.zip
 cp -av archivesspace/clustering/files/* /aspace/
 ```
+
 You can do this on any machine that has access to the shared
 `/aspace/` volume.
 
@@ -95,10 +97,12 @@ You can do this on any machine that has access to the shared
 
 On your application servers (`apps1` and `apps2`) you will need to
 install the supplied init script:
+
 ```shell
 cp -a /aspace/aspace-cluster.init /etc/init.d/aspace-cluster
 chkconfig --add aspace-cluster
 ```
+
 This will start all configured instances when the system boots up, and
 can also be used to start/stop individual instances.
 
@@ -109,18 +113,22 @@ you can do by following the directions at
 http://nginx.org/en/download.html. Using the pre-built packages for
 your platform is fine. At the time of writing, the process for CentOS
 is simply:
+
 ```shell
 wget http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
 rpm -i nginx-release-centos-6-0.el6.ngx.noarch.rpm
 yum install nginx
 ```
+
 Nginx will place its configuration files under `/etc/nginx/`. For
 now, the only change we need to make is to configure Nginx to load our
 tenants' configuration files. To do this, edit
 `/etc/nginx/conf.d/default.conf` and add the line:
+
 ```
 include /aspace/nginx/conf/tenants/\*.conf;
 ```
+
 _Note:_ the location of Nginx's main config file might vary between
 systems. Another likely candidate is `/etc/nginx/nginx.conf`.
 
@@ -131,12 +139,14 @@ ArchivesSpace software, we put a shared copy under
 `/aspace/archivesspace/software/` and have each tenant instance refer
 to that copy. To set this up, run the following commands on any one
 of the servers:
-``` shell
+
+```shell
 cd /aspace/archivesspace/software/
 unzip -x /path/to/downloaded/archivesspace-x.y.z.zip
 mv archivesspace archivesspace-x.y.z
 ln -s archivesspace-x.y.z stable
 ```
+
 Note that we unpack the distribution into a directory containing its
 version number, and then assign that version the symbolic name
 "stable". This gives us a convenient way of referring to particular
@@ -146,10 +156,12 @@ our tenant.
 We'll be using MySQL, which means we must make the MySQL connector
 library available. To do this, place it in the `lib/` directory of
 the ArchivesSpace package:
+
 ```shell
 cd /aspace/archivesspace/software/stable/lib
 wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.24/mysql-connector-java-5.1.24.jar
 ```
+
 ## Defining a new tenant
 
 With our server setup out of the way, we're ready to define our first
@@ -190,10 +202,12 @@ a dedicated Unix account.
 We will call our new tenant `exampletenant`, so let's create a user
 and group for them now. You will need to run these commands on _both_
 application servers (`apps1` and `apps2`):
+
 ```shell
 groupadd --gid 2000 exampletenant
 useradd --uid 2000 --gid 2000 exampletenant
 ```
+
 Note that we specify a UID and GID explicitly to ensure they match
 across machines.
 
@@ -201,17 +215,21 @@ across machines.
 
 ArchivesSpace assumes that each tenant will have their own MySQL
 database. You can create this from the MySQL shell:
+
 ```sql
 create database exampletenant default character set utf8;
 grant all on exampletenant.* to 'example'@'%' identified by 'example123';
 ```
+
 In this example, we have a MySQL database called `exampletenant`, and
 we grant full access to the user `example` with password `example123`.
 Assuming our database server is `db.example.com`, this corresponds to
 the database URL:
+
 ```
 jdbc:mysql://db.example.com:3306/exampletenant?user=example&password=example123&useUnicode=true&characterEncoding=UTF-8
 ```
+
 We'll make use of this URL in the following section.
 
 ### Creating the tenant configuration
@@ -222,10 +240,12 @@ tenant (called `exampletenant`) by copying the template set of
 configurations and running the `init_tenant.sh` script to set them
 up. We can do this on either `apps1` or `apps2`--it only needs to be
 done once:
+
 ```shell
 cd /aspace/archivesspace/tenants
 cp -a \_template exampletenant
 ```
+
 Note that we've named the tenant `exampletenant` to match the Unix
 account it will run as. Later on, the startup script will use this
 fact to run each instance as the correct user.
@@ -234,9 +254,11 @@ For now, we'll just edit the configuration file for this tenant, under
 `exampletenant/archivesspace/config/config.rb`. When you open this file you'll see two
 placeholders that need filling in: one for your database URL, which in
 our case is just:
+
 ```
 jdbc:mysql://db.example.com:3306/exampletenant?user=example&password=example123&useUnicode=true&characterEncoding=UTF-8
 ```
+
 and the other for this tenant's search, staff and public user secrets,
 which should be random, hard to guess passwords.
 
@@ -244,10 +266,12 @@ which should be random, hard to guess passwords.
 
 To add our tenant instances, we just need to initialize them on each
 of our servers. On `apps1` _and_ `apps2`, we run:
+
 ```shell
 cd /aspace/archivesspace/tenants/exampletenant/archivesspace
 ./init_tenant.sh stable
 ```
+
 If you list the directory now, you will see that the `init_tenant.sh`
 script has created a number of symlinks. Most of these refer back to
 the `stable` version of the ArchivesSpace software we unpacked
@@ -258,12 +282,15 @@ Each server has its own configuration file that tells the
 ArchivesSpace application which ports to listen on. To set this up,
 make two copies of the example configuration by running the following
 command on `apps1` then `apps2`:
+
 ```shell
 cd /aspace/archivesspace/tenants/exampletenant/archivesspace
 cp config/instance_hostname.rb.example config/instance_`hostname`.rb
 ```
+
 Then edit each file to set the URLs that the instance will use.
 Here's our `config/instance_apps1.example.com.rb`:
+
 ```ruby
 {
      :backend_url => "http://apps1.example.com:8089",
@@ -273,10 +300,13 @@ Here's our `config/instance_apps1.example.com.rb`:
      :public_url => "http://apps1.example.com:8081",
 }
 ```
+
 Note that the filename is important here: it must be:
+
 ```
 instance_[server hostname].rb
 ```
+
 These URLs will determine which ports the application listens on when
 it starts up, and are also used by the ArchivesSpace indexing system
 to track updates across the cluster.
@@ -286,15 +316,19 @@ to track updates across the cluster.
 As a one-off, we need to populate this tenant's database with the
 default set of tables. You can do this by running the
 `setup-database.sh` script on either `apps1` or `apps2`:
+
 ```shell
 cd /aspace/archivesspace/tenants/exampletenant/archivesspace
 scripts/setup-database.sh
 ```
+
 With the two instances configured, you can now use the init script to
 start them up on each server:
+
 ```shell
 /etc/init.d/aspace-cluster start-tenant exampletenant
 ```
+
 and you can monitor each instance's log file under
 `/aspace.local/tenants/exampletenant/logs/`. Once they're started,
 you should be able to connect to each instance with your web browser
@@ -306,10 +340,12 @@ Our final step is configuring Nginx to accept requests for our staff
 and public interfaces and forward them to the appropriate application
 instance. Working on the `loadbalancer` machine, we create a new
 configuration file for our tenant:
+
 ```shell
 cd /aspace/nginx/conf/tenants
 cp -a \_template.conf.example exampletenant.conf
 ```
+
 Now open `/aspace/nginx/conf/tenants/exampletenant.conf` in an
 editor. You will need to:
 

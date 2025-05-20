@@ -69,6 +69,7 @@ en:
 ## Development
 
 To run a development server, the PUI follows the same pattern as the rest of ArchivesSpace. From your ArchivesSpace checkout:
+
 ```shell
      # Prepare all dependencies
      build/run bootstrap
@@ -82,6 +83,7 @@ To run a development server, the PUI follows the same pattern as the rest of Arc
      # Finally, run the PUI itself
      build/run public:devserver
 ```
+
 ## Inheritance
 
 ### Three options for inheritance:

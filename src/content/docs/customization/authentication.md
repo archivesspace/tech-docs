@@ -52,6 +52,7 @@ Suppose you already have a database with a table containing users that
 should be able to log in to ArchivesSpace. Below is a sketch of an
 authentication handler that will connect to this database and use it
 for authentication.
+
 ```ruby
 # For this example we'll use the Sequel database toolkit.  Note that
 # this isn't necessary--you could use whatever database library you
@@ -103,6 +104,7 @@ class MyDatabaseAuth
 
 end
 ```
+
 In order to use your new authentication handler, you'll need to add it to the plug-in
 architecture in ArchivesSpace and enable it. Create a new directory, called our_auth
 perhaps, in the plugins directory of your ArchivesSpace installation. Inside
@@ -116,12 +118,14 @@ a new entry to the `:authentication_sources` configuration block in the
 `config/config.rb` file.
 
 A configuration for the above example might be as follows:
+
 ```ruby
 AppConfig[:authentication_sources] = [{
                                         :model => 'MyDatabaseAuth',
                                         :db_url => 'jdbc:mysql://localhost:3306/somedb?user=myuser&password=mypassword',
                                       }]
 ```
+
 ## Add the plug-in to the list of plug-ins already enabled
 
 In the `config/config.rb` file, find the setting of AppConfig[:plugins] and add

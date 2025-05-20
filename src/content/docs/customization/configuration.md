@@ -162,9 +162,11 @@ Directory to store Solr backups.
 `AppConfig[:solr_backup_directory] = proc { File.join(AppConfig[:data_directory], "solr_backups") }`
 
 ### Default Solr params
+
 ```ruby
 AppConfig[:solr_params]
 ```
+
 Add default solr params.
 
 A simple example: use AND for search:

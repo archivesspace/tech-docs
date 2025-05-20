@@ -123,9 +123,11 @@ Watch the logs for the welcome message:
 Using the default proxy configuration, the Public User interface becomes available at http://localhost/ and the Staff User Interface at: http://localhost/staff/ (default login with: admin / admin)
 
 You can see the status of your running containers with:
+
 ```
 docker ps
 ```
+
 Which will give a listing like this:
 
 ```
@@ -178,10 +180,12 @@ The archivespace `data` directory is not exposed in the Docker Configuration pac
 the `data` directory instead of using a Docker volume for it.
 
 If you need to copy files from/to the `data` directory, or any other directory of the archivesspace installation, you can use [`docker cp`](https://docs.docker.com/reference/cli/docker/container/cp/) commands, such as:
+
 ```shell
 docker cp archivesspace:/archivesspace/data/indexer_state /tmp/indexer_state
 docker cp ~/Desktop/test.png archivesspace:/archivesspace/data
 ```
+
 ## Automated database backups
 
 The Docker configuration package includes a mechanism that will perform periodic backups of your MySQL database, see the [Backup and Recovery](/administration/backup/#backups-when-using-the-docker-configuration-package) for more information.
@@ -197,15 +201,18 @@ If you are already using the Docker configuration package and upgrading to a new
 ### With solr configuration / schema changes
 
 If the ArchivesSpace version you are upgrading to includes solr configuration or schema changes (see the [release notes](https://github.com/archivesspace/archivesspace/releases)), then you need to recreate your solr core and re-index. Change to the `archivespace` directory where you extraced the fresh downloaded Docker configuration package and run:
+
 ```shell
 docker compose down solr app
 docker volume rm archivesspace_app-data archivesspace_solr-data
 docker compose pull
 docker compose up -d --build --force-recreate
 ```
+
 ### Without solr configuration / schema changes
 
 If no solr configuration or schema changes are included, change to the extracted `architecture` directory and run:
+
 ```shell
 docker compose pull
 docker compose up -d --build --force-recreate

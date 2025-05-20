@@ -35,6 +35,7 @@ that documentation before attempting to configure SSL.
 
 Use the `NameVirtualHost` and `VirtualHost` directives to proxy
 requests to the actual application urls. This requires the use of the `mod_proxy` module in Apache.
+
 ```apache
 NameVirtualHost *:443
 
@@ -60,6 +61,7 @@ NameVirtualHost *:443
   ProxyPassReverse / http://localhost:8081/
 </VirtualHost>
 ```
+
 You may optionally set the `Set-Cookie: Secure attribute` by adding `Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure`. When a cookie has the Secure attribute, the user agent will include the cookie in an HTTP request only if the request is transmitted over a secure channel.
 
 Users may encounter a warning in the browser's console stating `Cookie “archivesspace_session” does not have a proper “SameSite” attribute value. Soon, cookies without the “SameSite” attribute or with an invalid value will be treated as “Lax”. This means that the cookie will no longer be sent in third-party contexts` (example from Firefox 104) or something similar. Some browsers (for example, Chrome version 80 or above) already enforce this. Standard ArchivesSpace installations should be unaffected, but if you encounter problems with integrations and/or customizations of your particular installation, the following directive may be required: `Header edit Set-Cookie ^(.*)$ $1;SameSite=None;Secure`. Alternatively, it may be the case that `SameSite=Lax` (the default) or even `SameSite=Strict` are more appropriate depending on your functional and/or security requirements. Please refer to https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite or other resources for more information.

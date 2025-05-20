@@ -20,18 +20,23 @@ type to be valid:
 The JSONModel class provides a common language for expressing these
 rules that all parts of the application can share. There is a
 JSONModel class instance for each type of record in the system, so:
+
 ```ruby
 JSONModel(:digital_object)
 ```
+
 is a class that knows how to take a hash of properties and make sure
 those properties conform to the specification of a Digital Object:
+
 ```ruby
 JSONModel(:digital_object).from_hash(myhash)
 ```
+
 If it passes validation, a new JSONModel(:digital_object) instance is
 returned, which provides accessors for accessing its values, and
 facilities for round-tripping between JSON documents and regular Ruby
 hashes:
+
 ```ruby
 obj = JSONModel(:digital_object).from_hash(myhash)
 
@@ -64,16 +69,21 @@ To save the need for a lot of HTTP request wrangling, ArchivesSpace
 ships with a module called JSONModel::Client that simplifies the
 common CRUD-style operations. Including this module just requires
 passing an additional parameter when initializing JSONModel:
+
 ```ruby
 JSONModel::init(:client_mode => true, :url => @backend_url)
 include JSONModel
 ```
+
 If you'll be working against a single repository, it's convenient to
 set it as the default for subsequent actions:
+
 ```ruby
 JSONModel.set_repository(123)
 ```
+
 Then, several additional JSONModel methods are available:
+
 ```ruby
 # As before, get a paginated list of accessions (GET)
 JSONModel(:accession).all(:page => 1)

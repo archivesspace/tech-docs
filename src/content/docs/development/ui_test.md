@@ -55,10 +55,12 @@ and support each other.**
 ## Before running:
 
 Run the bootstrap build task to configure JRuby and all required dependencies:
+
 ```bash
 $ cd ..
 $ build/run bootstrap
 ```
+
 Note: all example code assumes you are running from your ArchivesSpace project directory.
 
 ## Running the tests:

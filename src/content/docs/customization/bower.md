@@ -17,23 +17,31 @@ installed according to this protocol.
 ### Step 1: install npm
 
 On OSX, for example:
+
 ```shell
 brew install npm
 ```
+
 ### Step 2: install Bower
+
 ```shell
 npm install bower -g
 ```
+
 ### Step 3: install components
+
 ```shell
 bower install
 ```
+
 ## Adding a static asset to ASpace Frontend (Staff UI)
 
 ### Step 1: add the component
+
 ```shell
 bower install <PACKAGE NAME> --save
 ```
+
 ### Step 2: map Bower > Rails
 
     Edit the bower.json file to map the assets you want from bower_components
@@ -42,10 +50,12 @@ bower install <PACKAGE NAME> --save
     https://github.com/blittle/bower-installer/issues/75
 
 ### Step 3: Install assets
+
 ```shell
 alias npm-exec='PATH=$(npm bin):$PATH'
 npm-exec bower-installer
 ```
+
 ### Step 4: Check assets in
 
 Check the installed assets into Git. We version control bower.json and the

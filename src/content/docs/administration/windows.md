@@ -22,10 +22,12 @@ the service setup script to add it to the application's classpath.
 
 Lastly, for the service to shutdown cleanly, uncomment and change these lines in
 config/config.rb:
+
 ```ruby
 AppConfig[:use_jetty_shutdown_handler] = true
 AppConfig[:jetty_shutdown_path] = "/xkcd"
 ```
+
 This enables a shutdown hook for Jetty to respond to when the shutdown action
 is taken.
 
@@ -39,13 +41,17 @@ monitor and click "Launch".
 
 Alternatively, you can start the GUI monitor and minimize it in your
 system tray with:
+
 ```shell
 ArchivesSpaceServicew.exe //MS//
 ```
+
 To execute the service from the command line, you can invoke:
+
 ```shell
 ArchivesSpaceService.exe //ES//
 ```
+
 Log output will be placed in your ArchivesSpace log directory.
 
 Please see the [procrun

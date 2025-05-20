@@ -83,6 +83,7 @@ configured sets as shown above or from the following levels of description:
 
 In addition to the sets based on level of description, you can define sets
 based on repository codes and/or sponsors in the config/config.rb file:
+
 ```ruby
 AppConfig[:oai_sets] = {
     'repository_set' => {

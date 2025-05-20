@@ -9,6 +9,7 @@ attempts to log in, each authentication source is tried until one
 matches.
 
 Here is a minimal example of an LDAP configuration:
+
 ```ruby
 AppConfig[:authentication_sources] = [{
                                         :model => 'LDAPAuth',
@@ -19,6 +20,7 @@ AppConfig[:authentication_sources] = [{
                                         :attribute_map => {:cn => :name},
 }]
 ```
+
 With this configuration, ArchivesSpace performs authentication by
 connecting to `ldap://ldap.example.com:389/`, binding anonymously,
 searching the `ou=people,dc=example,dc=com` tree for `uid = <username>`.
@@ -34,6 +36,7 @@ with such a directory, you will need to specify the username and
 password of a user with permission to connect to the directory and
 search for other users. Modifying the previous example for this case
 looks like this:
+
 ```ruby
 AppConfig[:authentication_sources] = [{
                                         :model => 'LDAPAuth',
@@ -46,9 +49,11 @@ AppConfig[:authentication_sources] = [{
                                         :bind_password => 'secretsquirrel',
 }]
 ```
+
 Finally, some LDAP directories enforce the use of SSL encryption. To
 configure ArchivesSpace to connect via LDAPS, change the port as
 appropriate and specify the `encryption` option:
+
 ```ruby
 AppConfig[:authentication_sources] = [{
                                         :model => 'LDAPAuth',
