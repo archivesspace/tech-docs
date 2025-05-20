@@ -26,13 +26,13 @@ Since not all backend/API end points require authentication, it is best to restr
 
 Send request to authenticate:
 
-```
+```shell
 curl -s -F password="admin" "http://localhost:8089/users/admin/login"
 ```
 
 This will return a JSON response that includes something like the following:
 
-```
+```json
 {
    "session":"9528190655b979f00817a5d38f9daf07d1686fed99a1d53dd2c9ff2d852a0c6e",
    ....
@@ -41,7 +41,7 @@ This will return a JSON response that includes something like the following:
 
 It’s a good idea to save the session key as an environment variable to use for later requests:
 
-```
+```shell
 #Mac/Unix terminal
 export SESSION="9528190655b979f00817a5d38f9daf07d1686fed99a1d53dd2c9ff2d852a0c6e"
 
@@ -54,7 +54,7 @@ $env:SESSION="9528190655b979f00817a5d38f9daf07d1686fed99a1d53dd2c9ff2d852a0c6e"
 
 Now you can make requests like this:
 
-```
+```shell
 curl -H "X-ArchivesSpace-Session: $SESSION" "http://localhost:8089/repositories/2/resources/1
 ```
 

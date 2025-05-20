@@ -53,55 +53,57 @@ should be able to log in to ArchivesSpace. Below is a sketch of an
 authentication handler that will connect to this database and use it
 for authentication.
 
-      # For this example we'll use the Sequel database toolkit.  Note that
-      # this isn't necessary--you could use whatever database library you
-      # like here.
-      require 'sequel'
+```ruby
+# For this example we'll use the Sequel database toolkit.  Note that
+# this isn't necessary--you could use whatever database library you
+# like here.
+require 'sequel'
 
-      class MyDatabaseAuth
+class MyDatabaseAuth
 
-        # For easy access to the JSONModel(:user) class
-        include JSONModel
-
-
-        def initialize(definition)
-          # Store the database connection details for use at
-          # authentication time.
-          @db_url = definition[:db_url] or raise "Need a value for :db_url"
-        end
+  # For easy access to the JSONModel(:user) class
+  include JSONModel
 
 
-        # Just for informational purposes.  Return a string containing our
-        # database URL.
-        def name
-          "MyDatabaseAuth - #{@db_url}"
-        end
+  def initialize(definition)
+    # Store the database connection details for use at
+    # authentication time.
+    @db_url = definition[:db_url] or raise "Need a value for :db_url"
+  end
 
 
-        def authenticate(username, password)
-          # Open a connection to the database
-          Sequel.connect(@db_url) do |db|
+  # Just for informational purposes.  Return a string containing our
+  # database URL.
+  def name
+    "MyDatabaseAuth - #{@db_url}"
+  end
 
-            # Check whether we have an entry for the given username
-            # and password in our database's "users" table
-            user = db[:users].filter(:username => username,
-                                     :password => password).
-                              first
 
-            if !user
-              # The user couldn't be found, or their password was wrong.
-              # Authentication failed.
-              return nil
-            end
+  def authenticate(username, password)
+    # Open a connection to the database
+    Sequel.connect(@db_url) do |db|
 
-            # Build and return a JSONModel(:user) instance from fields in the database
-            JSONModel(:user).from_hash(:username => username,
-                                       :name => user[:user_full_name])
+      # Check whether we have an entry for the given username
+      # and password in our database's "users" table
+      user = db[:users].filter(:username => username,
+                                :password => password).
+                        first
 
-          end
-        end
-
+      if !user
+        # The user couldn't be found, or their password was wrong.
+        # Authentication failed.
+        return nil
       end
+
+      # Build and return a JSONModel(:user) instance from fields in the database
+      JSONModel(:user).from_hash(:username => username,
+                                  :name => user[:user_full_name])
+
+    end
+  end
+
+end
+```
 
 In order to use your new authentication handler, you'll need to add it to the plug-in
 architecture in ArchivesSpace and enable it. Create a new directory, called our_auth
@@ -117,10 +119,12 @@ a new entry to the `:authentication_sources` configuration block in the
 
 A configuration for the above example might be as follows:
 
-     AppConfig[:authentication_sources] = [{
-                                             :model => 'MyDatabaseAuth',
-                                             :db_url => 'jdbc:mysql://localhost:3306/somedb?user=myuser&password=mypassword',
-                                           }]
+```ruby
+AppConfig[:authentication_sources] = [{
+                                        :model => 'MyDatabaseAuth',
+                                        :db_url => 'jdbc:mysql://localhost:3306/somedb?user=myuser&password=mypassword',
+                                      }]
+```
 
 ## Add the plug-in to the list of plug-ins already enabled
 

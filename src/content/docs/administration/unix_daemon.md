@@ -5,24 +5,32 @@ title: Running as a Unix daemon
 The `archivesspace.sh` startup script doubles as an init script. If
 you run:
 
-     archivesspace.sh start
+```
+archivesspace.sh start
+```
 
 ArchivesSpace will run in the background as a daemon (logging to
 `logs/archivesspace.out` by default, as before). You can shut it down with:
 
-     archivesspace.sh stop
+```
+archivesspace.sh stop
+```
 
 You can even install it as a system-wide init script by creating a
 symbolic link:
 
-     cd /etc/init.d
-     ln -s /path/to/your/archivesspace/archivesspace.sh archivesspace
+```
+cd /etc/init.d
+ln -s /path/to/your/archivesspace/archivesspace.sh archivesspace
+```
 
 Note: By default ArchivesSpace will overwrite the log file when restarted. You
 can change that by modifying `archivesspace.sh` and changing the `$startup_cmd`
 to include double greater than signs:
 
-     $startup_cmd &>> \"$ARCHIVESSPACE_LOGS\" &
+```
+$startup_cmd &>> \"$ARCHIVESSPACE_LOGS\" &
+```
 
 Then use the appropriate tool for your distribution to set up the
 run-level symbolic links (such as `chkconfig` for RedHat or

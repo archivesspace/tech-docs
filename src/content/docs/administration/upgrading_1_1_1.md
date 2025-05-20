@@ -19,7 +19,7 @@ the ordering.
 
 To run the resequencing process, edit the config/config.rb file to have this line:
 
-```
+```ruby
 AppConfig[:resequence_on_startup] = true
 ```
 

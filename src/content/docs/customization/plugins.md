@@ -18,7 +18,9 @@ You can find other examples in the following plugin repositories. The ArchivesSp
 Plugins are enabled by placing them in the `plugins` directory, and referencing them in the
 ArchivesSpace configuration, `config/config.rb`. For example:
 
-    AppConfig[:plugins] = ['local', 'hello_world', 'my_plugin']
+```ruby
+AppConfig[:plugins] = ['local', 'hello_world', 'my_plugin']
+```
 
 This configuration assumes the following directories exist:
 
@@ -133,9 +135,11 @@ Will be available via the following URL:
 For example, to reference this logo from the custom branding file, use
 markup such as:
 
+```erb
      <div class="container branding">
        <img src="<%= #{AppConfig[:frontend_proxy_prefix]} %>assets/my_logo.png" alt="My logo" />
      </div>
+```
 
 ## Customizing the favicon
 
@@ -239,7 +243,9 @@ that will be accessible via the system and repository toolbars respectively. A `
 will appear in the toolbars if any enabled plugins have declared these configuration options. The
 controller name follows the standard naming conventions, for example:
 
-    repository_menu_controller: hello_world
+```ruby
+repository_menu_controller: hello_world
+```
 
 Points to a controller file at `plugins/hello_world/frontend/controllers/hello_world_controller.rb`
 which implements a controller class called `HelloWorldController`. When the menu item is selected
@@ -259,10 +265,12 @@ example there is an English locale file at:
 The translation for the plugin name in the `Plugins` dropdown menus is specified by the key `label`
 under the plugin, like this:
 
-    en:
-      plugins:
-        hello_world:
-          label: Hello World
+```yaml
+en:
+  plugins:
+    hello_world:
+      label: Hello World
+```
 
 Note that the example locale file contains other keys that specify translations for text displayed
 as part of the plugin's user interface. Be sure to place your plugin's translations as shown, under
@@ -270,7 +278,9 @@ as part of the plugin's user interface. Be sure to place your plugin's translati
 interface elements. In the example above, the translation for the `label` key can be referenced
 directly in an erb view file as follows:
 
-    <%= I18n.t("plugins.hello_world.label") %>
+```ruby
+<%= I18n.t("plugins.hello_world.label") %>
+```
 
 Each entry under `parents` specifies a record type that this plugin provides a new subrecord for.
 `[record-type]` is the name of the existing record type, for example `accession`. `name` is the
@@ -285,8 +295,10 @@ including a `search_definitions.rb` file at the top-level of the
 plugin directory. This file can contain definitions such as the
 following:
 
-    AdvancedSearch.define_field(:name => 'payment_fund_code', :type => :enum, :visibility => [:staff], :solr_field => 'payment_fund_code_u_utext')
-    AdvancedSearch.define_field(:name => 'payment_authorizers', :type => :text, :visibility => [:staff], :solr_field => 'payment_authorizers_u_utext')
+```ruby
+AdvancedSearch.define_field(:name => 'payment_fund_code', :type => :enum, :visibility => [:staff], :solr_field => 'payment_fund_code_u_utext')
+AdvancedSearch.define_field(:name => 'payment_authorizers', :type => :text, :visibility => [:staff], :solr_field => 'payment_authorizers_u_utext')
+```
 
 Each field defined will appear in the advanced search interface as a
 searchable field. The `:visibility` option controls whether the field

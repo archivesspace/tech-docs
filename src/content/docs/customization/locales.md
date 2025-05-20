@@ -25,12 +25,14 @@ If the value you want to override is in the common locale file (like the "digita
 
 If the value you want to change is in either the public or staff specific en.yml files, you can override these values using the plugins directory. For example, if you want to change the welcome message on the public frontend, make a file in your ArchivesSpace distribution called 'plugins/local/public/locales/en.yml' and put the following values:
 
-    en:
-    	brand:
-    	title: My Archive
-    	home: Home
+```yaml
+en:
+  brand:
+  title: My Archive
+  home: Home
 
 welcome_message: HEY HEY HEY!!
+```
 
 If you restart ArchivesSpace, these values will take effect.
 
@@ -44,16 +46,16 @@ To add a tooltip to a record label, simply add a new entry with "\_tooltip"
 appended to the label's code. For example, to add a tooltip for the Accession's
 Title field:
 
-```
+```yaml
 en:
   accession:
     title: Title
     title_tooltip: |
-        <p>The title assigned to an accession or resource. The accession title
-        need not be the same as the resource title. Moreover, a title need not
-        be expressed for the accession record, as it can be implicitly
-        inherited from the resource record to which the accession is
-        linked.</p>
+      <p>The title assigned to an accession or resource. The accession title
+      need not be the same as the resource title. Moreover, a title need not
+      be expressed for the accession record, as it can be implicitly
+      inherited from the resource record to which the accession is
+      linked.</p>
 ```
 
 ## Placeholders
@@ -67,7 +69,7 @@ older version will not.
 To add a placeholder to a record's text field, add a new entry of the label's
 code append with "\_placeholder". For example:
 
-```
+```yaml
 en:
   accession:
     title: Title

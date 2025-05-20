@@ -10,7 +10,7 @@ If you're not able to do that, you can use a seperate file and your proxy.
 
 For Apache the config would look like this:
 
-```
+```apache
 <Location "/robots.txt">
  SetHandler None
  Require all granted
@@ -20,10 +20,10 @@ Alias /robots.txt /var/www/robots.txt
 
 nginx, more like this:
 
-```
-  location /robots.txt {
-    alias /var/www/robots.txt;
-  }
+```nginx
+location /robots.txt {
+  alias /var/www/robots.txt;
+}
 ```
 
 You may also add robots meta-tags to your `layout_head.html.erb` to be included in the header area of your site.

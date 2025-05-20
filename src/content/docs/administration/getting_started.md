@@ -79,7 +79,9 @@ the latest distribution `.zip` file from the following URL:
 
 You will need to have Java installed on your machine. You can check your Java version by running the command:
 
-     java -version
+```
+java -version
+```
 
 See [above](#java-runtime-environment) for the Java version needed. If you are running an earlier version of java upgrade to one of the supported ones (not the newest one). If you are running a newer version of Java you should revert back to or force your machine to use a supported version.
 
@@ -96,13 +98,17 @@ When you extract the `.zip` file, it will create a directory called
 To run the system, just execute the appropriate
 startup script for your platform. On Linux and OSX:
 
-     cd /path/to/archivesspace
-     ./archivesspace.sh
+```shell
+cd /path/to/archivesspace
+./archivesspace.sh
+```
 
 and for Windows:
 
-     cd \path\to\archivesspace
-     archivesspace.bat
+```shell
+cd \path\to\archivesspace
+archivesspace.bat
+```
 
 This will start ArchivesSpace running in foreground mode (so it will
 shut down when you close your terminal window). Log output will be
