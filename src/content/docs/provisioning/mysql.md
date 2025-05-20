@@ -18,10 +18,10 @@ ArchivesSpace requires the
 which must be downloaded separately because of its licensing agreement.
 Download the Connector and place it in a location where ArchivesSpace can
 find it on its classpath:
-
-         $ cd lib
-         $ curl -Oq https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar
-
+```shell
+$ cd lib
+$ curl -Oq https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar
+```
 Note that the version of the MySQL connector may be different by the
 time you read this.
 
@@ -39,37 +39,37 @@ Workbench, phpMyAdmin, etc.).
 <!-- This is also true of MySQL 8 in general... -->
 
 **NOTE: If using AWS RDS MySQL databases, binary logging is not enabled by default and updates will fail.** To enable binary logging, you must create a custom db parameter group for the database and set the `log_bin_trust_function_creators = 1`. See [Working with DB Parameter Groups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html) for information about RDS parameter groups. Within a MySQL session you can also try `SET GLOBAL log_bin_trust_function_creators = 1;`
+```shell
+$ mysql -uroot -p
 
-         $ mysql -uroot -p
-
-         mysql> create database archivesspace default character set utf8mb4;
-         Query OK, 1 row affected (0.08 sec)
-
+mysql> create database archivesspace default character set utf8mb4;
+Query OK, 1 row affected (0.08 sec)
+```
 If using MySQL 5.7 and below:
-
-         mysql> grant all on archivesspace.* to 'as'@'localhost' identified by 'as123';
-         Query OK, 0 rows affected (0.21 sec)
-
+```sql
+mysql> grant all on archivesspace.* to 'as'@'localhost' identified by 'as123';
+Query OK, 0 rows affected (0.21 sec)
+```
 If using MySQL 8+:
+```sql
+mysql> create user 'as'@'localhost' identified by 'as123';
+Query OK, 0 rows affected (0.08 sec)
 
-         mysql> create user 'as'@'localhost' identified by 'as123';
-         Query OK, 0 rows affected (0.08 sec)
-
-         mysql> grant all privileges on archivesspace.* to 'as'@'localhost';
-         Query OK, 0 rows affected (0.21 sec)
-
+mysql> grant all privileges on archivesspace.* to 'as'@'localhost';
+Query OK, 0 rows affected (0.21 sec)
+```
 Then, modify your `config/config.rb` file to refer to your MySQL
 database. When you modify your configuration file, **MAKE SURE THAT YOU
 SPECIFY THAT THE CHARACTER ENCODING FOR THE DATABASE TO BE `UTF-8`** as shown
 below:
-
-     AppConfig[:db_url] = "jdbc:mysql://localhost:3306/archivesspace?user=as&password=as123&useUnicode=true&characterEncoding=UTF-8"
-
+```ruby
+AppConfig[:db_url] = "jdbc:mysql://localhost:3306/archivesspace?user=as&password=as123&useUnicode=true&characterEncoding=UTF-8"
+```
 There is a database setup script that will create all the tables that
 ArchivesSpace requires. Run this with:
-
-    scripts/setup-database.sh  # or setup-database.bat under Windows
-
+```shell
+scripts/setup-database.sh  # or setup-database.bat under Windows
+```
 You can now follow the instructions in the "Getting Started" section to start
 your ArchivesSpace application.
 

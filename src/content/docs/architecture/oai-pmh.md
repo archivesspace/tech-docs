@@ -83,8 +83,8 @@ configured sets as shown above or from the following levels of description:
 
 In addition to the sets based on level of description, you can define sets
 based on repository codes and/or sponsors in the config/config.rb file:
-
-    AppConfig[:oai_sets] = {
+```ruby
+AppConfig[:oai_sets] = {
     'repository_set' => {
         :repo_codes => ['hello626'],
         :description => "A set of one or more repositories",
@@ -93,7 +93,8 @@ based on repository codes and/or sponsors in the config/config.rb file:
         :sponsors => ['The_Sponsor'],
         :description => "A set of one or more sponsors",
     }
-    }
+}
+```
 
 The interface implements resumption tokens for pagination of results. As an
 example, the following URL format should be used to page through the results

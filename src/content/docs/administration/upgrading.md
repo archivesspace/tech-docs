@@ -27,12 +27,12 @@ replace the lower case x with the version number updating to. For example,
 1.5.2 or 1.5.3.
 
 For example, on Mac OS X or Linux:
-
-     $ mkdir archivesspace-1.5.x
-     $ cd archivesspace-1.5.x
-     $ curl -LJO https://github.com/archivesspace/archivesspace/releases/download/v1.5.x/archivesspace-v1.5.x.zip
-     $ unzip -x archivesspace-v1.5.x.zip
-
+```shell
+$ mkdir archivesspace-1.5.x
+$ cd archivesspace-1.5.x
+$ curl -LJO https://github.com/archivesspace/archivesspace/releases/download/v1.5.x/archivesspace-v1.5.x.zip
+$ unzip -x archivesspace-v1.5.x.zip
+```
 ( The curl step is optional and simply downloads the distribution from github. You can also
 simply download the zip file in your browser and copy it to the directory )
 
@@ -55,23 +55,23 @@ your original ArchivesSpace installation:
 - any plugins and local modifications you have installed in your `plugins` directory
 
 For example, on Mac OS X or Linux:
-
-     $ cd archivesspace-1.5.x/archivesspace
-     $ cp -a /path/to/archivesspace-1.4.2/archivesspace/data/* data/
-     $ cp -a /path/to/archivesspace-1.4.2/archivesspace/config/* config/
-     $ cp -a /path/to/archivesspace-1.4.2/archivesspace/lib/mysql-connector* lib/
-     $ cp -a /path/to/archivesspace-1.4.2/archivesspace/plugins/local plugins/
-     $ cp -a /path/to/archivesspace-1.4.2/archivesspace/plugins/wonderful_plugin plugins/
-
+```shell
+$ cd archivesspace-1.5.x/archivesspace
+$ cp -a /path/to/archivesspace-1.4.2/archivesspace/data/* data/
+$ cp -a /path/to/archivesspace-1.4.2/archivesspace/config/* config/
+$ cp -a /path/to/archivesspace-1.4.2/archivesspace/lib/mysql-connector* lib/
+$ cp -a /path/to/archivesspace-1.4.2/archivesspace/plugins/local plugins/
+$ cp -a /path/to/archivesspace-1.4.2/archivesspace/plugins/wonderful_plugin plugins/
+```
 Or on Windows:
-
-     $ cd archivesspace-1.5.x\archivesspace
-     $ xcopy \path\to\archivesspace-1.4.2\archivesspace\data\* data /i /k /h /s /e /o /x /y
-     $ xcopy \path\to\archivesspace-1.4.2\archivesspace\config\* config /i /k /h /s /e /o /x /y
-     $ xcopy \path\to\archivesspace-1.4.2\archivesspace\lib\mysql-connector* lib /i /k /h /s /e /o /x /y
-     $ xcopy \path\to\archivesspace-1.4.2\archivesspace\plugins\local plugins\local /i /k /h /s /e /o /x /y
-     $ xcopy \path\to\archivesspace-1.4.2\archivesspace\plugins\wonderful_plugin plugins\wonderful_plugin /i /k /h /s /e /o /x /y
-
+```
+$ cd archivesspace-1.5.x\archivesspace
+$ xcopy \path\to\archivesspace-1.4.2\archivesspace\data\* data /i /k /h /s /e /o /x /y
+$ xcopy \path\to\archivesspace-1.4.2\archivesspace\config\* config /i /k /h /s /e /o /x /y
+$ xcopy \path\to\archivesspace-1.4.2\archivesspace\lib\mysql-connector* lib /i /k /h /s /e /o /x /y
+$ xcopy \path\to\archivesspace-1.4.2\archivesspace\plugins\local plugins\local /i /k /h /s /e /o /x /y
+$ xcopy \path\to\archivesspace-1.4.2\archivesspace\plugins\wonderful_plugin plugins\wonderful_plugin /i /k /h /s /e /o /x /y
+```
 Note that you may want to preserve the logs file (`logs/archivesspace.out`
 by default) from your previous installation--just in case you need to
 refer to it later.
@@ -106,10 +106,10 @@ locale file.
 
 A good way to do this is to use a Diff tool, like Notepad++, TextMate, or just
 Linux diff command:
-
-     $ diff /path/to/archivesspace-1.4.2/locales/en.yml /path/to/archivesspace-1.5.x/archivesspace/locales/en.yml
-     $ diff /path/to/archivesspace-1.4.2/locales/enums/en.yml /path/to/archivesspace-v1.5.x/archivesspace/locales/enums/en.yml
-
+```shell
+$ diff /path/to/archivesspace-1.4.2/locales/en.yml /path/to/archivesspace-1.5.x/archivesspace/locales/en.yml
+$ diff /path/to/archivesspace-1.4.2/locales/enums/en.yml /path/to/archivesspace-v1.5.x/archivesspace/locales/enums/en.yml
+```
 This will show you the differences in your current locales files, as well as the
 new additions in the new version locales files. Simply copy the values you wish
 to keep from your old ArchivesSpace locales to your new ArchivesSpace locales/provisioning/solr/#copy-the-config-files
@@ -122,15 +122,15 @@ migrations. This will apply any schema changes and data migrations
 that need to happen as a part of the upgrade. To do this, use the
 `setup-database` script for your platform. For example, on Mac OS X
 or Linux:
-
-     $ cd archivesspace-1.5.x/archivesspace
-     $ scripts/setup-database.sh
-
+```shell
+$ cd archivesspace-1.5.x/archivesspace
+$ scripts/setup-database.sh
+```
 Or on Windows:
-
-     $ cd archivesspace-1.5.x\archivesspace
-     $ scripts\setup-database.bat
-
+```shell
+$ cd archivesspace-1.5.x\archivesspace
+$ scripts\setup-database.bat
+```
 ## Solr configuration updates
 
 If the release you are upgrading to includes updates in the solr schema or other configuration files (see the release notes)

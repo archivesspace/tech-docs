@@ -10,7 +10,7 @@ Additional upgrade considerations specific to this release. Refer to the [upgrad
 
 In ArchivesSpace 1.0.9 the default ports configuration was:
 
-```
+```ruby
 AppConfig[:backend_url] = "http://localhost:8089"
 AppConfig[:frontend_url] = "http://localhost:8080"
 AppConfig[:solr_url] = "http://localhost:8090"
@@ -19,7 +19,7 @@ AppConfig[:public_url] = "http://localhost:8081"
 
 With the introduction of the [optional external Solr instance](/provisioning/solr) functionality this has been updated to:
 
-```
+```ruby
 AppConfig[:backend_url] = "http://localhost:8089"
 AppConfig[:frontend_url] = "http://localhost:8080"
 AppConfig[:solr_url] = "http://localhost:8090"
@@ -31,7 +31,7 @@ In most cases the default value for `indexer_url` will blend in seamlessly witho
 
 **You use a different ports sequence**
 
-```
+```ruby
 AppConfig[:indexer_url] = "http://localhost:9091"
 ```
 
@@ -41,7 +41,7 @@ Under this deployment scenario you would have changed port numbers for some (or 
 
 **You include hostnames**
 
-```
+```ruby
 AppConfig[:indexer_url] = "http://yourhostname:8091"
 ```
 
@@ -51,7 +51,7 @@ AppConfig[:indexer_url] = "http://yourhostname:8091"
 
 In a clustered configuration you may need to edit `instance_[server hostname].rb` files:
 
-```
+```ruby
 {
   ...
   :indexer_url => "http://[localhost|yourhostname]:8091",

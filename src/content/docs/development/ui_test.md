@@ -55,10 +55,10 @@ and support each other.**
 ## Before running:
 
 Run the bootstrap build task to configure JRuby and all required dependencies:
-
-     $ cd ..
-     $ build/run bootstrap
-
+```bash
+$ cd ..
+$ build/run bootstrap
+```
 Note: all example code assumes you are running from your ArchivesSpace project directory.
 
 ## Running the tests:
@@ -95,7 +95,7 @@ SELENIUM_CHROME=true CHROME_OPTS= ./build/run public:test -Dspec='features/acces
 
 Test require a backend and a frontend service to be running. To ovoid the overhead of starting and stopping them while developing, you can run tests against a dev backend:
 
-```
+```bash
 # start mysql and solr containers:
 docker-compose -f docker-compose-dev.yml up
 
@@ -127,7 +127,7 @@ When calling `./build/run frontend:test` to run frontend specs, the following st
 
 If any migrations are being applied whenever you run one or all frontend specs, it means that the test database dump `frontend/spec/fixtures/archivesspace-test.sql` has stayed behind. A new test database dump can be created by running:
 
-```
+```bash
 ./build/run db:nuke:test
 ./build/run db:load:test
 ./build/run db:migrate:test

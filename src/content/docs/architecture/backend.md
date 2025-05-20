@@ -204,11 +204,11 @@ This happens often enough that it would be tedious to write code for
 each model to handle its nested records, so the ASModel mix-in
 provides a declaration to handle this automatically. For example, the
 `accession` model uses a definition like:
-
-     base.def_nested_record(:the_property => :dates,
-                            :contains_records_of_type => :date,
-                            :corresponding_to_association  => :date)
-
+```ruby
+base.def_nested_record(:the_property => :dates,
+                      :contains_records_of_type => :date,
+                      :corresponding_to_association  => :date)
+```
 When creating an accession, this declaration instructs the `Accession`
 model to create a database record for each date listed in the "dates"
 property of the incoming record. Each of these date records will be
@@ -222,43 +222,43 @@ properties of its own.
 
 For example, the `Event` model can be related to several different
 types of records:
-
-     define_relationship(:name => :event_link,
-                         :json_property => 'linked_records',
-                         :contains_references_to_types => proc {[Accession, Resource, ArchivalObject]})
-
+```ruby
+define_relationship(:name => :event_link,
+                    :json_property => 'linked_records',
+                    :contains_references_to_types => proc {[Accession, Resource, ArchivalObject]})
+```
 This declaration generates a custom class that models the relationship
 between events and the other record types. The corresponding JSON
 schema declaration for the `linked_records` property looks like this:
-
-      "linked_records" => {
-        "type" => "array",
+```ruby
+"linked_records" => {
+  "type" => "array",
+  "ifmissing" => "error",
+  "minItems" => 1,
+  "items" => {
+    "type" => "object",
+    "subtype" => "ref",
+    "properties" => {
+      "role" => {
+        "type" => "string",
+        "dynamic_enum" => "linked_event_archival_record_roles",
         "ifmissing" => "error",
-        "minItems" => 1,
-        "items" => {
-          "type" => "object",
-          "subtype" => "ref",
-          "properties" => {
-            "role" => {
-              "type" => "string",
-              "dynamic_enum" => "linked_event_archival_record_roles",
-              "ifmissing" => "error",
-            },
-            "ref" => {
-              "type" => [{"type" => "JSONModel(:accession) uri"},
-                         {"type" => "JSONModel(:resource) uri"},
-                         {"type" => "JSONModel(:archival_object) uri"},
-                         ...],
-              "ifmissing" => "error"
-            },
-          ...
-
+      },
+      "ref" => {
+        "type" => [{"type" => "JSONModel(:accession) uri"},
+                    {"type" => "JSONModel(:resource) uri"},
+                    {"type" => "JSONModel(:archival_object) uri"},
+                    ...],
+        "ifmissing" => "error"
+      },
+    ...
+```
 That is, the property includes URI references to other records, plus
 an additional "role" property to indicate the nature of the
 relationship. The corresponding JSON might then be:
-
-    linked_records: [{ref: '/repositories/123/accessions/456', role: 'authorizer'}, ...]
-
+```ruby
+linked_records: [{ref: '/repositories/123/accessions/456', role: 'authorizer'}, ...]
+```
 The `define_relationship` definition automatically makes use of the
 appropriate join tables in the database to store this relationship and
 retrieve it later as needed.
@@ -281,15 +281,15 @@ modelled as separate record types.
 
 The `agent_manager` module captures the high-level similarities
 between agents. Each agent model includes the agent manager mix-in:
-
-     include AgentManager::Mixin
-
+```ruby
+include AgentManager::Mixin
+```
 and then defines itself declaratively by the provided class method:
-
-     register_agent_type(:jsonmodel => :agent_person,
-                         :name_type => :name_person,
-                         :name_model => NamePerson)
-
+```ruby
+register_agent_type(:jsonmodel => :agent_person,
+                    :name_type => :name_person,
+                    :name_model => NamePerson)
+```
 This definition sets up the properties of that agent. It creates:
 
 - a one_to_many relationship with the corresponding name
@@ -342,17 +342,17 @@ and the database schema.
 ## Optimistic concurrency control
 
 Updating a record using the ArchivesSpace API is a two part process:
+```ruby
+# Perform a `GET` against the desired record to fetch its JSON
+# representation:
 
-     # Perform a `GET` against the desired record to fetch its JSON
-     # representation:
+GET /repositories/5/accessions/2
 
-       GET /repositories/5/accessions/2
+# Manipulate the JSON representation as required, and then `POST`
+# it back to replace the original:
 
-     # Manipulate the JSON representation as required, and then `POST`
-     # it back to replace the original:
-
-       POST /repositories/5/accessions/2
-
+POST /repositories/5/accessions/2
+```
 If two people do this simultaneously, there's a risk that one person
 would silently overwrite the changes made by the other. To prevent
 this, every record is marked with a version number that it carries in

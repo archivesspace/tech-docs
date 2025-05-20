@@ -24,14 +24,14 @@ These values are pulled into the views using the I18n.t() method, like I18n.t("b
 If the value you want to override is in the common locale file (like the "digital object title" field label, for example) , you can change this by simply editing the locales/en.yml file in your ArchivesSpace distribution home directory. A restart is required to have the changes take effect.
 
 If the value you want to change is in either the public or staff specific en.yml files, you can override these values using the plugins directory. For example, if you want to change the welcome message on the public frontend, make a file in your ArchivesSpace distribution called 'plugins/local/public/locales/en.yml' and put the following values:
-
-    en:
-    	brand:
-    	title: My Archive
-    	home: Home
+```yaml
+en:
+  brand:
+  title: My Archive
+  home: Home
 
 welcome_message: HEY HEY HEY!!
-
+```
 If you restart ArchivesSpace, these values will take effect.
 
 If you are adding a new value you will also need to add the value into the Staff Frontend Application by clicking on the System dropdown menu and choosing Manage Controlled Value Lists. Select the list and add the value. If you restart ArchivesSpace the translation value that you set in the yml file should appear.
@@ -44,7 +44,7 @@ To add a tooltip to a record label, simply add a new entry with "\_tooltip"
 appended to the label's code. For example, to add a tooltip for the Accession's
 Title field:
 
-```
+```yaml
 en:
   accession:
     title: Title
@@ -67,7 +67,7 @@ older version will not.
 To add a placeholder to a record's text field, add a new entry of the label's
 code append with "\_placeholder". For example:
 
-```
+```yaml
 en:
   accession:
     title: Title
