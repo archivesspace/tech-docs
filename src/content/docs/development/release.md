@@ -1,5 +1,6 @@
 ---
 title: Building a release
+description: How to build an ArchivesSpace release.
 ---
 
 - [Pre-release steps](#pre-release-steps)
