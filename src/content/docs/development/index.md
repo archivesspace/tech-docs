@@ -1,5 +1,6 @@
 ---
 title: Development
+description: The index to the development section of the ArchivesSpace technical documentation.
 ---
 
 - [Running a development version of ArchivesSpace](./dev.html)
