@@ -1,5 +1,6 @@
 ---
 title: Upgrading Rack
+description: A guide to upgrading Rack.
 ---
 
 - Install local JRuby (match aspace version, currently: 9.2.12.0) and switch to it.
