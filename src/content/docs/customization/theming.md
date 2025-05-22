@@ -1,5 +1,6 @@
 ---
 title: Theming
+description: A guide to customizing the look and feel of ArchivesSpace using plugins or full theme rebuilds, including instructions for changing logos, CSS, and layout elements in both the public and staff interfaces.
 ---
 
 ## Making small changes

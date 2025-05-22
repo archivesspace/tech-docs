@@ -1,5 +1,6 @@
 ---
 title: Proxy prefix
+description: Instructions for serving each user-facing ArchivesSpace application under a prefix rather than as its own subdomain.
 ---
 
 **Important Note: Prefixes do NOT work properly in versions between 2.0.1 and 2.2.2**

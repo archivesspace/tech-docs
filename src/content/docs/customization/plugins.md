@@ -1,5 +1,6 @@
 ---
 title: Plugins
+description: An overview of how to develop, structure, enable, and configure plugins in ArchivesSpace to customize application behavior, interface, branding, and search functionality without altering core code.
 ---
 
 Plugins are a powerful feature, designed to allow you to change

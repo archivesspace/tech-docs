@@ -1,5 +1,6 @@
 ---
 title: Application monitoring with New Relic
+description: Instructions for how to set up New Relic for application monitoring on ArchivesSpace.
 ---
 
 [New Relic](http://newrelic.com/) is an application performance monitoring tool (amongst other things).

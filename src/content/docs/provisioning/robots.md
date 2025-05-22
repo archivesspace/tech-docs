@@ -1,5 +1,6 @@
 ---
 title: robots.txt
+description: Instructions for adding a robots.txt to your ArchivesSpace site.
 ---
 
 The easiest way to add a `robots.txt` to your site is simply create

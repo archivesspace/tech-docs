@@ -1,5 +1,7 @@
 ---
 title: Customizing text
+description: Instructions for customizing text in ArchivesSpace using locale files, including how to override labels, messages, tooltips, and placeholders via the Rails I18n API.
+
 ---
 
 ArchivesSpace has abstracted all the labels, messages and tooltips out of the

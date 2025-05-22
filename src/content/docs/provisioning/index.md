@@ -1,5 +1,6 @@
 ---
 title: Provisioning and server configuration
+description: The index to the provisioning section of the ArchivesSpace techinal documentation.
 ---
 
 - [Running ArchivesSpace with load balancing and multiple tenants](./clustering.html)

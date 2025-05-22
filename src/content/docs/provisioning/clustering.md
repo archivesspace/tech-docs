@@ -1,5 +1,6 @@
 ---
 title: Load balancing and multiple tenants
+description: Guidelines for running ArchivesSpace in a clustered environment for load-balancing purposes, and for supporting multiple tenants.
 ---
 
 This document describes two aspects of running ArchivesSpace in a

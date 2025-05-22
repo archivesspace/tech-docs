@@ -1,5 +1,6 @@
 ---
 title: Serving over HTTPS
+description: Installing ArchivesSpace in such a manner that all end-user requests are served over HTTPS.
 ---
 
 This document describes the approach for those wishing to install
