@@ -1,5 +1,6 @@
 ---
 title: Using MySQL
+description: Instructions for how to set up MySQL with ArchivesSpace.
 ---
 
 Out of the box, the ArchivesSpace distribution runs against an
