@@ -1,5 +1,6 @@
 ---
 title: Performance tuning
+description: Guidance for performance tuning of the ArchivesSpace stack.
 ---
 
 ArchivesSpace is a stack of web applications which may require special tuning in order to run most effectively. This is especially the case for institutions with lots of data or many simultaneous users editing metadata.
