@@ -163,9 +163,7 @@ Directory to store Solr backups.
 
 ### Default Solr params
 
-
 #### `AppConfig[:solr_params]`
-
 
 Add default solr params.
 
