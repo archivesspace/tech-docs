@@ -163,9 +163,9 @@ Directory to store Solr backups.
 
 ### Default Solr params
 
-```ruby
-AppConfig[:solr_params]
-```
+
+#### `AppConfig[:solr_params]`
+
 
 Add default solr params.
 
