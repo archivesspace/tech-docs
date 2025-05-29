@@ -1,5 +1,6 @@
 ---
 title: Getting started
+description: Detailed hardware and software requirements for running ArchivesSpace, including instructions on setting up and running an ArchivesSpace instance using the latest distribution .zip file.
 ---
 
 ## Two ways to get up and running
@@ -71,6 +72,8 @@ While ArchivesSpace does include an embedded database, MySQL is required for pro
 All ArchivesSpace versions can run on MySQL version 5.x or 8.x.
 
 ## Getting started
+
+[//]: # 'This should probably be re-written for new instructions using docker'
 
 The quickest way to get ArchivesSpace up and running is to download
 the latest distribution `.zip` file from the following URL:

@@ -1,5 +1,6 @@
 ---
 title: Upgrading to 1.1.0
+description: Special considerations when upgrading from ArchivesSpace 1.0.9 or less to 1.1.0, including the option for an external Solr instance.
 ---
 
 Additional upgrade considerations specific to this release. Refer to the [upgrade documentation](/administration/upgrading) for the standard instructions that apply in all cases.
@@ -27,7 +28,7 @@ AppConfig[:indexer_url] = "http://localhost:8091" # NEW TO 1.1.0
 AppConfig[:public_url] = "http://localhost:8081"
 ```
 
-In most cases the default value for `indexer_url` will blend in seamlessly without you needing to take any action. However if you modified the original values in your `config.rb` file you may need to update it. Examples:
+In most cases the default value for `indexer_url` will blend in seamlessly without you needing to take any action. However, if you modified the original values in your `config.rb` file you may need to update it. Examples:
 
 **You use a different ports sequence**
 

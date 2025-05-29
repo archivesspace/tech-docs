@@ -1,5 +1,6 @@
 ---
 title: Backup and recovery
+description: Steps, commands, and advice for setting up your ArchivesSpace MySQL database and Solr index. Backups will ensure recovery in case of error or failure.
 ---
 
 ## Using the docker configuration package

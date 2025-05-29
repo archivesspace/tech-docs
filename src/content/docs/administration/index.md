@@ -1,5 +1,6 @@
 ---
 title: Administration basics
+description: Index of the administration pages for the tech-docs website.
 ---
 
 - [Getting started](./getting_started)

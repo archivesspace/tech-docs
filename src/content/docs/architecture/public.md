@@ -1,5 +1,6 @@
 ---
 title: Public user interface
+description: Directions for configuration options for the ArchivesSpace Public User Interface, as well as explanation on inheritance of data in records.
 ---
 
 The ArchivesSpace Public User Interface (PUI) provides a public
@@ -103,9 +104,9 @@ Additionally, the identifier element in ArchivesSpace, which is better known as 
 By default, the following elements are turned on for inheritance:
 
 - Title (direct inheritance)
-- Identifier (indirect inheritance, but by default the identifier inherits from ancestor archival objects only; it does NOT include the resource identifier.
+- Identifier (indirect inheritance), but by default the identifier inherits from ancestor archival objects only; it does NOT include the resource identifier.
 
-Also it is advised to inherit this element in a composite fashion once it is determined whether the level of description should or should not display as part of the identifier, which will depend upon local data-entry practices
+Also, it is advised to inherit this element in a composite fashion once it is determined whether the level of description should or should not display as part of the identifier, which will depend upon local data-entry practices
 
 - Language code (direct inheritance, but it does NOT display anywhere in the interface currently; eventually, this could be used for faceting)
 - Dates (direct inheritance)
@@ -144,7 +145,7 @@ inherited_fields_extras = [
 ]
 ```
 
-When you set include_level to true, that means that the archival object level will be included in identifier so that you don't have to repeat that data. For example, if the level of description is "Series" and the archival object identifier is "1", and the parent resource identifier is "MSS 1", then the composite identifier would display as "MSS 1. Series 1" at the series 1 level, and any descendant record. If you set include_level to false, then the display would be "MSS 1. 1"
+When you set include_level to true, that means the archival object level will be included in the identifier so that you don't have to repeat that data. For example, if the level of description is "Series" and the archival object identifier is "1", and the parent resource identifier is "MSS 1", then the composite identifier would display as "MSS 1. Series 1" at the series 1 level, and any descendant record. If you set include_level to false, then the display would be "MSS 1. 1"
 
 ### License
 

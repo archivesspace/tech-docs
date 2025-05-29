@@ -1,5 +1,6 @@
 ---
 title: Directory structure
+description: Provides short summaries of the different directories in the ArchivesSpace codebase.
 ---
 
 ArchivesSpace is made up of several components that are kept in separate directories.

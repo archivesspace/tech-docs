@@ -1,5 +1,6 @@
 ---
 title: Running as a Unix daemon
+description: Steps for running ArchivesSpace in the background as a daemon using the startup script, and additional info on configuring startup/init settings.
 ---
 
 The `archivesspace.sh` startup script doubles as an init script. If

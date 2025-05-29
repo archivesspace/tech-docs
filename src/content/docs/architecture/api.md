@@ -1,5 +1,6 @@
 ---
 title: API
+description: Instructions for how to authenticate when trying to connect to a backend session, such as through the API, along with examples of common requests for getting and posting data.
 ---
 
 :::note

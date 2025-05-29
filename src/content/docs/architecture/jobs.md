@@ -1,8 +1,9 @@
 ---
 title: Background jobs
+description: Describes long running processes, called background jobs, in ArchivesSpace, as well as how they are structured using types, runners, and schemas. Additional guidance on setting jobs to run concurrently and how to add a new job type using a plugin.
 ---
 
-ArchivesSpace provides a mechanism for long running processes to run
+ArchivesSpace provides a mechanism for long-running processes to run
 asynchronously. These processes are called `Background Jobs`.
 
 ## Managing Jobs in the Staff UI

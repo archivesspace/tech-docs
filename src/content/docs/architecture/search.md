@@ -1,5 +1,6 @@
 ---
 title: Search indexing
+description: Explanation of how ArchivesSpace uses Solr for indexing added/updated/deleted records and the differences between the periodic and real-time modes of indexing records.
 ---
 
 The ArchivesSpace system uses Solr for its full-text search. As

@@ -1,5 +1,6 @@
 ---
 title: Running as a Windows service
+description: Instructions on how to set up ArchivesSpace as a Windows service.
 ---
 
 Running ArchivesSpace as a Windows service requires some additional configuration.
@@ -14,7 +15,7 @@ To find the path to Java, "Start" > "Control Panel" > "Java", Select "Java" tab.
 You also need to be sure that Java is in your system path and also to create `JAVA_HOME` as a global environment variable.
 To add Java to your path, edit you %PATH% environment variable to include the directory of your java executable ( it will be something like `C:\Program Files (x86)\Java` ). To add `JAVA_HOME`, add a new system variable and put the directory where java was installed ( something like `C:\Program Files (x86)\Java` ).
 
-Environement varialbe be found by "Start" > "Control Panel" , search for environment. Click "edit the system environment variables". In the section System Variables, find the `PATH` environment variable and select it. Click Edit. If the `PATH` environment variable does not exist, click New. In the Edit System Variable (or New System Variable) window, specify the value of the `PATH` environment variable. Click OK. Close all remaining windows by clicking OK. Do the same for `JAVA_HOME`
+Environment variables can be found by going to "Start" > "Control Panel", search for environment. Click "edit the system environment variables". In the section "System Variables", find the `PATH` environment variable and select it. Click Edit. If the `PATH` environment variable does not exist, click New. In the Edit System Variable (or New System Variable) window, specify the value of the `PATH` environment variable. Click OK. Close all remaining windows by clicking OK. Do the same for `JAVA_HOME`.
 
 Before setting up the ArchivesSpace service, you should also [configure ArchivesSpace to run against MySQL](/provisioning/mysql).
 Be sure that the MySQL connector jar file is in the lib directory, in order for

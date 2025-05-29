@@ -1,5 +1,6 @@
 ---
 title: Managing frontend assets with Bower
+description: Instructions on how to add static assests to the core project.
 ---
 
 This is aimed at developers and applies to the 'frontend' application only.
