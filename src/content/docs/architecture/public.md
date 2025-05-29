@@ -59,7 +59,7 @@ your repositories, keyed to the repository's code.
 For example, if your repository, `My Wonderful Repository` has a code of `MWR`, this is what you might see in the
 custom `en.yml`:
 
-```
+```yaml
 en:
   repos:
     mwr:
@@ -70,6 +70,7 @@ en:
 
 To run a development server, the PUI follows the same pattern as the rest of ArchivesSpace. From your ArchivesSpace checkout:
 
+```shell
      # Prepare all dependencies
      build/run bootstrap
 
@@ -81,6 +82,7 @@ To run a development server, the PUI follows the same pattern as the rest of Arc
 
      # Finally, run the PUI itself
      build/run public:devserver
+```
 
 ## Inheritance
 
@@ -122,7 +124,7 @@ Composite Identifier Inheritance
 
 If you add the following three lines to your configuration file, re-start ArchivesSpace, and then let the indexer re-index your records, you can gain the benefit of composite identifiers:
 
-```
+```ruby
 AppConfig[:record_inheritance][:archival_object][:composite_identifiers] = {
 :include_level => true,
 :identifier_delimiter => '. '
@@ -131,7 +133,7 @@ AppConfig[:record_inheritance][:archival_object][:composite_identifiers] = {
 
 To add extra fields, such as subjects you can add the following:
 
-```
+```ruby
 inherited_fields_extras = [
  {
    code: 'subjects',

@@ -38,7 +38,7 @@ The tables in the ArchivesSpace database can be grouped into several general cat
 
 One way to get a view of all tables and columns in your ArchivesSpace instance is to run the following query in a MySQL client:
 
-```
+```sql
 SELECT TABLE_SCHEMA
 	, TABLE_NAME
 	, COLUMN_NAME
@@ -231,7 +231,7 @@ Same question about one of the rights restriction tables - can't remember which 
 
 It is not always obvious which relationship tables will provide the desired results. For instance, to get a box list for a given resource record, enter the following query into a MySQL editor:
 
-```
+```sql
 SELECT DISTINCT 	CONCAT('/repositories/', resource.repo_id, '/resources/', resource.id) as resource_uri
 	, resource.identifier
 	, resource.title
@@ -249,7 +249,7 @@ WHERE resource.id = 4556
 
 Sometimes numerous relationship tables must be joined to retrieve the desired results. For instance, to get all boxes and folders for a given resource record, including any container profiles and locations, enter the following query into a MySQL editor:
 
-```
+```sql
 SELECT CONCAT('/repositories/', tc.repo_id, '/top_containers/', tc.id) as tc_uri
 	, CONCAT('/repositories/', resource.repo_id, '/resources/', resource.id) as resource_uri
 	, CONCAT('/repositories/', resource.repo_id) as repo_uri
@@ -360,7 +360,7 @@ Enumeration IDs appear as foreign keys in a variety of database tables:
 
 To translate the enumeration ID that appears in the record and subrecord tables, join the `enumeration_value` table. The table can be joined multiple times if there are multiple values to translate, but you must use an alias for each table. For example:
 
-```
+```sql
 SELECT CONCAT('/repositories/', ao.repo_id, '/archival_objects/', ao.id) as ao_uri
   , ao.display_string as ao_title
   , date.begin
@@ -447,7 +447,7 @@ Hierarchical relationships between other records are also expressed through fore
 
 Beginning with MySQL 8, you can recursively retrieve all parents of an archival object (or all archival objects linked to a resource) by running the following query:
 
-```
+```sql
 WITH RECURSIVE ao_path AS
   (SELECT ao1.id
     , ao1.display_string
@@ -480,7 +480,7 @@ To retrieve both parents and children (MySQL 8+):
 
 To retrieve all parents of a record in MySQL 5.7 and below, run the following query:
 
-```
+```sql
 SELECT (SELECT GROUP_CONCAT(CONCAT(display_string, ' (', ao_level, ')') SEPARATOR ' < ') as parent_path
 		FROM (SELECT T2.display_string as display_string
 					, ev.value as ao_level
@@ -503,7 +503,7 @@ WHERE ao.id = 1749840
 
 To retrieve all children of a record (MysQL 5.7 and below):
 
-```
+```sql
 
 ```
 

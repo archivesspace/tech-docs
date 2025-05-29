@@ -16,10 +16,12 @@ practice. Separate documentation is available if you wish to [serve ArchivesSpac
 
 Since using subdomains negates the need for users to access the application directly on ports 8080 and 8081, these should be locked down to access by localhost only. On a Linux server, this can be done using iptables:
 
-     iptables -A INPUT -p tcp -s localhost --dport 8080 -j ACCEPT
-     iptables -A INPUT -p tcp --dport 8080 -j DROP
-     iptables -A INPUT -p tcp -s localhost --dport 8081 -j ACCEPT
-     iptables -A INPUT -p tcp --dport 8081 -j DROP
+```shell
+iptables -A INPUT -p tcp -s localhost --dport 8080 -j ACCEPT
+iptables -A INPUT -p tcp --dport 8080 -j DROP
+iptables -A INPUT -p tcp -s localhost --dport 8081 -j ACCEPT
+iptables -A INPUT -p tcp --dport 8081 -j DROP
+```
 
 ## Step 2: Configuring Your Web Server
 
@@ -29,17 +31,19 @@ The [mod_proxy module](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html) is 
 
 This can be set up as a reverse proxy in the Apache configuration like so:
 
-      <VirtualHost *:80>
-      ServerName public.myarchive.org
-      ProxyPass / http://localhost:8081/
-      ProxyPassReverse / http://localhost:8081/
-      </VirtualHost>
+```apache
+<VirtualHost *:80>
+ServerName public.myarchive.org
+ProxyPass / http://localhost:8081/
+ProxyPassReverse / http://localhost:8081/
+</VirtualHost>
 
-      <VirtualHost *:80>
-      ServerName staff.myarchive.org
-      ProxyPass / http://localhost:8080/
-      ProxyPassReverse / http://localhost:8080/
-      </VirtualHost>
+<VirtualHost *:80>
+ServerName staff.myarchive.org
+ProxyPass / http://localhost:8080/
+ProxyPassReverse / http://localhost:8080/
+</VirtualHost>
+```
 
 The purpose of ProxyPass is to route _incoming_ traffic on the public URL (public.myarchive.org) to port 8081 of your server, where ArchivesSpace's public interface sits. The purpose of ProxyPassReverse is to intercept _outgoing_ traffic and rewrite the header to match the URL that the browser is expecting to see (public.myarchive.org).
 
@@ -47,29 +51,33 @@ The purpose of ProxyPass is to route _incoming_ traffic on the public URL (publi
 
 Using nginx as a reverse proxy needs a configuration file like so:
 
+```nginx
+server {
+listen 80;
+listen [::]:80;
+server_name staff.myarchive.org;
+location / {
+      proxy_pass http://localhost:8080/;
+      }
+}
       server {
-      listen 80;
-      listen [::]:80;
-      server_name staff.myarchive.org;
-      location / {
-          proxy_pass http://localhost:8080/;
-        }
+listen 80;
+listen [::]:80;
+server_name public.myarchive.org;
+location / {
+      proxy_pass http://localhost:8081/;
       }
-            server {
-      listen 80;
-      listen [::]:80;
-      server_name public.myarchive.org;
-      location / {
-          proxy_pass http://localhost:8081/;
-        }
-      }
+}
+```
 
 ## Step 3: Configuring ArchivesSpace
 
 The only configuration within ArchivesSpace that needs to occur is adding your domain names to the following lines in config.rb:
 
-     AppConfig[:frontend_proxy_url] = 'http://staff.myarchive.org'
-     AppConfig[:public_proxy_url] = 'http://public.myarchive.org'
+```ruby
+AppConfig[:frontend_proxy_url] = 'http://staff.myarchive.org'
+AppConfig[:public_proxy_url] = 'http://public.myarchive.org'
+```
 
 This configuration allows the staff edit links to appear on the public site to users logged in to the staff interface.
 

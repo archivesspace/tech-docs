@@ -64,7 +64,7 @@ Set the ArchivesSpace API documentation port. The API documentation listens on p
 
 Enable or disable specific componenets by setting the following settings to true or false (defaults to true):
 
-```
+```ruby
 AppConfig[:enable_backend] = true
 AppConfig[:enable_frontend] = true
 AppConfig[:enable_public] = true
@@ -177,7 +177,7 @@ the relevancy for the title when the query terms are in close proximity to each
 other, and set the phrase slop (ps) parameter for the pf parameter to indicate
 how close the proximity should be:
 
-```
+```ruby
 AppConfig[:solr_params] = {
   "bq" => proc { "title:\"#{@query_string}\"*" },
   "pf" => 'title^10',
@@ -240,7 +240,7 @@ Resist the urge to set this to a big number!
 In addition to the sets based on level of description, you can define OAI Sets
 based on repository codes and/or sponsors as follows:
 
-```
+```ruby
 AppConfig[:oai_sets] = {
   'repository_set' => {
     :repo_codes => ['hello626'],
@@ -396,7 +396,7 @@ writing to state files so you may want to increase pui_indexing_frequency_second
 
 > TODO - Needs more documentation
 
-```
+```ruby
 AppConfig[:index_state_s3] = {
   region: ENV.fetch("AWS_REGION"),
   aws_access_key_id: ENV.fetch("AWS_ACCESS_KEY_ID"),
@@ -810,7 +810,7 @@ the new public UI application.
 Note - any changes to record_inheritance config will require a reindex of pui
 records to take affect. To do this remove files from indexer_pui_state
 
-```
+```ruby
 AppConfig[:record_inheritance] = {
   :archival_object => {
     :inherited_fields => [
@@ -868,7 +868,7 @@ If `:include_level` is set to true then level values (eg Series) will be include
 
 The `:identifier_delimiter` is used when joining the four part identifier for resources
 
-```
+```ruby
 AppConfig[:record_inheritance][:archival_object][:composite_identifiers] = {
   :include_level => false,
   :identifier_delimiter => ' '
@@ -877,7 +877,7 @@ AppConfig[:record_inheritance][:archival_object][:composite_identifiers] = {
 
 To configure additional elements to be inherited use this pattern in your config
 
-```
+```ruby
 AppConfig[:record_inheritance][:archival_object][:inherited_fields] <<
   {
     :property => 'linked_agents',
@@ -888,7 +888,7 @@ AppConfig[:record_inheritance][:archival_object][:inherited_fields] <<
 
 ... or use this pattern to add many new elements at once
 
-```
+```ruby
 AppConfig[:record_inheritance][:archival_object][:inherited_fields].concat(
   [
     {
@@ -920,7 +920,7 @@ For example, to stop scopecontent notes from being inherited into file or item r
 uncomment the entire record_inheritance default config above, and add a skip_if
 clause to the scopecontent rule, like this:
 
-```
+```ruby
   {
     :property => 'notes',
     :skip_if => proc {|json| ['file', 'item'].include?(json['level']) },
@@ -964,7 +964,7 @@ You can set this to nil or zero to prevent a timeout
 
 The following determine which 'tabs' are on the main horizontal menu:
 
-```
+```ruby
 AppConfig[:pui_hide][:repositories] = false
 AppConfig[:pui_hide][:resources] = false
 AppConfig[:pui_hide][:digital_objects] = false
@@ -979,7 +979,7 @@ The following determine globally whether the various "badges" appear on the Repo
 can be overriden at repository level below (e.g.:
 `AppConfig[:repos][{repo_code}][:hide][:counts] = true`
 
-```
+```ruby
 AppConfig[:pui_hide][:resource_badge] = false
 AppConfig[:pui_hide][:record_badge] = true # hide by default
 AppConfig[:pui_hide][:digital_object_badge] = false
@@ -1019,25 +1019,25 @@ Examples:
 
 for a particular repository, only enable requests for certain record types (Note this configuration will override AppConfig[:pui_requests_permitted_for_types] for the repository)
 
-```
+```ruby
 AppConfig[:pui_repos]['foo'][:requests_permitted_for_types] = [:resource, :archival_object, :accession, :digital_object, :digital_object_component]
 ```
 
 For a particular repository, disable request
 
-```
+```ruby
 AppConfig[:pui_repos]['foo'][:requests_permitted_for_containers_only] = true
 ```
 
 Set the email address to send any repository requests:
 
-```
+```ruby
 AppConfig[:pui_repos]['foo'][:request_email] = {email address}
 ```
 
 > TODO - Needs more documentation here
 
-```
+```ruby
 AppConfig[:pui_repos]['foo'][:hide] = {}
 AppConfig[:pui_repos]['foo'][:hide][:counts] = true
 ```
@@ -1093,7 +1093,7 @@ Add page actions via the configuration
 
 Javascript action example:
 
-```
+```ruby
 AppConfig[:pui_page_custom_actions] << {
   'record_type' => ['resource', 'archival_object'], # the jsonmodel type to show for
   'label' => 'actions.do_something', # the I18n path for the action button
@@ -1104,7 +1104,7 @@ AppConfig[:pui_page_custom_actions] << {
 
 Hyperlink action example:
 
-```
+```ruby
 AppConfig[:pui_page_custom_actions] << {
   'record_type' => ['resource', 'archival_object'], # the jsonmodel type to show for
   'label' => 'actions.do_something', # the I18n path for the action button
@@ -1115,7 +1115,7 @@ AppConfig[:pui_page_custom_actions] << {
 
 Form-POST action example:
 
-```
+```ruby
 AppConfig[:pui_page_custom_actions] << {
   'record_type' => ['resource', 'archival_object'], # the jsonmodel type to show for
   'label' => 'actions.do_something', # the I18n path for the action button
@@ -1131,7 +1131,7 @@ AppConfig[:pui_page_custom_actions] << {
 
 ERB action example:
 
-```
+```ruby
 AppConfig[:pui_page_custom_actions] << {
   'record_type' => ['resource', 'archival_object'],
   # the jsonmodel type to show for
@@ -1177,7 +1177,7 @@ Use the repository record email address for requests (overrides config email)
 
 #### `AppConfig[:pui_email_sendmail_settings]`
 
-```
+```ruby
 AppConfig[:pui_email_sendmail_settings] = {
   location: '/usr/sbin/sendmail',
   arguments: '-i'
@@ -1190,7 +1190,7 @@ Apply when `AppConfig[:pui_email_delivery_method]` set to `:smtp`
 
 Example SMTP configuration:
 
-```
+```ruby
 AppConfig[:pui_email_smtp_settings] = {
   address: 'smtp.gmail.com',
   port: 587,

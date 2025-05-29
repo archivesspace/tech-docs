@@ -21,27 +21,33 @@ The JSONModel class provides a common language for expressing these
 rules that all parts of the application can share. There is a
 JSONModel class instance for each type of record in the system, so:
 
-    JSONModel(:digital_object)
+```ruby
+JSONModel(:digital_object)
+```
 
 is a class that knows how to take a hash of properties and make sure
 those properties conform to the specification of a Digital Object:
 
-    JSONModel(:digital_object).from_hash(myhash)
+```ruby
+JSONModel(:digital_object).from_hash(myhash)
+```
 
 If it passes validation, a new JSONModel(:digital_object) instance is
 returned, which provides accessors for accessing its values, and
 facilities for round-tripping between JSON documents and regular Ruby
 hashes:
 
-     obj = JSONModel(:digital_object).from_hash(myhash)
+```ruby
+obj = JSONModel(:digital_object).from_hash(myhash)
 
-     obj.title  # or obj['title']
-     obj.title = 'a new title'  # or obj['title'] = 'a new title'
+obj.title  # or obj['title']
+obj.title = 'a new title'  # or obj['title'] = 'a new title'
 
-     obj.\_exceptions  # Validates the object and reports any issues
+obj.\_exceptions  # Validates the object and reports any issues
 
-     obj.to_hash  # Turn the JSONModel object back into a regular hash
-     obj.to_json  # Serialize the JSONModel object into JSON
+obj.to_hash  # Turn the JSONModel object back into a regular hash
+obj.to_json  # Serialize the JSONModel object into JSON
+```
 
 Much of the validation performed by JSONModel is provided by the JSON
 schema definitions listed in the `common/schemas` directory. JSON
@@ -64,27 +70,33 @@ ships with a module called JSONModel::Client that simplifies the
 common CRUD-style operations. Including this module just requires
 passing an additional parameter when initializing JSONModel:
 
-     JSONModel::init(:client_mode => true, :url => @backend_url)
-     include JSONModel
+```ruby
+JSONModel::init(:client_mode => true, :url => @backend_url)
+include JSONModel
+```
 
 If you'll be working against a single repository, it's convenient to
 set it as the default for subsequent actions:
 
-     JSONModel.set_repository(123)
+```ruby
+JSONModel.set_repository(123)
+```
 
 Then, several additional JSONModel methods are available:
 
-     # As before, get a paginated list of accessions (GET)
-     JSONModel(:accession).all(:page => 1)
+```ruby
+# As before, get a paginated list of accessions (GET)
+JSONModel(:accession).all(:page => 1)
 
-     # Create a new accession (POST)
-     obj = JSONModel(:accession).from_hash(:title => "A new accession", ...)
-     obj.save
+# Create a new accession (POST)
+obj = JSONModel(:accession).from_hash(:title => "A new accession", ...)
+obj.save
 
-     # Get a single accession by ID (GET)
-     obj = JSONModel(:accession).find(123)
+# Get a single accession by ID (GET)
+obj = JSONModel(:accession).find(123)
 
-     # Update an existing accession (POST)
-     obj = JSONModel(:accession).find(123)
-     obj.title = "Updated title"
-     obj.save
+# Update an existing accession (POST)
+obj = JSONModel(:accession).find(123)
+obj.title = "Updated title"
+obj.save
+```

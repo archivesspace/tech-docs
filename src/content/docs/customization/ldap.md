@@ -10,14 +10,16 @@ matches.
 
 Here is a minimal example of an LDAP configuration:
 
-     AppConfig[:authentication_sources] = [{
-                                             :model => 'LDAPAuth',
-                                             :hostname => 'ldap.example.com',
-                                             :port => 389,
-                                             :base_dn => 'ou=people,dc=example,dc=com',
-                                             :username_attribute => 'uid',
-                                             :attribute_map => {:cn => :name},
-     }]
+```ruby
+AppConfig[:authentication_sources] = [{
+                                        :model => 'LDAPAuth',
+                                        :hostname => 'ldap.example.com',
+                                        :port => 389,
+                                        :base_dn => 'ou=people,dc=example,dc=com',
+                                        :username_attribute => 'uid',
+                                        :attribute_map => {:cn => :name},
+}]
+```
 
 With this configuration, ArchivesSpace performs authentication by
 connecting to `ldap://ldap.example.com:389/`, binding anonymously,
@@ -35,29 +37,33 @@ password of a user with permission to connect to the directory and
 search for other users. Modifying the previous example for this case
 looks like this:
 
-     AppConfig[:authentication_sources] = [{
-                                             :model => 'LDAPAuth',
-                                             :hostname => 'ldap.example.com',
-                                             :port => 389,
-                                             :base_dn => 'ou=people,dc=example,dc=com',
-                                             :username_attribute => 'uid',
-                                             :attribute_map => {:cn => :name},
-                                             :bind_dn => 'uid=archivesspace_auth,ou=system,dc=example,dc=com',
-                                             :bind_password => 'secretsquirrel',
-     }]
+```ruby
+AppConfig[:authentication_sources] = [{
+                                        :model => 'LDAPAuth',
+                                        :hostname => 'ldap.example.com',
+                                        :port => 389,
+                                        :base_dn => 'ou=people,dc=example,dc=com',
+                                        :username_attribute => 'uid',
+                                        :attribute_map => {:cn => :name},
+                                        :bind_dn => 'uid=archivesspace_auth,ou=system,dc=example,dc=com',
+                                        :bind_password => 'secretsquirrel',
+}]
+```
 
 Finally, some LDAP directories enforce the use of SSL encryption. To
 configure ArchivesSpace to connect via LDAPS, change the port as
 appropriate and specify the `encryption` option:
 
-     AppConfig[:authentication_sources] = [{
-                                             :model => 'LDAPAuth',
-                                             :hostname => 'ldap.example.com',
-                                             :port => 636,
-                                             :base_dn => 'ou=people,dc=example,dc=com',
-                                             :username_attribute => 'uid',
-                                             :attribute_map => {:cn => :name},
-                                             :bind_dn => 'uid=archivesspace_auth,ou=system,dc=example,dc=com',
-                                             :bind_password => 'secretsquirrel',
-                                             :encryption => :simple_tls,
-     }]
+```ruby
+AppConfig[:authentication_sources] = [{
+                                        :model => 'LDAPAuth',
+                                        :hostname => 'ldap.example.com',
+                                        :port => 636,
+                                        :base_dn => 'ou=people,dc=example,dc=com',
+                                        :username_attribute => 'uid',
+                                        :attribute_map => {:cn => :name},
+                                        :bind_dn => 'uid=archivesspace_auth,ou=system,dc=example,dc=com',
+                                        :bind_password => 'secretsquirrel',
+                                        :encryption => :simple_tls,
+}]
+```

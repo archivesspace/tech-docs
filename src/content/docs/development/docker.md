@@ -9,8 +9,7 @@ The [Docker](https://www.docker.com/) configuration is used to create [automated
 Run ArchivesSpace with MySQL, external Solr and a Web Proxy. Switch to the
 branch you want to build:
 
-```
-bash
+```bash
 #if you already have running containers and want to clear them out
 docker-compose stop
 docker-compose rm
