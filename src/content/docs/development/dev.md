@@ -1,5 +1,6 @@
 ---
 title: Development environment
+description: Guidance for setting up a development environment or ArchivesSpace, including system requirements, supported development platforms, a quickstart guide, and step-by-step instructions.
 ---
 
 System requirements:

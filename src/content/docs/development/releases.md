@@ -1,5 +1,6 @@
 ---
 title: Releases
+description: A list of Archivesspace releases, their release dates, schema numbers, and links to the release on github.
 ---
 
 3.4.0 May 24, 2023

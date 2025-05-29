@@ -1,5 +1,6 @@
 ---
 title: External Solr
+description: Instructions for installing and using external Solr with ArchivesSpace.
 ---
 
 :::note

@@ -1,5 +1,6 @@
 ---
 title: XSL stylesheets
+description: Provides information about the XSL stylesheets for transforming ArchivesSpace data to EAC-CPF and EAD exports into HTML or PDF, using Saxon for processing.
 ---
 
 ArchivesSpace includes three stylesheets for you to transform exported data

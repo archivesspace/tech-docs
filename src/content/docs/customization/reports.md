@@ -1,5 +1,6 @@
 ---
 title: Reports
+description: Instructions for creating custom reports and subreports in ArchivesSpace, including required structure, SQL usage, translations, optional customization methods, and integration with the reporting framework.
 ---
 
 Adding a report is intended to be a fairly simple process. The requirements for creating a report are outlined below.

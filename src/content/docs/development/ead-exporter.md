@@ -1,5 +1,6 @@
 ---
 title: Repository EAD Exporter
+description: A guide to export all published resources' EAD within a specified repository into a single zip archive.
 ---
 
 Exports all published resource record EAD XML files associated with a single
