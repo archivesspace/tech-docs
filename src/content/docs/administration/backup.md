@@ -65,7 +65,7 @@ docker cp archivesspace:/archivesspace/data/indexer_pui_state /tmp/indexer_pui_s
 
 ## Creating backups of your database using the provided script
 
-ArchivesSpace provides simple scripts for windows and unix-like systems for backing up a the database to a `.zip` file.
+ArchivesSpace provides simple scripts for windows and unix-like systems for backing up the database to a `.zip` file.
 
 ### When using the embedded demo database
 
