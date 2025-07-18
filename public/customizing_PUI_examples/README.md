@@ -15,11 +15,11 @@ The configuration file changes can be found in the config.rb file by searching f
 ## Plugins Examples
 
 Most of the plugin examples are included in the plugins/local directory:
-* Customize Field and Option Labels
-* Customize Branding Image
-* Move Branding Image from Right to Left
-* Add a Home Link to the Navigation Tool Bar
-* Change Colors
-* Change Icons
+- Customize Field and Option Labels
+- Customize Branding Image
+- Move Branding Image from Right to Left
+- Add a Home Link to the Navigation Tool Bar
+- Change Colors
+- Change Icons
 
 There is a separate help_page_pui plugin that adds a help page
