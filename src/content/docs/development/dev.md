@@ -166,7 +166,7 @@ _It is not necessary and generally incorrect to manually install JRuby
 & bundler etc. for ArchivesSpace (whether with a version manager or
 otherwise)._
 
-_The self contained ArchivesSpace development environment typically does
+_The self-contained ArchivesSpace development environment typically does
 not interact with other J/Ruby environments you may have on your system
 (such as those managed by rbenv or similar)._
 
