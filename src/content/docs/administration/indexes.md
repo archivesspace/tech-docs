@@ -72,9 +72,9 @@ Manual steps:
   - `curl -X POST -H 'Content-Type: application/json' --data-binary '{"delete":{"query":"*:*" }}' http://${solrUrl}:${solrPort}/solr/archivesspace/update?commit=true`
   - Windows PowerShell:
     ```
-    Invoke-RestMethod -Uri "http://localhost:8983/solr/archivesspace/update?commit=true" 
-    -Method Post 
-    -ContentType "application/json" 
+    Invoke-RestMethod -Uri "http://localhost:8983/solr/archivesspace/update?commit=true"
+    -Method Post
+    -ContentType "application/json"
     -Body '{"delete":{"query":"*:*"}}'
     ```
 - Restart ArchivesSpace
