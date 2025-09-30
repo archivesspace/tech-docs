@@ -66,6 +66,7 @@ From the project directory, run this command:
 docker-compose up --build --abort-on-container-exit
 
 ```
+
 This will:
 
 - Build the necessary Docker images if they aren't already there.
