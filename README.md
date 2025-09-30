@@ -107,6 +107,17 @@ remember everyone is a beginner at first
 
 * ArchivesSpace Program Team - ArchivesSpaceHome@lyrasis.org
 
+
+#### Run tests and style code
+
+Before making a pull request, make sure tests run successfully and code adheres to style rules. See [Testing](#testing) for running tests. To apply style rules automatically:
+
+```console
+npm run prettier:fix
+npm run stylelint:fix
+```
+
+
 #### Make a Pull Request
 
 At this point, you should switch back to your main branch and make sure it's
