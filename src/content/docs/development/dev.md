@@ -70,7 +70,7 @@ cd ./common/lib && wget https://repo1.maven.org/maven2/mysql/mysql-connector-jav
 # Download all application dependencies
 ./build/run bootstrap
 # OPTIONAL: load dev database
-gzip -dc ./build/mysql_db_fixtures/accessibility.sql.gz | mysql --host=127.0.0.1 --port=3306  -u root -p123456 archivesspace
+gzip -dc ./build/mysql_db_fixtures/blank.sql.gz | mysql --host=127.0.0.1 --port=3306  -u root -p123456 archivesspace
 # Setup the development database
 ./build/run db:migrate
 # Clear out any existing Solr state (only needed after a database setup / restore after previous development)
@@ -234,7 +234,7 @@ There is a task for resetting the database:
 
 Which will first delete then migrate the database.
 
-**Advanced: Loading data fixtures into dev database**
+### Loading data fixtures into dev database
 
 When loading a database into the development MySQL instance always ensure that ArchivesSpace
 is **not** running. Stop ArchivesSpace if it is running. Run `./build/run solr:reset` to
@@ -255,7 +255,7 @@ Assuming you have MySQL running and an empty `archivesspace` database available 
 to restore:
 
 ```bash
-gzip -dc ./build/mysql_db_fixtures/accessibility.sql.gz | mysql --host=127.0.0.1 --port=3306  -u root -p123456 archivesspace
+gzip -dc ./build/mysql_db_fixtures/blank.sql.gz | mysql --host=127.0.0.1 --port=3306  -u root -p123456 archivesspace
 ./build/run db:migrate
 ```
 
