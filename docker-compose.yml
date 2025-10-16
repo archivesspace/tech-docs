@@ -1,0 +1,18 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    ports:
+      - '4321:4321'
+    restart: 'on-failure'
+
+  tester:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    depends_on:
+      - server
+    command: sh -c "npm run test && npm run prettier:check && npm run stylelint:check"
+    environment:
+      - CYPRESS_BASE_URL=http://server:4321
