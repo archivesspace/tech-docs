@@ -112,16 +112,16 @@ A section heading's `id` is usually the same text string as the heading itself, 
 
 ### Emphasizing text
 
-Wrap text to be emphasized with `_ ` for italics, `**` for bold, and `~~` for strikethrough.
+Wrap text to be emphasized with `*` for italics, `**` for bold, and `~~` for strikethrough.
 
 ```md
 <!-- example.md -->
 
-_Italicized_ text
+*Italicized* text
 
 **Bold** text
 
-**_Bold and italicized_** text
+***Bold and italicized*** text
 
 ~~Strikethrough~~ text
 ```
