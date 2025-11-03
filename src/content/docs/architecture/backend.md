@@ -132,7 +132,7 @@ take the values supplied by the JSONModel object it is passed and
 assume that everything that needs to be there is there, and that
 validation has already happened.
 
-The remaining two aspects _are_ enforced by the model layer, but
+The remaining two aspects *are* enforced by the model layer, but
 generally don't pertain to just a single record type. For example, an
 accession may be linked to zero or more subjects, but so can several
 other record types, so it doesn't make sense for the `Accession` model
@@ -188,11 +188,11 @@ then manipulate the result to implement the desired behaviour.
 ### Nested records
 
 Some record types, like accessions, digital objects, and subjects, are
-_top-level records_, in the sense that they are created independently
+*top-level records*, in the sense that they are created independently
 of any other record and are addressable via their own URI. However,
 there are a number of records that can't exist in isolation, and only
 exist in the context of another record. When one record can contain
-instances of another record, we call them _nested records_.
+instances of another record, we call them *nested records*.
 
 To give an example, the `date` record type is nested within an
 `accession` record (among others). When the model layer is asked to
@@ -394,7 +394,7 @@ records in the system. The major actors in the permissions model are:
 - Records -- A unit of information in the system. Some records are
   global (existing outside of any given repository), while some are
   repository-scoped (belonging to a single repository).
-- Groups -- A set of users _within_ a repository. Each group is
+- Groups -- A set of users *within* a repository. Each group is
   assigned zero or more permissions, which it confers upon its
   members.
 - Permissions -- An action that a user can perform. For example, A
