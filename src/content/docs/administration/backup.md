@@ -69,7 +69,7 @@ ArchivesSpace provides simple scripts for windows and unix-like systems for back
 
 ### When using the embedded demo database
 
-Note: _NEVER use the demo database in production._. You can run:
+Note: *NEVER use the demo database in production.*. You can run:
 
 ```shell
 scripts/backup.sh --output /path/to/backup-yyyymmdd.zip
@@ -104,8 +104,8 @@ your `mysqldump` backup into an empty database. If you are using the
 `scripts/backup.sh` script (described above), this dump file is named
 `mysqldump.sql` in your backup `.zip` file.
 
-To load a MySQL dump file, follow the directions in _Set up your MySQL
-database_ to create an empty database with the appropriate
+To load a MySQL dump file, follow the directions in *Set up your MySQL
+database* to create an empty database with the appropriate
 permissions. Then, populate the database from your backup file using
 the MySQL client:
 

@@ -49,12 +49,12 @@ If using Docker & Docker Compose install them following the official documentati
 - [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
 - [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
 
-_Do not use system packages or any other unofficial source as these have been found to be inconsistent with standard Docker._
+*Do not use system packages or any other unofficial source as these have been found to be inconsistent with standard Docker.*
 
 The recommended way of developing ArchivesSpace is to fork the repository and clone it locally.
 
-_Note: all commands in the following instructions assume you are in the root directory of your local fork
-unless otherwise specified._
+*Note: all commands in the following instructions assume you are in the root directory of your local fork
+unless otherwise specified.*
 
 **Quickstart**
 
@@ -94,9 +94,9 @@ Start by building the images. This creates a custom Solr image that includes Arc
 docker-compose -f docker-compose-dev.yml build
 ```
 
-_Note: you only need to run the above command once. You would only need to rerun this command if a)
+*Note: you only need to run the above command once. You would only need to rerun this command if a)
 you delete the image and therefore need to recreate it, or b) you make a change to ArchivesSpace's Solr
-configuration and therefore need to rebuild the image to include the updated configuration._
+configuration and therefore need to rebuild the image to include the updated configuration.*
 
 Run MySQL and Solr in the background:
 
@@ -162,13 +162,13 @@ dependencies--JRuby, Gems, etc. This one command creates a fully
 self-contained development environment where everything is downloaded
 within the ArchivesSpace project `build` directory.
 
-_It is not necessary and generally incorrect to manually install JRuby
+*It is not necessary and generally incorrect to manually install JRuby
 & bundler etc. for ArchivesSpace (whether with a version manager or
-otherwise)._
+otherwise).*
 
-_The self-contained ArchivesSpace development environment typically does
+*The self-contained ArchivesSpace development environment typically does
 not interact with other J/Ruby environments you may have on your system
-(such as those managed by rbenv or similar)._
+(such as those managed by rbenv or similar).*
 
 This is the starting point for all ArchivesSpace development. You may need
 to re-run this command after fetching updates, or when making changes to
@@ -248,8 +248,8 @@ mysql -h 127.0.0.1 -u as -pas123 -e "DROP DATABASE archivesspace"
 mysql -h 127.0.0.1 -u as -pas123 -e "CREATE DATABASE IF NOT EXISTS archivesspace DEFAULT CHARACTER SET utf8mb4"
 ```
 
-_Note: you can skip the above step if MySQL was just started for the first time or any time you
-have an empty ArchivesSpace (one where `db:migrate` has not been run)._
+*Note: you can skip the above step if MySQL was just started for the first time or any time you
+have an empty ArchivesSpace (one where `db:migrate` has not been run).*
 
 Assuming you have MySQL running and an empty `archivesspace` database available you can proceed
 to restore:
@@ -259,8 +259,8 @@ gzip -dc ./build/mysql_db_fixtures/blank.sql.gz | mysql --host=127.0.0.1 --port=
 ./build/run db:migrate
 ```
 
-_Note: The above instructions should work out-of-the-box. If you want to use your own database
-and / or have configured MySQL differently then adjust the commands as needed._
+*Note: The above instructions should work out-of-the-box. If you want to use your own database
+and / or have configured MySQL differently then adjust the commands as needed.*
 
 After the restore `./build/run db:migrate` is run to catch any migration updates. You can now
 proceed to run the application dev servers, as described below, with data already
@@ -278,9 +278,9 @@ Will wipe out any existing Solr state. This is not required when setting
 up for the first time, but is often required after a database reset (such as
 after running the `./build/run db:nuke` task).
 
-_More specifically what this does is submit a delete all request to Solr and empty
+*More specifically what this does is submit a delete all request to Solr and empty
 out the contents of the `./build/dev/indexer*_state` directories, which is described
-below._
+below.*
 
 ### Run the development servers
 
@@ -321,7 +321,7 @@ servers directly via build tasks:
 These should be run in different terminal sessions and do not need to be run
 in a specific order or are all required.
 
-_An example use case for running a server directly is to use the pry debugger._
+*An example use case for running a server directly is to use the pry debugger.*
 
 **Advanced: debugging with pry**
 
@@ -359,8 +359,8 @@ Running the developments servers will create directories in `./build/dev`:
 
   ./build/run db:nuke
 
-_Note: the folders will be created as they are needed, so they may not all be present
-at all times._
+*Note: the folders will be created as they are needed, so they may not all be present
+at all times.*
 
 ## Running the tests
 
@@ -378,9 +378,9 @@ You can also run a single spec file with:
 
      ./build/run backend:test -Dspec="myfile_spec.rb"
 
-_By default the tests are configured to run using a separate MySQL & Solr from the
+*By default the tests are configured to run using a separate MySQL & Solr from the
 development servers. This means that the development and test environments will not
-interfere with each other._
+interfere with each other.*
 
 ```bash
 # run the backend / api tests
