@@ -8,6 +8,7 @@ System requirements:
 - Java 17
 - [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/) is optional but makes running MySQL and Solr more convenient
 - [Supervisord](http://supervisord.org/) is optional but makes running the development servers more convenient
+- [mysql-client](https://www.bytebase.com/reference/mysql/how-to/how-to-install-mysql-client-on-mac-ubuntu-centos-windows/) is required in order to load demo data or other sql dumps onto the database
 
 Currently supported platforms for development:
 
@@ -361,19 +362,7 @@ at all times._
 
 ## Running the tests
 
-ArchivesSpace uses a combination of RSpec, integration and Selenium
-tests.
-
-     ./build/run travis:test
-
-It's also useful to be able to run the backend unit tests separately.
-To do this, run:
-
-     ./build/run backend:test
-
-You can also run a single spec file with:
-
-     ./build/run backend:test -Dspec="myfile_spec.rb"
+### Backend tests
 
 _By default the tests are configured to run using a separate MySQL & Solr from the
 development servers. This means that the development and test environments will not
@@ -394,6 +383,12 @@ Or a single example with:
 
 ```bash
 ./build/run backend:test -Dexample="does something important"
+```
+
+Or by file line with:
+
+```bash
+./build/run backend:test -Dspec="myfile_spec.rb:123"
 ```
 
 There are specific instructions and requirements for the [UI tests](/development/ui_test) to work.
