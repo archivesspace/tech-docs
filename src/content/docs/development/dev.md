@@ -5,7 +5,7 @@ description: Guidance for setting up a development environment or ArchivesSpace,
 
 System requirements:
 
-- Java 8, 11 (11 recommended) or 17
+- Java 17
 - [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/) is optional but makes running MySQL and Solr more convenient
 - [Supervisord](http://supervisord.org/) is optional but makes running the development servers more convenient
 
@@ -19,25 +19,22 @@ Windows is not supported because of issues building gems with C extensions (such
 For Mac (arm) see [https://teaspoon-consulting.com/articles/archivesspace-on-the-m1.html](https://teaspoon-consulting.com/articles/archivesspace-on-the-m1.html).
 
 When installing Java OpenJDK is strongly recommended. Other vendors may work, but OpenJDK is
-most extensively used and tested. It is highly recommended that you use [Jabba](https://github.com/shyiko/jabba)
+most extensively used and tested. It is highly recommended that you use [mise]([https://github.com/shyiko/jabba](https://mise.jdx.dev/)
 to install Java (OpenJDK). This has proven to be a reliable way of resolving cross platform
 issues (looking at you Mac :/) that have occured via other means of installing Java.
 
-Installing OpenJDK with jabba will look something like:
+Installing OpenJDK with mise will look something like:
 
 ```bash
-# assuming you have jabba installed
-jabba install openjdk@1.11.0-2
-jabba use openjdk@1.11.0-2
-jabba alias default openjdk@1.11.0-2 # [optional] make this the default java
+# assuming you have mise installed
+mise use -g java@openjdk-17
 ```
 
 On Linux/Ubuntu it is generally fine to install from system packages:
 
 ```bash
 sudo apt install openjdk-$VERSION-jdk-headless
-# example: install 11 & 17
-sudo apt install openjdk-11-jdk-headless
+# example: install 17
 sudo apt install openjdk-17-jdk-headless
 # update-java-alternatives can be used to switch between versions
 sudo update-java-alternatives --list
@@ -66,11 +63,11 @@ docker-compose -f docker-compose-dev.yml build
 # Run MySQL and Solr in the background
 docker-compose -f docker-compose-dev.yml up --detach
 # Download the MySQL connector
-cd ./common/lib && wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.23/mysql-connector-java-8.0.23.jar && cd -
+cd ./common/lib && wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.30/mysql-connector-java-8.0.30.jar && cd -
 # Download all application dependencies
 ./build/run bootstrap
 # OPTIONAL: load dev database
-gzip -dc ./build/mysql_db_fixtures/blank.sql.gz | mysql --host=127.0.0.1 --port=3306  -u root -p123456 archivesspace
+gzip -dc ./build/mysql_db_fixtures/demo.sql.gz | mysql --host=127.0.0.1 --port=3306  -u root -p123456 archivesspace
 # Setup the development database
 ./build/run db:migrate
 # Clear out any existing Solr state (only needed after a database setup / restore after previous development)
@@ -147,7 +144,7 @@ For licensing reasons the MySQL connector must be downloaded separately:
 
 ```bash
 cd ./common/lib
-wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.23/mysql-connector-java-8.0.23.jar
+wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.30/mysql-connector-java-8.0.30.jar
 cd -
 ```
 
