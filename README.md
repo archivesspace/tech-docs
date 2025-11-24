@@ -77,7 +77,7 @@ The following scripts are made available via [package.json](./package.json):
 
 ### Reporting an Issue
 
-Issues for ArchivesSpace's technical documentation are [tracked in Jira.](https://archivesspace.atlassian.net/jira/software/projects/TD/boards/57) If there isn't a ticket in this system,  go ahead and make one. Be
+Issues for ArchivesSpace's technical documentation are [tracked in Jira.](https://archivesspace.atlassian.net/jira/software/projects/TD/boards/57) If there isn't a ticket in this system, go ahead and make one. Be
 sure to include a **title and clear description** with as much relevant
 information as possible.
 
@@ -86,7 +86,7 @@ information as possible.
 #### Fork & create a branch
 
 When you are ready to start working on an issue, please assign it to yourself
-as an indication that you are working on it. Then [fork ArchivesSpace][] and
+as an indication that you are working on it. Then [fork TechDocs][https://github.com/archivesspace/tech-docs/fork] and
 create a branch with a descriptive name.
 
 A good branch name would include the ticket number in it. For example, if you
@@ -105,8 +105,7 @@ Before running any tests, you will need to set up your environment. See [Running
 At this point, you're ready to make your changes! Feel free to ask for help;
 remember everyone is a beginner at first
 
-* ArchivesSpace Program Team - ArchivesSpaceHome@lyrasis.org
-
+- ArchivesSpace Program Team - ArchivesSpaceHome@lyrasis.org
 
 #### Run tests and style code
 
@@ -116,7 +115,6 @@ Before making a pull request, make sure tests run successfully and code adheres 
 npm run prettier:fix
 npm run stylelint:fix
 ```
-
 
 #### Make a Pull Request
 
@@ -139,8 +137,8 @@ git push --set-upstream origin TD-123-descriptive-short-title
 
 Finally, go to GitHub and [make a Pull Request][https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request] :D
 
-TravisCI will run all test suites against the pushed branch. We care about
-quality, so your Pull Request won't be merged until all test suites pass.
+Our CI process will run all test suites against the pushed branch. We care about
+quality, so your Pull Request won't be merged until all test suites pass. If any linting checks fail, the PR reviewer can fix those issues.
 
 ##### What happens after you submit a Pull Request?
 
@@ -156,8 +154,8 @@ Pull Request. Once the comment/questions have been answered/resolved, a Pull
 Request can only be accepted and merged into the core code base by a core
 committer if:
 
-* All test suites are passing.
-* It is up-to-date with current main.
+- All test suites are passing.
+- It is up-to-date with current main.
 
 ## 📖 Additional Resources
 
