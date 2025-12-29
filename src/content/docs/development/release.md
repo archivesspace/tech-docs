@@ -36,19 +36,19 @@ git checkout release-v1.0.x
 
 Patch versions typically arise because a regression or critical bug has arisen since
 the last major or minor release. We try to ensure that the "hotfix" is merged into both
-master and the release branch without the need to cherry-pick commits from one branch to
+main and the release branch without the need to cherry-pick commits from one branch to
 the other. The reason is that cherry-picking creates a new commit (with a new commit id)
 that contains identical changes, which is not optimal for the repository history.
 
 It is therefore preferable to start from the release branch when creating a "hotfix"
-that needs to be merged into both the release branch and master. The Pull Request should
+that needs to be merged into both the release branch and main. The Pull Request should
 then be based on the release branch. After that Pull Request has been through Code review,
 QA and merged, a second Pull Request should be created to merge the updated release branch
-to master.
+to main.
 
 Consider the following scenario. The current production release is v1.0.0 and a critical
 bug has been discovered. In the time since v1.0.0 was released, new features have been
-added to the master branch, intended for release in v1.1.0:
+added to the main branch, intended for release in v1.1.0:
 
 ```shell
 git checkout -b oh-no-some-migration-corrupts-some-data origin/release-v1.0.0
@@ -59,8 +59,8 @@ gh pr create -B release-v1.0.x --web
 git checkout release-v1.0.x
 git pull
 git tag v1.0.1
-gh pr create -B master --web
-( PR is reviewed and merged to the master branch)
+gh pr create -B main --web
+( PR is reviewed and merged to the main branch)
 ```
 
 ## Pre-release steps
@@ -70,7 +70,7 @@ gh pr create -B master --web
 Before proceeding further, it’s a good idea to check that there aren’t missing
 translations or multiple gem versions.
 
-1.  Bootstrap your current development environment on the latest master branch
+1.  Bootstrap your current development environment on the latest main branch
     by downloading all dependencies--JRuby, Gems, Solr, etc.
 
     ```shell
@@ -137,7 +137,7 @@ percentage of the code and are not especially useful.
 
 ### Commit built docs and push to Github pages
 
-1.  Double check that you are on a release branch (we don't need this stuff in master) and
+1.  Double check that you are on a release branch (we don't need this stuff in main) and
     commit the newly built documentation:
 
     ```shell

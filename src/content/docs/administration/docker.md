@@ -11,8 +11,8 @@ If you prefer not to use Docker, another (more involved) way to get ArchivesSpac
 
 ArchivesSpace Docker images are available on the [Docker hub](https://hub.docker.com/u/archivesspace).
 
-- main application images are built from [this Dockerfile](https://github.com/archivesspace/archivesspace/blob/master/Dockerfile)
-- solr images are built from [this Dockerfile](https://github.com/archivesspace/archivesspace/blob/master/solr/Dockerfile)
+- main application images are built from [this Dockerfile](https://github.com/archivesspace/archivesspace/blob/main/Dockerfile)
+- solr images are built from [this Dockerfile](https://github.com/archivesspace/archivesspace/blob/main/solr/Dockerfile)
 
 ## Installing
 

@@ -27,4 +27,4 @@ The rights statements data model has changed in 2.1.0. If you currently use righ
 
 ## For those using an external Solr server
 
-The index schema has changed with 2.1.0. If you are using an external Solr server, you will need to update the [schema.xml](https://github.com/archivesspace/archivesspace/blob/master/solr/schema.xml) with the newer version. If you are using the default Solr index that ships with ArchivesSpace, no action is needed.
+The index schema has changed with 2.1.0. If you are using an external Solr server, you will need to update the [schema.xml](https://github.com/archivesspace/archivesspace/blob/main/solr/schema.xml) with the newer version. If you are using the default Solr index that ships with ArchivesSpace, no action is needed.

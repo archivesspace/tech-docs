@@ -139,7 +139,7 @@ requirements are:
 - dev Solr, localhost:8983 create archivesspace core using ArchivesSpace configuration
 - test Solr, localhost:8984, create archivesspace core using ArchivesSpace configuration
 
-The defaults can be changed using [environment variables](https://github.com/archivesspace/archivesspace/blob/master/build/build.xml#L43-L46) located in the build file.
+The defaults can be changed using [environment variables](https://github.com/archivesspace/archivesspace/blob/main/build/build.xml#L43-L46) located in the build file.
 
 ### Download the MySQL connector
 

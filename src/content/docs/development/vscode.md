@@ -3,7 +3,7 @@ title: Using the VS Code editor
 description: Instructions for using the VS Code editor with ArchiveSpace, including prerequisites and setup.
 ---
 
-ArchivesSpace provides a [VS Code settings file](https://github.com/archivesspace/archivesspace/blob/master/.vscode/settings.json) that makes it easy for contributors using VS Code to follow the code style of the project. Using this tool chain in your editor helps fix code format and lint errors _before_ committing files or running tests. In many cases such errors will be fixed automatically when the file being worked on is saved. Errors that can't be fixed automatically will be highlighted with squiggly lines. Hovering your cursor over these lines will display a description of the error to help reach a solution.
+ArchivesSpace provides a [VS Code settings file](https://github.com/archivesspace/archivesspace/blob/main/.vscode/settings.json) that makes it easy for contributors using VS Code to follow the code style of the project. Using this tool chain in your editor helps fix code format and lint errors _before_ committing files or running tests. In many cases such errors will be fixed automatically when the file being worked on is saved. Errors that can't be fixed automatically will be highlighted with squiggly lines. Hovering your cursor over these lines will display a description of the error to help reach a solution.
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ Run the following command from the ArchivesSpace root directory.
 npm install
 ```
 
-See [package.json](https://github.com/archivesspace/archivesspace/blob/master/package.json) for further details on how these tools are used in ArchivesSpace.
+See [package.json](https://github.com/archivesspace/archivesspace/blob/main/package.json) for further details on how these tools are used in ArchivesSpace.
 
 ### Add VS Code extensions
 
@@ -47,6 +47,6 @@ Add the following extensions via the VS Code command palette or the Extensions p
 3. [Ruby Rubocop Revised](https://marketplace.visualstudio.com/items?itemName=LoranKloeze.ruby-rubocop-revived) (LoranKloeze.ruby-rubocop-revived)
 4. [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint) (stylelint.vscode-stylelint)
 
-It's important to note that since these extensions work in tandem with the [VS Code settings file](https://github.com/archivesspace/archivesspace/blob/master/.vscode/settings.json), these settings only impact your ArchivesSpace VS Code Workspace, not your global VS Code User settings.
+It's important to note that since these extensions work in tandem with the [VS Code settings file](https://github.com/archivesspace/archivesspace/blob/main/.vscode/settings.json), these settings only impact your ArchivesSpace VS Code Workspace, not your global VS Code User settings.
 
 The extensions should now work out of the box at this point providing error messages and autocorrecting fixable errors on file save!
