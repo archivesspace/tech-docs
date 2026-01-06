@@ -81,6 +81,10 @@ Docker will pick it up when it starts for the first time and restore the dump to
 
 If you created the dump on an earlier ArchivesSpace version, the system will apply any pending database migrations to upgrade your database to the ArchivesSpace version you are currently running on Docker.
 
+After the initial run you will want to remove that `.sql` file from the `sql` directory of your unzipped Docker configuration package.
+
+The docker configuration package already includes a configurable database backup mechanism for MySQL. Read more about it in the [backup and recovery section](/administration/backup/#using-the-docker-configuration-package).
+
 ## Running
 
 ### Resource limits
