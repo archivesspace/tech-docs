@@ -306,7 +306,7 @@ ArchivesSpace is started with:
 
 To stop supervisord: `Ctrl-c`.
 
-**Advanced: running the development servers directly**
+#### Advanced: running the development servers directly
 
 Supervisord is not required, or ideal for every situation. You can run the development
 servers directly via build tasks:
@@ -323,7 +323,7 @@ in a specific order or are all required.
 
 _An example use case for running a server directly is to use the pry debugger._
 
-**Advanced: debugging with pry**
+#### Advanced: debugging with pry
 
 To debug with pry you cannot use supervisord to run the application devserver,
 however you can mix and match:
@@ -347,7 +347,7 @@ in scope instance variables that are available. Typical debugger commands are av
 
 See also [pry-debugger-jruby docs](https://gitlab.com/ivoanjo/pry-debugger-jruby).
 
-**Advanced: development servers and the build directory**
+#### Advanced: development servers and the build directory
 
      ./build/run db:migrate
 
@@ -361,6 +361,47 @@ Running the developments servers will create directories in `./build/dev`:
 
 _Note: the folders will be created as they are needed, so they may not all be present
 at all times._
+
+#### Accessing development servers from other devices on the local network
+
+You can access the ArchivesSpace development servers from other devices on your local network. This is especially useful for testing on mobile operating systems.
+
+##### Prerequisites
+
+1. Your development machine and the other device must be on the same WiFi network
+2. The ArchivesSpace development servers must be running on the development machine
+
+##### Steps
+
+1. Get your development machine's local IP address
+
+   On macOS:
+
+   ```bash
+   ipconfig getifaddr en0
+   ```
+
+   On Linux:
+
+   ```bash
+   hostname -I | awk '{print $1}'
+   ```
+
+   This returns something like `134.192.0.47`.
+
+2. Start the [development servers](#run-the-development-servers)
+
+   The development servers bind to `0.0.0.0` by default, making them accessible from other devices on the network (see the [frontend binding example](https://github.com/archivesspace/archivesspace/blob/f77dec627cd1feac77e4b67f9242d617efe80e94/build/build.xml#L899)).
+
+3. **Access from another device**
+
+   On the other device, open a web browser and navigate to your development machine's IP address with the appropriate port, ie: `http://<your-local-ip>:<port>/`.
+
+   So for IP address `134.192.0.47`:
+
+   - Staff interface: `http://134.192.0.47:3000/`
+   - Public interface: `http://134.192.0.47:3001/`
+   - API: `http://134.192.0.47:4567/`
 
 ## Running the tests
 
