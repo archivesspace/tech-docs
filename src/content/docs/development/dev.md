@@ -23,15 +23,12 @@ To install versions of ArchivesSpace prior to v4.0.0 with macOS on Apple silicon
 Windows is not supported because of issues building gems with C extensions (such as sassc).
 :::
 
-When installing Java, [OpenJDK](https://openjdk.org/) is strongly recommended. Other vendors may work, but OpenJDK is most extensively used and tested. It is highly recommended that you use [Jabba](https://github.com/shyiko/jabba) to install Java (OpenJDK). This has proven to be a reliable way of resolving cross platform issues that have occured via other means of installing Java.
+When installing Java, [OpenJDK](https://openjdk.org/) is strongly recommended. Other vendors may work, but OpenJDK is most extensively used and tested. It is highly recommended that you use a version manager such as [mise](https://mise.jdx.dev/lang/java.html) to install Java (OpenJDK). This has proven to be a reliable way of resolving cross platform issues that have occured via other means of installing Java.
 
-Installing OpenJDK with jabba will look something like:
+Installing OpenJDK with mise will look something like:
 
 ```bash
-# assuming you have jabba installed
-jabba install openjdk@1.11.0-2
-jabba use openjdk@1.11.0-2
-jabba alias default openjdk@1.11.0-2 # [optional] make this the default java
+mise use -g java@openjdk-21
 ```
 
 On Linux/Ubuntu it is generally fine to install from system packages:
