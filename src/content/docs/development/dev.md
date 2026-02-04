@@ -12,24 +12,23 @@ System requirements:
 Currently supported platforms for development:
 
 - Linux (although generally only Ubuntu is actually used / tested)
-- Mac (x86)
+- macOS on Intel (x86_64)
+- macOS on Apple silicon (ARM64) _since v4.0.0_
 
+:::note[Apple silicon and ArchivesSpace before v4.0.0]
+To install versions of ArchivesSpace prior to v4.0.0 with macOS on Apple silicon, see [https://teaspoon-consulting.com/articles/archivesspace-on-the-m1.html](https://teaspoon-consulting.com/articles/archivesspace-on-the-m1.html).
+:::
+
+:::danger[Windows development not supported]
 Windows is not supported because of issues building gems with C extensions (such as sassc).
+:::
 
-For Mac (arm) see [https://teaspoon-consulting.com/articles/archivesspace-on-the-m1.html](https://teaspoon-consulting.com/articles/archivesspace-on-the-m1.html).
+When installing Java, [OpenJDK](https://openjdk.org/) is strongly recommended. Other vendors may work, but OpenJDK is most extensively used and tested. It is highly recommended that you use a version manager such as [mise](https://mise.jdx.dev/lang/java.html) to install Java (OpenJDK). This has proven to be a reliable way of resolving cross platform issues that have occured via other means of installing Java.
 
-When installing Java OpenJDK is strongly recommended. Other vendors may work, but OpenJDK is
-most extensively used and tested. It is highly recommended that you use [Jabba](https://github.com/shyiko/jabba)
-to install Java (OpenJDK). This has proven to be a reliable way of resolving cross platform
-issues (looking at you Mac :/) that have occured via other means of installing Java.
-
-Installing OpenJDK with jabba will look something like:
+Installing OpenJDK with mise will look something like:
 
 ```bash
-# assuming you have jabba installed
-jabba install openjdk@1.11.0-2
-jabba use openjdk@1.11.0-2
-jabba alias default openjdk@1.11.0-2 # [optional] make this the default java
+mise use -g java@openjdk-21
 ```
 
 On Linux/Ubuntu it is generally fine to install from system packages:
@@ -42,6 +41,13 @@ sudo apt install openjdk-17-jdk-headless
 # update-java-alternatives can be used to switch between versions
 sudo update-java-alternatives --list
 sudo update-java-alternatives --set $version
+```
+
+For [Homebrew](https://brew.sh/) users (macOS, Linux), the OpenJDK distribution from Azul has been reported to work:
+
+```bash
+# install Java v21 for example
+brew install --cask zulu@21
 ```
 
 If using Docker & Docker Compose install them following the official documentation:
