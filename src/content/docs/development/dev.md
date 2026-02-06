@@ -13,22 +13,23 @@ System requirements:
 Currently supported platforms for development:
 
 - Linux (although generally only Ubuntu is actually used / tested)
-- Mac (x86)
+- macOS on Intel (x86_64)
+- macOS on Apple silicon (ARM64) _since v4.0.0_
 
+:::note[Apple silicon and ArchivesSpace before v4.0.0]
+To install versions of ArchivesSpace prior to v4.0.0 with macOS on Apple silicon, see [https://teaspoon-consulting.com/articles/archivesspace-on-the-m1.html](https://teaspoon-consulting.com/articles/archivesspace-on-the-m1.html).
+:::
+
+:::danger[Windows development not supported]
 Windows is not supported because of issues building gems with C extensions (such as sassc).
+:::
 
-For Mac (arm) see [https://teaspoon-consulting.com/articles/archivesspace-on-the-m1.html](https://teaspoon-consulting.com/articles/archivesspace-on-the-m1.html).
-
-When installing Java OpenJDK is strongly recommended. Other vendors may work, but OpenJDK is
-most extensively used and tested. It is highly recommended that you use [mise]([https://github.com/shyiko/jabba](https://mise.jdx.dev/)
-to install Java (OpenJDK). This has proven to be a reliable way of resolving cross platform
-issues (looking at you Mac :/) that have occured via other means of installing Java.
+When installing Java, [OpenJDK](https://openjdk.org/) is strongly recommended. Other vendors may work, but OpenJDK is most extensively used and tested. It is highly recommended that you use a version manager such as [mise](https://mise.jdx.dev/lang/java.html) to install Java (OpenJDK). This has proven to be a reliable way of resolving cross platform issues that have occured via other means of installing Java.
 
 Installing OpenJDK with mise will look something like:
 
 ```bash
-# assuming you have mise installed
-mise use -g java@openjdk-17
+mise use -g java@openjdk-21
 ```
 
 On Linux/Ubuntu it is generally fine to install from system packages:
@@ -40,6 +41,13 @@ sudo apt install openjdk-17-jdk-headless
 # update-java-alternatives can be used to switch between versions
 sudo update-java-alternatives --list
 sudo update-java-alternatives --set $version
+```
+
+For [Homebrew](https://brew.sh/) users (macOS, Linux), the OpenJDK distribution from Azul has been reported to work:
+
+```bash
+# install Java v21 for example
+brew install --cask zulu@21
 ```
 
 If using Docker & Docker Compose install them following the official documentation:
@@ -304,7 +312,7 @@ ArchivesSpace is started with:
 
 To stop supervisord: `Ctrl-c`.
 
-**Advanced: running the development servers directly**
+#### Advanced: running the development servers directly
 
 Supervisord is not required, or ideal for every situation. You can run the development
 servers directly via build tasks:
@@ -321,7 +329,7 @@ in a specific order or are all required.
 
 _An example use case for running a server directly is to use the pry debugger._
 
-**Advanced: debugging with pry**
+#### Advanced: debugging with pry
 
 To debug with pry you cannot use supervisord to run the application devserver,
 however you can mix and match:
@@ -345,7 +353,7 @@ in scope instance variables that are available. Typical debugger commands are av
 
 See also [pry-debugger-jruby docs](https://gitlab.com/ivoanjo/pry-debugger-jruby).
 
-**Advanced: development servers and the build directory**
+#### Advanced: development servers and the build directory
 
      ./build/run db:migrate
 
@@ -359,6 +367,47 @@ Running the developments servers will create directories in `./build/dev`:
 
 _Note: the folders will be created as they are needed, so they may not all be present
 at all times._
+
+#### Accessing development servers from other devices on the local network
+
+You can access the ArchivesSpace development servers from other devices on your local network. This is especially useful for testing on mobile operating systems.
+
+##### Prerequisites
+
+1. Your development machine and the other device must be on the same WiFi network
+2. The ArchivesSpace development servers must be running on the development machine
+
+##### Steps
+
+1. Get your development machine's local IP address
+
+   On macOS:
+
+   ```bash
+   ipconfig getifaddr en0
+   ```
+
+   On Linux:
+
+   ```bash
+   hostname -I | awk '{print $1}'
+   ```
+
+   This returns something like `134.192.0.47`.
+
+2. Start the [development servers](#run-the-development-servers)
+
+   The development servers bind to `0.0.0.0` by default, making them accessible from other devices on the network (see the [frontend binding example](https://github.com/archivesspace/archivesspace/blob/f77dec627cd1feac77e4b67f9242d617efe80e94/build/build.xml#L899)).
+
+3. **Access from another device**
+
+   On the other device, open a web browser and navigate to your development machine's IP address with the appropriate port, ie: `http://<your-local-ip>:<port>/`.
+
+   So for IP address `134.192.0.47`:
+
+   - Staff interface: `http://134.192.0.47:3000/`
+   - Public interface: `http://134.192.0.47:3001/`
+   - API: `http://134.192.0.47:4567/`
 
 ## Running the tests
 

@@ -92,9 +92,8 @@ When you extract the `.zip` file, it will create a directory called
 `archivesspace`. Next, follow the instructions for setting up:
 
 - [MySQL](/provisioning/mysql)
-- for version 3.2 and above, [Solr](/provisioning/solr) is also required
-
-**From any ArchivesSpace version > 3.1.0 external Solr is required. Earlier versions provided an embedded Solr v4 instance, which is now unsupported due to its age.**
+- mysql jdbc driver, see [Download MySQL Connector](/provisioning/mysql/#download-mysql-connector)
+- for version 3.2 and above, [Solr](/provisioning/solr) is also required. Earlier versions provided an embedded Solr v4 instance, which is now unsupported.
 
 **Do not proceed until MySQL and Solr are running.**
 
