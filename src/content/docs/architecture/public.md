@@ -14,7 +14,7 @@ file, with the relevant configuration options are prefixed with
 `:pui_`.
 
 To see the full list of available options, see the file
-[`https://github.com/archivesspace/archivesspace/blob/master/common/config/config-defaults.rb`](https://github.com/archivesspace/archivesspace/blob/master/common/config/config-defaults.rb)
+[`https://github.com/archivesspace/archivesspace/blob/main/common/config/config-defaults.rb`](https://github.com/archivesspace/archivesspace/blob/main/common/config/config-defaults.rb)
 
 ### Preserving Patron Privacy
 
@@ -116,7 +116,7 @@ Also, it is advised to inherit this element in a composite fashion once it is de
 - Scope and contents note (indirect inheritance)
 - Language of Materials note (indirect inheritance, but there seems to be a bug right now so that the Language notes always show up as being directly inherited. See AR-XXXX)
 
-See https://github.com/archivesspace/archivesspace/blob/master/common/config/config-defaults.rb#L296-L396 for more information and examples.
+See https://github.com/archivesspace/archivesspace/blob/main/common/config/config-defaults.rb#L296-L396 for more information and examples.
 
 Also, a video overview of this feature, which was recorded before development was finished, is available online:
 https://vimeo.com/195457286
@@ -151,4 +151,4 @@ When you set include_level to true, that means the archival object level will be
 
 ArchivesSpace is released under the [Educational Community License,
 version 2.0](http://opensource.org/licenses/ecl2.php). See the
-[COPYING](https://github.com/archivesspace/archivesspace/blob/master/COPYING) file for more information.
+[COPYING](https://github.com/archivesspace/archivesspace/blob/main/COPYING) file for more information.

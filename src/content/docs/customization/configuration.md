@@ -191,7 +191,7 @@ AppConfig[:solr_params] = {
 #### `AppConfig[:locale]`
 
 Set the application's language (see the .yml files in
-https://github.com/archivesspace/archivesspace/tree/master/common/locales
+https://github.com/archivesspace/archivesspace/tree/main/common/locales
 for a list of available locale codes). Default is English (:en):
 
 `AppConfig[:locale] = :en`

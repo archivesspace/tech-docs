@@ -12,8 +12,8 @@ application may then add to or override these values with their own locales file
 
 For a guide on managing these "i18n" files, please visit http://guides.rubyonrails.org/i18n.html
 
-You can see the source files for both the [Staff Frontend Application](https://github.com/archivesspace/archivesspace/tree/master/frontend/config/locales) and
-[Public Application](https://github.com/archivesspace/archivesspace/tree/master/public/config/locales). There is also a [common locale file](https://github.com/archivesspace/archivesspace/blob/master/common/locales/en.yml) for some values used throughout the ArchivesSpace applications.
+You can see the source files for both the [Staff Frontend Application](https://github.com/archivesspace/archivesspace/tree/main/frontend/config/locales) and
+[Public Application](https://github.com/archivesspace/archivesspace/tree/main/public/config/locales). There is also a [common locale file](https://github.com/archivesspace/archivesspace/blob/main/common/locales/en.yml) for some values used throughout the ArchivesSpace applications.
 
 The base translations are broken up:
 

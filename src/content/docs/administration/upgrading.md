@@ -170,7 +170,7 @@ any libraries from the previous ASpace version from your Tomcat classpath.
      6. Run your setup-database script to migration your database.
      7. Delete all ASpace related jar libraries in your Tomcat's lib directory. These
         will include the "gems" folder, as well as "common.jar" and some
-        [others](https://github.com/archivesspace/archivesspace/tree/master/common/lib).
+        [others](https://github.com/archivesspace/archivesspace/tree/main/common/lib).
         This will make sure your running the correct version of the dependent
         libraries for your new ASpace version.
         Just be sure not to delete any of the Apache Tomcat libraries.
