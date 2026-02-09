@@ -5,9 +5,10 @@ description: Guidance for setting up a development environment or ArchivesSpace,
 
 System requirements:
 
-- Java 8, 11 (11 recommended) or 17
+- Java 17
 - [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/) is optional but makes running MySQL and Solr more convenient
 - [Supervisord](http://supervisord.org/) is optional but makes running the development servers more convenient
+- [mysql-client](https://www.bytebase.com/reference/mysql/how-to/how-to-install-mysql-client-on-mac-ubuntu-centos-windows/) is required in order to load demo data or other sql dumps onto the database
 
 Currently supported platforms for development:
 
@@ -35,8 +36,7 @@ On Linux/Ubuntu it is generally fine to install from system packages:
 
 ```bash
 sudo apt install openjdk-$VERSION-jdk-headless
-# example: install 11 & 17
-sudo apt install openjdk-11-jdk-headless
+# example: install 17
 sudo apt install openjdk-17-jdk-headless
 # update-java-alternatives can be used to switch between versions
 sudo update-java-alternatives --list
@@ -72,11 +72,11 @@ docker-compose -f docker-compose-dev.yml build
 # Run MySQL and Solr in the background
 docker-compose -f docker-compose-dev.yml up --detach
 # Download the MySQL connector
-cd ./common/lib && wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.23/mysql-connector-java-8.0.23.jar && cd -
+cd ./common/lib && wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.30/mysql-connector-java-8.0.30.jar && cd -
 # Download all application dependencies
 ./build/run bootstrap
 # OPTIONAL: load dev database
-gzip -dc ./build/mysql_db_fixtures/blank.sql.gz | mysql --host=127.0.0.1 --port=3306  -u root -p123456 archivesspace
+gzip -dc ./build/mysql_db_fixtures/demo.sql.gz | mysql --host=127.0.0.1 --port=3306  -u root -p123456 archivesspace
 # Setup the development database
 ./build/run db:migrate
 # Clear out any existing Solr state (only needed after a database setup / restore after previous development)
@@ -153,7 +153,7 @@ For licensing reasons the MySQL connector must be downloaded separately:
 
 ```bash
 cd ./common/lib
-wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.23/mysql-connector-java-8.0.23.jar
+wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.30/mysql-connector-java-8.0.30.jar
 cd -
 ```
 
@@ -411,19 +411,7 @@ You can access the ArchivesSpace development servers from other devices on your 
 
 ## Running the tests
 
-ArchivesSpace uses a combination of RSpec, integration and Selenium
-tests.
-
-     ./build/run travis:test
-
-It's also useful to be able to run the backend unit tests separately.
-To do this, run:
-
-     ./build/run backend:test
-
-You can also run a single spec file with:
-
-     ./build/run backend:test -Dspec="myfile_spec.rb"
+### Backend tests
 
 _By default the tests are configured to run using a separate MySQL & Solr from the
 development servers. This means that the development and test environments will not
@@ -444,6 +432,12 @@ Or a single example with:
 
 ```bash
 ./build/run backend:test -Dexample="does something important"
+```
+
+Or by file line with:
+
+```bash
+./build/run backend:test -Dspec="myfile_spec.rb:123"
 ```
 
 There are specific instructions and requirements for the [UI tests](/development/ui_test) to work.
