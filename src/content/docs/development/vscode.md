@@ -3,7 +3,7 @@ title: Using the VS Code editor
 description: Instructions for using the VS Code editor with ArchiveSpace, including prerequisites and setup.
 ---
 
-ArchivesSpace provides a [VS Code settings file](https://github.com/archivesspace/archivesspace/blob/master/.vscode/settings.json) that makes it easy for contributors using VS Code to follow the code style of the project. Using this tool chain in your editor helps fix code format and lint errors _before_ committing files or running tests. In many cases such errors will be fixed automatically when the file being worked on is saved. Errors that can't be fixed automatically will be highlighted with squiggly lines. Hovering your cursor over these lines will display a description of the error to help reach a solution.
+ArchivesSpace provides a [VS Code settings file](https://github.com/archivesspace/archivesspace/blob/master/.vscode/settings.json) that makes it easy for contributors using VS Code to follow the code style of the project and work with the end-to-end tests. Using this tool chain in your editor helps fix code format and lint errors _before_ committing files or running tests. In many cases such errors will be fixed automatically when the file being worked on is saved. Errors that can't be fixed automatically will be highlighted with squiggly lines. Hovering your cursor over these lines will display a description of the error to help reach a solution.
 
 ## Prerequisites
 
