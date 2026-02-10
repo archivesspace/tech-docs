@@ -7,25 +7,17 @@ For more context on the [End-to-End test suite](https://github.com/archivesspace
 
 ## Recommended setup
 
-### Using a Ruby version manager
+### Using a version manager
 
 The required Ruby version for the e2e test application is documented in `[./.ruby-version](./.ruby-version)`.
 
-It is strongly recommended to use a Ruby version manager to be able to switch to any version that a given project requires.
+It is strongly recommended to use a version manager (such as [mise](https://mise.jdx.dev/)) to be able to switch to any version that a given project requires.
 
-#### `rbenv`
+#### mise
 
-We recommend using the [`rbenv`](https://rbenv.org/) Ruby version manager.
+We recommend using [mise](https://mise.jdx.dev/) to manage Ruby (and other runtimes). Installation instructions are available at [Getting started](https://mise.jdx.dev/getting-started.html).
 
-#### Linux and macOS
-
-Find the installation guide here: [https://github.com/rbenv/rbenv#readme](https://github.com/rbenv/rbenv#readme).
-
-#### Windows
-
-A Windows `rbenv` installer exists here: [https://github.com/RubyMetric/rbenv-for-windows#readme](https://github.com/RubyMetric/rbenv-for-windows#readme).
-
-#### Alternatives to `rbenv`
+#### Alternatives to `mise`
 
 If you wish to use a different Ruby manager or installation method, see [Ruby's installation documentation](https://www.ruby-lang.org/en/documentation/installation/).
 
@@ -37,8 +29,8 @@ From the ArchivesSpace root directory, navigate to the e2e test application, the
 # 1. Navigate to e2e-tests directory
 cd e2e-tests
 
-# 2. Install Ruby at the version specified in ./.ruby-version
-rbenv install
+# 2. Install Ruby at the version specified in ./.tool-versions
+mise install
 
 # 3. Install the Bundler dependency manager
 gem install bundler
@@ -85,6 +77,10 @@ Make sure you override any local changes to the default configuration options (v
 
 Start the `frontend:devserver` as described [here](https://docs.archivesspace.org/development/dev/#run-the-development-servers). Verify it is running by opening [http://localhost:3000/](http://localhost:3000/) in your browser.
 
+#### Run the public dev server
+
+Start the `public:devserver` as described [here](https://docs.archivesspace.org/development/dev/#run-the-development-servers). Verify it is running by opening [http://localhost:3001/](http://localhost:3001/) in your browser.
+
 #### Set the `STAFF_URL` environment variable
 
 Set your `STAFF_URL` environment variable to point the e2e tests at the local development server:
@@ -93,9 +89,17 @@ Set your `STAFF_URL` environment variable to point the e2e tests at the local de
 export STAFF_URL='http://localhost:3000'
 ```
 
+#### Set the `PUBLIC_URL` environment variable
+
+Set your `PUBLIC_URL` environment variable to point the e2e tests at the local public interface:
+
+```sh
+export PUBLIC_URL='http://localhost:3001'
+```
+
 ## Running tests
 
-After setting the appropriate `STAFF_URL` environment variable as described above, run the desired test(s) according to the following commands.
+After setting the appropriate `STAFF_URL` and `PUBLIC_URL` environment variables as described above, run the desired test(s) according to the following commands.
 
 ### All test files at once
 
@@ -136,3 +140,13 @@ bundle exec cuke_linter
 # Lints Ruby .rb files
 bundle exec rubocop
 ```
+
+## Editor integration (optional)
+
+ArchivesSpace provides optional VS Code workspace tasks that can run the end-to-end test suite without manually setting environment variables or changing directories.
+
+These tasks execute the same cucumber commands described above and are simply a convenience wrapper around the documented command-line workflow.
+
+Setup instructions are documented in the **VS Code guide** [here](https://docs.archivesspace.org/development/vscode/).
+
+Contributors not using VS Code can ignore this section and run the tests directly from the command line.

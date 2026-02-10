@@ -29,7 +29,7 @@ When installing Java, [OpenJDK](https://openjdk.org/) is strongly recommended. O
 Installing OpenJDK with mise will look something like:
 
 ```bash
-mise use -g java@openjdk-21
+mise use -g java@openjdk-17
 ```
 
 On Linux/Ubuntu it is generally fine to install from system packages:
@@ -46,8 +46,8 @@ sudo update-java-alternatives --set $version
 For [Homebrew](https://brew.sh/) users (macOS, Linux), the OpenJDK distribution from Azul has been reported to work:
 
 ```bash
-# install Java v21 for example
-brew install --cask zulu@21
+# install Java v17 for example
+brew install --cask zulu@17
 ```
 
 If using Docker & Docker Compose install them following the official documentation:
