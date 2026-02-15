@@ -1,0 +1,13 @@
+<!-- This icon is intended to be used as an inline svg not an external image -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89.32 82.36">
+  <style>
+    .arc { fill: var(--as-color-logo-blue-light); }
+    .stem-left { fill: var(--as-color-logo-blue-mid); }
+    .stem-right { fill: var(--as-color-logo-blue-dark); }
+    .arc-overlap { fill: var(--as-color-logo-blue-mid); }
+  </style>
+  <path class="arc" d="M26.37 82.36c4.25-5.42 10.87-8.91 18.29-8.91s14.04 3.49 18.29 8.91h26.37C83.26 63.47 65.56 49.8 44.66 49.8 23.76 49.8 6.05 63.47 0 82.36h26.37z" />
+  <path class="stem-left" d="M25.38 82.36 57.34 0H31.97L0 82.36z" />
+  <path class="stem-right" d="M89.32 82.36 57.35 0H31.97l31.97 82.36z" />
+  <path class="arc-overlap" d="M87.3 77.16C80.81 63 67.46 52.64 51.5 50.3l12.44 32.06h25.38l-2.02-5.2z" />
+</svg>
