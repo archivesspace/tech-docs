@@ -1,12 +1,11 @@
 ---
-import { Image } from 'astro:assets'
 import { Card, CardGrid } from '@astrojs/starlight/components'
-import A from '@images/A_logo.svg'
+import LogoMark from '@images/logo-mark.svg'
 ---
 
 <section data-is-homepage>
   <header class="hero">
-    <Image src={A} alt="ArchivesSpace logo" />
+    <LogoMark aria-hidden="true" />
     <h1>ArchivesSpace Technical Documentation</h1>
     <div class="hero__blurb">
       <p>
@@ -70,10 +69,8 @@ import A from '@images/A_logo.svg'
     gap: 1rem;
     padding-bottom: 1rem;
 
-    img {
-      object-fit: contain;
+    svg {
       width: 70px;
-      height: auto;
       margin-inline: auto;
     }
 
@@ -106,7 +103,7 @@ import A from '@images/A_logo.svg'
     .hero {
       gap: 1.5rem;
 
-      img {
+      svg {
         width: 80px;
       }
 
@@ -128,7 +125,7 @@ import A from '@images/A_logo.svg'
     .hero {
       gap: 2rem;
 
-      img {
+      svg {
         width: 115px;
       }
 
@@ -155,7 +152,7 @@ import A from '@images/A_logo.svg'
       padding-right: 1rem;
       padding-left: 1rem;
 
-      img {
+      svg {
         grid-column: 1;
         grid-row: 1 / span 2;
         align-self: center;
