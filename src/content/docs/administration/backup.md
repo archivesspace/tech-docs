@@ -13,11 +13,23 @@ a dump every two hours. See [configuration](https://github.com/databacker/mysql-
 
 The automatically created backups are located in the [`backups` directory](/administration/docker/) of the docker configuration package.
 
-You can explicitly create a dump of your dockerized database while the docker containers are running using the command:
+#### When using Docker
+
+You can explicitly create a dump of your dockerized database while the docker containers are running using the command on your host system shell:
 
 ```shell
 docker exec mysql mysqldump -u root -p123456 archivesspace | gzip > /tmp/db.$(date +%F.%H%M%S).sql.gz
 ```
+
+#### When using Docker Desktop
+
+You can explicitly create a dump of your dockerized database while the docker containers are running using the command on the "Exec" tab of your mysql container:
+
+```shell
+docker exec mysql mysqldump -u root -p123456 archivesspace | gzip > /tmp/db.$(date +%F.%H%M%S).sql.gz
+```
+
+You can then export the created database dump from the `/tmp` directory of your mysql container using the "Files" tab.
 
 ## Managing your own backups
 
@@ -133,8 +145,16 @@ cp -a /unpacked/zip/demo_db_backups/demo_db_backup_1373323208_25926/archivesspac
 
 #### When running on Docker
 
-If you are using the Docker configuration package to run ArchivesSpace you can restore a database dump onto your `archivesspace` MySQL database with the following command:
+If you are using the Docker configuration package to run ArchivesSpace you can restore a database dump onto your `archivesspace` MySQL database with the following command on your host system shell:
 
 ```shell
 docker exec mysql mysql -uas -pas123 archivesspace < /tmp/db.2025-02-26.164907.sql
+```
+
+##### When using Docker Desktop
+
+On docker Desktop, you can import your sql file into the `/tmp/` directrory using the "Files" tab of your mysql container. Afterwards, on the "Exec" tab run the command:
+
+```shellgunzip -c /tmp/db.2026-02-17.155254.sql.gz | mysql -uas -pas123 archivesspace
+gunzip -c /tmp/db.2026-02-17.155254.sql.gz | mysql -uas -pas123 archivesspace
 ```
