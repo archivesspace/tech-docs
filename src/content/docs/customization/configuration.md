@@ -216,12 +216,6 @@ Resist the urge to set this to a big number!
 
 ### OAI configuration options
 
-#### `AppConfig[:oai_proxy_url]`
-
-> TODO - Needs more documentation
-
-`AppConfig[:oai_proxy_url] = 'http://your-public-oai-url.example.com'`
-
 **NOTE: As of version 2.5.2, the following parameters (oai_repository_name, oai_record_prefix, and oai_admin_email) have been deprecated. They should be set in the Staff User Interface. To set them, select the System menu in the Staff User Interface and then select Manage OAI-PMH Settings. These three settings are at the top of the page in the General Settings section. These settings will be completely removed from the config file when version 2.6.0 is released.**
 
 #### `AppConfig[:oai_repository_name]`
@@ -279,46 +273,32 @@ want ArchivesSpace to put its data files elsewhere.
 
 #### `AppConfig[:backup_directory]`
 
-> TODO - Needs more documentation
+Directory to store automated backups when using the embedded demo database (Apache Derby instead of MySQL). This defaults to `demo_db_backups` within the `data` directory.
 
 `AppConfig[:backup_directory] = proc { File.join(AppConfig[:data_directory], "demo_db_backups") }`
-
-#### `AppConfig[:solr_index_directory]`
-
-> TODO - Needs more documentation
-
-`AppConfig[:solr_index_directory] = proc { File.join(AppConfig[:data_directory], "solr_index") }`
-
-#### `AppConfig[:solr_home_directory]`
-
-> TODO - Needs more documentation
-
-`AppConfig[:solr_home_directory] = proc { File.join(AppConfig[:data_directory], "solr_home") }`
 
 ### Solr defaults
 
 #### `AppConfig[:solr_indexing_frequency_seconds]`
 
-> TODO - Needs more documentation
+The number of seconds between each run of the SUI and PUI indexers. The indexers will perform and indexing cycle every configured number of seconds.
 
 `AppConfig[:solr_indexing_frequency_seconds] = 30`
 
 #### `AppConfig[:solr_facet_limit]`
 
-> TODO - Needs more documentation
+The maximum number of distinct facet terms Solr will include in the response for a given field.
 
 `AppConfig[:solr_facet_limit] = 100`
 
 #### `AppConfig[:default_page_size]`
 
-> TODO - Needs more documentation
-
+The number of records included in each page in all paginated backend api responses.
 `AppConfig[:default_page_size] = 10`
 
 #### `AppConfig[:max_page_size]`
 
-> TODO - Needs more documentation
-
+Requests to the backend api can define a custom page_size param. This is the maximum allowed page size.
 `AppConfig[:max_page_size] = 250`
 
 ### Cookie prefix
@@ -332,8 +312,9 @@ Default is "archivesspace".
 
 `AppConfig[:cookie_prefix] = "archivesspace"`
 
-### Indexer settings
+### SUI Indexer settings
 
+The size of each batch of records passed to each indexer worker-thread to process and push to solr.
 The periodic indexer can run using multiple threads to take advantage of
 multiple CPU cores. By setting these two options, you can control how many
 CPU cores are used, and the amount of memory that will be consumed by the
@@ -341,15 +322,17 @@ indexing process (more cores and/or more records per thread means more memory us
 
 #### `AppConfig[:indexer_records_per_thread]`
 
+The size of each batch of records passed to each indexer worker-thread to process and push to solr. More records per thread means that more memory will be used by the indexer process.
 `AppConfig[:indexer_records_per_thread] = 25`
 
 #### `AppConfig[:indexer_thread_count]`
 
+The number of worker-thread to be used by the SUI indexer. More worker-threads means that more CPU cores will be used.
 `AppConfig[:indexer_thread_count] = 4`
 
 #### `AppConfig[:indexer_solr_timeout_seconds]`
 
-> TODO - Needs more documentation
+The indexer is making requests to solr in order to push updated records to the solr index. This is the maximum number of seconds that the indexer will wait for solr to respond to a request.
 
 `AppConfig[:indexer_solr_timeout_seconds] = 300`
 
@@ -357,93 +340,112 @@ indexing process (more cores and/or more records per thread means more memory us
 
 #### `AppConfig[:pui_indexer_enabled]`
 
-> TODO - Needs more documentation
-
+If false no pui indexer is started. Set to false if not using the PUI at all.
 `AppConfig[:pui_indexer_enabled] = true`
 
 #### `AppConfig[:pui_indexing_frequency_seconds]`
 
-> TODO - Needs more documentation
-
+The number of seconds between each run of the PUI indexer. The indexer will perform and indexing cycle every configured number of seconds.
 `AppConfig[:pui_indexing_frequency_seconds] = 30`
 
 #### `AppConfig[:pui_indexer_records_per_thread]`
 
-> TODO - Needs more documentation
+The size of each batch of records passed to each indexer worker-thread to process and push to solr.
+The PUI indexer can run using multiple threads to take advantage of
+multiple CPU cores. By setting these two options, you can control how many
+CPU cores are used, and the amount of memory that will be consumed by the
+indexing process (more cores and/or more records per thread means more memory used).
 
 `AppConfig[:pui_indexer_records_per_thread] = 25`
 
 #### `AppConfig[:pui_indexer_thread_count]`
 
-> TODO - Needs more documentation
-
+The number of worker-thread to be used by the PUI indexer. More worker-threads means that more CPU cores will be used.
 `AppConfig[:pui_indexer_thread_count] = 1`
 
 ### Index state
 
 #### `AppConfig[:index_state_class]`
 
-Set to 'IndexStateS3' for amazon s3
-
-> TODO - Needs more documentation
+The indexer needs a place to store it's state (keep track of which records have already been indexed).
+Set to 'IndexState' (default) to store the state in the local `data` directory.
+Set to 'IndexStateS3' (optional) to store the state in an AWS S3 bucket in the Amazon Cloud.
 
 `AppConfig[:index_state_class] = 'IndexState'`
 
-#### `AppConfig[:index_state_s3]`
+#### `AppConfig[:index_state_s3]` - Relevant only when using S3 storage for the indexer state
 
-Store indexer state in amazon s3 (optional)
-NOTE: s3 charges for read / update requests and the pui indexer is continually
-writing to state files so you may want to increase pui_indexing_frequency_seconds
+If using S3 storage for the indexer state in amazon s3 (optional), you need to configure the access to S3.
 
-> TODO - Needs more documentation
+NOTE: S3 charges for read / update requests and the pui indexer is continually
+writing to state files so you may want to increase `pui_indexing_frequency_seconds` and `solr_indexing_frequency_seconds`
+
+##### Configuring S3 access using environment variables (default)
+
+By default, the S3 configuration is fetched from the following shell environment variables:
+
+- `AWS_REGION`
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `AWS_ASPACE_BUCKET`
+
+It is using the `:cookie_prefix` configuration as a prefix for the state files stored in the bucket - usefull when using the same bucket to store indexer state of multiple archivesspace instances.
+
+##### Configuring S3 access using AppConfig variable in the `config.rb` file
 
 ```ruby
 AppConfig[:index_state_s3] = {
-  region: ENV.fetch("AWS_REGION"),
-  aws_access_key_id: ENV.fetch("AWS_ACCESS_KEY_ID"),
-  aws_secret_access_key: ENV.fetch("AWS_SECRET_ACCESS_KEY"),
-  bucket: ENV.fetch("AWS_ASPACE_BUCKET"),
+  region: "us-east-1",
+  aws_access_key_id: "ASIAXXXXEXAMPLEID",
+  aws_secret_access_key: "xXxxXXxxXX/XXXXXX/XXXXXXXEXAMPLEKEY",
+  bucket: ENV.fetch("my-as-test-bucket"),
   prefix: proc { "#{AppConfig[:cookie_prefix]}_" },
 }
 ```
+
+You can use `prefix: "some random string"` instead of the above code that used the `:cookie_prefix` AppConfig variable.
 
 ### Misc. database options
 
 #### `AppConfig[:allow_other_unmapped]`
 
-> TODO - Needs more documentation
+Allow assigning the special enumeration value `other_unmapped` for dynamic enum (controlled value) fields. When set to `true` `other_unmapped` is treated as a valid value for all enumeration (controlled value) fields. The `other_unmapped` value is added as a possible value for all controlled value lists.
+This feature is designed for handling unmapped or unknown enumeration values, eventually useful during data migrations where source data may have values not yet defined in controlled value lists, or generally importing external data that uses values that are not already defined in a controlled value list.
 
 `AppConfig[:allow_other_unmapped] = false`
 
 #### `AppConfig[:db_url_redacted]`
 
-> TODO - Needs more documentation
+This is how the database url (which includes the database username and password) will appear in the logs. The default replaces the username and password with `REDACTED`, so that:
+`"user=john&password=secret123"`
+becomes
+`"user=[REDACTED]&password=[REDACTED]"`
 
 `AppConfig[:db_url_redacted] = proc { AppConfig[:db_url].gsub(/(user|password)=(.*?)(&|$)/, '\1=[REDACTED]\3') }`
 
 #### `AppConfig[:demo_db_backup_schedule]`
 
-> TODO - Needs more documentation
+When using the embedded demo database (Apache Derby instead of MySQL) this is the schedule of the automated backups, in cron format. By default, it is at 4AM every day.
 
 `AppConfig[:demo_db_backup_schedule] = "0 4 * * *"`
 
+#### `AppConfig[:demo_db_backup_number_to_keep] = 7`
+
+How many backups to keep available when using the embedded demo database
+
+`AppConfig[:demo_db_backup_number_to_keep] = 7`
+
 #### `AppConfig[:allow_unsupported_database]`
 
-> TODO - Needs more documentation
+Set this to true if you are determined to use a database other than MySQL or the embedded demo database based on Apache Derby (not-recommended!).
 
 `AppConfig[:allow_unsupported_database] = false`
 
 #### `AppConfig[:allow_non_utf8_mysql_database]`
 
-> TODO - Needs more documentation
+Set this to true to skip the standard validation of the character encoding of MySQL tables being set to UTF8 (not-recommended!).
 
 `AppConfig[:allow_non_utf8_mysql_database] = false`
-
-#### `AppConfig[:demo_db_backup_number_to_keep] = 7`
-
-> TODO - Needs more documentation
-
-`AppConfig[:demo_db_backup_number_to_keep] = 7`
 
 ### Proxy URLs
 
@@ -462,6 +464,12 @@ Proxy URL for the frontend (staff interface)
 Proxy URL for the public interface
 
 `AppConfig[:public_proxy_url] = proc { AppConfig[:public_url] }`
+
+#### `AppConfig[:oai_proxy_url]`
+
+Proxy URL for the oai service (if exposed, see OAI section)
+
+`AppConfig[:oai_proxy_url] = 'http://your-public-oai-url.example.com'`
 
 #### `AppConfig[:frontend_proxy_prefix]`
 
@@ -545,13 +553,17 @@ to the regular backend URL.
 
 ### Theme
 
-> TODO - Needs more documentation
+For theming customization, see https://docs.archivesspace.org/customization/theming/
 
 #### `AppConfig[:frontend_theme]`
+
+Name of the theme to use on the Staff UI
 
 `AppConfig[:frontend_theme] = "default"`
 
 #### `AppConfig[:public_theme]`
+
+Name of the theme to use on the Public UI
 
 `AppConfig[:public_theme] = "default"`
 
@@ -571,25 +583,28 @@ Sessions marked as non-expirable will eventually expire too, but after a longer 
 
 ### System usernames
 
-> TODO - Needs more documentation
+Hidden (not viewable on the Staff UI User management) system users are automatically created to be used by the indexer, the PUI and the Staff UI in order to access the backend API.
 
 #### `AppConfig[:search_username]`
 
+The user name of the hidden system user that the indexer uses to access the backend API
 `AppConfig[:search_username] = "search_indexer"`
 
 #### `AppConfig[:public_username]`
+
+The user name of the hidden system user that the PUI uses to access the backend API
 
 `AppConfig[:public_username] = "public_anonymous"`
 
 #### `AppConfig[:staff_username]`
 
+The user name of the hidden system user that the Staff UI uses to access the backend API
+
 `AppConfig[:staff_username] = "staff_system"`
 
 ### Authentication sources
 
-> TODO - Needs more documentation
-
-#### `AppConfig[:authentication_sources]`
+ArchivesSpace comes with its own user management functionality but can also be configured to authenticate against one or more [LDAP directories](/customization/ldap/). Oauth authentication is available using the [aspace-oauth plugin](https://github.com/lyrasis/aspace-oauth)
 
 `AppConfig[:authentication_sources] = []`
 
@@ -601,15 +616,19 @@ Sessions marked as non-expirable will eventually expire too, but after a longer 
 
 `AppConfig[:realtime_index_backlog_ms] = 60000`
 
+### Notifications configuration
+
+An internal notification mechanism is used to keep user preferences, enumeration (controlled value list) values, repository information etc. up to date within the UI while minimizing requests to the backend API.
+
 #### `AppConfig[:notifications_backlog_ms]`
 
-> TODO - Needs more documentation
+Notifications older that this amount of miliseconds are considered expired and will not be announced anymore.
 
 `AppConfig[:notifications_backlog_ms] = 60000`
 
 #### `AppConfig[:notifications_poll_frequency_ms]`
 
-> TODO - Needs more documentation
+How often should notifications be announced.
 
 `AppConfig[:notifications_poll_frequency_ms] = 1000`
 
