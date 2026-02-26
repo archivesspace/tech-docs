@@ -58,6 +58,22 @@ npm run preview
 npm run test
 ```
 
+#### Running Tests and Linting with Docker
+
+From the project directory, run this command:
+
+```console
+docker-compose up --build --abort-on-container-exit
+
+```
+
+This will:
+
+- Build the necessary Docker images if they aren't already there.
+- Start up the server container to serve the site.
+- Launch the tester container, which waits for the server to be ready and then runs all of our tests and linters.
+- Automatically shut down both containers once the tests are finished.
+
 ### Scripts
 
 The following scripts are made available via [package.json](./package.json):
