@@ -27,7 +27,7 @@ Optionally installing [Docker Desktop](https://www.docker.com/products/docker-de
 
 ### Downloading the configuration package
 
-To run ArchivesSpace with Docker, first download the ArchivesSpace docker configuration package of the latest release from [github](https://github.com/archivesspace/archivesspace/releases) (scroll down to the "Assets" section of the latest release page).
+To run ArchivesSpace with Docker, first download the ArchivesSpace docker configuration package of the latest release from [github](https://github.com/archivesspace/archivesspace/releases) (scroll down to the "Assets" section of the latest release page and look for the zip file named `archivesspace-docker-${VERSION}.zip`).
 
 The downloaded configuration package contains a simple yet configurable and production ready docker-based setup intended to run on a single computer.
 
