@@ -1,0 +1,192 @@
+---
+interface Props {
+  posts?: Array<{
+    slug: string
+    date: string
+    datetime: string
+    author: string
+    title: string
+    excerpt: string
+  }>
+}
+
+const {
+  posts = [
+    {
+      slug: '/blog/introducing-new-tech-docs',
+      date: 'March 1, 2026',
+      datetime: '2026-03-01',
+      author: 'The ArchivesSpace Team',
+      title: 'Introducing the New Tech Docs Site',
+      excerpt:
+        "We've launched a completely redesigned technical documentation site built with Astro and Starlight. Learn about what's new, what's changed, and how to find what you need faster."
+    },
+    {
+      slug: '/blog/archivesspace-4-release-highlights',
+      date: 'February 15, 2026',
+      datetime: '2026-02-15',
+      author: 'Jessica Tran',
+      title: 'ArchivesSpace 4.0 Release Highlights',
+      excerpt:
+        "ArchivesSpace 4.0 brings significant improvements to performance, plugin support, and the staff interface. Here's a summary of the most impactful changes for administrators and developers."
+    },
+    {
+      slug: '/blog/getting-started-rest-api',
+      date: 'January 28, 2026',
+      datetime: '2026-01-28',
+      author: 'Marcus Oyelaran',
+      title: 'Getting Started with the ArchivesSpace REST API',
+      excerpt:
+        'The ArchivesSpace REST API opens up powerful automation possibilities. In this post we walk through authentication, basic CRUD operations, and common patterns for integrating with external systems.'
+    },
+    {
+      slug: '/blog/data-migration-best-practices',
+      date: 'January 10, 2026',
+      datetime: '2026-01-10',
+      author: 'Priya Nair',
+      title: 'Best Practices for Data Migration into ArchivesSpace',
+      excerpt:
+        'Migrating archival data is complex work. Drawing on lessons from dozens of institutional migrations, we outline the strategies and tools that lead to the smoothest transitions into ArchivesSpace.'
+    }
+  ]
+} = Astro.props
+---
+
+<p class="blog-index__intro">
+  Technical updates and insights from ArchivesSpace developers.
+</p>
+
+<ul class="blog-post-list">
+  {
+    posts.map((post) => (
+      <li>
+        <article class="blog-post-card">
+          <div class="blog-post-card__meta">
+            <time datetime={post.datetime}>{post.date}</time>
+            <span aria-hidden="true">·</span>
+            <span>{post.author}</span>
+          </div>
+          <h2 class="blog-post-card__title">
+            <a href={post.slug}>{post.title}</a>
+          </h2>
+          <p class="blog-post-card__excerpt">{post.excerpt}</p>
+          <a href={post.slug} class="blog-post-card__read-more">
+            Read more →
+          </a>
+        </article>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .blog-index__intro {
+    margin-top: -2rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    color: var(--sl-color-gray-2);
+  }
+
+  @media (min-width: 50rem) {
+    .blog-index__intro {
+      font-size: 1.25rem;
+    }
+  }
+
+  .blog-post-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 1rem;
+
+    @media (min-width: 50rem) {
+      padding-top: 2rem;
+    }
+
+    > li {
+      margin-top: 0;
+    }
+  }
+
+  .blog-post-card {
+    padding-block: 2rem;
+    border-bottom: 1px solid var(--as-color-hairline);
+  }
+
+  .blog-post-list > li:last-child .blog-post-card {
+    border-bottom: none;
+  }
+
+  .blog-post-card__meta {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.875rem;
+    color: var(--sl-color-gray-3);
+  }
+
+  @media (min-width: 50rem) {
+    .blog-post-card__meta {
+      margin-bottom: 0.875rem;
+      font-size: 1rem;
+    }
+  }
+
+  /* Reset Starlight's default h2 styles within blog cards */
+  .blog-post-card__title {
+    margin-top: 0;
+    margin-bottom: 0.875rem;
+    border-top: none !important;
+    padding-top: 0 !important;
+    font-size: 1.375rem;
+    line-height: 1.3;
+  }
+
+  @media (min-width: 50rem) {
+    :global(.blog-post-card__title) {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  .blog-post-card__title a {
+    color: var(--sl-color-white);
+    text-decoration: none;
+  }
+
+  .blog-post-card__title a:hover {
+    color: var(--sl-color-accent-high);
+    text-decoration: underline;
+  }
+
+  .blog-post-card__excerpt {
+    color: var(--sl-color-gray-2);
+    margin: 0 0 1rem;
+    line-height: 1.65;
+  }
+
+  @media (min-width: 50rem) {
+    .blog-post-card__excerpt {
+      font-size: 1.2rem;
+    }
+  }
+
+  .blog-post-card__read-more {
+    display: inline-block;
+    font-size: 0.875rem;
+    color: var(--sl-color-accent-high);
+    text-decoration: none;
+  }
+
+  .blog-post-card__read-more:hover {
+    text-decoration: underline;
+  }
+
+  @media (min-width: 50rem) {
+    .blog-post-card__read-more {
+      font-size: 1rem;
+    }
+  }
+</style>
