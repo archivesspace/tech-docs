@@ -187,3 +187,45 @@ body:has(section[data-is-homepage]) .card {
 .align-items-center {
   align-items: center;
 }
+
+/* ==========================================================================
+   Blog
+   ========================================================================== */
+
+/* Narrow the content column on blog pages */
+main:has(.blog-post-list) > .content-panel > .sl-container,
+main:has(.blog-post-header) > .content-panel > .sl-container {
+  max-width: 52rem;
+  margin-inline: auto;
+}
+
+/* Blog Post */
+.blog-post-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--as-color-hairline);
+}
+
+.blog-post-header__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.9375rem;
+  color: var(--sl-color-gray-3);
+}
+
+.blog-post-footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--as-color-hairline);
+}
+
+.blog-post-footer__back {
+  font-size: 0.875rem;
+  color: var(--sl-color-accent-high);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
