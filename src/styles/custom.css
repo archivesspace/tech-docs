@@ -55,6 +55,16 @@
   --as-color-card-border: var(--sl-color-gray-4);
 }
 
+/* Keep search box in (almost) the same position on splash pages (no sidebar) as on docs pages */
+@media (min-width: 50rem) {
+  :root:not([data-has-sidebar]) {
+    --__sidebar-pad: calc(2 * var(--sl-nav-pad-x));
+  }
+  :root:not([data-has-sidebar]) .header {
+    --__sidebar-width: var(--sl-sidebar-width);
+  }
+}
+
 /* Custom header and sidebar colors */
 body > .page > .header {
   border-bottom: 1px solid var(--as-color-hairline);
