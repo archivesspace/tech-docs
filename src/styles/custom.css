@@ -172,3 +172,8 @@ main > .content-panel > .sl-container:has(section[data-is-homepage]) {
 body:has(section[data-is-homepage]) .card {
   border-color: var(--as-color-card-border);
 }
+
+/* Utilities */
+.align-items-center {
+  align-items: center;
+}
