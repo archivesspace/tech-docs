@@ -1,20 +1,10 @@
 ---
 title: Introducing the New Tech Docs Site
 description: We've launched a completely redesigned technical documentation site built with Astro and Starlight. Learn about what's new, what's changed, and how to find what you need faster.
-template: splash
-editUrl: false
-lastUpdated: false
-prev: false
-next: false
+pubDate: 2026-03-01
+authors:
+  - The ArchivesSpace Team
 ---
-
-<header class="blog-post-header">
-  <div class="blog-post-header__meta">
-    <time datetime="2026-03-01">March 1, 2026</time>
-    <span aria-hidden="true">·</span>
-    <span>The ArchivesSpace Team</span>
-  </div>
-</header>
 
 After several years on our previous documentation platform, we're excited to announce that the ArchivesSpace technical docs have a new home—built on [Astro](https://astro.build) with the [Starlight](https://starlight.astro.build) docs theme. The new site is faster, more accessible, and much easier for contributors to maintain.
 
@@ -66,7 +56,3 @@ This launch is the beginning, not the end. A few things already in progress:
 - **Better versioning.** We're exploring how to surface content that applies specifically to supported releases versus older versions.
 
 We're glad you're here. If you have feedback on the new site, reach out on the [ArchivesSpace Community Forum](https://archivesspace.atlassian.net/wiki/spaces/ADC/overview) or open an issue on GitHub.
-
-<footer class="blog-post-footer">
-  <a href="/blog" class="blog-post-footer__back">← Back to Blog</a>
-</footer>
