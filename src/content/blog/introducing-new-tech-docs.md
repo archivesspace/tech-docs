@@ -5,6 +5,10 @@ excerpt: We've launched a completely redesigned technical documentation site bui
 pubDate: 2026-03-01
 authors:
   - The ArchivesSpace Team
+  - Brian Zelip
+  - Thimios Dumopolis
+  - Zeff Morgan
+  - Lora Woodford
 ---
 
 After several years on our previous documentation platform, we're excited to announce that the ArchivesSpace technical docs have a new home—built on [Astro](https://astro.build) with the [Starlight](https://starlight.astro.build) docs theme. The new site is faster, more accessible, and much easier for contributors to maintain.
