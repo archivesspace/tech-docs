@@ -15,7 +15,7 @@ const posts = (await getCollection('blog'))
     datetime: entry.data.pubDate.toISOString().split('T')[0],
     author: entry.data.authors.join(', '),
     title: entry.data.title,
-    excerpt: entry.data.description ?? ''
+    excerpt: entry.data.excerpt ?? entry.data.description ?? ''
   }))
 ---
 
