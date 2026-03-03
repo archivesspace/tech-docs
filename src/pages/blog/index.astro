@@ -1,0 +1,32 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro'
+import BlogIndex from '@components/BlogIndex.astro'
+import { getCollection } from 'astro:content'
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .map((entry) => ({
+    slug: `/blog/${entry.id}`,
+    date: entry.data.pubDate.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    }),
+    datetime: entry.data.pubDate.toISOString().split('T')[0],
+    author: entry.data.authors.join(', '),
+    title: entry.data.title,
+    excerpt: entry.data.description ?? ''
+  }))
+---
+
+<StarlightPage
+  frontmatter={{
+    title: 'Blog',
+    description: 'Technical updates and insights from ArchivesSpace developers.',
+    template: 'splash',
+    editUrl: false,
+    lastUpdated: false
+  }}
+>
+  <BlogIndex posts={posts} />
+</StarlightPage>
