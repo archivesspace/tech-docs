@@ -1,6 +1,7 @@
 ---
 title: Introducing the New Tech Docs Site
-description: We've launched a completely redesigned technical documentation site built with Astro and Starlight. Learn about what's new, what's changed, and how to find what you need faster.
+description: New site!
+excerpt: We've launched a completely redesigned technical documentation site built with Astro and Starlight. Learn about what's new, what's changed, and how to find what you need faster.
 pubDate: 2026-03-01
 authors:
   - The ArchivesSpace Team
