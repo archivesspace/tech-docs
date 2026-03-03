@@ -17,12 +17,16 @@ const posts = (await getCollection('blog'))
     title: entry.data.title,
     excerpt: entry.data.excerpt ?? entry.data.description ?? ''
   }))
+
+Astro.locals.blogIndex = {
+  intro: 'Technical updates from ArchivesSpace developers'
+}
 ---
 
 <StarlightPage
   frontmatter={{
     title: 'Blog',
-    description: 'Technical updates and insights from ArchivesSpace developers.',
+    description: 'Technical updates from ArchivesSpace developers',
     template: 'splash',
     editUrl: false,
     lastUpdated: false
