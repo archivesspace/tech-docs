@@ -1,0 +1,45 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro'
+import { getCollection, render } from 'astro:content'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog')
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post }
+  }))
+}
+
+const { post } = Astro.props
+const { Content } = await render(post)
+---
+
+<StarlightPage
+  frontmatter={{
+    title: post.data.title,
+    description: post.data.description,
+    template: 'splash',
+    editUrl: false,
+    lastUpdated: false
+  }}
+>
+  <header class="blog-post-header">
+    <div class="blog-post-header__meta">
+      <time datetime={post.data.pubDate.toISOString().split('T')[0]}>
+        {post.data.pubDate.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        })}
+      </time>
+      <span aria-hidden="true">·</span>
+      <span>{post.data.authors.join(', ')}</span>
+    </div>
+  </header>
+
+  <Content />
+
+  <footer class="blog-post-footer">
+    <a href="/blog" class="blog-post-footer__back">← Back to Blog</a>
+  </footer>
+</StarlightPage>
