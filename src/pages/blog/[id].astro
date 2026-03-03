@@ -1,5 +1,6 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro'
+import BlogPostFooter from '@components/BlogPostFooter.astro'
 import { getCollection, render } from 'astro:content'
 
 export async function getStaticPaths() {
@@ -12,6 +13,8 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props
 const { Content } = await render(post)
+
+Astro.locals.blogPost = post
 ---
 
 <StarlightPage
@@ -23,23 +26,7 @@ const { Content } = await render(post)
     lastUpdated: false
   }}
 >
-  <header class="blog-post-header">
-    <div class="blog-post-header__meta">
-      <time datetime={post.data.pubDate.toISOString().split('T')[0]}>
-        {post.data.pubDate.toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        })}
-      </time>
-      <span aria-hidden="true">·</span>
-      <span>{post.data.authors.join(', ')}</span>
-    </div>
-  </header>
-
   <Content />
 
-  <footer class="blog-post-footer">
-    <a href="/blog" class="blog-post-footer__back">← Back to Blog</a>
-  </footer>
+  <BlogPostFooter />
 </StarlightPage>

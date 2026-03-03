@@ -1,0 +1,44 @@
+---
+const { title, intro } = Astro.props
+---
+
+<header class="blog-index-header">
+  <h1 id="_top">{title}</h1>
+  <p class="blog-index__intro">{intro}</p>
+</header>
+
+<style>
+  @layer starlight.core {
+    .blog-index-header {
+      margin-top: 1rem;
+      margin-bottom: 0;
+    }
+
+    .blog-index-header h1 {
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      font-size: var(--sl-text-h1);
+      line-height: var(--sl-line-height-headings);
+      font-weight: 600;
+      color: var(--sl-color-white);
+    }
+
+    .blog-index-header .blog-index__intro {
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.4;
+      color: var(--sl-color-gray-2);
+
+      @media (min-width: 50rem) {
+        font-size: 1.25rem;
+        line-height: 1;
+      }
+    }
+
+    @media (min-width: 50rem) {
+      .blog-index-header .blog-index__intro {
+        font-size: 1.25rem;
+      }
+    }
+  }
+</style>
