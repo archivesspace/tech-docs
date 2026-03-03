@@ -1,0 +1,40 @@
+---
+import Default from '@astrojs/starlight/components/PageTitle.astro'
+import BlogPostTitle from './BlogPostTitleHeader.astro'
+import BlogIndexTitle from './BlogIndexTitleHeader.astro'
+
+const { title } = Astro.locals.starlightRoute.entry.data
+const blogPost = Astro.locals.blogPost
+const blogIndex = Astro.locals.blogIndex
+
+const isBlogPostPage = !!blogPost
+const isBlogIndexPage = !!blogIndex
+const formattedDate = blogPost
+  ? blogPost.data.pubDate.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
+  : null
+const author = blogPost ? blogPost.data.authors.join(', ') : null
+const datetime = blogPost
+  ? blogPost.data.pubDate.toISOString().split('T')[0]
+  : null
+---
+
+{
+  isBlogPostPage && author && datetime && formattedDate ? (
+    <BlogPostTitle
+      title={title}
+      formattedDate={formattedDate}
+      datetime={datetime}
+      author={author}
+    />
+  ) : isBlogIndexPage && blogIndex && blogIndex.intro ? (
+    <BlogIndexTitle title={title} intro={blogIndex.intro} />
+  ) : (
+    <Default>
+      <slot />
+    </Default>
+  )
+}
