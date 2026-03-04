@@ -1,9 +1,10 @@
 ---
+import BackToBlog from './BackToBlog.astro'
 const { title, formattedDate, datetime, author } = Astro.props
 ---
 
 <header class="blog-post-header">
-  <a href="/blog" class="blog-post-header__back">← Back to Blog</a>
+  <BackToBlog class="blog-post-header__back" />
   <div class="blog-post-header__meta">
     <time datetime={datetime}>{formattedDate}</time>
     <span aria-hidden="true">·</span>
@@ -24,17 +25,10 @@ const { title, formattedDate, datetime, author } = Astro.props
     }
 
     .blog-post-header .blog-post-header__back {
-      display: inline-flex;
       margin-bottom: 0.75rem;
-      text-decoration: none;
-      color: var(--sl-color-accent-high);
 
       @media (min-width: 50rem) {
         margin-bottom: 1rem;
-      }
-
-      &:hover {
-        text-decoration: underline;
       }
     }
 
