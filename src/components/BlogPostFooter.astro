@@ -1,8 +1,9 @@
 ---
+import BackToBlog from './BackToBlog.astro'
 ---
 
 <footer class="blog-post-footer">
-  <a href="/blog" class="blog-post-footer__back">← Back to Blog</a>
+  <BackToBlog class="blog-post-footer__back" />
 </footer>
 
 <style>
@@ -10,21 +11,5 @@
     margin-top: 3rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--as-color-hairline);
-  }
-
-  .blog-post-footer__back {
-    font-size: 0.875rem;
-    color: var(--sl-color-accent-high);
-    text-decoration: none;
-  }
-
-  .blog-post-footer__back:hover {
-    text-decoration: underline;
-  }
-
-  @media (min-width: 50rem) {
-    .blog-post-footer__back {
-      font-size: 1rem;
-    }
   }
 </style>
