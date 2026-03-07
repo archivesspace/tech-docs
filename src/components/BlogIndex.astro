@@ -10,46 +10,7 @@ interface Props {
   }>
 }
 
-const {
-  posts = [
-    {
-      slug: '/blog/introducing-new-tech-docs',
-      date: 'March 1, 2026',
-      datetime: '2026-03-01',
-      author: 'The ArchivesSpace Team',
-      title: 'Introducing the New Tech Docs Site',
-      excerpt:
-        "We've launched a completely redesigned technical documentation site built with Astro and Starlight. Learn about what's new, what's changed, and how to find what you need faster."
-    },
-    {
-      slug: '/blog/archivesspace-4-release-highlights',
-      date: 'February 15, 2026',
-      datetime: '2026-02-15',
-      author: 'Jessica Tran',
-      title: 'ArchivesSpace 4.0 Release Highlights',
-      excerpt:
-        "ArchivesSpace 4.0 brings significant improvements to performance, plugin support, and the staff interface. Here's a summary of the most impactful changes for administrators and developers."
-    },
-    {
-      slug: '/blog/getting-started-rest-api',
-      date: 'January 28, 2026',
-      datetime: '2026-01-28',
-      author: 'Marcus Oyelaran',
-      title: 'Getting Started with the ArchivesSpace REST API',
-      excerpt:
-        'The ArchivesSpace REST API opens up powerful automation possibilities. In this post we walk through authentication, basic CRUD operations, and common patterns for integrating with external systems.'
-    },
-    {
-      slug: '/blog/data-migration-best-practices',
-      date: 'January 10, 2026',
-      datetime: '2026-01-10',
-      author: 'Priya Nair',
-      title: 'Best Practices for Data Migration into ArchivesSpace',
-      excerpt:
-        'Migrating archival data is complex work. Drawing on lessons from dozens of institutional migrations, we outline the strategies and tools that lead to the smoothest transitions into ArchivesSpace.'
-    }
-  ]
-} = Astro.props
+const { posts } = Astro.props
 ---
 
 <ul class="blog-post-list">
