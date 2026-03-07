@@ -2,6 +2,7 @@
 import type { Props } from '@astrojs/starlight/props'
 import MobileMenuToggle from '@astrojs/starlight/components/MobileMenuToggle.astro'
 import Sidebar from './Sidebar.astro'
+import DocsPointer from '../DocsPointer.astro'
 
 const { hasSidebar } = Astro.locals.starlightRoute
 const isABlogPage =
@@ -25,7 +26,10 @@ const shouldShowMobileSidebar = hasSidebar || isABlogPage
       </>
     )
   }
-  <div class="main-frame"><slot /></div>
+  <div class:list={['main-frame', { 'main-frame--blog': isABlogPage }]}>
+    <slot />
+    {isABlogPage && <DocsPointer />}
+  </div>
 </div>
 
 <style>
@@ -87,6 +91,11 @@ const shouldShowMobileSidebar = hasSidebar || isABlogPage
     .main-frame {
       padding-top: calc(var(--sl-nav-height) + var(--sl-mobile-toc-height));
       padding-inline-start: var(--sl-content-inline-start);
+    }
+
+    /* Blog pages: position relative for absolutely positioned docs pointer */
+    .main-frame--blog {
+      position: relative;
     }
 
     @media (min-width: 50rem) {
