@@ -1,10 +1,15 @@
 # build output
 dist/
+
 # generated types
 .astro/
 
 # dependencies
 node_modules/
+
+# individual contributor notes (.local/<username>/)
+.local/*
+!.local/.gitkeep
 
 # logs
 npm-debug.log*
