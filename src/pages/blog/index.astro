@@ -17,10 +17,6 @@ const posts = (await getCollection('blog'))
     title: entry.data.title,
     excerpt: entry.data.excerpt ?? entry.data.description ?? ''
   }))
-
-Astro.locals.blogIndex = {
-  intro: 'Technical updates from ArchivesSpace developers'
-}
 ---
 
 <StarlightPage

@@ -8,6 +8,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Tech Docs',
+      routeMiddleware: './src/blogRouteData.js',
       logo: {
         dark: './src/images/logo-full-dark.svg',
         light: './src/images/logo-full-light.svg',
