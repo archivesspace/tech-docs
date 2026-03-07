@@ -93,6 +93,10 @@ const isABlogPage =
             color: var(--sl-color-black);
             text-decoration: none;
             border-radius: 2px;
+
+            :root[data-theme='light'] & {
+              background: var(--sl-color-accent);
+            }
           }
 
           @media (min-width: 50rem) {
