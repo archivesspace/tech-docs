@@ -155,6 +155,7 @@ docker exec mysql mysql -uas -pas123 archivesspace < /tmp/db.2025-02-26.164907.s
 
 On docker Desktop, you can import your sql file into the `/tmp/` directrory using the "Files" tab of your mysql container. Afterwards, on the "Exec" tab run the command:
 
-```shellgunzip -c /tmp/db.2026-02-17.155254.sql.gz | mysql -uas -pas123 archivesspace
+```shell
+gunzip -c /tmp/db.2026-02-17.155254.sql.gz | mysql -uas -pas123 archivesspace
 gunzip -c /tmp/db.2026-02-17.155254.sql.gz | mysql -uas -pas123 archivesspace
 ```
