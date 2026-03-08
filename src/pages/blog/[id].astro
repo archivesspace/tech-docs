@@ -12,18 +12,18 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props
+const frontmatter = {
+  title: post.data.title,
+  description: post.data.description,
+  template: 'splash',
+  editUrl: false,
+  issueUrl: false,
+  lastUpdated: false
+} as const
 const { Content } = await render(post)
 ---
 
-<StarlightPage
-  frontmatter={{
-    title: post.data.title,
-    description: post.data.description,
-    template: 'splash',
-    editUrl: false,
-    lastUpdated: false
-  }}
->
+<StarlightPage frontmatter={frontmatter}>
   <Content />
 
   <BlogPostFooter />
