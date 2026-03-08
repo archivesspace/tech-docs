@@ -130,6 +130,10 @@ const { posts } = Astro.props
   .blog-post-card__title a:hover {
     color: var(--sl-color-accent-high);
     text-decoration: underline;
+
+    :root[data-theme='light'] & {
+      color: var(--sl-color-text-accent);
+    }
   }
 
   .blog-post-card__excerpt {
@@ -149,6 +153,10 @@ const { posts } = Astro.props
     font-size: 0.875rem;
     color: var(--sl-color-accent-high);
     text-decoration: none;
+
+    :root[data-theme='light'] & {
+      color: var(--sl-color-text-accent);
+    }
   }
 
   .blog-post-card__read-more:hover {
