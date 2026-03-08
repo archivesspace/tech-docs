@@ -1,15 +1,20 @@
 ---
 import { Icon } from '@astrojs/starlight/components'
 
-const issueLink =
-  'https://archivesspace.atlassian.net/jira/software/projects/TD/issues'
-const issueText = 'Report an issue on Jira'
+const issueUrl = Astro.locals.starlightRoute.entry.data.issueUrl
+const issueText = Astro.locals.starlightRoute.entry.data.issueText
+
+const href = issueUrl === false ? null : issueUrl
 ---
 
-<a href={issueLink} class="sl-flex">
-  <Icon name="error" size="1.2em" />
-  {issueText}
-</a>
+{
+  href && (
+    <a href={href} class="sl-flex">
+      <Icon name="error" size="1.2em" />
+      {issueText}
+    </a>
+  )
+}
 
 <style>
   a {
