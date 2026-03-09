@@ -49,7 +49,7 @@ Something similar to this should work:
 Description=ArchivesSpace Application
 After=syslog.target network.target
 [Service]
-Type=simple
+Type=forking
 ExecStart=/path/to/your/archivesspace/archivesspace.sh start
 ExecStop=/path/to/your/archivesspace/archivesspace.sh stop
 PIDFile=/path/to/your/archivesspace/archivesspace.pid
