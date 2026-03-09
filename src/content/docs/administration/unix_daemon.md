@@ -51,7 +51,7 @@ After=syslog.target network.target
 [Service]
 Type=simple
 ExecStart=/path/to/your/archivesspace/archivesspace.sh start
-ExecStop=/path/to/your/archivesspace/archivesspace.sh stopt
+ExecStop=/path/to/your/archivesspace/archivesspace.sh stop
 PIDFile=/path/to/your/archivesspace/archivesspace.pid
 User=archivesspacespace
 Group=archivesspacespace
