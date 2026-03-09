@@ -50,8 +50,8 @@ Description=ArchivesSpace Application
 After=syslog.target network.target
 [Service]
 Type=simple
-ExecStart=/path/to/your/archivesspace/archivesspace.sh
-ExecStop=/path/to/your/archivesspace/archivesspace.sh
+ExecStart=/path/to/your/archivesspace/archivesspace.sh start
+ExecStop=/path/to/your/archivesspace/archivesspace.sh stopt
 PIDFile=/path/to/your/archivesspace/archivesspace.pid
 User=archivesspacespace
 Group=archivesspacespace
