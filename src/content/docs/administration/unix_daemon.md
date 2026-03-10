@@ -53,8 +53,8 @@ Type=forking
 ExecStart=/path/to/your/archivesspace/archivesspace.sh start
 ExecStop=/path/to/your/archivesspace/archivesspace.sh stop
 PIDFile=/path/to/your/archivesspace/archivesspace.pid
-User=archivesspacespace
-Group=archivesspacespace
+User=archivesspace
+Group=archivesspace
 [Install]
 WantedBy=multi-user.target
 ```
