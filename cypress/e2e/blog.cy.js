@@ -9,7 +9,7 @@ describe('Blog', () => {
         .within(() => {
           cy.get('.blog-post-card__meta')
           cy.get('.blog-post-card__title a')
-          cy.get('.blog-post-card__excerpt')
+          cy.get('.blog-post-card__teaser')
           cy.get('.blog-post-card__read-more')
         })
     })
