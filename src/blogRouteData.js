@@ -5,9 +5,9 @@ import { stripHtml } from '@utils/utils.mjs'
 /**
  * Adds blog post metadata[0] and prev/next posts pagination[1] to Starlight route data.
  *
- * [0] The page component passes only title and description to StarlightPage's
- * frontmatter prop since Starlight validates against the docs schema (which
- * doesn't include blog-specific fields like pubDate and authors). This middleware
+ * [0] The page component passes only title and description (via metaDescription) to
+ * StarlightPage's frontmatter prop since Starlight validates against the docs schema
+ * (which doesn't include blog-specific fields like pubDate and authors). This middleware
  * injects them from the blog content collection so components like CustomPageTitle
  * can display full post metadata.
  *

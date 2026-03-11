@@ -1,6 +1,6 @@
 ---
 title: Best Practices for Data Migration into ArchivesSpace
-description: Migrating archival data is complex work. Drawing on lessons from dozens of institutional migrations, we outline the strategies and tools that lead to the smoothest transitions into ArchivesSpace.
+metaDescription: Migrating archival data is complex work. Drawing on lessons from dozens of institutional migrations, we outline the strategies and tools that lead to the smoothest transitions into ArchivesSpace.
 pubDate: 2026-01-10
 authors:
   - Priya Nair

@@ -1,6 +1,6 @@
 ---
 title: ArchivesSpace 4.0 Release Highlights
-description: ArchivesSpace 4.0 brings significant improvements to performance, plugin support, and the staff interface. Here's a summary of the most impactful changes for administrators and developers.
+metaDescription: ArchivesSpace 4.0 brings significant improvements to performance, plugin support, and the staff interface. Here's a summary of the most impactful changes for administrators and developers.
 pubDate: 2026-02-15
 authors:
   - Jessica Tran
