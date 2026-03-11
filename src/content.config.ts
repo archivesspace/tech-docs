@@ -3,7 +3,7 @@ import { glob } from 'astro/loaders'
 import { docsLoader } from '@astrojs/starlight/loaders'
 import { docsSchema } from '@astrojs/starlight/schema'
 import { z } from 'astro/zod'
-import { DEFAULT_ISSUE_TEXT, DEFAULT_ISSUE_URL } from './lib/constants'
+import { DEFAULT_ISSUE_TEXT, DEFAULT_ISSUE_URL } from '@lib/constants.ts'
 
 const blogSchema = z.object({
   title: z.string(),
