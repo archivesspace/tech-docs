@@ -1,6 +1,6 @@
 ---
 title: Getting Started with the ArchivesSpace REST API
-description: The ArchivesSpace REST API opens up powerful automation possibilities. In this post we walk through authentication, basic CRUD operations, and common patterns for integrating with external systems.
+metaDescription: The ArchivesSpace REST API opens up powerful automation possibilities. In this post we walk through authentication, basic CRUD operations, and common patterns for integrating with external systems.
 pubDate: 2026-01-28
 authors:
   - Marcus Oyelaran

@@ -6,7 +6,7 @@ import BlogIndex from '@components/BlogIndex.astro'
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .map((entry) => {
-    const { pubDate, authors, title, excerpt, description } = entry.data
+    const { pubDate, authors, title, teaser, metaDescription } = entry.data
 
     return {
       slug: `/blog/${entry.id}`,
@@ -18,7 +18,7 @@ const posts = (await getCollection('blog'))
       datetime: pubDate.toISOString().split('T')[0],
       author: authors.join(', '),
       title,
-      excerpt: excerpt ?? description ?? ''
+      teaser: teaser ?? metaDescription ?? ''
     }
   })
 
