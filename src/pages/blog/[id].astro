@@ -1,6 +1,7 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro'
 import { getCollection, render } from 'astro:content'
+import { stripHtml } from '@utils/utils.mjs'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -11,8 +12,9 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props
+const titlePlain = stripHtml(post.data.title)
 const frontmatter = {
-  title: post.data.title,
+  title: titlePlain, // Used for the document <title>
   description: post.data.description,
   template: 'splash',
   editUrl: false,

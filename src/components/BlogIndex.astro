@@ -24,7 +24,7 @@ const { posts } = Astro.props
             <span class="authors">By {post.author}</span>
           </div>
           <h2 class="blog-post-card__title">
-            <a href={post.slug}>{post.title}</a>
+            <a href={post.slug} set:html={post.title}></a>
           </h2>
           <p class="blog-post-card__excerpt">{post.excerpt}</p>
           <a href={post.slug} class="blog-post-card__read-more">
