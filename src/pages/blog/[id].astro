@@ -15,7 +15,7 @@ const { post } = Astro.props
 const titlePlain = stripHtml(post.data.title)
 const frontmatter = {
   title: titlePlain, // Used for the document <title>
-  description: post.data.description,
+  description: post.data.metaDescription,
   template: 'splash',
   editUrl: false,
   issueUrl: false,
