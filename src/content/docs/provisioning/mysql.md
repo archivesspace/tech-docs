@@ -22,7 +22,7 @@ find it on its classpath:
 
 ```shell
 $ cd lib
-$ curl -Oq https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar
+$ curl -Oq https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.4.0/mysql-connector-j-8.4.0.jar
 ```
 
 Note that the version of the MySQL connector may be different by the
