@@ -19,13 +19,15 @@ The older (more involved) way to get ArchivesSpace up and running is installing 
 
 ### Operating system
 
-ArchivesSpace has been tested on Ubuntu Linux, Mac OS X, and Windows.
+ArchivesSpace is being tested on Ubuntu Linux, Mac OS X, and Windows.
 
 ### Memory
 
 At least 1024 MB RAM allocated to the application are required. We recommend using at least 2 GB for optimal performance.
 
-## Software Requirements
+## Software Requirements when using the Zip File Distribution
+
+When using the zip distribution, installing a Java runtime environment and a solr instance are required. See [using Docker](/administration/docker/) to avoid these dependencies.
 
 ### Java Runtime Environment
 
@@ -34,26 +36,29 @@ We recommend using [OpenJDK](https://openjdk.org/projects/jdk/). The following t
 | ArchivesSpace version | OpenJDK version |
 | --------------------- | --------------- |
 | ≤ v3.5.1              | 8 or 11         |
-| ≥ v4.0.0              | 11 or 17        |
+| v4.0.0 up to v4.1.1   | 11 or 17        |
+| ≥ v4.2.0              | 17 or 21        |
+
+The Jruby version used in ArchivesSpace v4.2.0 is still compatible with java 11 we highly recommend using Java 17 or 21 as those are the Java versions ArchivesSpace v4.2.0 has been tested with. You can still use java 11 with v4.2.0 but the ArchivesSpace Program Team can provide support for environments using Java versions we have tested ArchivesSpace with (17 or 21).
+
+Note that in the next major release we expect to drop support for java 17 and only support java 21 and 25.
 
 ### Solr
 
-Up to ArchivesSpace v3.1.1, the zip file distribution includes an embedded Solr v4 instance, which is deprecated and not supported anymore.
+Up to ArchivesSpace v3.1.1, the zip file distribution includes an embedded Solr v4 instance, which is deprecated and not supported anymore. Use the Docker images provided on [ArchivesSpace Docker repository](https://hub.docker.com/orgs/archivesspace/repositories) and see also [using Docker](/administration/docker/) to avoid managing an external Solr instance.
 
-ArchivesSpace v3.2.0 or above requires an external Solr instance. The table below summarizes the supported Solr versions for each ArchivesSpace version:
+ArchivesSpace v3.2.0 or above requires an external Solr instance when running using the Zip distribution. The table below summarizes the supported Solr versions for each ArchivesSpace version:
 
 | ArchivesSpace version | External Solr version     |
 | --------------------- | ------------------------- |
 | ≤ v3.1.1              | no external solr required |
 | v3.1.1 up to v3.5.1   | 8 (8.11)                  |
-| ≥ v4.0.0              | 9 (9.4.1)                 |
+| v4.0.0 up to v4.1.1   | 9 (9.4.1)                 |
+| ≥ v4.2.0              | 9 (9.9.0)                 |
 
-Each ArchivesSpace version is tested for compatibility with the corresponding Solr version listed in the table above.
-That version is being used during development and the ArchivesSpace automated tests run with that version. It is therefore recommended that you use that version of Solr in production.
+Each ArchivesSpace version is tested for compatibility with the corresponding Solr version listed in the table above. Using the corresponding version of Solr is recommended as that version is being used during development and running the ArchivesSpace automated tests.
 
-It may be possible to use ArchivesSpace with an older version of Solr. However in that case it
-is important to check the [release notes](https://github.com/archivesspace/archivesspace/releases)
-for any potential version compatibility issues.
+If you need to use ArchivesSpace with an older version of Solr check the [release notes](https://github.com/archivesspace/archivesspace/releases) for any potential version compatibility issues.
 
 **Note: the ArchivesSpace Program Team can only provide support for Solr deployments
 using the "officially" supported version with the standard configuration provided by
