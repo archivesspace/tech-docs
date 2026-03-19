@@ -350,6 +350,7 @@ in scope instance variables that are available. Typical debugger commands are av
 - `next`: Step over to the next line within the same frame. Takes an optional numeric argument to step multiple times. Differs from step in that it always stays within the same frame (e.g. does not go into other method calls).
 - `finish`: Execute until current stack frame returns.
 - `continue`: Continue program execution and end the Pry session.
+- `puts caller.join("\n")`: Get the current stacktrace.
 
 See also [pry-debugger-jruby docs](https://gitlab.com/ivoanjo/pry-debugger-jruby).
 
