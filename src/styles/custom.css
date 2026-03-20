@@ -201,12 +201,12 @@ main:has(.blog-post-footer) > .content-panel > .sl-container {
 }
 
 /* Blog post content font size */
-main:has(.blog-post-footer) .sl-markdown-content {
-  font-size: 1rem;
+main:has(.blog-post-header) .sl-markdown-content {
+  font-size: 1.1rem;
 }
 
 @media (min-width: 50rem) {
-  main:has(.blog-post-footer) .sl-markdown-content {
+  main:has(.blog-post-header) .sl-markdown-content {
     font-size: 1.2rem;
   }
 }
