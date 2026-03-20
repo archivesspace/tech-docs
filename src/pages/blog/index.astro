@@ -13,7 +13,8 @@ const posts = (await getCollection('blog'))
       date: pubDate.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
-        day: 'numeric'
+        day: 'numeric',
+        timeZone: 'UTC'
       }),
       datetime: pubDate.toISOString().split('T')[0],
       author: authors.join(', '),
