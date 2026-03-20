@@ -20,7 +20,7 @@ describe('Header', () => {
   })
 
   it('shows blog link as active on blog post', () => {
-    cy.visit('/blog/introducing-new-tech-docs')
+    cy.visit('/blog/v4-2-0-release-candidate')
     cy.get('a.blog-nav-link.active')
   })
 })
