@@ -193,6 +193,7 @@ body:has(section[data-is-homepage]) .card {
    ========================================================================== */
 
 /* Narrow the content column on blog pages */
+/* stylelint-disable no-descending-specificity */
 main:has(.blog-post-list) > .content-panel > .sl-container,
 main:has(.blog-post-header) > .content-panel > .sl-container,
 main:has(.blog-post-footer) > .content-panel > .sl-container {
@@ -201,6 +202,7 @@ main:has(.blog-post-footer) > .content-panel > .sl-container {
 }
 
 /* Blog post content font size */
+/* stylelint-enable no-descending-specificity */
 main:has(.blog-post-header) .sl-markdown-content {
   font-size: 1.1rem;
 }

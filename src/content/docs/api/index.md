@@ -33,6 +33,7 @@ curl -s -F password="admin" "http://localhost:8089/users/admin/login"
 
 This will return a JSON response that includes something like the following:
 
+<!-- prettier-ignore -->
 ```json
 {
    "session":"9528190655b979f00817a5d38f9daf07d1686fed99a1d53dd2c9ff2d852a0c6e",

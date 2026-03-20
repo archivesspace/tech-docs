@@ -19,13 +19,13 @@ const { class: className } = Astro.props
         font-size: 1rem;
       }
 
-      :root[data-theme='light'] & {
-        color: var(--sl-color-text-accent);
-      }
-
       &:hover {
         text-decoration: underline;
         text-decoration-skip-ink: auto;
+      }
+
+      :root[data-theme='light'] & {
+        color: var(--sl-color-text-accent);
       }
     }
   }
