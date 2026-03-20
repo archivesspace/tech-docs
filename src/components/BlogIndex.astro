@@ -154,13 +154,13 @@ const { posts } = Astro.props
     color: var(--sl-color-accent-high);
     text-decoration: none;
 
+    &:hover {
+      text-decoration: underline;
+    }
+
     :root[data-theme='light'] & {
       color: var(--sl-color-text-accent);
     }
-  }
-
-  .blog-post-card__read-more:hover {
-    text-decoration: underline;
   }
 
   @media (min-width: 50rem) {

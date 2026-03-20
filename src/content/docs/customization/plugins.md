@@ -102,15 +102,16 @@ Unless you want to write inline style or javascript (which may be practiceable f
 - For the public interface, I want to add some javascript behavior such that, when the user hovers over a list item, astericks appear
   - I create `plugins/my_fine_plugin/public/assets/my.js`"
     ```javascript
-    $(function() {
-       $( "li" ).hover(
-         function() {
-            $( this ).append( $( "<span> ***</span>" ) );
-        }, function() {
-       $( this ).find( "span:last" ).remove();
+    $(function () {
+      $('li').hover(
+        function () {
+          $(this).append($('<span> ***</span>'))
+        },
+        function () {
+          $(this).find('span:last').remove()
         }
-      );
-     }
+      )
+    })
     ```
   - I add to `plugins/my_fine_plugin/public/views/layout_head.html.erb`:
     ```ruby

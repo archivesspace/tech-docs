@@ -10,7 +10,7 @@ const { title, formattedDate, datetime, author } = Astro.props
     <span aria-hidden="true">·</span>
     <span class="authors">By {author}</span>
   </div>
-  <h1 id="_top" set:html={title}></h1>
+  <h1 id="_top" set:html={title} />
 </header>
 
 <style>
