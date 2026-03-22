@@ -7,19 +7,19 @@ import config from 'virtual:starlight/user-config'
 import { Icon } from '@astrojs/starlight/components'
 
 const { url } = Astro
-const isHome = url.pathname === '/'
+const isHomePage = url.pathname === '/'
 ---
 
 <footer class="sl-flex">
   <div class="meta sl-flex">
     <EditLink />
-    {!isHome && <IssueLink />}
+    <IssueLink />
     <LastUpdated />
   </div>
   <Pagination />
 
   {
-    isHome && config.credits && (
+    isHomePage && config.credits && (
       <a class="kudos sl-flex" href="https://starlight.astro.build">
         <Icon name={'starlight'} /> {Astro.locals.t('builtWithStarlight.label')}
       </a>

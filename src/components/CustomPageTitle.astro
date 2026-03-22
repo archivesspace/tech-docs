@@ -1,0 +1,49 @@
+---
+import Default from '@astrojs/starlight/components/PageTitle.astro'
+import BlogPostTitle from './BlogPostTitleHeader.astro'
+import BlogIndexTitle from './BlogIndexTitleHeader.astro'
+
+// Cast custom blog post data for type checking since Starlight's entry.data
+// type doesn't include them and blogRouteData middleware injects them at runtime.
+interface PageDataWithBlog {
+  title: string
+  postTitle?: string
+  pubDate?: Date
+  authors?: string[]
+}
+
+const { entry, id } = Astro.locals.starlightRoute
+const data = entry.data as PageDataWithBlog
+const isBlogIndexPage = id === 'blog'
+const isBlogPostPage = id.startsWith('blog/')
+const title =
+  isBlogPostPage && data.postTitle != null ? data.postTitle : data.title
+const formattedDate =
+  isBlogPostPage && data.pubDate
+    ? data.pubDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        timeZone: 'UTC'
+      })
+    : null
+const author = data.authors ? data.authors.join(', ') : null
+const datetime = data.pubDate ? data.pubDate.toISOString().split('T')[0] : null
+---
+
+{
+  isBlogPostPage ? (
+    <BlogPostTitle
+      title={title}
+      formattedDate={formattedDate}
+      datetime={datetime}
+      author={author}
+    />
+  ) : isBlogIndexPage ? (
+    <BlogIndexTitle title={title} />
+  ) : (
+    <Default>
+      <slot />
+    </Default>
+  )
+}

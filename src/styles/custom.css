@@ -55,6 +55,16 @@
   --as-color-card-border: var(--sl-color-gray-4);
 }
 
+/* Keep search box in (almost) the same position on splash pages (no sidebar) as on docs pages */
+@media (min-width: 50rem) {
+  :root:not([data-has-sidebar]) {
+    --__sidebar-pad: calc(2 * var(--sl-nav-pad-x));
+  }
+  :root:not([data-has-sidebar]) .header {
+    --__sidebar-width: var(--sl-sidebar-width);
+  }
+}
+
 /* Custom header and sidebar colors */
 body > .page > .header {
   border-bottom: 1px solid var(--as-color-hairline);
@@ -171,4 +181,34 @@ main > .content-panel > .sl-container:has(section[data-is-homepage]) {
 /* Increase card border contrast */
 body:has(section[data-is-homepage]) .card {
   border-color: var(--as-color-card-border);
+}
+
+/* Utilities */
+.align-items-center {
+  align-items: center;
+}
+
+/* ==========================================================================
+   Blog
+   ========================================================================== */
+
+/* Narrow the content column on blog pages */
+/* stylelint-disable no-descending-specificity */
+main:has(.blog-post-list) > .content-panel > .sl-container,
+main:has(.blog-post-header) > .content-panel > .sl-container,
+main:has(.blog-post-footer) > .content-panel > .sl-container {
+  max-width: 52rem;
+  margin-inline: auto;
+}
+
+/* Blog post content font size */
+/* stylelint-enable no-descending-specificity */
+main:has(.blog-post-header) .sl-markdown-content {
+  font-size: 1.1rem;
+}
+
+@media (min-width: 50rem) {
+  main:has(.blog-post-header) .sl-markdown-content {
+    font-size: 1.2rem;
+  }
 }

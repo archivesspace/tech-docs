@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content'
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro'
+import BlogIndex from '@components/BlogIndex.astro'
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .map((entry) => {
+    const { pubDate, authors, title, teaser, metaDescription } = entry.data
+
+    return {
+      slug: `/blog/${entry.id}`,
+      date: pubDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        timeZone: 'UTC'
+      }),
+      datetime: pubDate.toISOString().split('T')[0],
+      author: authors.join(', '),
+      title,
+      teaser: teaser ?? metaDescription
+    }
+  })
+
+const frontmatter = {
+  title: 'Blog',
+  description: 'Technical updates from ArchivesSpace developers',
+  template: 'splash',
+  editUrl: false,
+  issueUrl: false,
+  lastUpdated: false
+} as const
+---
+
+<StarlightPage frontmatter={frontmatter}>
+  <BlogIndex posts={posts} />
+</StarlightPage>

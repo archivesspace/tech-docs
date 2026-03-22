@@ -1,0 +1,171 @@
+---
+interface Props {
+  posts: Array<{
+    slug: string
+    date: string
+    datetime: string
+    author: string
+    title: string
+    teaser: string
+  }>
+}
+
+const { posts } = Astro.props
+---
+
+<ul class="blog-post-list">
+  {
+    posts.map((post) => (
+      <li>
+        <article class="blog-post-card">
+          <div class="blog-post-card__meta">
+            <time datetime={post.datetime}>{post.date}</time>
+            <span aria-hidden="true">·</span>
+            <span class="authors">By {post.author}</span>
+          </div>
+          <h2 class="blog-post-card__title">
+            <a href={post.slug} set:html={post.title} />
+          </h2>
+          <p class="blog-post-card__teaser" set:html={post.teaser} />
+          <a href={post.slug} class="blog-post-card__read-more">
+            Read more →
+          </a>
+        </article>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .blog-post-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 1rem;
+
+    @media (min-width: 50rem) {
+      padding-top: 2rem;
+    }
+
+    > li {
+      margin-top: 0;
+    }
+  }
+
+  .blog-post-card {
+    padding-block: 2rem;
+    border-bottom: 1px solid var(--as-color-hairline);
+  }
+
+  .blog-post-list > li:last-child .blog-post-card {
+    border-bottom: none;
+  }
+
+  .blog-post-card__meta {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--sl-color-gray-3);
+
+    time {
+      margin-bottom: 0.5rem;
+
+      @media (min-width: 50rem) {
+        margin-bottom: 0;
+      }
+    }
+
+    .authors {
+      line-height: 1.4;
+
+      @media (min-width: 50rem) {
+        line-height: 1;
+      }
+    }
+  }
+
+  .blog-post-card__meta span[aria-hidden='true'] {
+    display: none;
+  }
+
+  @media (min-width: 50rem) {
+    .blog-post-card__meta {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.375rem;
+      margin-bottom: 0.875rem;
+      font-size: 1rem;
+    }
+
+    .blog-post-card__meta span[aria-hidden='true'] {
+      display: inline;
+    }
+  }
+
+  /* Reset Starlight's default h2 styles within blog cards */
+  .blog-post-card__title {
+    margin-top: 0;
+    margin-bottom: 0.875rem;
+    border-top: none !important;
+    padding-top: 0 !important;
+    font-size: 1.375rem;
+    line-height: 1.3;
+  }
+
+  @media (min-width: 50rem) {
+    :global(.blog-post-card__title) {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  .blog-post-card__title a {
+    color: var(--sl-color-white);
+    text-decoration: none;
+  }
+
+  .blog-post-card__title a:hover {
+    color: var(--sl-color-accent-high);
+    text-decoration: underline;
+
+    :root[data-theme='light'] & {
+      color: var(--sl-color-text-accent);
+    }
+  }
+
+  .blog-post-card__teaser {
+    color: var(--sl-color-gray-2);
+    margin: 0 0 1rem;
+    line-height: 1.65;
+  }
+
+  @media (min-width: 50rem) {
+    .blog-post-card__teaser {
+      font-size: 1.2rem;
+    }
+  }
+
+  .blog-post-card__read-more {
+    display: inline-block;
+    font-size: 0.875rem;
+    color: var(--sl-color-accent-high);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    :root[data-theme='light'] & {
+      color: var(--sl-color-text-accent);
+    }
+  }
+
+  @media (min-width: 50rem) {
+    .blog-post-card__read-more {
+      font-size: 1rem;
+    }
+  }
+</style>

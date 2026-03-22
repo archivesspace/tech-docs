@@ -8,6 +8,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Tech Docs',
+      routeMiddleware: './src/blogRouteData.js',
       logo: {
         dark: './src/images/logo-full-dark.svg',
         light: './src/images/logo-full-light.svg',
@@ -35,6 +36,8 @@ export default defineConfig({
       tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 4 },
       components: {
         EditLink: './src/components/overrides/EditLink.astro',
+        PageFrame: './src/components/overrides/PageFrame.astro',
+        PageTitle: './src/components/CustomPageTitle.astro',
         Footer: './src/components/overrides/Footer.astro',
         Header: './src/components/overrides/Header.astro',
         MobileMenuFooter: './src/components/overrides/MobileMenuFooter.astro',

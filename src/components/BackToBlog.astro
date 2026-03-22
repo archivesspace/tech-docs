@@ -1,0 +1,32 @@
+---
+interface Props {
+  class?: string
+}
+const { class: className } = Astro.props
+---
+
+<a href="/blog" class:list={['back-to-blog', className]}>← All posts</a>
+
+<style>
+  @layer starlight.core {
+    .back-to-blog {
+      display: inline-flex;
+      text-decoration: none;
+      font-size: 0.875rem;
+      color: var(--sl-color-accent-high);
+
+      @media (min-width: 50rem) {
+        font-size: 1rem;
+      }
+
+      &:hover {
+        text-decoration: underline;
+        text-decoration-skip-ink: auto;
+      }
+
+      :root[data-theme='light'] & {
+        color: var(--sl-color-text-accent);
+      }
+    }
+  }
+</style>

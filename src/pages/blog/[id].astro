@@ -1,0 +1,29 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro'
+import { getCollection, render } from 'astro:content'
+import { stripHtml } from '@utils/utils.mjs'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog')
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post }
+  }))
+}
+
+const { post } = Astro.props
+const titlePlain = stripHtml(post.data.title)
+const frontmatter = {
+  title: titlePlain, // Used for the document <title>
+  description: post.data.metaDescription,
+  template: 'splash',
+  editUrl: false,
+  issueUrl: false,
+  lastUpdated: false
+} as const
+const { Content } = await render(post)
+---
+
+<StarlightPage frontmatter={frontmatter}>
+  <Content />
+</StarlightPage>

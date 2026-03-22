@@ -1,0 +1,33 @@
+<div class="docs-pointer" aria-hidden="true">
+  <span class="docs-pointer__arrow">⤶</span>
+  <span class="docs-pointer__label">docs</span>
+</div>
+
+<style>
+  .docs-pointer {
+    display: none;
+  }
+
+  @media (min-width: 50rem) {
+    .docs-pointer {
+      position: fixed;
+      top: calc(var(--sl-nav-height) + var(--sl-mobile-toc-height));
+      left: calc(var(--sl-nav-pad-x) + 5rem);
+      display: inline-flex;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--sl-color-white);
+    }
+  }
+
+  .docs-pointer__arrow {
+    display: inline-block;
+    transform: rotate(90deg);
+    line-height: 1;
+  }
+
+  .docs-pointer__label {
+    position: relative;
+    top: 0.2rem;
+  }
+</style>

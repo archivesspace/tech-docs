@@ -17,12 +17,22 @@ import ReleaseBadge from '../ReleaseBadge.astro' // Custom component
 const shouldRenderSearch =
   config.pagefind ||
   config.components.Search !== '@astrojs/starlight/components/Search.astro'
+
+const isABlogPage =
+  Astro.url.pathname === '/blog' || Astro.url.pathname.startsWith('/blog/')
 ---
 
 <div class="header">
-  <div class="title-wrapper sl-flex">
-    <SiteTitle />
-  </div>
+  <nav class="site-nav">
+    <div class="title-wrapper sl-flex">
+      <SiteTitle />
+    </div>
+    <div class="custom-links-wrapper sl-flex align-items-center">
+      <a href="/blog" class:list={['blog-nav-link', { active: isABlogPage }]}
+        >Blog</a
+      >
+    </div>
+  </nav>
   <div class="sl-flex print:hidden">
     {shouldRenderSearch && <Search />}
   </div>
@@ -46,13 +56,55 @@ const shouldRenderSearch =
       height: 100%;
     }
 
-    .title-wrapper {
-      /* Prevent long titles overflowing and covering the search and menu buttons on narrow viewports. */
-      overflow: clip;
-      /* Avoid clipping focus ring around link inside title wrapper. */
-      padding: 0.25rem;
-      margin: -0.25rem;
-      min-width: 0;
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+
+      @media (min-width: 50rem) {
+        gap: 1rem;
+      }
+
+      .custom-links-wrapper {
+        &::before {
+          content: '';
+          height: 2rem;
+          border-inline-start: 1px solid var(--as-color-hairline);
+        }
+
+        &:has(> a.active)::before {
+          height: 0;
+          border: none;
+        }
+
+        > a {
+          padding-inline: 0.5rem;
+          padding-block: 0.5rem;
+          font-size: 0.875rem;
+          color: var(--sl-color-white);
+
+          &:hover {
+            color: var(--sl-color-gray-2);
+          }
+
+          &.active {
+            font-weight: bold;
+            background: var(--sl-color-accent-high);
+            color: var(--sl-color-black);
+            text-decoration: none;
+            border-radius: 2px;
+
+            :root[data-theme='light'] & {
+              background: var(--sl-color-accent);
+            }
+          }
+
+          @media (min-width: 50rem) {
+            padding-inline: 1rem;
+            font-size: 1rem;
+          }
+        }
+      }
     }
 
     .right-group,
