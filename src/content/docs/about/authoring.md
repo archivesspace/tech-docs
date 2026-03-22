@@ -3,11 +3,23 @@ title: Authoring content
 description: This page outlines best practices for updating and writing markdown files for the tech-docs repository.
 ---
 
-Tech Docs content is written in [Markdown](https://en.wikipedia.org/wiki/Markdown) which is a markup language used for formatting plain text that aims to be easy to read and write.
+The Tech Docs site contains two types of content--documentation pages and blog posts. Both content types are written in [Markdown](https://en.wikipedia.org/wiki/Markdown) and define page-specific details as [yaml](https://yaml.org/) key:value pairs.
 
 Tech Docs uses [GitHub-flavored Markdown](https://github.github.com/gfm/), a variant of Markdown syntax, and [SmartyPants](https://daringfireball.net/projects/smartypants/), a typographic punctuation plugin. These tools provide authors niceties like generating clickable links from text, creating lists and tables, formatting for quotations and em-dashes, and more.
 
-## Commonly-used Markdown syntax
+## Where pages go
+
+### Documentation pages
+
+Documentation pages live under `src/content/docs/`. Each page is a `.md` or `.mdx` file. The URL path is `/` plus the file path relative to that directory, without the extension—for example, `src/content/docs/architecture/public.md` is served at `/architecture/public`. Nested folders add segments to the path.
+
+### Blog
+
+Blog posts live under `src/content/blog/` as `.md` or `.mdx` files. The URL is `/blog/` plus the path to the file relative to that folder, without the extension—for example, `src/content/blog/v4-2-0-release-candidate.md` is served at `/blog/v4-2-0-release-candidate`. Nested folders add path segments to the URL.
+
+Valid frontmatter and body content are required for the site to be built and published.
+
+## Markdown
 
 Common use of Markdown throughout Tech Docs includes:
 
@@ -28,7 +40,7 @@ Start a new line with between 2 and 6 `#` symbols, followed by a single space, a
 ## Example second-level heading
 ```
 
-The number of `#` symbols corresponds to the heading level in the document hierarchy. **The first heading level is reserved for the page title** (available in the page [frontmatter](#frontmatter)). Therefore the first _authored_ heading on every page should be a second level heading (`##`).
+The number of `#` symbols corresponds to the heading level in the document hierarchy. **The first heading level is reserved for the page title** (available in the page [YAML frontmatter](#yaml-frontmatter)). Therefore the first _authored_ heading on every page should be a second level heading (`##`).
 
 :::note[Second level heading requirement]
 Authored headings should start at the second level (`##`) on every page, since the first level (`#`) is reserved for the page title which is machine-generated.
@@ -70,11 +82,11 @@ Be sure not to include any space between the wrapped text and URL.
 See the [TechDocs source code](https://github.com/archivesspace/tech-docs).
 ```
 
-#### Internal links
+#### In documentation pages
 
-##### Other pages
+##### To other pages
 
-When linking to another Tech Docs page, start with a forward slash (`/`), follwed by the location of the page as found in the `src/content/docs/` directory, and omit the file extension (`.md`).
+When linking to another Tech Docs documentation page, start with a forward slash (`/`), followed by the location of the page as found in the `src/content/docs/` directory, and omit the file extension (`.md`).
 
 ```md
 ✅ [Public user interface](/architecture/public)
@@ -86,7 +98,7 @@ When linking to another Tech Docs page, start with a forward slash (`/`), follwe
 ```
 
 :::note[Internal link requirements]
-Links to other Tech Docs pages should:
+Links to other Tech Docs documentation pages should:
 
 1. start with a forward slash (`/`)
 2. reflect the location of the page as found in `src/content/docs/`
@@ -101,7 +113,7 @@ Starlight provides [automatic heading anchor links](https://starlight.astro.buil
 ```md
 <!-- src/content/docs/about/authoring.md -->
 
-See the [Internal links](#internal-links) section on this page.
+See the [Links](#links) section on this page.
 
 See the [Public configuration options](/architecture/public#configuration).
 ```
@@ -109,6 +121,12 @@ See the [Public configuration options](/architecture/public#configuration).
 :::tip
 A section heading's `id` is usually the same text string as the heading itself, but in all lowercase letters and with all single spaces converted to single hyphens. See the actual HTML `id` by right clicking on the heading to "inspect" it.
 :::
+
+#### In blog posts
+
+When you write the body of a blog post, links to documentation pages use the same pattern as [in documentation pages](#to-other-pages): a leading `/` and the path under `src/content/docs/` without `.md`, for example `[Public user interface](/architecture/public)`.
+
+Links to another blog post use `/blog/` plus that post’s path under `src/content/blog/` without the extension—the same shape as its public URL (see [Blog](#blog) under [Where pages go](#where-pages-go)). For example, `src/content/blog/v4-2-0-release-candidate.md` is linked as `[v4.2.0 release candidate](/blog/v4-2-0-release-candidate)`. Nested folders add segments, for example `/blog/releases/v4-2-0` for `src/content/blog/releases/v4-2-0.md`.
 
 ### Emphasizing text
 
@@ -219,19 +237,42 @@ Show an image using an exclamation point (`!`), followed by the image's [alt tex
 All internal images belong in the `src/images` directory. The relative path to images from this file is `../../../images`.
 :::
 
-## Frontmatter
+## YAML frontmatter
 
-Tech Docs uses [YAML](https://yaml.org/) frontmatter as a way to add metadata to pages for dynamic purposes. Frontmatter is a block of YAML syntax used to assign variables and more, wrapped in triple dashes (`---`). Every page must have at least its `title` defined in frontmatter.
+Each content file starts with [YAML](https://yaml.org/) frontmatter: metadata in a block wrapped in triple dashes (`---`). Use the templates below so every field we rely on is set explicitly. For more on how the site build system reads these values, see [YAML frontmatter and content schemas](/about/development#yaml-frontmatter-and-content-schemas).
+
+### Documentation pages
 
 ```md
 ---
-title: New page title
+title: Using MySQL
+description: Instructions for how to set up MySQL with ArchivesSpace.
 ---
 ```
 
-:::note[Frontmatter `title` requirement]
-Every page must have frontmatter that defines the page `title`.
-:::
+- **`title`** — Page title shown in the layout, browser tab, and metadata.
+- **`description`** — Short summary used for SEO, search, and social previews.
+
+### Blog posts
+
+```md
+---
+title: v4.2.0 Release Candidate
+metaDescription: Early access to ArchivesSpace v4.2.0-RC1 is now available.
+teaser: ArchivesSpace <a href="https://github.com/archivesspace/archivesspace/releases/tag/v4.2.0-RC1">v4.2.0-RC1</a> has landed for early testing.
+pubDate: 2026-03-20
+authors:
+  - Pat Doe
+updatedDate: 2026-03-21
+---
+```
+
+- **`title`** — Post headline on the post page and on the blog index.
+- **`metaDescription`** — Short summary for page metadata (SEO) and for the index card when `teaser` is omitted.
+- **`teaser`** — Text or HTML for the blog index card (links and light markup are common here).
+- **`pubDate`** — Publication date; posts are ordered by this value, newest first. Use an ISO-style date (`YYYY-MM-DD`).
+- **`authors`** — List of author names, shown comma-separated on the index and post page.
+- **`updatedDate`** — Last-updated date in the same `YYYY-MM-DD` form when the post is revised after publication.
 
 ## Image files
 
@@ -241,4 +282,4 @@ All internal image files used in Tech Docs content should go in the `src/images`
 
 - Plugins, not plug-ins
 - Titles are sentence-case ("Application monitoring with New Relic")
-- Page titles prefer '-ing' verb forms ("Using MySQL", "Serving over HTTPS")
+- Documentation page titles prefer '-ing' verb forms ("Using MySQL", "Serving over HTTPS")
