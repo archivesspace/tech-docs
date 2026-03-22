@@ -7,7 +7,7 @@ import { DEFAULT_ISSUE_TEXT, DEFAULT_ISSUE_URL } from '@lib/constants.ts'
 
 const blogSchema = z.object({
   title: z.string(),
-  metaDescription: z.string().optional(),
+  metaDescription: z.string(),
   teaser: z.string().optional(),
   pubDate: z.coerce.date(),
   authors: z.array(z.string()),

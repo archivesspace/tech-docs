@@ -19,7 +19,7 @@ const posts = (await getCollection('blog'))
       datetime: pubDate.toISOString().split('T')[0],
       author: authors.join(', '),
       title,
-      teaser: teaser ?? metaDescription ?? ''
+      teaser: teaser ?? metaDescription
     }
   })
 

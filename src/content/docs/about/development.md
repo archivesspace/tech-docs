@@ -8,7 +8,7 @@ next:
   label: Home
 ---
 
-Tech Docs is a [Node.js](https://nodejs.org) application, built with [Astro](https://astro.build/) and its [Starlight](https://starlight.astro.build/) documentation site framework. The source code is hosted on [GitHub](https://github.com/archivesspace/tech-docs). The site is statically built and (temporarily) hosted via [Cloudflare Pages](https://pages.cloudflare.com/). Content is written in [Markdown](/about/authoring#commonly-used-markdown-syntax). When the source code changes, a new set of static files are generated and published shortly after.
+Tech Docs is a [Node.js](https://nodejs.org) application, built with [Astro](https://astro.build/) and its [Starlight](https://starlight.astro.build/) documentation site framework. The source code is hosted on [GitHub](https://github.com/archivesspace/tech-docs). The site is statically built and (temporarily) hosted via [Cloudflare Pages](https://pages.cloudflare.com/). Content is written in [Markdown](/about/authoring#markdown). When the source code changes, a new set of static files are generated and published shortly after.
 
 ## Dependencies
 
@@ -86,6 +86,79 @@ Site search is a [Starlight feature](https://starlight.astro.build/guides/site-s
 :::note
 Search only runs in production builds not in the dev server.
 :::
+
+## YAML frontmatter and content schemas
+
+Frontmatter for both documentation pages and blog posts is validated at build time through `src/content.config.ts`. For copy-paste templates and a short description of each field authors should set, see [YAML frontmatter](/about/authoring#yaml-frontmatter). The sections below cover the full Starlight field set for docs, what is required versus optional, and how blog metadata is rendered in the UI.
+
+### Documentation pages
+
+Documentation pages use [Starlight’s frontmatter schema](https://starlight.astro.build/reference/frontmatter/) extended with `issueUrl` and `issueText` in `src/content.config.ts`. Starlight requires a `title`; other keys are optional unless your page has a specific need.
+
+| Field             | Required | Purpose                                                                                                                                                                                                                 |
+| ----------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`           | Yes      | Page title in the layout, browser tab, and metadata.                                                                                                                                                                    |
+| `description`     | No       | Short summary for SEO, search, and social previews. Most pages set this; it is omitted on a few pages (for example [Staff interface](/architecture/frontend), [404](/404)).                                             |
+| `slug`            | No       | Overrides the URL segment instead of deriving it from the file path.                                                                                                                                                    |
+| `editUrl`         | No       | Overrides the “Edit page” URL, or `false` to hide the link (for example on [404](/404)).                                                                                                                                |
+| `head`            | No       | Extra tags for the document head (meta, link, custom title, etc.).                                                                                                                                                      |
+| `tableOfContents` | No       | Table of contents: `false` to hide, or `{ minHeadingLevel, maxHeadingLevel }` to tune range.                                                                                                                            |
+| `template`        | No       | Starlight layout template (for example `splash`).                                                                                                                                                                       |
+| `hero`            | No       | Hero area for splash-style pages (`title`, `tagline`, optional `image`, `actions`, etc.).                                                                                                                               |
+| `banner`          | No       | Optional banner above the page content.                                                                                                                                                                                 |
+| `lastUpdated`     | No       | Override the displayed last-updated date, or `false` to hide it.                                                                                                                                                        |
+| `prev`            | No       | Previous pagination link: `false`, a string label, or `{ link, label }`.                                                                                                                                                |
+| `next`            | No       | Next pagination link: `false`, a string label, or `{ link, label }`. For example, [Development](/about/development) sets this so “next” goes to Home instead of the external Help Center entry after it in the sidebar. |
+| `pagefind`        | No       | Set `false` to omit the page from the Pagefind index.                                                                                                                                                                   |
+| `draft`           | No       | When `true`, exclude the page from production builds.                                                                                                                                                                   |
+| `sidebar`         | No       | Per-page sidebar label, order, badge, `hidden`, or link `attrs`. The main sidebar structure is configured in `src/siteNavigation.json`.                                                                                 |
+| `issueUrl`        | No       | URL for the footer “report an issue” link, or `false` to hide it. Defaults in `src/content.config.ts` when omitted; authors may set explicitly (see [YAML frontmatter](/about/authoring#yaml-frontmatter)).             |
+| `issueText`       | No       | Label text for that footer link. Defaults in `src/content.config.ts` when omitted; authors may set explicitly (see [YAML frontmatter](/about/authoring#yaml-frontmatter)).                                              |
+
+### Blog posts
+
+The `blog` collection uses a Zod schema defined in `src/content.config.ts`.
+
+| Field             | Required | Purpose                                                                                                                                                                            |
+| ----------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`           | Yes      | Post headline on the post page and index card. May include HTML for display; the document `<title>` and prev/next pagination labels **strip HTML** from `title`.                   |
+| `metaDescription` | Yes      | Short summary for page meta description (SEO). Used as the index teaser text when `teaser` is omitted.                                                                             |
+| `teaser`          | No       | HTML or plain text for the blog index card (`set:html`). Prefer this for links or light HTML on the index; plain text in `title` is safest where tab titles and pagination matter. |
+| `pubDate`         | Yes      | Publication date; posts are sorted by this field, newest first. Parsed from frontmatter and formatted for display in **UTC** on the index and post header.                         |
+| `authors`         | Yes      | Array of author display names; shown comma-separated on the index and post page.                                                                                                   |
+| `updatedDate`     | No       | Optional revision date (`YYYY-MM-DD`). Stored in frontmatter but **not shown in the UI** today; useful for future display or consistency with the authoring template.              |
+
+## Blog
+
+The [blog](/blog) is implemented as an Astro content collection alongside the docs collection. Post source files are in `src/content/blog/`; routes live under `src/pages/blog/`. There is no separate blog build step—blog pages are part of the normal Astro static output, and site search ([Search](#search)) indexes them like other HTML. For where to put files and example frontmatter, see [Authoring content](/about/authoring#where-pages-go) and [YAML frontmatter](/about/authoring#yaml-frontmatter). For schema, validation, and HTML behavior, see [YAML frontmatter and content schemas](#yaml-frontmatter-and-content-schemas) above.
+
+### Blog content collection
+
+The `blog` collection is registered in `src/content.config.ts` with a Zod schema. Adding or renaming frontmatter fields requires updating that schema and every consumer of `entry.data` (blog pages, middleware, and tests).
+
+### Blog routes
+
+- `src/pages/blog/index.astro` — `/blog` index; loads posts, sorts by `pubDate` descending, passes data to the index UI.
+- `src/pages/blog/[id].astro` — individual posts; `getStaticPaths` comes from the collection, so new valid posts appear on the next build.
+
+### Blog route middleware
+
+`src/blogRouteData.js` is Starlight route middleware for blog routes. It injects `pubDate`, `authors`, and `postTitle` for post pages and sets prev/next pagination (older post as “Previous,” newer as “Next”). Pagination labels use titles with HTML stripped.
+
+### Blog UI components
+
+| Area                                 | Location                                                                      |
+| ------------------------------------ | ----------------------------------------------------------------------------- |
+| Index list and cards                 | `src/components/BlogIndex.astro`                                              |
+| Index page title                     | `src/components/BlogIndexTitleHeader.astro`                                   |
+| Post title, date, authors, back link | `src/components/BlogPostTitleHeader.astro`, `src/components/BackToBlog.astro` |
+| Default vs blog title                | `src/components/CustomPageTitle.astro`                                        |
+| Header “Blog” link                   | `src/components/overrides/Header.astro`                                       |
+| Blog layout / sidebar behavior       | `src/components/overrides/PageFrame.astro`                                    |
+
+### Blog tests
+
+End-to-end coverage is in `cypress/e2e/blog.cy.js`. Update these tests when you change blog markup, URLs, or visible behavior.
 
 ## Theme customization
 
