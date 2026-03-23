@@ -2,7 +2,7 @@
 title: v4.2.0 Release Candidate
 metaDescription: Early access to ArchivesSpace v4.2.0-RC1 is now available. Download the release candidate or test it on a live server and help validate changes before the official launch.
 teaser: ArchivesSpace <a href="https://github.com/archivesspace/archivesspace/releases/tag/v4.2.0-RC1">v4.2.0-RC1</a> has landed for early testing. Test it via download or on a <a href="http://rebranch.archivesspace.org/staff">live server</a> to see what’s coming before the official release.
-pubDate: 2026-03-20
+pubDate: 2026-03-23
 authors:
   - Brian Zelip
 ---
