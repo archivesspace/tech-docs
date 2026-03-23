@@ -146,7 +146,7 @@ ec71dd3030b7   databack/mysql-backup:latest        "/entrypoint dump"       26 h
 d2cf634744fe   mysql:8                             "docker-entrypoint.s…"   26 hours ago   Up 29 minutes             0.0.0.0:3306->3306/tcp, :::3306->3306/tcp, 33060/tcp   mysql
 ```
 
-If you have also [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed, you can use it to start, stop and manage the ArchivesSpace containers after they have been created for the first time. Docker Desktop does have a built in terminal window that can be used to run Docker commands. 
+If you have also [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed, you can use it to start, stop and manage the ArchivesSpace containers after they have been created for the first time. Docker Desktop does have a built in terminal window that can be used to run Docker commands.
 
 ### Stop
 
