@@ -1,12 +1,11 @@
 ---
-import type { Props } from '@astrojs/starlight/props'
 import Default from '@astrojs/starlight/components/Sidebar.astro'
 import gitMetadata from '@utils/gitMetadata.mjs'
 
 const isDev = import.meta.env.DEV
 ---
 
-<Default {...Astro.props}><slot /></Default>
+<Default><slot /></Default>
 
 {
   isDev && (

@@ -1,5 +1,6 @@
 ---
 title: JMeter Test Group Template
+description: How to create a Jmeter Test Group.
 ---
 
 ## Creating a test group:

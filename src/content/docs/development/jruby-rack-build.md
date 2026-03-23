@@ -1,12 +1,13 @@
 ---
 title: Upgrading Rack
+description: A guide to upgrading Rack.
 ---
 
 - Install local JRuby (match aspace version, currently: 9.2.12.0) and switch to it.
 - Install Maven.
 - Download jruby-rack.
 
-```
+```shell
 git checkout 1.1-stable
 # install bundler version to match 1.1-stable Gemfile.lock
 gem install bundler --version=1.14.6
@@ -25,7 +26,7 @@ Done installing documentation for bundler after 5 seconds
 
 Set environment to target rack version (the version being upgraded to):
 
-```
+```shell
 export RACK_VERSION=2.2.3
 bundle
 ```
@@ -78,7 +79,7 @@ index 493c667..f016925 100644
 
 Build the jruby-rack jar:
 
-```
+```bash
 bundle exec jruby -S rake clean gem SKIP_SPECS=true
 ```
 

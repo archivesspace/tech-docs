@@ -97,6 +97,7 @@
       "development/docker",
       "development/release_schema_versions",
       "development/ui_test",
+      "development/e2e_tests",
       "development/ead-exporter",
       "development/jruby-rack-build",
       "development/releases",

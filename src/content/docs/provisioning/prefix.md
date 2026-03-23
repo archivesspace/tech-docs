@@ -1,5 +1,6 @@
 ---
 title: Proxy prefix
+description: Instructions for serving each user-facing ArchivesSpace application under a prefix rather than as its own subdomain.
 ---
 
 **Important Note: Prefixes do NOT work properly in versions between 2.0.1 and 2.2.2**
@@ -8,8 +9,10 @@ This document describes a simple approach for those wishing to deviate from the 
 practice of running each user-facing ArchivesSpace application on its own subdomain, and instead
 serve each application under a prefix, e.g.
 
-    http://aspace.myarchive.org/staff
-    http://aspace.myarchive.org/public
+```
+http://aspace.myarchive.org/staff
+http://aspace.myarchive.org/public
+```
 
 This configuration described in this document is one possible approach,
 and to keep things simple the following are assumed:
@@ -24,10 +27,12 @@ your machines, and all commands are to be run as root (or with sudo).
 
 The following edits can be made in the httpd.conf file itself, or in an included file:
 
-    ProxyPass /staff http://localhost:8080/staff
-    ProxyPassReverse /staff http://localhost:8080/
-    ProxyPass /public http://localhost:8081/public
-    ProxyPassReverse /public http://localhost:8081/
+```apache
+ProxyPass /staff http://localhost:8080/staff
+ProxyPassReverse /staff http://localhost:8080/
+ProxyPass /public http://localhost:8081/public
+ProxyPassReverse /public http://localhost:8081/
+```
 
 Now restart Apache.
 
@@ -37,8 +42,10 @@ Follow the instructions in the main README to download and install ArchivesSpace
 
 Open the file `archivesspace/config/config.rb` and add the following lines:
 
-    AppConfig[:frontend_proxy_url] = 'http://aspace.myarchive.org/staff'
-    AppConfig[:public_proxy_url] = 'http://aspace.myarchive.org/public'
+```ruby
+AppConfig[:frontend_proxy_url] = 'http://aspace.myarchive.org/staff'
+AppConfig[:public_proxy_url] = 'http://aspace.myarchive.org/public'
+```
 
 (Note: These lines should NOT begin with a '#' character.)
 
@@ -48,8 +55,10 @@ Start ArchivesSpace.
 
 By default, the staff and public applications are accessible on ports 8080 and 8081
 
-    http://aspace.myarchive.org:8080
-    http://aspace.myarchive.org:8081
+```
+http://aspace.myarchive.org:8080
+http://aspace.myarchive.org:8081
+```
 
 Since these are not the URLs at which users should access the application, you will probably
 want to close them off. See README_HTTPS for more information on closing ports using iptables.

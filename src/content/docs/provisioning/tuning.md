@@ -1,5 +1,6 @@
 ---
 title: Performance tuning
+description: Guidance for performance tuning of the ArchivesSpace stack.
 ---
 
 ArchivesSpace is a stack of web applications which may require special tuning in order to run most effectively. This is especially the case for institutions with lots of data or many simultaneous users editing metadata.
@@ -23,7 +24,7 @@ Windows users must edit the archivesspace.bat file.
 
 If you're having trouble with errors like `java.lang.OutOfMemoryError` try doubling the `ASPACE_JAVA_XMX`. On Linux you can do this either by setting an environment variable like `$ export ASPACE_JAVA_XMX="Xmx2048m"` or by editing archivsspace.sh:
 
-```
+```shell
 if [ "$ASPACE_JAVA_XMX" = "" ]; then
     ASPACE_JAVA_XMX="-Xmx2048m"
 fi
@@ -31,7 +32,7 @@ fi
 
 For Windows, you'll change archivesspace.bat:
 
-```
+```shell
 java -Darchivesspace-daemon=yes %JAVA_OPTS% -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -XX:NewRatio=1 -Xss2m -X
 mx2048m -Dfile.encoding=UTF-8 -cp "%GEM_HOME%\gems\jruby-rack-1.1.12\lib\*;lib\*;launcher\lib\*!JRUBY!" org.jruby.Main "la
 uncher/launcher.rb" > "logs/archivesspace.out" 2>&1

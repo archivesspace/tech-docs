@@ -25,6 +25,10 @@
   --as-color-pagination-border: var(--sl-color-gray-3);
   --as-color-pagination-border-hover: var(--sl-color-gray-1);
   --as-color-card-border: var(--sl-color-gray-3);
+
+  --as-color-logo-blue-light: #50c0e8;
+  --as-color-logo-blue-mid: #00a1e1;
+  --as-color-logo-blue-dark: #026cb6;
 }
 
 /* Light mode colors */

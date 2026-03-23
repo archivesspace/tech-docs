@@ -1,5 +1,6 @@
 ---
 title: Managing frontend assets with Bower
+description: Instructions on how to add static assests to the core project.
 ---
 
 This is aimed at developers and applies to the 'frontend' application only.
@@ -18,21 +19,29 @@ installed according to this protocol.
 
 On OSX, for example:
 
-    brew install npm
+```shell
+brew install npm
+```
 
 ### Step 2: install Bower
 
-    npm install bower -g
+```shell
+npm install bower -g
+```
 
 ### Step 3: install components
 
-    bower install
+```shell
+bower install
+```
 
 ## Adding a static asset to ASpace Frontend (Staff UI)
 
 ### Step 1: add the component
 
-    bower install <PACKAGE NAME> --save
+```shell
+bower install <PACKAGE NAME> --save
+```
 
 ### Step 2: map Bower > Rails
 
@@ -43,8 +52,10 @@ On OSX, for example:
 
 ### Step 3: Install assets
 
-    alias npm-exec='PATH=$(npm bin):$PATH'
-    npm-exec bower-installer
+```shell
+alias npm-exec='PATH=$(npm bin):$PATH'
+npm-exec bower-installer
+```
 
 ### Step 4: Check assets in
 

@@ -9,8 +9,8 @@ export default defineConfig({
     starlight({
       title: 'Tech Docs',
       logo: {
-        light: './src/images/logo.svg',
-        dark: './src/images/logo-dark.svg',
+        dark: './src/images/logo-full-dark.svg',
+        light: './src/images/logo-full-light.svg',
         replacesTitle: true
       },
       customCss: ['./src/styles/custom.css'],
@@ -19,13 +19,22 @@ export default defineConfig({
       },
       credits: true,
       lastUpdated: true,
-      social: {
-        github: 'https://github.com/archivesspace/tech-docs',
-        youtube: 'https://www.youtube.com/@archivesspace5340'
-      },
+      social: [
+        {
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/archivesspace/tech-docs'
+        },
+        {
+          icon: 'youtube',
+          label: 'YouTube',
+          href: 'https://www.youtube.com/@archivesspace5340'
+        }
+      ],
       sidebar,
       tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 4 },
       components: {
+        EditLink: './src/components/overrides/EditLink.astro',
         Footer: './src/components/overrides/Footer.astro',
         Header: './src/components/overrides/Header.astro',
         MobileMenuFooter: './src/components/overrides/MobileMenuFooter.astro',

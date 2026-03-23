@@ -1,14 +1,17 @@
 ---
 title: UI tests
+description: Instructions on running automated browser tests with Selenium on the ArchivesSpace UI on both Firefox and Chrome.
 ---
 
 ArchivesSpace's staff and public interfaces use [Selenium](http://docs.seleniumhq.org/) to run automated browser tests. These tests can be run using [Firefox via geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/geckodriver/index.html) and [Chrome](https://sites.google.com/a/chromium.org/chromedriver/home) (either regular Chrome or headless).
 
+## UI tests with firefox (default)
+
 Firefox is the default used in our [CI workflows](https://github.com/archivesspace/archivesspace/actions).
 
-On Ubuntu 22.04 or later, the included Firefox deb package is a transition package that actually installs Firefox through [snap](https://snapcraft.io/). Snap has security restrictions that do not work with automated testing without additional configuration.
+On Ubuntu Linux 22.04 or later, the included Firefox deb package is a transition package that actually installs Firefox through [snap](https://snapcraft.io/). Snap has security restrictions that do not work with automated testing without additional configuration.
 
-To uninstall the Firefox snap package and reinstall it as a traditional deb package on Ubuntu use:
+To uninstall the Firefox snap package and reinstall it as a traditional deb package on Ubuntu Linux use:
 
 ```bash
 # remove old snap firefox package (if installed)
@@ -28,11 +31,17 @@ Pin: origin packages.mozilla.org
 Pin-Priority: 1000
 ' | sudo tee /etc/apt/preferences.d/mozilla
 
-# install firefox and geckdriver as a standard deb package
-sudo apt update && sudo apt install firefox firefox-geckodriver
+# install firefox
+sudo apt update && sudo apt install firefox
 ```
 
+When using firefox, you need to make sure that the version of geckodriver you are using works with your firefox version, see this [compatibility table](https://firefox-source-docs.mozilla.org/testing/geckodriver/Support.html). Get your installed firefox version by running: `firefox --version`.
+
+On Linux, you can download the geckodriver version that corresponds to your firefox version [here](https://github.com/mozilla/geckodriver/releases).
+
 On Mac you can use: `brew install geckodriver`.
+
+## UI tests with Chrome
 
 To run using Chrome, you must first download the appropriate [ChromeDriver
 executable](https://sites.google.com/a/chromium.org/chromedriver/downloads)
@@ -48,8 +57,10 @@ and support each other.**
 
 Run the bootstrap build task to configure JRuby and all required dependencies:
 
-     $ cd ..
-     $ build/run bootstrap
+```bash
+$ cd ..
+$ build/run bootstrap
+```
 
 Note: all example code assumes you are running from your ArchivesSpace project directory.
 
@@ -87,7 +98,7 @@ SELENIUM_CHROME=true CHROME_OPTS= ./build/run public:test -Dspec='features/acces
 
 Test require a backend and a frontend service to be running. To ovoid the overhead of starting and stopping them while developing, you can run tests against a dev backend:
 
-```
+```bash
 # start mysql and solr containers:
 docker-compose -f docker-compose-dev.yml up
 
@@ -119,7 +130,7 @@ When calling `./build/run frontend:test` to run frontend specs, the following st
 
 If any migrations are being applied whenever you run one or all frontend specs, it means that the test database dump `frontend/spec/fixtures/archivesspace-test.sql` has stayed behind. A new test database dump can be created by running:
 
-```
+```bash
 ./build/run db:nuke:test
 ./build/run db:load:test
 ./build/run db:migrate:test

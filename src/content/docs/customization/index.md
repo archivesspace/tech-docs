@@ -1,5 +1,6 @@
 ---
 title: Customization and configuration
+description: Index of the pages within the Customization section of the website.
 ---
 
 - [Configuring ArchivesSpace](./configuration)

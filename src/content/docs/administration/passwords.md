@@ -1,11 +1,14 @@
 ---
 title: Resetting passwords
+description: How to run a script that resets a user's password within ArchivesSpace.
 ---
 
 Under the `scripts` directory you will find a script that lets you
 reset a user's password. You can invoke it as:
 
-    scripts/password-reset.sh theusername newpassword  # or password-reset.bat under Windows
+```
+scripts/password-reset.sh theusername newpassword  # or password-reset.bat under Windows
+```
 
 If you are running against MySQL, you can use this command to set a
 password while the system is running. If you are running against the

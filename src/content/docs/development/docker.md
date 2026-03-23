@@ -1,5 +1,6 @@
 ---
 title: Docker
+description: A guide to using the Docker configuration with ArchivesSpace.
 ---
 
 The [Docker](https://www.docker.com/) configuration is used to create [automated builds](https://hub.docker.com/r/archivesspace/archivesspace/) on Docker Hub, which are deployed to [the latest version](http://test.archivesspace.org) when the build completes.
@@ -9,8 +10,7 @@ The [Docker](https://www.docker.com/) configuration is used to create [automated
 Run ArchivesSpace with MySQL, external Solr and a Web Proxy. Switch to the
 branch you want to build:
 
-```
-bash
+```bash
 #if you already have running containers and want to clear them out
 docker-compose stop
 docker-compose rm

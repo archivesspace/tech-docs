@@ -1,5 +1,6 @@
 ---
 title: Running as a Windows service
+description: Instructions on how to set up ArchivesSpace as a Windows service.
 ---
 
 Running ArchivesSpace as a Windows service requires some additional configuration.
@@ -14,7 +15,7 @@ To find the path to Java, "Start" > "Control Panel" > "Java", Select "Java" tab.
 You also need to be sure that Java is in your system path and also to create `JAVA_HOME` as a global environment variable.
 To add Java to your path, edit you %PATH% environment variable to include the directory of your java executable ( it will be something like `C:\Program Files (x86)\Java` ). To add `JAVA_HOME`, add a new system variable and put the directory where java was installed ( something like `C:\Program Files (x86)\Java` ).
 
-Environement varialbe be found by "Start" > "Control Panel" , search for environment. Click "edit the system environment variables". In the section System Variables, find the `PATH` environment variable and select it. Click Edit. If the `PATH` environment variable does not exist, click New. In the Edit System Variable (or New System Variable) window, specify the value of the `PATH` environment variable. Click OK. Close all remaining windows by clicking OK. Do the same for `JAVA_HOME`
+Environment variables can be found by going to "Start" > "Control Panel", search for environment. Click "edit the system environment variables". In the section "System Variables", find the `PATH` environment variable and select it. Click Edit. If the `PATH` environment variable does not exist, click New. In the Edit System Variable (or New System Variable) window, specify the value of the `PATH` environment variable. Click OK. Close all remaining windows by clicking OK. Do the same for `JAVA_HOME`.
 
 Before setting up the ArchivesSpace service, you should also [configure ArchivesSpace to run against MySQL](/provisioning/mysql).
 Be sure that the MySQL connector jar file is in the lib directory, in order for
@@ -23,8 +24,10 @@ the service setup script to add it to the application's classpath.
 Lastly, for the service to shutdown cleanly, uncomment and change these lines in
 config/config.rb:
 
-    AppConfig[:use_jetty_shutdown_handler] = true
-    AppConfig[:jetty_shutdown_path] = "/xkcd"
+```ruby
+AppConfig[:use_jetty_shutdown_handler] = true
+AppConfig[:jetty_shutdown_path] = "/xkcd"
+```
 
 This enables a shutdown hook for Jetty to respond to when the shutdown action
 is taken.
@@ -40,11 +43,15 @@ monitor and click "Launch".
 Alternatively, you can start the GUI monitor and minimize it in your
 system tray with:
 
-    ArchivesSpaceServicew.exe //MS//
+```shell
+ArchivesSpaceServicew.exe //MS//
+```
 
 To execute the service from the command line, you can invoke:
 
-    ArchivesSpaceService.exe //ES//
+```shell
+ArchivesSpaceService.exe //ES//
+```
 
 Log output will be placed in your ArchivesSpace log directory.
 

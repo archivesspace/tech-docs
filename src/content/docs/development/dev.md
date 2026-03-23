@@ -1,46 +1,53 @@
 ---
 title: Development environment
+description: Guidance for setting up a development environment or ArchivesSpace, including system requirements, supported development platforms, a quickstart guide, and step-by-step instructions.
 ---
 
 System requirements:
 
-- Java 8, 11 (11 recommended) or 17
+- Java 17
 - [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/) is optional but makes running MySQL and Solr more convenient
 - [Supervisord](http://supervisord.org/) is optional but makes running the development servers more convenient
+- [mysql-client](https://www.bytebase.com/reference/mysql/how-to/how-to-install-mysql-client-on-mac-ubuntu-centos-windows/) is required in order to load demo data or other sql dumps onto the database
 
 Currently supported platforms for development:
 
 - Linux (although generally only Ubuntu is actually used / tested)
-- Mac (x86)
+- macOS on Intel (x86_64)
+- macOS on Apple silicon (ARM64) _since v4.0.0_
 
+:::note[Apple silicon and ArchivesSpace before v4.0.0]
+To install versions of ArchivesSpace prior to v4.0.0 with macOS on Apple silicon, see [https://teaspoon-consulting.com/articles/archivesspace-on-the-m1.html](https://teaspoon-consulting.com/articles/archivesspace-on-the-m1.html).
+:::
+
+:::danger[Windows development not supported]
 Windows is not supported because of issues building gems with C extensions (such as sassc).
+:::
 
-For Mac (arm) see [https://teaspoon-consulting.com/articles/archivesspace-on-the-m1.html](https://teaspoon-consulting.com/articles/archivesspace-on-the-m1.html).
+When installing Java, [OpenJDK](https://openjdk.org/) is strongly recommended. Other vendors may work, but OpenJDK is most extensively used and tested. It is highly recommended that you use a version manager such as [mise](https://mise.jdx.dev/lang/java.html) to install Java (OpenJDK). This has proven to be a reliable way of resolving cross platform issues that have occured via other means of installing Java.
 
-When installing Java OpenJDK is strongly recommended. Other vendors may work, but OpenJDK is
-most extensively used and tested. It is highly recommended that you use [Jabba](https://github.com/shyiko/jabba)
-to install Java (OpenJDK). This has proven to be a reliable way of resolving cross platform
-issues (looking at you Mac :/) that have occured via other means of installing Java.
-
-Installing OpenJDK with jabba will look something like:
+Installing OpenJDK with mise will look something like:
 
 ```bash
-# assuming you have jabba installed
-jabba install openjdk@1.11.0-2
-jabba use openjdk@1.11.0-2
-jabba alias default openjdk@1.11.0-2 # [optional] make this the default java
+mise use -g java@openjdk-17
 ```
 
 On Linux/Ubuntu it is generally fine to install from system packages:
 
 ```bash
 sudo apt install openjdk-$VERSION-jdk-headless
-# example: install 11 & 17
-sudo apt install openjdk-11-jdk-headless
+# example: install 17
 sudo apt install openjdk-17-jdk-headless
 # update-java-alternatives can be used to switch between versions
 sudo update-java-alternatives --list
 sudo update-java-alternatives --set $version
+```
+
+For [Homebrew](https://brew.sh/) users (macOS, Linux), the OpenJDK distribution from Azul has been reported to work:
+
+```bash
+# install Java v17 for example
+brew install --cask zulu@17
 ```
 
 If using Docker & Docker Compose install them following the official documentation:
@@ -65,11 +72,11 @@ docker-compose -f docker-compose-dev.yml build
 # Run MySQL and Solr in the background
 docker-compose -f docker-compose-dev.yml up --detach
 # Download the MySQL connector
-cd ./common/lib && wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.23/mysql-connector-java-8.0.23.jar && cd -
+cd ./common/lib && wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.30/mysql-connector-java-8.0.30.jar && cd -
 # Download all application dependencies
 ./build/run bootstrap
 # OPTIONAL: load dev database
-gzip -dc ./build/mysql_db_fixtures/accessibility.sql.gz | mysql --host=127.0.0.1 --port=3306  -u root -p123456 archivesspace
+gzip -dc ./build/mysql_db_fixtures/demo.sql.gz | mysql --host=127.0.0.1 --port=3306  -u root -p123456 archivesspace
 # Setup the development database
 ./build/run db:migrate
 # Clear out any existing Solr state (only needed after a database setup / restore after previous development)
@@ -146,7 +153,7 @@ For licensing reasons the MySQL connector must be downloaded separately:
 
 ```bash
 cd ./common/lib
-wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.23/mysql-connector-java-8.0.23.jar
+wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.30/mysql-connector-java-8.0.30.jar
 cd -
 ```
 
@@ -165,7 +172,7 @@ _It is not necessary and generally incorrect to manually install JRuby
 & bundler etc. for ArchivesSpace (whether with a version manager or
 otherwise)._
 
-_The self contained ArchivesSpace development environment typically does
+_The self-contained ArchivesSpace development environment typically does
 not interact with other J/Ruby environments you may have on your system
 (such as those managed by rbenv or similar)._
 
@@ -233,7 +240,7 @@ There is a task for resetting the database:
 
 Which will first delete then migrate the database.
 
-**Advanced: Loading data fixtures into dev database**
+### Loading data fixtures into dev database
 
 When loading a database into the development MySQL instance always ensure that ArchivesSpace
 is **not** running. Stop ArchivesSpace if it is running. Run `./build/run solr:reset` to
@@ -254,7 +261,7 @@ Assuming you have MySQL running and an empty `archivesspace` database available 
 to restore:
 
 ```bash
-gzip -dc ./build/mysql_db_fixtures/accessibility.sql.gz | mysql --host=127.0.0.1 --port=3306  -u root -p123456 archivesspace
+gzip -dc ./build/mysql_db_fixtures/blank.sql.gz | mysql --host=127.0.0.1 --port=3306  -u root -p123456 archivesspace
 ./build/run db:migrate
 ```
 
@@ -305,7 +312,7 @@ ArchivesSpace is started with:
 
 To stop supervisord: `Ctrl-c`.
 
-**Advanced: running the development servers directly**
+#### Advanced: running the development servers directly
 
 Supervisord is not required, or ideal for every situation. You can run the development
 servers directly via build tasks:
@@ -322,7 +329,7 @@ in a specific order or are all required.
 
 _An example use case for running a server directly is to use the pry debugger._
 
-**Advanced: debugging with pry**
+#### Advanced: debugging with pry
 
 To debug with pry you cannot use supervisord to run the application devserver,
 however you can mix and match:
@@ -335,11 +342,19 @@ supervisord -c supervisord/api.conf
 ./build/run frontend:devserver
 ```
 
-Add `binding.pry` to set breakpoints in the code. This can also be used in views:
-`<% binding.pry %>`. Using pry you can easily inspect the `request`, `params` and
-in scope instance variables that are available.
+Add `require 'pry-debugger-jruby'; binding.pry` to set breakpoints in the code. This can also be used in views:
+`<% require 'pry-debugger-jruby'; binding.pry %>`. Using pry you can easily inspect the `request`, `params` and
+in scope instance variables that are available. Typical debugger commands are available:
 
-**Advanced: development servers and the build directory**
+- `step`: Step execution into the next line or method. Takes an optional numeric argument to step multiple times.
+- `next`: Step over to the next line within the same frame. Takes an optional numeric argument to step multiple times. Differs from step in that it always stays within the same frame (e.g. does not go into other method calls).
+- `finish`: Execute until current stack frame returns.
+- `continue`: Continue program execution and end the Pry session.
+- `puts caller.join("\n")`: Get the current stacktrace.
+
+See also [pry-debugger-jruby docs](https://gitlab.com/ivoanjo/pry-debugger-jruby).
+
+#### Advanced: development servers and the build directory
 
      ./build/run db:migrate
 
@@ -354,21 +369,50 @@ Running the developments servers will create directories in `./build/dev`:
 _Note: the folders will be created as they are needed, so they may not all be present
 at all times._
 
+#### Accessing development servers from other devices on the local network
+
+You can access the ArchivesSpace development servers from other devices on your local network. This is especially useful for testing on mobile operating systems.
+
+##### Prerequisites
+
+1. Your development machine and the other device must be on the same WiFi network
+2. The ArchivesSpace development servers must be running on the development machine
+
+##### Steps
+
+1. Get your development machine's local IP address
+
+   On macOS:
+
+   ```bash
+   ipconfig getifaddr en0
+   ```
+
+   On Linux:
+
+   ```bash
+   hostname -I | awk '{print $1}'
+   ```
+
+   This returns something like `134.192.0.47`.
+
+2. Start the [development servers](#run-the-development-servers)
+
+   The development servers bind to `0.0.0.0` by default, making them accessible from other devices on the network (see the [frontend binding example](https://github.com/archivesspace/archivesspace/blob/f77dec627cd1feac77e4b67f9242d617efe80e94/build/build.xml#L899)).
+
+3. **Access from another device**
+
+   On the other device, open a web browser and navigate to your development machine's IP address with the appropriate port, ie: `http://<your-local-ip>:<port>/`.
+
+   So for IP address `134.192.0.47`:
+
+   - Staff interface: `http://134.192.0.47:3000/`
+   - Public interface: `http://134.192.0.47:3001/`
+   - API: `http://134.192.0.47:4567/`
+
 ## Running the tests
 
-ArchivesSpace uses a combination of RSpec, integration and Selenium
-tests.
-
-     ./build/run travis:test
-
-It's also useful to be able to run the backend unit tests separately.
-To do this, run:
-
-     ./build/run backend:test
-
-You can also run a single spec file with:
-
-     ./build/run backend:test -Dspec="myfile_spec.rb"
+### Backend tests
 
 _By default the tests are configured to run using a separate MySQL & Solr from the
 development servers. This means that the development and test environments will not
@@ -389,6 +433,12 @@ Or a single example with:
 
 ```bash
 ./build/run backend:test -Dexample="does something important"
+```
+
+Or by file line with:
+
+```bash
+./build/run backend:test -Dspec="myfile_spec.rb:123"
 ```
 
 There are specific instructions and requirements for the [UI tests](/development/ui_test) to work.

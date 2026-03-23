@@ -1,5 +1,6 @@
 ---
 title: Database versions by release
+description: A list of ArchivesSpace releases and their corresponding database versions.
 ---
 
 | Release | DB Version |

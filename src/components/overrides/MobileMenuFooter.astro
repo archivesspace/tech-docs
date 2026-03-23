@@ -1,7 +1,6 @@
 ---
 // Via https://github.com/withastro/starlight/blob/490c6eff34ab408c4f55777b7b0caa16787dd3d4/packages/starlight/components/MobileMenuFooter.astro
 
-import type { Props } from '@astrojs/starlight/props'
 import LanguageSelect from '@astrojs/starlight/components/LanguageSelect.astro'
 import ReleaseBadge from '../ReleaseBadge.astro'
 import SocialIcons from './SocialIcons.astro'
@@ -11,10 +10,10 @@ import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro'
 <div class="mobile-preferences sl-flex">
   <ReleaseBadge />
   <div class="sl-flex social-icons">
-    <SocialIcons {...Astro.props} />
+    <SocialIcons />
   </div>
-  <ThemeSelect {...Astro.props} />
-  <LanguageSelect {...Astro.props} />
+  <ThemeSelect />
+  <LanguageSelect />
 </div>
 
 <style>

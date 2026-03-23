@@ -1,0 +1,15 @@
+---
+import LogoMark from '@images/logo-mark.svg'
+
+const href = 'https://archivesspace.org'
+const label = 'ArchivesSpace.org'
+const width = '1rem'
+
+// Below markup adapted from
+// https://github.com/withastro/starlight/blob/main/packages/starlight/components/SocialIcons.astro
+---
+
+<a {href} rel="me" class="sl-flex" title={label}>
+  <span class="sr-only">{label}</span>
+  <LogoMark aria-hidden="true" {width} />
+</a>

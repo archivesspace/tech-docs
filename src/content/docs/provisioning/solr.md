@@ -1,5 +1,6 @@
 ---
 title: External Solr
+description: Instructions for installing and using external Solr with ArchivesSpace.
 ---
 
 :::note
@@ -31,13 +32,13 @@ setup a [configset](https://solr.apache.org/guide/8_10/config-sets.html#configse
 
 Using the command line:
 
-```
+```shell
 mkdir -p /$path/$to/$solr/server/solr/configsets/archivesspace/conf
 ```
 
 Be sure to replace `/$path/$to/$solr` with your actual Solr location, which might be something like:
 
-```
+```shell
 mkdir -p /opt/solr/server/solr/configsets/archivesspace/conf
 ```
 
@@ -61,7 +62,7 @@ d-----        10/25/2021  12:15 PM                conf
 ### Copy the config files
 
 Copy the ArchivesSpace Solr configuration files from the `solr` directory included
-with the release into the `$SOLR_HOME/server/solr/configsets/archivesspace/conf` directory.
+in the zip file release into the `$SOLR_HOME/server/solr/configsets/archivesspace/conf` directory.
 
 There should be four files:
 
@@ -70,7 +71,7 @@ There should be four files:
 - stopwords.txt
 - synonyms.txt
 
-```
+```shell
 ls .\server\solr\configsets\archivesspace\conf\
 
 Directory: C:\Users\archivesspace\Projects\solr-8.10.1\server\solr\configsets\archivesspace\conf
@@ -90,7 +91,7 @@ _Note: your exact output may be slightly different._
 When using Solr v9 or later, the use of [Solr modules](https://solr.apache.org/guide/solr/latest/configuration-guide/solr-modules.html) is required.
 We recommend using the environment variable option to specify the modules to use:
 
-```
+```shell
 SOLR_MODULES=analysis-extras
 ```
 
@@ -112,7 +113,7 @@ bin/solr start
 
 Wait for Solr to start (running as a non-admin user):
 
-```
+```shell
 .\bin\solr start
 "java version info is 11.0.12"
 "Extracted major version is 11"
@@ -125,13 +126,13 @@ You can check that Solr is running on [http://localhost:8983](http://localhost:8
 
 Now create the core:
 
-```
+```shell
 bin/solr create -c archivesspace -d archivesspace
 ```
 
 You should see confirmation:
 
-```
+```shell
 "java version info is 11.0.12"
 "Extracted major version is 11"
 
@@ -144,7 +145,7 @@ In the browser you should be able to access the [ArchivesSpace schema](http://lo
 
 Edit the ArchivesSpace config.rb file:
 
-```
+```ruby
 AppConfig[:enable_solr] = false
 ```
 
@@ -154,7 +155,7 @@ Note that doing this means that you will have to backup Solr manually.
 
 This config setting should point to your Solr instance:
 
-```
+```ruby
 AppConfig[:solr_url] = "http://localhost:8983/solr/archivesspace"
 ```
 
