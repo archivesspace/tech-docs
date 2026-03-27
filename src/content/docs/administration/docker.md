@@ -46,6 +46,7 @@ Unzipping the downloaded file will create an `archivesspace` directory with the 
 │   └── default.conf
 ├── sql
 ├── docker-compose.yml
+├── stylesheets
 └── .env
 ```
 
@@ -55,6 +56,7 @@ Unzipping the downloaded file will create an `archivesspace` directory with the 
 - The `plugins` directory is there to accommodate additional ArchivesSpace [plugins](/customization/plugins/). By default, it contains the [`local`](/customization/plugins/#adding-your-own-branding) and [`lcnaf`](https://github.com/archivesspace-plugins/lcnaf) plugins.
 - `proxy-config/default.conf` contains the configuration of the bundled `nginx` see also [proxy configuration](#proxy-configuration).
 - In the `sql` directory you can put your `.sql` database dump file to initialize the new database, see [next section](migrating-from-the-zip-distribution-to-docker).
+- The `stylesheets` directory contain the files that are used to create PDFs and other files.
 - `docker-compose.yml` contains all the information required by Docker to build and run ArchivesSpace.
 - `.env` contains configuration of the docker containers including:
   - Credentials used by archivespace to access its MySQL database. It is recommended to change the default root and user passwords to something safer.
@@ -144,7 +146,7 @@ ec71dd3030b7   databack/mysql-backup:latest        "/entrypoint dump"       26 h
 d2cf634744fe   mysql:8                             "docker-entrypoint.s…"   26 hours ago   Up 29 minutes             0.0.0.0:3306->3306/tcp, :::3306->3306/tcp, 33060/tcp   mysql
 ```
 
-If you have also [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed, you can use it to start, stop and manage the ArchivesSpace containers after they have been created for the first time. At the time of writing this, there is no way to call `docker compose` using Docker Desktop, it has to be called on a terminal as described above.
+If you have also [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed, you can use it to start, stop and manage the ArchivesSpace containers after they have been created for the first time. Docker Desktop does have a built in terminal window that can be used to run Docker commands.
 
 ### Stop
 
