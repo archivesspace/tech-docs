@@ -3,33 +3,44 @@ title: Getting started
 description: Detailed hardware and software requirements for running ArchivesSpace, including instructions on setting up and running an ArchivesSpace instance using the latest distribution .zip file.
 ---
 
-## Two ways to get up and running
+import LatestReleaseBlurb from '@components/LatestReleaseBlurb.astro'
 
-### Installing on Docker
+## The latest release
 
-Starting with ArchivesSpace v4.0.0, the easiest - and recommended way to get up and running is [using Docker](/administration/docker/). Docker eases installing, upgrading, starting and stopping ArchivesSpace. It also makes it easy to setup ArchivesSpace as a system service that starts automatically on every reboot.
+<LatestReleaseBlurb />
 
-### Installing the zip distribution
+## Two installation methods
 
-The older (more involved) way to get ArchivesSpace up and running is installing the latest distribution `.zip` file. If you prefer this way, read on!
+There are two different ways to install ArchivesSpace:
 
-# Using the zip distribution
+- Using Docker
+- Using the `.zip` file distribution
 
-## System requirements
+### Using Docker
 
-### Operating system
+See the [Running with Docker](/administration/docker/) page for instructions on how to install ArchivesSpace using Docker.
+
+Starting with ArchivesSpace v4.0.0, the easiest and recommended way to get up and running is using Docker. This method eases installing, upgrading, starting, and stopping ArchivesSpace. It also makes it easy to setup ArchivesSpace as a system service that starts automatically on every reboot.
+
+### Using the `.zip` file distribution
+
+The older and more involved way is to install from the latest distribution `.zip` file as described below.
+
+#### System requirements
+
+##### Operating system
 
 ArchivesSpace is being tested on Ubuntu Linux, Mac OS X, and Windows.
 
-### Memory
+##### Memory
 
 At least 1024 MB RAM allocated to the application are required. We recommend using at least 2 GB for optimal performance.
 
-## Software Requirements when using the Zip File Distribution
+#### Software requirements
 
-When using the zip distribution, installing a Java runtime environment and a solr instance are required. See [using Docker](/administration/docker/) to avoid these dependencies.
+When using the zip distribution, a Java runtime environment and a Solr instance are required. See [using Docker](/administration/docker/) to avoid these dependencies.
 
-### Java Runtime Environment
+##### Java Runtime Environment
 
 We recommend using [OpenJDK](https://openjdk.org/projects/jdk/). The following table lists the supported Java versions for each version of ArchivesSpace:
 
@@ -43,7 +54,7 @@ The Jruby version used in ArchivesSpace v4.2.0 is still compatible with java 11 
 
 Note that in the next major release we expect to drop support for java 17 and only support java 21 and 25.
 
-### Solr
+##### Solr
 
 Up to ArchivesSpace v3.1.1, the zip file distribution includes an embedded Solr v4 instance, which is deprecated and not supported anymore. Use the Docker images provided on [ArchivesSpace Docker repository](https://hub.docker.com/orgs/archivesspace/repositories) and see also [using Docker](/administration/docker/) to avoid managing an external Solr instance.
 
@@ -52,7 +63,7 @@ ArchivesSpace v3.2.0 or above requires an external Solr instance when running us
 | ArchivesSpace version | External Solr version     |
 | --------------------- | ------------------------- |
 | ≤ v3.1.1              | no external solr required |
-| v3.1.1 up to v3.5.1   | 8 (8.11)                  |
+| v3.2.0 up to v3.5.1   | 8 (8.11)                  |
 | v4.0.0 up to v4.1.1   | 9 (9.4.1)                 |
 | ≥ v4.2.0              | 9 (9.9.0)                 |
 
@@ -66,7 +77,7 @@ the application. Everything else will be treated as "best effort" community-led 
 
 See [Running with external Solr](/provisioning/solr) for more information on installing and upgrading Solr.
 
-### Database
+##### Database
 
 While ArchivesSpace does include an embedded database, MySQL is required for production use.
 
@@ -76,76 +87,57 @@ While ArchivesSpace does include an embedded database, MySQL is required for pro
 
 All ArchivesSpace versions can run on MySQL version 5.x or 8.x.
 
-## Getting started
+#### Install and run
 
-[//]: # 'This should probably be re-written for new instructions using docker'
+Download the distribution `.zip` for your version from [ArchivesSpace releases on GitHub](https://github.com/archivesspace/archivesspace/releases).
 
-The quickest way to get ArchivesSpace up and running is to download
-the latest distribution `.zip` file from the following URL:
+Confirm a supported Java version is active on your PATH:
 
-[https://github.com/archivesspace/archivesspace/releases](https://github.com/archivesspace/archivesspace/releases)
-
-You will need to have Java installed on your machine. You can check your Java version by running the command:
-
-```
+```sh
 java -version
 ```
 
-See [above](#java-runtime-environment) for the Java version needed. If you are running an earlier version of java upgrade to one of the supported ones (not the newest one). If you are running a newer version of Java you should revert back to or force your machine to use a supported version.
+Compare the output with [Java Runtime Environment](#java-runtime-environment). If needed, install a supported OpenJDK or point your environment at one (avoid using an unsupported newer Java as the default).
 
-When you extract the `.zip` file, it will create a directory called
-`archivesspace`. Next, follow the instructions for setting up:
+Extract the `.zip`; it creates a directory named `archivesspace`. Before starting ArchivesSpace, finish provisioning:
 
 - [MySQL](/provisioning/mysql)
-- mysql jdbc driver, see [Download MySQL Connector](/provisioning/mysql/#download-mysql-connector)
-- for version 3.2 and above, [Solr](/provisioning/solr) is also required. Earlier versions provided an embedded Solr v4 instance, which is now unsupported.
+- JDBC driver: [Download MySQL Connector](/provisioning/mysql/#download-mysql-connector)
+- External [Solr](/provisioning/solr) when your version requires it (ArchivesSpace v3.2.0 and later on the zip distribution; see [Solr](#solr))
 
-**Do not proceed until MySQL and Solr are running.**
+**Do not proceed until MySQL and Solr (when required) are running.**
 
-To run the system, just execute the appropriate
-startup script for your platform. On Linux and OSX:
+Start ArchivesSpace from that directory. On Linux and macOS:
 
 ```shell
 cd /path/to/archivesspace
 ./archivesspace.sh
 ```
 
-and for Windows:
+On Windows:
 
 ```shell
 cd \path\to\archivesspace
 archivesspace.bat
 ```
 
-This will start ArchivesSpace running in foreground mode (so it will
-shut down when you close your terminal window). Log output will be
-written to the file `logs/archivesspace.out` (by default).
+This runs ArchivesSpace in the foreground (it stops when you close the terminal). By default, logs are written to `logs/archivesspace.out`.
 
-**Note:** If you're running Windows and you get an error message like
-`unable to resolve type 'size_t'` or `no such file to load -- bundler`,
-make sure that there are no spaces in any part of the path name in which the
-ArchivesSpace directory is located.
+**Note:** On Windows, errors such as `unable to resolve type 'size_t'` or `no such file to load -- bundler` often mean the path to the `archivesspace` folder contains spaces. Use a path without spaces.
 
-### Start ArchivesSpace
+##### Verify and sign in
 
-The first time it starts, the system will take a minute or so to start
-up. Once it is ready, confirm that ArchivesSpace is running correctly by
-accessing the following URLs in your browser:
+The first startup can take about a minute. Then confirm the services in a browser:
 
-- http://localhost:8089/ -- the backend
-- http://localhost:8080/ -- the staff interface
-- http://localhost:8081/ -- the public interface
-- http://localhost:8082/ -- the OAI-PMH server
-- http://localhost:8090/ -- the Solr admin console
+- http://localhost:8089/ — backend
+- http://localhost:8080/ — staff interface
+- http://localhost:8081/ — public interface
+- http://localhost:8082/ — OAI-PMH server
+- http://localhost:8090/ — Solr admin console
 
-To start using the Staff interface application, log in using the adminstrator
-account:
+In the staff interface, sign in with the default administrator account:
 
 - Username: `admin`
 - Password: `admin`
 
-Then, you can create a new repository by selecting "System" -> "Manage
-repositories" at the top right hand side of the screen. From the
-"System" menu, you can perform a variety of administrative tasks, such
-as creating and modifying user accounts. **Be sure to change the
-"admin" user's password at this time.**
+Create a repository via **System** → **Manage repositories** (top right). From **System** you can manage users and other administration tasks. **Change the default `admin` password before production use.**
