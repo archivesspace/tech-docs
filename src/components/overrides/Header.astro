@@ -104,6 +104,16 @@ const isABlogPage =
       }
     }
 
+    .blog-nav-link {
+      --site-nav-gap: 0.875rem;
+      --link-padding: 0.5rem;
+      margin-left: calc(var(--site-nav-gap) - var(--link-padding));
+
+      @media (min-width: 50rem) {
+        margin-left: 0;
+      }
+    }
+
     .right-group,
     .social-icons {
       gap: 1rem;
