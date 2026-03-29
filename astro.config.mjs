@@ -40,7 +40,6 @@ export default defineConfig({
         PageTitle: './src/components/CustomPageTitle.astro',
         Footer: './src/components/overrides/Footer.astro',
         Header: './src/components/overrides/Header.astro',
-        MobileMenuFooter: './src/components/overrides/MobileMenuFooter.astro',
         Sidebar: './src/components/overrides/Sidebar.astro',
         SocialIcons: './src/components/overrides/SocialIcons.astro'
       }

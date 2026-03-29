@@ -9,8 +9,6 @@ import SiteTitle from '@astrojs/starlight/components/SiteTitle.astro'
 import SocialIcons from './SocialIcons.astro'
 import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro'
 
-import ReleaseBadge from '../ReleaseBadge.astro' // Custom component
-
 /**
  * Render the `Search` component if Pagefind is enabled or the default search component has been overridden.
  */
@@ -37,7 +35,6 @@ const isABlogPage =
     {shouldRenderSearch && <Search />}
   </div>
   <div class="sl-hidden md:sl-flex print:hidden right-group">
-    <ReleaseBadge />
     <div class="sl-flex social-icons">
       <SocialIcons />
     </div>
