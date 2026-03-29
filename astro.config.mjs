@@ -33,7 +33,7 @@ export default defineConfig({
         }
       ],
       sidebar,
-      tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 4 },
+      tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 5 },
       components: {
         EditLink: './src/components/overrides/EditLink.astro',
         PageFrame: './src/components/overrides/PageFrame.astro',

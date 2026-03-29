@@ -1,0 +1,9 @@
+---
+import latestArchivesSpaceRelease from '@lib/latestArchivesSpaceRelease'
+
+const { tagName, releaseUrl } = await latestArchivesSpaceRelease()
+---
+
+<p class="latest-release-blurb">
+  The latest release of ArchivesSpace is <a href={releaseUrl}>{tagName}</a>.
+</p>
