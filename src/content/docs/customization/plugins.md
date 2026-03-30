@@ -333,7 +333,6 @@ To make adding new records fields and sections to record forms a little eaiser v
 - `Plugins.register_plugin_section(section)` - allows you define a template to be inserted as a section for a given JSONModel record. A section is a type of `Plugins::AbstractPluginSection` which defines the source `plugin`, section `name`, the `jsonmodel_types` for which the section should show and any `opts` required by the templates at the time of render. These new sections (readonly, edit and sidebar additions) are output as part of the `PluginHelper` render methods.
 
   `Plugins::AbstractPluginSection` can be subclassed to allow flexible inclusion of arbitrary HTML. There are two examples provided with ArchivesSpace:
-
   - `Plugins::PluginSubRecord` - uses the `shared/subrecord` partial to output a standard styled ArchivesSpace section. `opts` requires the jsonmodel field to be defined.
 
   - `Plugins::PluginReadonlySearch` - uses the `search/embedded` partial to output a search listing as a section. `opts` requires the custom filter terms for this search to be defined.
