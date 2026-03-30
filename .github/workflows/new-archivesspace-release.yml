@@ -54,8 +54,8 @@ jobs:
             exit 1
           fi
 
-          # Branch-safe suffix from tag.
-          BRANCH_SUFFIX="$(echo "$TAG_NAME" | tr -cs '[:alnum:]._-'' ' '-' | sed 's/^-*//; s/-*$//')"
+          # Branch-safe suffix from tag
+          BRANCH_SUFFIX="$(printf '%s' "$TAG_NAME" | tr -cs '[:alnum:]_.-' '-' | sed 's/^-*//; s/-*$//')"
 
           echo "tag_name=$TAG_NAME" >> "$GITHUB_OUTPUT"
           echo "html_url=$HTML_URL" >> "$GITHUB_OUTPUT"
@@ -70,7 +70,7 @@ jobs:
            */
           export const LATEST_AS_RELEASE = {
             tagName: '${{ steps.release.outputs.tag_name }}',
-            htmlUrl: '${{ steps.release.outputs.html_url }}',
+            htmlUrl: '${{ steps.release.outputs.html_url }}'
           } as const
           EOF
 
