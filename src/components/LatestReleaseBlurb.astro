@@ -1,9 +1,8 @@
 ---
-import latestArchivesSpaceRelease from '@lib/latestArchivesSpaceRelease'
-
-const { tagName, releaseUrl } = await latestArchivesSpaceRelease()
+import { LATEST_AS_RELEASE } from '@lib/latestArchivesSpaceRelease.ts'
 ---
 
 <p class="latest-release-blurb">
-  The latest release of ArchivesSpace is <a href={releaseUrl}>{tagName}</a>.
+  The latest release of ArchivesSpace is
+  <a href={LATEST_AS_RELEASE.htmlUrl}>{LATEST_AS_RELEASE.tagName}</a>.
 </p>
