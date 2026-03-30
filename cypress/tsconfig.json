@@ -2,6 +2,7 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "baseUrl": "..",
+    "ignoreDeprecations": "6.0",
     "noEmit": true,
     "types": ["cypress", "node"]
   },

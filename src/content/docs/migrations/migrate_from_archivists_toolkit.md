@@ -65,7 +65,6 @@ These guidelines are for migrating data from Archivists' Toolkit 2.0 Update 16 t
   - **View Error Log** – Used to view a printout of all the errors encountered during the
     migration process. This can be used while the migration process is underway as well.
 - Once you have made the appropriate changes to the UI, there are three buttons to choose from to start the migration process.
-
   - **Copy to ArchivesSpace** – This starts the migration to the ArchivesSpace instance
     you have made the appropriate changes to the UI, there are three buttons to
     indicated by the Host URL.

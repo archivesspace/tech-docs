@@ -405,7 +405,6 @@ You can access the ArchivesSpace development servers from other devices on your 
    On the other device, open a web browser and navigate to your development machine's IP address with the appropriate port, ie: `http://<your-local-ip>:<port>/`.
 
    So for IP address `134.192.0.47`:
-
    - Staff interface: `http://134.192.0.47:3000/`
    - Public interface: `http://134.192.0.47:3001/`
    - API: `http://134.192.0.47:4567/`

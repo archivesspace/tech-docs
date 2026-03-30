@@ -23,17 +23,18 @@
     "stylelint:fix": "stylelint --fix '**/*.{astro,css}' -f verbose"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.34.1",
-    "astro": "^5.7.10",
+    "@astrojs/starlight": "^0.38.2",
+    "astro": "^6.1.2",
     "sharp": "^0.34.1"
   },
   "devDependencies": {
-    "cypress": "14.3.2",
+    "cypress": "^15.13.0",
     "postcss-html": "^1.8.0",
-    "prettier": "3.5.3",
+    "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
-    "stylelint": "^16.19.1",
+    "stylelint": "^17.6.0",
     "stylelint-config-html": "^1.1.0",
-    "stylelint-config-recommended": "16.0.0"
+    "stylelint-config-recommended": "^18.0.0",
+    "typescript": "^6.0.2"
   }
 }
