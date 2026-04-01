@@ -80,7 +80,7 @@ translations or multiple gem versions.
 2.  Run the following checks (recommended):
 
     ```shell
-    build/run rake -Dtask=check:locales
+    build/run rake -Dtask=locales:report_missing_keys
     build/run rake -Dtask=check:multiple_gem_versions
     ```
 
