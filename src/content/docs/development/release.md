@@ -80,13 +80,10 @@ translations or multiple gem versions.
 2.  Run the following checks (recommended):
 
     ```shell
-    build/run rake -Dtask=locales:report_missing_keys
     build/run rake -Dtask=check:multiple_gem_versions
     ```
 
-3.  Missing locales do not need to be addressed for a Release Candidate, but
-    should be noted and provided prior to a full release. If multiple gem
-    versions are reported, that should be addressed prior to moving on.
+3.  If multiple gem versions are reported, that should be addressed prior to moving on.
 
 ## Build and publish the API and Yard Docs
 
@@ -137,8 +134,7 @@ percentage of the code and are not especially useful.
 
 ### Commit built docs and push to Github pages
 
-1.  Double check that you are on a release branch (we don't need this stuff in master) and
-    commit the newly built documentation:
+1.  Double check that you are on a release branch (we don't need this stuff in master). Commit the newly built documentation and push it in the `gh-pages` branch only:
 
     ```shell
     git add docs/build
@@ -160,6 +156,8 @@ percentage of the code and are not especially useful.
     ```shell
     git push origin :gh-pages
     ```
+
+    **Note:** do not push the docs/build directory to the release branch, as it is only meant to be maintained in the `gh-pages` branch.
 
 ## Building a release yourself
 
