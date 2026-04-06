@@ -160,6 +160,26 @@ The `blog` collection is registered in `src/content.config.ts` with a Zod schema
 
 End-to-end coverage is in `cypress/e2e/blog.cy.js`. Update these tests when you change blog markup, URLs, or visible behavior.
 
+## Adding new pages
+
+Adding a new page depends on whether the content is part of the docs collection or the blog collection.
+
+### Documentation pages
+
+Add a new documentation page by following this workflow:
+
+1. Create a Markdown file in the appropriate docs section directory under `src/content/docs/`.
+2. Add that page to `src/siteNavigation.json` in the correct section and in the correct order so it appears in the sidebar navigation.
+3. If the new page becomes the first page in its section, update the corresponding homepage hero link in `src/components/HomePage.astro` so the section link points to the new first page.
+
+Some section directories still contain legacy `index.md` pages from the old Tech Docs site. Those pages can still be routed (for example `/architecture` and `/architecture/index`), but they are not included in the sidebar since they are note listed in `src/siteNavigation.json`.
+
+### Blog posts
+
+Add a new blog post by creating a new Markdown file in `src/content/blog/` with the required frontmatter fields (`title`, `metaDescription`, `pubDate`, and `authors`).
+
+Optional fields (`teaser` and `updatedDate`) can also be added as needed. No `src/siteNavigation.json` changes are required for blog posts; valid files in the collection are included automatically when the site builds.
+
 ## Theme customization
 
 Starlight can be customized in various ways, including:
