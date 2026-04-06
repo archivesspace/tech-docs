@@ -75,25 +75,25 @@ The following scripts are made available via `package.json`. Invoke any script o
 - `stylelint:check` -- lint CSS with Stylelint
 - `stylelint:fix` -- fix possible CSS lint errors with Stylelint
 
-## Search
+## Documentation pages
 
-Site search is a [Starlight feature](https://starlight.astro.build/guides/site-search/):
+Documentation pages are implemented with Starlight’s `docs` content collection. Source files are in `src/content/docs/`, and Starlight generates their routes as part of the normal Astro static build output (no separate docs build step). Sidebar hierarchy is configured in `src/siteNavigation.json`. For copy-paste templates and short author-facing field guidance, see [YAML frontmatter](/about/authoring#yaml-frontmatter).
 
-> By default, Starlight sites include full-text search powered by [Pagefind](https://pagefind.app/), which is a fast and low-bandwidth search tool for static sites.
->
-> No configuration is required to enable search. Build and deploy your site, then use the search bar in the site header to find content.
+### Adding documentation pages
 
-:::note
-Search only runs in production builds not in the dev server.
-:::
+To add a new documentation page:
 
-## YAML frontmatter and content schemas
+1. Create a Markdown file in the appropriate docs section directory under `src/content/docs/`.
+2. Add that page to `src/siteNavigation.json` in the correct section and in the correct order so it appears in the sidebar navigation as desired.
+3. If the new page becomes the first page in its section, update the corresponding homepage hero link in `src/components/HomePage.astro` so the section link points to the new first page.
 
-Frontmatter for both documentation pages and blog posts is validated at build time through `src/content.config.ts`. For copy-paste templates and a short description of each field authors should set, see [YAML frontmatter](/about/authoring#yaml-frontmatter). The sections below cover the full Starlight field set for docs, what is required versus optional, and how blog metadata is rendered in the UI.
+### Legacy `index.md` pages
 
-### Documentation pages
+Some section directories still contain legacy `index.md` pages from the old Tech Docs site. Those pages can still be routed (for example `/architecture` and `/architecture/index`), but they are not included in the sidebar since they are not listed in `src/siteNavigation.json`.
 
-Documentation pages use [Starlight’s frontmatter schema](https://starlight.astro.build/reference/frontmatter/) extended with `issueUrl` and `issueText` in `src/content.config.ts`. Starlight requires a `title`; other keys are optional unless your page has a specific need.
+### Documentation content collection and schema
+
+In `src/content.config.ts`, the `docs` collection uses `docsLoader()` and [Starlight’s frontmatter schema](https://starlight.astro.build/reference/frontmatter/) via `docsSchema()`, extended with `issueUrl` and `issueText`. Frontmatter is validated at build time. Starlight requires a `title`; other keys are optional unless your page has a specific need.
 
 | Field             | Required | Purpose                                                                                                                                                                                                                 |
 | ----------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -115,9 +115,36 @@ Documentation pages use [Starlight’s frontmatter schema](https://starlight.ast
 | `issueUrl`        | No       | URL for the footer “report an issue” link, or `false` to hide it. Defaults in `src/content.config.ts` when omitted; authors may set explicitly (see [YAML frontmatter](/about/authoring#yaml-frontmatter)).             |
 | `issueText`       | No       | Label text for that footer link. Defaults in `src/content.config.ts` when omitted; authors may set explicitly (see [YAML frontmatter](/about/authoring#yaml-frontmatter)).                                              |
 
-### Blog posts
+### Documentation routes
 
-The `blog` collection uses a Zod schema defined in `src/content.config.ts`.
+- URLs are derived from file paths in `src/content/docs/` unless `slug` is set in frontmatter.
+- Previous/next pagination is derived from sidebar order unless `prev`/`next` are overridden in frontmatter.
+
+### Documentation UI components
+
+| Area                                                     | Location                                                                                                             |
+| -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Sidebar hierarchy and grouping                           | `src/siteNavigation.json`                                                                                            |
+| Default docs page title rendering                        | `src/components/CustomPageTitle.astro` (falls back to Starlight’s default `PageTitle` for non-blog routes)           |
+| Footer metadata/navigation (edit link, issue link, etc.) | `src/components/overrides/Footer.astro`, `src/components/overrides/EditLink.astro`, `src/components/IssueLink.astro` |
+
+### Documentation tests
+
+Documentation-page behavior is covered in Cypress, mainly `cypress/e2e/content-pages.cy.js` (sidebar, table of contents, footer metadata links, and pagination).
+
+## Blog
+
+The [blog](/blog) is implemented as an Astro content collection alongside the docs collection. Post source files are in `src/content/blog/`; routes live under `src/pages/blog/`. There is no separate blog build step—blog pages are part of the normal Astro static output, and site search ([Search](#search)) indexes them like other HTML. For where to put files and example frontmatter, see [Authoring content](/about/authoring#where-pages-go) and [YAML frontmatter](/about/authoring#yaml-frontmatter).
+
+### Adding blog posts
+
+To add a new blog post, create a new Markdown file in `src/content/blog/` with the required frontmatter fields (`title`, `metaDescription`, `pubDate`, and `authors`).
+
+Optional fields (`teaser` and `updatedDate`) can also be added as needed. No `src/siteNavigation.json` changes are required for blog posts; valid files in the collection are included automatically when the site builds.
+
+### Blog content collection and schema
+
+The `blog` collection is registered in `src/content.config.ts` with a Zod schema. Frontmatter is validated at build time. Adding or renaming frontmatter fields requires updating that schema and every consumer of `entry.data` (blog pages, middleware, and tests).
 
 | Field             | Required | Purpose                                                                                                                                                                            |
 | ----------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -127,14 +154,6 @@ The `blog` collection uses a Zod schema defined in `src/content.config.ts`.
 | `pubDate`         | Yes      | Publication date; posts are sorted by this field, newest first. Parsed from frontmatter and formatted for display in **UTC** on the index and post header.                         |
 | `authors`         | Yes      | Array of author display names; shown comma-separated on the index and post page.                                                                                                   |
 | `updatedDate`     | No       | Optional revision date (`YYYY-MM-DD`). Stored in frontmatter but **not shown in the UI** today; useful for future display or consistency with the authoring template.              |
-
-## Blog
-
-The [blog](/blog) is implemented as an Astro content collection alongside the docs collection. Post source files are in `src/content/blog/`; routes live under `src/pages/blog/`. There is no separate blog build step—blog pages are part of the normal Astro static output, and site search ([Search](#search)) indexes them like other HTML. For where to put files and example frontmatter, see [Authoring content](/about/authoring#where-pages-go) and [YAML frontmatter](/about/authoring#yaml-frontmatter). For schema, validation, and HTML behavior, see [YAML frontmatter and content schemas](#yaml-frontmatter-and-content-schemas) above.
-
-### Blog content collection
-
-The `blog` collection is registered in `src/content.config.ts` with a Zod schema. Adding or renaming frontmatter fields requires updating that schema and every consumer of `entry.data` (blog pages, middleware, and tests).
 
 ### Blog routes
 
@@ -160,25 +179,17 @@ The `blog` collection is registered in `src/content.config.ts` with a Zod schema
 
 End-to-end coverage is in `cypress/e2e/blog.cy.js`. Update these tests when you change blog markup, URLs, or visible behavior.
 
-## Adding new pages
+## Search
 
-Adding a new page depends on whether the content is part of the docs collection or the blog collection.
+Site search is a [Starlight feature](https://starlight.astro.build/guides/site-search/):
 
-### Documentation pages
+> By default, Starlight sites include full-text search powered by [Pagefind](https://pagefind.app/), which is a fast and low-bandwidth search tool for static sites.
+>
+> No configuration is required to enable search. Build and deploy your site, then use the search bar in the site header to find content.
 
-Add a new documentation page by following this workflow:
-
-1. Create a Markdown file in the appropriate docs section directory under `src/content/docs/`.
-2. Add that page to `src/siteNavigation.json` in the correct section and in the correct order so it appears in the sidebar navigation.
-3. If the new page becomes the first page in its section, update the corresponding homepage hero link in `src/components/HomePage.astro` so the section link points to the new first page.
-
-Some section directories still contain legacy `index.md` pages from the old Tech Docs site. Those pages can still be routed (for example `/architecture` and `/architecture/index`), but they are not included in the sidebar since they are note listed in `src/siteNavigation.json`.
-
-### Blog posts
-
-Add a new blog post by creating a new Markdown file in `src/content/blog/` with the required frontmatter fields (`title`, `metaDescription`, `pubDate`, and `authors`).
-
-Optional fields (`teaser` and `updatedDate`) can also be added as needed. No `src/siteNavigation.json` changes are required for blog posts; valid files in the collection are included automatically when the site builds.
+:::note
+Search only runs in production builds not in the dev server.
+:::
 
 ## Theme customization
 
