@@ -262,7 +262,7 @@ All internal images belong in the `src/images` directory. The relative path to i
 
 ## YAML frontmatter
 
-Each content file starts with [YAML](https://yaml.org/) frontmatter: metadata in a block wrapped in triple dashes (`---`). Use the templates below so every field we rely on is set explicitly. For more on how the site build system reads these values, see [YAML frontmatter and content schemas](/about/development#yaml-frontmatter-and-content-schemas).
+Each content file starts with [YAML](https://yaml.org/) frontmatter: metadata in a block wrapped in triple dashes (`---`). Use the templates below so every field we rely on is set explicitly. For more on how the site build system reads these values, see [Documentation content collection and schema](/about/development#documentation-content-collection-and-schema) and [Blog content collection and schema](/about/development#blog-content-collection-and-schema) on the Development page.
 
 ### Documentation pages
 
