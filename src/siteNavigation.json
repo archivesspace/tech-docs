@@ -11,6 +11,7 @@
     "label": "Architecture",
     "collapsed": false,
     "items": [
+      "architecture/overview",
       "architecture/jsonmodel",
       "architecture/backend",
       "architecture/frontend",
