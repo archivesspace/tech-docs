@@ -184,6 +184,32 @@ Put all images used in Tech Docs content in `src/images`.
 
 Files placed in `public` are not processed by Astro. They are copied directly to the output and made available from the root of the site, so `public/favicon.svg` becomes available at `docs.archivesspace.org/favicon.svg`, while `public/example/slides.pdf` becomes available at `docs.archivesspace.org/example/slides.pdf`.
 
+## Mermaid diagrams
+
+Tech Docs supports Mermaid diagrams in both docs and blog content (for authoring syntax, see [Authoring content](/about/authoring#diagrams)). Mermaid is a text-to-diagram tool: authors write diagram definitions in a code fence, and Mermaid turns that text into SVG diagrams in the browser. This differs from regular fenced code blocks that Starlight renders with [Expressive Code](https://expressive-code.com/) as static syntax-highlighted code snippets.
+
+### Implementation
+
+1. Runtime logic lives in `src/lib/mermaid.ts`.
+2. The runtime is loaded by the Starlight page frame override in `src/components/overrides/PageFrame.astro`.
+3. Mermaid fences are post-processed at runtime and rendered as SVG diagrams.
+
+### Theme behavior
+
+- Mermaid theme is derived from the site theme (`data-theme` on `<html>`):
+  - dark mode => Mermaid `dark`
+  - non-dark modes => Mermaid `default`
+- A `MutationObserver` in `src/lib/mermaid.ts` watches for `data-theme` changes and re-renders existing Mermaid diagrams so colors update after theme toggles.
+- Mermaid text color is explicitly set in `initializeMermaidRuntime()` bor improved accessibility over its default styles:
+  - dark mode text: `#fff`
+  - light mode text: `#000`
+
+### Maintenance notes
+
+- If Starlight/Expressive Code markup changes in a future upgrade, update Mermaid selectors/parsing in `src/lib/mermaid.ts` (especially `pre[data-language="mermaid"]` and `.ec-line .code`).
+- If layout-level script loading changes, keep `src/components/overrides/PageFrame.astro` loading `src/lib/mermaid.ts` on pages where markdown content appears.
+- Keep Cypress coverage updated in `cypress/e2e/mermaid.cy.js` when Mermaid rendering behavior or markup changes.
+
 ## Update npm dependencies
 
 Run the following commands locally to update the npm dependencies, then push the changes upstream.
