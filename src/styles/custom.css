@@ -201,6 +201,10 @@ main:has(.blog-post-footer) > .content-panel > .sl-container {
   margin-inline: auto;
 }
 
+main:has(.blog-post-list) .blog-post-card__title code {
+  font-size: 66%;
+}
+
 /* Blog post content font size */
 /* stylelint-enable no-descending-specificity */
 main:has(.blog-post-header) .sl-markdown-content {
@@ -210,5 +214,23 @@ main:has(.blog-post-header) .sl-markdown-content {
 @media (min-width: 50rem) {
   main:has(.blog-post-header) .sl-markdown-content {
     font-size: 1.2rem;
+  }
+}
+
+main:has(.blog-post-header) .blog-post-header h1 code {
+  background-color: var(--sl-color-bg-inline-code);
+  margin-block: -0.125rem;
+  padding: 0.125rem 0.375rem;
+  font-size: 66%;
+}
+
+/* Mermaid diagrams */
+.sl-markdown-content .mermaid {
+  margin-block: 2rem;
+  overflow-x: auto;
+
+  svg {
+    max-width: 100%;
+    height: auto;
   }
 }

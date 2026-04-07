@@ -25,6 +25,7 @@
   "dependencies": {
     "@astrojs/starlight": "^0.38.2",
     "astro": "^6.1.2",
+    "mermaid": "^11.14.0",
     "sharp": "^0.34.1"
   },
   "devDependencies": {

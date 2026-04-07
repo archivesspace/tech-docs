@@ -29,6 +29,7 @@ Common use of Markdown throughout Tech Docs includes:
 - [paragraphs](#paragraphs)
 - [lists](#lists)
 - [code examples](#code-examples)
+- [diagrams](#diagrams)
 - [asides](#asides)
 - [images](#images)
 
@@ -189,6 +190,28 @@ def h(str)
 end
 ```
 ````
+
+### Diagrams
+
+Tech Docs supports [Mermaid](https://mermaid.js.org/) diagrams in both documentation pages and blog posts.
+
+Use a fenced code block with `mermaid` as the language:
+
+````md
+```mermaid
+flowchart TD
+  A[Staff user edits record] --> B[Indexer updates Solr]
+  B --> C[Updated record in PUI]
+```
+````
+
+Rendered example:
+
+```mermaid
+flowchart TD
+  A[Staff user edits record] --> B[Indexer updates Solr]
+  B --> C[Updated record in PUI]
+```
 
 ### Asides
 
