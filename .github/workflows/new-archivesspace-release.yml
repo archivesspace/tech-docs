@@ -54,8 +54,8 @@ jobs:
             exit 1
           fi
 
-          # Branch-safe suffix from tag.
-          BRANCH_SUFFIX="$(echo "$TAG_NAME" | tr -cs '[:alnum:]._-'' ' '-' | sed 's/^-*//; s/-*$//')"
+          # Branch-safe suffix from tag
+          BRANCH_SUFFIX="$(printf '%s' "$TAG_NAME" | tr -cs '[:alnum:]_.-' '-' | sed 's/^-*//; s/-*$//')"
 
           echo "tag_name=$TAG_NAME" >> "$GITHUB_OUTPUT"
           echo "html_url=$HTML_URL" >> "$GITHUB_OUTPUT"
