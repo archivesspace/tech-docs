@@ -8,6 +8,17 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Tech Docs',
+      defaultLocale: 'root',
+      locales: {
+        root: {
+          label: 'English',
+          lang: 'en'
+        },
+        de: { label: 'Deutsch' },
+        es: { label: 'Español' },
+        fr: { label: 'Français' },
+        ja: { label: '日本語' }
+      },
       routeMiddleware: './src/blogRouteData.js',
       logo: {
         dark: './src/images/logo-full-dark.svg',
