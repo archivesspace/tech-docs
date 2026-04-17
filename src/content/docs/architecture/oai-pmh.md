@@ -3,9 +3,8 @@ title: OAI-PMH interface
 description: Describes how OAI-PMH is set up in ArchivesSpace and how to harvest data using OAI-PMH with example links and additional information.
 ---
 
-A starter OAI-PMH interface for ArchivesSpace allowing other systems to harvest
-your records is included in version 2.1.0. Additional features and functionality
-will be added in later releases.
+The OAI-PMH responder for ArchivesSpace allows other systems to harvest
+your records based on your settings.
 
 By default, the OAI-PMH interface runs on port 8082. A sample request page is
 available at http://localhost:8082/sample. (To access it, make sure that you
@@ -65,6 +64,7 @@ see also: https://github.com/code4lib/ruby-oai/releases/tag/v1.0.0
 
 Harvesting the ArchivesSpace OAI-PMH server without specifying a set will yield
 all published records across all repositories.
+
 Predefined sets can be accessed using the set parameter. In order to retrieve
 records from sets, include a set parameter in the URL and the DC metadataPrefix,
 such as "&set=collection&metadataPrefix=oai_dc". These sets can be from
@@ -83,20 +83,7 @@ configured sets as shown above or from the following levels of description:
 - Sub-Series -- subseries
 
 In addition to the sets based on level of description, you can define sets
-based on repository codes and/or sponsors in the config/config.rb file:
-
-```ruby
-AppConfig[:oai_sets] = {
-    'repository_set' => {
-        :repo_codes => ['hello626'],
-        :description => "A set of one or more repositories",
-    },
-    'sponsor_set' => {
-        :sponsors => ['The_Sponsor'],
-        :description => "A set of one or more sponsors",
-    }
-}
-```
+based on repository codes and/or sponsors. These settings are available in the application in the Manage OAI-PMH Settings area.
 
 The interface implements resumption tokens for pagination of results. As an
 example, the following URL format should be used to page through the results
