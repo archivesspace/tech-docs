@@ -26,9 +26,12 @@ different metadata responses available:
 - MODS -- oai_mods (archival objects and resources in MODS)
 
 The EAD response for resources and MARC response for resources and archival
-objects use the mappings from the built-in exporter for resources. The DC,
-DCMI terms, and MODS responses for resources and archival objects use mappings
-suggested by the community.
+objects use the mappings from the built-in exporter for resources. OAI EAD 
+options can be configured in AppConfig[:oai_ead_options]. The DC, DCMI terms, 
+and MODS responses for resources and archival objects use mappings suggested 
+by the community. 
+
+OAI options are set within both the [AppConfig](https://docs.archivesspace.org/customization/configuration/#oai-configuration-options) and via the Staff User Interface (System menu > Manage OAI-PMH Settings).
 
 Here are some example URLs and other information for these requests:
 
@@ -126,5 +129,5 @@ levels of the finding aid. Element inheritance is determined by institutional
 system configuration (editable in the config/config.rb file) as implemented for
 the Public User Interface.
 
-ARKs have not yet been implemented, pending more discussion of how they should
-be formulated.
+Starting in 2.7.0, there is an option to use internal or external Archival Resource Keys (ARKs) 
+in exports or OAI-PMH harvests for resources and archival objects. 
