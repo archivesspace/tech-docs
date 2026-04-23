@@ -3,14 +3,14 @@ title: Upgrading when using the zip distribution
 description: Instructions on how to update ArchivesSpace.
 ---
 
-If you have installed ArchivesSpace using the Docker Configuration Package, refer to [upgrading with Docker](/administration/docker/#upgrading). If you have installed ArchivesSpace using the zip distribution, read on! (In case you do not know what the difference is, see the [getting started page](/administration/getting_started/#two-ways-to-get-up-and-running)).
+If you have installed ArchivesSpace using the Docker Configuration Package, refer to [upgrading with Docker](/administration/docker/#upgrading). If you have installed ArchivesSpace using the zip distribution, read on! (In case you do not know what the difference is, see the [getting started page](/administration/getting-started/#two-ways-to-get-up-and-running)).
 
 You can upgrade most versions of ArchivesSpace to a later version using these general instructions. Typically you do not need to progress through other versions of ArchivesSpace to get to a later one, unless there are special considerations for a specific version. Special considerations for these versions are noted here and in release notes.
 
-- **[Special considerations when upgrading to v1.1.0](/administration/upgrading_1_1_0)**
-- **[Special considerations when upgrading to v1.1.1](/administration/upgrading_1_1_1)**
-- **[Special considerations when upgrading from v1.4.2 to 1.5.x (these considerations also apply when upgrading from 1.4.2 to any version through 2.0.1)](/administration/upgrading_1_5_0)**
-- **[Special considerations when upgrading to 2.1.0](/administration/upgrading_2_1_0)**
+- **[Special considerations when upgrading to v1.1.0](/administration/upgrading-1-1-0)**
+- **[Special considerations when upgrading to v1.1.1](/administration/upgrading-1-1-1)**
+- **[Special considerations when upgrading from v1.4.2 to 1.5.x (these considerations also apply when upgrading from 1.4.2 to any version through 2.0.1)](/administration/upgrading-1-5-0)**
+- **[Special considerations when upgrading to 2.1.0](/administration/upgrading-2-1-0)**
 - **[Changing to external Solr when upgrading to 3.2.0 or later versions](https://docs.archivesspace.org/provisioning/solr/).**
 
 ## Create a backup of your ArchivesSpace instance

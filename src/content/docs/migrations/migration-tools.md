@@ -5,7 +5,7 @@ description: Links to tools for migrating data into and out of ArchivesSpace.
 
 ## Archivists' Toolkit
 
-- [AT migration tool instructions](/migrations/migrate_from_archivists_toolkit)
+- [AT migration tool instructions](/migrations/migrate-from-archivists-toolkit)
 - [AT migration plugin](https://github.com/archivesspace/at-migration/releases)
 - [AT migration source code](https://github.com/archivesspace/at-migration)
 - [AT migration mapping (for 2.x versions of the tool and ArchivesSpace](https://github.com/archivesspace/at-migration/blob/master/docs/ATMappingDocument.xlsx)
@@ -17,7 +17,7 @@ description: Links to tools for migrating data into and out of ArchivesSpace.
 
 ## Archon
 
-- [Archon migration tool instructions](/migrations/migrate_from_archon)
+- [Archon migration tool instructions](/migrations/migrate-from-archon)
 - [Archon migration tool](https://github.com/archivesspace/archon-migration/releases/latest)
 - [Archon migration source code](https://github.com/archivesspace/archon-migration/)
 - [Archon migration mapping (for 2.x versions of the tool and ArchivesSpace)](https://docs.google.com/spreadsheets/d/13soN5djk16QYmRoSajtyAc_nBrNldyL58ViahKFJAog/edit?usp=sharing)
