@@ -216,7 +216,11 @@ Resist the urge to set this to a big number!
 
 ### OAI configuration options
 
-**NOTE: As of version 2.5.2, the following parameters (oai_repository_name, oai_record_prefix, and oai_admin_email) have been deprecated. They should be set in the Staff User Interface. To set them, select the System menu in the Staff User Interface and then select Manage OAI-PMH Settings. These three settings are at the top of the page in the General Settings section. These settings will be completely removed from the config file when version 2.6.0 is released.**
+#### ` AppConfig[:oai_ead_options]`
+
+`AppConfig[:oai_ead_options] = { :include_daos => true, :use_numbered_c_tags => true, :include_uris => false }`
+
+**NOTE: As of version 2.5.2, the following parameters (oai_repository_name, oai_record_prefix, oai_admin_email, and oai_sets) have been deprecated. They should be set in the Staff User Interface. To set them, select the System menu in the Staff User Interface and then select Manage OAI-PMH Settings. These three settings are at the top of the page in the General Settings section. These settings were removed from the config file in version 2.6.0.**
 
 #### `AppConfig[:oai_repository_name]`
 
