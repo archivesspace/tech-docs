@@ -61,7 +61,7 @@ The ArchivesSpace repository includes optional VS Code workspace configuration t
 
 **Enable the tasks**
 
-Copy the example tasks file to `.vscode/tasks.json`. This adds a task that runs the e2e test suite with the correct working directory, Ruby environment, and environment variables. Run it via **Terminal → Run Task… → Cucumber: Run e2e-test** (the same command as in the [e2e test documentation](/development/e2e_tests)). You may optionally supply a feature file path, `file.feature:line`.
+Copy the example tasks file to `.vscode/tasks.json`. This adds a task that runs the e2e test suite with the correct working directory, Ruby environment, and environment variables. Run it via **Terminal → Run Task… → Cucumber: Run e2e-test** (the same command as in the [e2e test documentation](/development/e2e-tests)). You may optionally supply a feature file path, `file.feature:line`.
 
 **Step-definition navigation**
 

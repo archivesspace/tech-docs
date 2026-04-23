@@ -7,7 +7,7 @@ description: Instructions on setting up, running, and managing an ArchivesSpace 
 
 Starting with v4.0.0 ArchivesSpace officially supports using [Docker](https://www.docker.com/) as the easiest way to get up and running. Docker eases installing, upgrading, starting and stopping ArchivesSpace. It also makes it easy to setup ArchivesSpace as a system service that starts automatically on every reboot.
 
-If you prefer not to use Docker, another (more involved) way to get ArchivesSpace up and running is installing the latest [distribution `.zip` file](/getting_started/zip_distribution).
+If you prefer not to use Docker, another (more involved) way to get ArchivesSpace up and running is installing the latest [distribution `.zip` file](/getting-started/zip-distribution).
 
 ArchivesSpace Docker images are available on the [Docker hub](https://hub.docker.com/u/archivesspace).
 
