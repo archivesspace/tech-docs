@@ -281,7 +281,7 @@ Directory to store automated backups when using the embedded demo database (Apac
 
 #### `AppConfig[:solr_indexing_frequency_seconds]`
 
-The number of seconds between each run of the SUI and PUI indexers. The indexers will perform and indexing cycle every configured number of seconds.
+The number of seconds between each run of the SUI and PUI indexers. The indexers will perform an indexing cycle every configured number of seconds.
 
 `AppConfig[:solr_indexing_frequency_seconds] = 30`
 
@@ -327,7 +327,7 @@ The size of each batch of records passed to each indexer worker-thread to proces
 
 #### `AppConfig[:indexer_thread_count]`
 
-The number of worker-thread to be used by the SUI indexer. More worker-threads means that more CPU cores will be used.
+The number of worker-threads to be used by the SUI indexer. More worker-threads means that more CPU cores will be used.
 `AppConfig[:indexer_thread_count] = 4`
 
 #### `AppConfig[:indexer_solr_timeout_seconds]`
@@ -345,7 +345,7 @@ If false no pui indexer is started. Set to false if not using the PUI at all.
 
 #### `AppConfig[:pui_indexing_frequency_seconds]`
 
-The number of seconds between each run of the PUI indexer. The indexer will perform and indexing cycle every configured number of seconds.
+The number of seconds between each run of the PUI indexer. The indexer will perform an indexing cycle every configured number of seconds.
 `AppConfig[:pui_indexing_frequency_seconds] = 30`
 
 #### `AppConfig[:pui_indexer_records_per_thread]`
@@ -360,7 +360,7 @@ indexing process (more cores and/or more records per thread means more memory us
 
 #### `AppConfig[:pui_indexer_thread_count]`
 
-The number of worker-thread to be used by the PUI indexer. More worker-threads means that more CPU cores will be used.
+The number of worker-threads to be used by the PUI indexer. More worker-threads means that more CPU cores will be used.
 `AppConfig[:pui_indexer_thread_count] = 1`
 
 ### Index state
@@ -389,7 +389,7 @@ By default, the S3 configuration is fetched from the following shell environment
 - `AWS_SECRET_ACCESS_KEY`
 - `AWS_ASPACE_BUCKET`
 
-It is using the `:cookie_prefix` configuration as a prefix for the state files stored in the bucket - usefull when using the same bucket to store indexer state of multiple archivesspace instances.
+It is using the `:cookie_prefix` configuration as a prefix for the state files stored in the bucket - useful when using the same bucket to store indexer state of multiple archivesspace instances.
 
 ##### Configuring S3 access using AppConfig variable in the `config.rb` file
 
