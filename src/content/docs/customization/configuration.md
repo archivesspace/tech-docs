@@ -18,7 +18,7 @@ ArchivesSpace. Be sure that your new settings are not commented out
 
 Set your database name and credentials. The default specifies that the embedded database should be used.
 It is recommended to use a MySQL database instead of the embedded database.
-For more info, see [Using MySQL](/provisioning/mysql)
+For more info, see [Using MySQL](../provisioning/mysql)
 
 This is an example of specifying MySQL credentials:
 
@@ -63,7 +63,7 @@ Set the ArchivesSpace API documentation port. The API documentation listens on p
 
 ### Enabling ArchivesSpace components
 
-Enable or disable specific componenets by setting the following settings to true or false (defaults to true):
+Enable or disable specific components by setting the following settings to true or false (defaults to true):
 
 ```ruby
 AppConfig[:enable_backend] = true
@@ -174,7 +174,7 @@ A simple example: use AND for search:
 
 A more complex example: set the boost query value (bq) to boost the relevancy
 for the query string in the title, set the phrase fields parameter (pf) to boost
-the relevancy for the title when the query terms are in close proximity to each
+the relevancy for the title when the query terms are in proximity to each
 other, and set the phrase slop (ps) parameter for the pf parameter to indicate
 how close the proximity should be:
 
@@ -209,7 +209,7 @@ Plug-ins to load. They will load in the order specified.
 #### `AppConfig[:job_thread_count]`
 
 The number of concurrent threads available to run background jobs.
-Introduced because long running jobs were blocking the queue.
+Introduced because long-running jobs were blocking the queue.
 Resist the urge to set this to a big number!
 
 `AppConfig[:job_thread_count] = 2`
@@ -519,7 +519,7 @@ who are running into memory-related issues during migration.
 
 ### Jetty shutdown
 
-Some use cases want the ability to shutdown the Jetty service using Jetty's
+Some use cases want the ability to shut down the Jetty service using Jetty's
 ShutdownHandler, which allows a POST request to a specific URI to signal
 server shutdown. The prefix for this URI path is set to `/xkcd` to reduce the
 possibility of a collision in the path configuration. So, full path would be
@@ -537,14 +537,14 @@ in the data directory. This is not turned on by default.
 
 `AppConfig[:jetty_shutdown_path] = "/xkcd"`
 
-### Managing multile backend instances
+### Managing multiple backend instances
 
 If you have multiple instances of the backend running behind a load
 balancer, list the URL of each backend instance here. This is used by the
 real-time indexing, which needs to connect directly to each running
 instance.
 
-By default we assume you're not using a load balancer, so we just connect
+By default, we assume you're not using a load balancer, so we just connect
 to the regular backend URL.
 
 #### `AppConfig[:backend_instance_urls]`
@@ -571,7 +571,7 @@ Name of the theme to use on the Public UI
 
 #### `AppConfig[:session_expire_after_seconds]`
 
-Sessions marked as expirable will timeout after this number of seconds of inactivity
+Sessions marked as expirable will time out after this number of seconds of inactivity
 
 `AppConfig[:session_expire_after_seconds] = 3600`
 
@@ -587,24 +587,24 @@ Hidden (not viewable on the Staff UI User management) system users are automatic
 
 #### `AppConfig[:search_username]`
 
-The user name of the hidden system user that the indexer uses to access the backend API
+The username of the hidden system user that the indexer uses to access the backend API
 `AppConfig[:search_username] = "search_indexer"`
 
 #### `AppConfig[:public_username]`
 
-The user name of the hidden system user that the PUI uses to access the backend API
+The username of the hidden system user that the PUI uses to access the backend API
 
 `AppConfig[:public_username] = "public_anonymous"`
 
 #### `AppConfig[:staff_username]`
 
-The user name of the hidden system user that the Staff UI uses to access the backend API
+The username of the hidden system user that the Staff UI uses to access the backend API
 
 `AppConfig[:staff_username] = "staff_system"`
 
 ### Authentication sources
 
-ArchivesSpace comes with its own user management functionality but can also be configured to authenticate against one or more [LDAP directories](/customization/ldap/). Oauth authentication is available using the [aspace-oauth plugin](https://github.com/lyrasis/aspace-oauth)
+ArchivesSpace comes with its own user management functionality but can also be configured to authenticate against one or more [LDAP directories](../customization/ldap). Oauth authentication is available using the [aspace-oauth plugin](https://github.com/lyrasis/aspace-oauth)
 
 `AppConfig[:authentication_sources] = []`
 
@@ -622,7 +622,7 @@ An internal notification mechanism is used to keep user preferences, enumeration
 
 #### `AppConfig[:notifications_backlog_ms]`
 
-Notifications older that this amount of miliseconds are considered expired and will not be announced anymore.
+Notifications older that this amount of milliseconds are considered expired and will not be announced anymore.
 
 `AppConfig[:notifications_backlog_ms] = 60000`
 
@@ -741,7 +741,7 @@ Formerly known as :import_job_path
 
 #### `AppConfig[:jobs_cancelable]`
 
-By default, only allow jobs to be cancelled if we're running against MySQL (since we can rollback)
+By default, only allow jobs to be cancelled if we're running against MySQL (since we can roll back)
 
 `AppConfig[:jobs_cancelable] = proc { (AppConfig[:db_url] != AppConfig.demo_db_url).to_s }`
 
@@ -808,7 +808,7 @@ Note that :system_default will always inherit down its values when possible.
 
 #### `AppConfig[:container_management_extent_calculator]`
 
-Globally defines the behavior of the exent calculator.
+Globally defines the behavior of the extent calculator.
 Use :report_volume (true/false) to define whether space should be reported in cubic
 or linear dimensions.
 Use :unit (:feet, :inches, :meters, :centimeters) to define the unit which the calculator
@@ -828,7 +828,7 @@ if they don't have a value in the record itself.
 This is used in common/record_inheritance.rb and was developed to support
 the new public UI application.
 Note - any changes to record_inheritance config will require a reindex of pui
-records to take affect. To do this remove files from indexer_pui_state
+records to take effect. To do this remove files from indexer_pui_state
 
 ```ruby
 AppConfig[:record_inheritance] = {
@@ -884,7 +884,7 @@ To enable composite identifiers - added to the merged record in a property
 
 The values for `:include_level` and `:identifier_delimiter` shown here are the defaults
 
-If `:include_level` is set to true then level values (eg Series) will be included in `\_composite_identifier`
+If `:include_level` is set to true then level values (e.g. Series) will be included in `\_composite_identifier`
 
 The `:identifier_delimiter` is used when joining the four part identifier for resources
 
@@ -996,7 +996,7 @@ AppConfig[:pui_hide][:search_tab] = false
 ```
 
 The following determine globally whether the various "badges" appear on the Repository page
-can be overriden at repository level below (e.g.:
+can be overridden at repository level below (e.g.:
 `AppConfig[:repos][{repo_code}][:hide][:counts] = true`
 
 ```ruby
