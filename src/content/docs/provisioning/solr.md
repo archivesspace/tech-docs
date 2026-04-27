@@ -9,7 +9,7 @@ For ArchivesSpace > 3.1.1, external Solr is **required**. For previous versions 
 
 ## Supported Solr Versions
 
-See the [Solr requirement notes](/administration/getting_started#solr)
+See the [Solr requirement notes](/administration/getting-started#solr)
 
 ## Install Solr
 
@@ -171,7 +171,7 @@ See [Indexes](/administration/indexes) for more details.
 
 ---
 
-You can now follow the instructions in the [Getting started](/administration/getting_started) section to start
+You can now follow the instructions in the [Getting started](/administration/getting-started) section to start
 your ArchivesSpace application.
 
 ---

@@ -17,7 +17,7 @@ These guidelines are for migrating data from Archivists' Toolkit 2.0 Update 16 t
 
 - An AT subject record will be set to type 'topical' if it does not have a valid AT type statement or its type is not one of the types in ArchivesSpace. Several other AT LookupList values are not present in ArchivesSpace. These LookupList values cannot be added during the AT migration process and will therefore need to be changed in AT prior to migration. For full details on enum (controlled value list) mappings see the data map. You can use the AT Lookup List tool to change values that will not map correctly, as specified by the data map.
 - Record audit information (created by, date created, modified by, and date modified) will not migrate from AT to ArchivesSpace. ArchivesSpace will assign new audit data to each record as it is imported into ArchivesSpace. The exception to this is that the username of the user who creates an accession record will be migrated to the accession general note field.
-- Implement an ArchivesSpace production version including the setting up of a MySQL database to migrate into. Instructions are included at [Getting Started with ArchivesSpace](/administration/getting_started) and [Running ArchivesSpace against MySQL](/provisioning/mysql).
+- Implement an ArchivesSpace production version including the setting up of a MySQL database to migrate into. Instructions are included at [Getting Started with ArchivesSpace](/administration/getting-started) and [Running ArchivesSpace against MySQL](/provisioning/mysql).
 
 ## Preparing for Migrating AT Data
 
@@ -65,6 +65,7 @@ These guidelines are for migrating data from Archivists' Toolkit 2.0 Update 16 t
   - **View Error Log** – Used to view a printout of all the errors encountered during the
     migration process. This can be used while the migration process is underway as well.
 - Once you have made the appropriate changes to the UI, there are three buttons to choose from to start the migration process.
+
   - **Copy to ArchivesSpace** – This starts the migration to the ArchivesSpace instance
     you have made the appropriate changes to the UI, there are three buttons to
     indicated by the Host URL.
