@@ -23,6 +23,7 @@
     "stylelint:fix": "stylelint --fix '**/*.{astro,css}' -f verbose"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.18",
     "@astrojs/starlight": "^0.38.2",
     "astro": "^6.1.2",
     "mermaid": "^11.14.0",
