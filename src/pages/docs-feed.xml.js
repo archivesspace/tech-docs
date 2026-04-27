@@ -5,7 +5,7 @@ export async function GET(context) {
   const blog = await getCollection('docs')
   return rss({
     title: 'TechDocs',
-    description: "An ArchiveNaut's guide to the ArchivesSpace",
+    description: 'Technical documentation from ArchivesSpace developers',
     site: context.site,
     items: blog.map((post) => ({
       title: post.data.title,
