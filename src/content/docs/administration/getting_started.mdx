@@ -77,15 +77,21 @@ the application. Everything else will be treated as "best effort" community-led 
 
 See [Running with external Solr](/provisioning/solr) for more information on installing and upgrading Solr.
 
-##### Database
+#### Database
 
 While ArchivesSpace does include an embedded database, MySQL is required for production use.
 
 (While not officially supported by ArchivesSpace, some community members use MariaDB so there is some community support for version 10.4.10 only.)
 
-**The embedded database is for testing purposes only. You should use MySQL or MariaDB for any data intended for production, including data in a test instance that you intend to move over to a production instance.**
-
 All ArchivesSpace versions can run on MySQL version 5.x or 8.x.
+
+##### Note on running with the embedded database
+
+**The embedded database is for testing purposes only. We recommend using MySQL for any data intended for production, including data in a test instance that you intend to move over to a production instance.**
+
+The embedded database has been available when using the `.zip` distribution of ArchivesSpace as an easy way to get up and running a demo ArchivesSpace system without having to setup MySQL. It will be deprecated in the upcoming major release of ArchivesSpace.
+
+See the [Running with Docker](/administration/docker/) page for instructions on how to install ArchivesSpace using Docker which is the recommended way to setup an ArchivesSpace system with minimal effort.
 
 #### Install and run
 
