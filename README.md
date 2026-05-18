@@ -86,7 +86,7 @@ information as possible.
 #### Fork & create a branch
 
 When you are ready to start working on an issue, please assign it to yourself
-as an indication that you are working on it. Then [fork TechDocs][https://github.com/archivesspace/tech-docs/fork] and
+as an indication that you are working on it. Then [fork TechDocs](https://github.com/archivesspace/tech-docs/fork) and
 create a branch with a descriptive name.
 
 A good branch name would include the ticket number in it. For example, if you
@@ -115,6 +115,9 @@ Before making a pull request, make sure tests run successfully and code adheres 
 npm run prettier:fix
 npm run stylelint:fix
 ```
+#### Sidebar navigation updates
+
+The sidebar navigation is not populated automatically, but by [src/siteNavigation.json](https://github.com/archivesspace/tech-docs/blob/main/src/siteNavigation.json). If you've made any changes to filenames (or addition/deletion of pages), be sure to update there as well for them to be reflected on the site.
 
 #### Make a Pull Request
 
@@ -135,7 +138,7 @@ git rebase main
 git push --set-upstream origin TD-123-descriptive-short-title
 ```
 
-Finally, go to GitHub and [make a Pull Request][https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request] :D
+Finally, go to GitHub and [make a Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) :D
 
 Our CI process will run all test suites against the pushed branch. We care about
 quality, so your Pull Request won't be merged until all test suites pass. If any linting checks fail, the PR reviewer can fix those issues.
