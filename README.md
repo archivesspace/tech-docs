@@ -96,10 +96,6 @@ are working on JIRA ticket TD-123:
 git checkout -b TD-123-descriptive-short-title
 ```
 
-#### Sidebar navigation updates
-
-The sidebar navigation is not populated automatically, but by src/siteNavigation.json. Any changes to filenames (or addition/deletion of pages) must be updated there to be reflected on the site.
-
 #### Get the test suite running
 
 Before running any tests, you will need to set up your environment. See [Running TechDocs locally](#running-techdocs-locally).
@@ -119,6 +115,9 @@ Before making a pull request, make sure tests run successfully and code adheres 
 npm run prettier:fix
 npm run stylelint:fix
 ```
+#### Sidebar navigation updates
+
+The sidebar navigation is not populated automatically, but by [src/siteNavigation.json](https://github.com/archivesspace/tech-docs/blob/main/src/siteNavigation.json). If you've made any changes to filenames (or addition/deletion of pages), be sure to update there as well for them to be reflected on the site.
 
 #### Make a Pull Request
 
@@ -139,7 +138,7 @@ git rebase main
 git push --set-upstream origin TD-123-descriptive-short-title
 ```
 
-Finally, go to GitHub and [make a Pull Request][https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request] :D
+Finally, go to GitHub and [make a Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) :D
 
 Our CI process will run all test suites against the pushed branch. We care about
 quality, so your Pull Request won't be merged until all test suites pass. If any linting checks fail, the PR reviewer can fix those issues.
