@@ -96,6 +96,10 @@ are working on JIRA ticket TD-123:
 git checkout -b TD-123-descriptive-short-title
 ```
 
+#### Sidebar navigation updates
+
+The sidebar navigation is not populated automatically, but by src/siteNavigation.json. Any changes to filenames (or addition/deletion of pages) must be updated there to be reflected on the site.
+
 #### Get the test suite running
 
 Before running any tests, you will need to set up your environment. See [Running TechDocs locally](#running-techdocs-locally).
