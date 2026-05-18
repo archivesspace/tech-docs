@@ -86,7 +86,7 @@ information as possible.
 #### Fork & create a branch
 
 When you are ready to start working on an issue, please assign it to yourself
-as an indication that you are working on it. Then [fork TechDocs][https://github.com/archivesspace/tech-docs/fork] and
+as an indication that you are working on it. Then [fork TechDocs](https://github.com/archivesspace/tech-docs/fork) and
 create a branch with a descriptive name.
 
 A good branch name would include the ticket number in it. For example, if you
