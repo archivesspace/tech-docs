@@ -115,6 +115,7 @@ Before making a pull request, make sure tests run successfully and code adheres 
 npm run prettier:fix
 npm run stylelint:fix
 ```
+
 #### Sidebar navigation updates
 
 The sidebar navigation is not populated automatically, but by [src/siteNavigation.json](https://github.com/archivesspace/tech-docs/blob/main/src/siteNavigation.json). If you've made any changes to filenames (or addition/deletion of pages), be sure to update there as well for them to be reflected on the site.
