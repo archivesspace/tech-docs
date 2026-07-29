@@ -112,10 +112,7 @@
   {
     "label": "Release Notes",
     "collapsed": true,
-    "autogenerate": {
-      "directory": "release-notes",
-      "sort": "asc"
-    }
+    "items": [{ "autogenerate": { "directory": "release-notes" } }]
   },
   {
     "label": "About Tech Docs",
