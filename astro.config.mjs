@@ -1,13 +1,48 @@
 import { defineConfig } from 'astro/config'
 import starlight from '@astrojs/starlight'
 import sidebar from './src/siteNavigation.json'
+import { remarkLocalizeLinks } from './src/lib/remark-localize-links.ts'
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://docs.archivesspace.org',
+  markdown: {
+    remarkPlugins: [remarkLocalizeLinks]
+  },
   integrations: [
     starlight({
       title: 'Tech Docs',
+      defaultLocale: 'root',
+      locales: {
+        root: {
+          label: 'English',
+          lang: 'en'
+        },
+        nl: {
+          label: 'Nederlands',
+          lang: 'nl'
+        },
+        fr: {
+          label: 'Français',
+          lang: 'fr'
+        },
+        de: {
+          label: 'Deutsch',
+          lang: 'de'
+        },
+        ja: {
+          label: '日本語',
+          lang: 'ja'
+        },
+        es: {
+          label: 'Español',
+          lang: 'es'
+        },
+        uk: {
+          label: 'Українська',
+          lang: 'uk'
+        }
+      },
       routeMiddleware: './src/blogRouteData.js',
       logo: {
         dark: './src/images/logo-full-dark.svg',
