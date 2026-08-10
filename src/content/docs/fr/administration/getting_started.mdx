@@ -1,0 +1,143 @@
+---
+title: Getting started
+description: Detailed hardware and software requirements for running ArchivesSpace, including instructions on setting up and running an ArchivesSpace instance using the latest distribution .zip file.
+---
+
+import LatestReleaseBlurb from '@components/LatestReleaseBlurb.astro'
+
+## The latest release
+
+<LatestReleaseBlurb />
+
+## Two installation methods
+
+There are two different ways to install ArchivesSpace:
+
+- Using Docker
+- Using the `.zip` file distribution
+
+### Using Docker
+
+See the [Running with Docker](/administration/docker/) page for instructions on how to install ArchivesSpace using Docker.
+
+Starting with ArchivesSpace v4.0.0, the easiest and recommended way to get up and running is using Docker. This method eases installing, upgrading, starting, and stopping ArchivesSpace. It also makes it easy to setup ArchivesSpace as a system service that starts automatically on every reboot.
+
+### Using the `.zip` file distribution
+
+The older and more involved way is to install from the latest distribution `.zip` file as described below.
+
+#### System requirements
+
+##### Operating system
+
+ArchivesSpace is being tested on Ubuntu Linux, Mac OS X, and Windows.
+
+##### Memory
+
+At least 1024 MB RAM allocated to the application are required. We recommend using at least 2 GB for optimal performance.
+
+#### Software requirements
+
+When using the zip distribution, a Java runtime environment and a Solr instance are required. See [using Docker](/administration/docker/) to avoid these dependencies.
+
+##### Java Runtime Environment
+
+We recommend using [OpenJDK](https://openjdk.org/projects/jdk/). The following table lists the supported Java versions for each version of ArchivesSpace:
+
+| ArchivesSpace version | OpenJDK version |
+| --------------------- | --------------- |
+| ≤ v3.5.1              | 8 or 11         |
+| v4.0.0 up to v4.1.1   | 11 or 17        |
+| ≥ v4.2.0              | 17 or 21        |
+
+The Jruby version used in ArchivesSpace v4.2.0 is still compatible with java 11 we highly recommend using Java 17 or 21 as those are the Java versions ArchivesSpace v4.2.0 has been tested with. You can still use java 11 with v4.2.0 but the ArchivesSpace Program Team can provide support for environments using Java versions we have tested ArchivesSpace with (17 or 21).
+
+Note that in the next major release we expect to drop support for java 17 and only support java 21 and 25.
+
+##### Solr
+
+Up to ArchivesSpace v3.1.1, the zip file distribution includes an embedded Solr v4 instance, which is deprecated and not supported anymore. Use the Docker images provided on [ArchivesSpace Docker repository](https://hub.docker.com/orgs/archivesspace/repositories) and see also [using Docker](/administration/docker/) to avoid managing an external Solr instance.
+
+ArchivesSpace v3.2.0 or above requires an external Solr instance when running using the Zip distribution. The table below summarizes the supported Solr versions for each ArchivesSpace version:
+
+| ArchivesSpace version | External Solr version     |
+| --------------------- | ------------------------- |
+| ≤ v3.1.1              | no external solr required |
+| v3.2.0 up to v3.5.1   | 8 (8.11)                  |
+| v4.0.0 up to v4.1.1   | 9 (9.4.1)                 |
+| ≥ v4.2.0              | 9 (9.9.0)                 |
+
+Each ArchivesSpace version is tested for compatibility with the corresponding Solr version listed in the table above. Using the corresponding version of Solr is recommended as that version is being used during development and running the ArchivesSpace automated tests.
+
+If you need to use ArchivesSpace with an older version of Solr check the [release notes](https://github.com/archivesspace/archivesspace/releases) for any potential version compatibility issues.
+
+**Note: the ArchivesSpace Program Team can only provide support for Solr deployments
+using the "officially" supported version with the standard configuration provided by
+the application. Everything else will be treated as "best effort" community-led support.**
+
+See [Running with external Solr](/provisioning/solr) for more information on installing and upgrading Solr.
+
+##### Database
+
+While ArchivesSpace does include an embedded database, MySQL is required for production use.
+
+(While not officially supported by ArchivesSpace, some community members use MariaDB so there is some community support for version 10.4.10 only.)
+
+**The embedded database is for testing purposes only. You should use MySQL or MariaDB for any data intended for production, including data in a test instance that you intend to move over to a production instance.**
+
+All ArchivesSpace versions can run on MySQL version 5.x or 8.x.
+
+#### Install and run
+
+Download the distribution `.zip` for your version from [ArchivesSpace releases on GitHub](https://github.com/archivesspace/archivesspace/releases).
+
+Confirm a supported Java version is active on your PATH:
+
+```sh
+java -version
+```
+
+Compare the output with [Java Runtime Environment](#java-runtime-environment). If needed, install a supported OpenJDK or point your environment at one (avoid using an unsupported newer Java as the default).
+
+Extract the `.zip`; it creates a directory named `archivesspace`. Before starting ArchivesSpace, finish provisioning:
+
+- [MySQL](/provisioning/mysql)
+- JDBC driver: [Download MySQL Connector](/provisioning/mysql/#download-mysql-connector)
+- External [Solr](/provisioning/solr) when your version requires it (ArchivesSpace v3.2.0 and later on the zip distribution; see [Solr](#solr))
+
+**Do not proceed until MySQL and Solr (when required) are running.**
+
+Start ArchivesSpace from that directory. On Linux and macOS:
+
+```shell
+cd /path/to/archivesspace
+./archivesspace.sh
+```
+
+On Windows:
+
+```shell
+cd \path\to\archivesspace
+archivesspace.bat
+```
+
+This runs ArchivesSpace in the foreground (it stops when you close the terminal). By default, logs are written to `logs/archivesspace.out`.
+
+**Note:** On Windows, errors such as `unable to resolve type 'size_t'` or `no such file to load -- bundler` often mean the path to the `archivesspace` folder contains spaces. Use a path without spaces.
+
+##### Verify and sign in
+
+The first startup can take about a minute. Then confirm the services in a browser:
+
+- http://localhost:8089/ — backend
+- http://localhost:8080/ — staff interface
+- http://localhost:8081/ — public interface
+- http://localhost:8082/ — OAI-PMH server
+- http://localhost:8090/ — Solr admin console
+
+In the staff interface, sign in with the default administrator account:
+
+- Username: `admin`
+- Password: `admin`
+
+Create a repository via **System** → **Manage repositories** (top right). From **System** you can manage users and other administration tasks. **Change the default `admin` password before production use.**

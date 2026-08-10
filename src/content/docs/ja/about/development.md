@@ -1,0 +1,318 @@
+---
+title: Development
+description: This page describes how to set up the tech-docs repostory, build the website, update dependencies, and run tests
+# This is the last page in the sidebar, so point to Home next instead of
+# the Help Center which comes after this page in the sidebar
+next:
+  link: /
+  label: Home
+---
+
+Tech Docs is a [Node.js](https://nodejs.org) application, built with [Astro](https://astro.build/) and its [Starlight](https://starlight.astro.build/) documentation site framework. The source code is hosted on [GitHub](https://github.com/archivesspace/tech-docs). The site is statically built and (temporarily) hosted via [Cloudflare Pages](https://pages.cloudflare.com/). Content is written in [Markdown](/about/authoring#markdown). When the source code changes, a new set of static files are generated and published shortly after.
+
+## Dependencies
+
+Tech Docs depends on the following open source software (see `.nvmrc` and `package.json` for versions):
+
+1. [Node.js](https://nodejs.org) - JavaScript development and build environment; the version noted in `.nvmrc` reflects the default version of Node.js in the Cloudflare Pages build image
+2. [Astro](https://astro.build/) - Static site generator conceptually based on "components" (React, Vue, Svelte, etc.) rather than "templates" (Jekyll, Handlebars, Pug, etc.)
+   1. [Starlight](https://starlight.astro.build/) - Astro plugin and theme for documentation websites
+   2. [Sharp](https://sharp.pixelplumbing.com/) - Image transformation library used by Astro
+3. [Cypress](https://www.cypress.io/) - End-to-end testing framework
+4. [Stylelint](https://stylelint.io/) - CSS linter used locally in text editors and remotely in [CI](#cicd) for testing
+   1. [stylelint-config-recommended](https://github.com/stylelint/stylelint-config-recommended) - Base set of lint rules
+   2. [postcss-html](https://github.com/ota-meshi/postcss-html) - PostCSS syntax for parsing HTML (and HTML-like including .astro files)
+   3. [stylelint-config-html](https://github.com/ota-meshi/stylelint-config-html) - Allows Stylelint to parse .astro files
+5. [Prettier](https://prettier.io/) - Source code formatter used locally in text editors and remotely in [CI](#cicd) for testing
+   1. [prettier-plugin-astro](https://github.com/withastro/prettier-plugin-astro) - Allows Prettier to parse .astro files via the command line
+
+## Local development
+
+Run Tech Docs locally by cloning the Tech Docs repository, installing project dependencies, and spinning up a development server:
+
+```sh
+# Requires git and Node.js
+
+# Clone Tech Docs and move to it
+git clone https://github.com/archivesspace/tech-docs.git
+cd tech-docs
+
+# Install dependencies
+npm install
+
+# Run dev server
+npm start
+```
+
+Now go to [localhost:4321](http://localhost:4321) to see Tech Docs running locally. Changes to the source code will be immediately reflected in the browser.
+
+### Building the site
+
+Building the site creates a set of static files, found in `dist` after build, that can be served locally or deployed to a server. Sometimes building the site surfaces errors not found in the development environment.
+
+```sh
+# Build the site and output it to dist/
+npm run build
+```
+
+:::tip
+Serve the built output by running `npm run preview` after a build.
+:::
+
+### Available `npm` scripts
+
+The following scripts are made available via `package.json`. Invoke any script on the command line from the project root by prepending it with the `npm run` command, ie: `npm run start`.
+
+- `start` -- run Astro dev server
+- `build` -- build Tech Docs for production
+- `preview` -- serve the static build
+- `astro` -- get Astro help
+- `test:dev` -- run tests in development mode
+- `test:prod` -- run tests in production mode
+- `test` -- defaults to run tests in production mode
+- `prettier:check` -- check formatting with Prettier
+- `prettier:fix` -- fix possible format errors with Prettier
+- `stylelint:check` -- lint CSS with Stylelint
+- `stylelint:fix` -- fix possible CSS lint errors with Stylelint
+
+## Documentation pages
+
+Documentation pages are implemented with Starlight’s `docs` content collection. Source files are in `src/content/docs/`, and Starlight generates their routes as part of the normal Astro static build output (no separate docs build step). Sidebar hierarchy is configured in `src/siteNavigation.json`. For copy-paste templates and short author-facing field guidance, see [YAML frontmatter](/about/authoring#yaml-frontmatter).
+
+### Adding documentation pages
+
+To add a new documentation page:
+
+1. Create a Markdown file in the appropriate docs section directory under `src/content/docs/`.
+2. Add that page to `src/siteNavigation.json` in the correct section and in the correct order so it appears in the sidebar navigation as desired.
+3. If the new page becomes the first page in its section, update the corresponding homepage hero link in `src/components/HomePage.astro` so the section link points to the new first page.
+
+### Legacy `index.md` pages
+
+Some section directories still contain legacy `index.md` pages from the old Tech Docs site. Those pages can still be routed (for example `/architecture` and `/architecture/index`), but they are not included in the sidebar since they are not listed in `src/siteNavigation.json`.
+
+### Documentation content collection and schema
+
+In `src/content.config.ts`, the `docs` collection uses `docsLoader()` and [Starlight’s frontmatter schema](https://starlight.astro.build/reference/frontmatter/) via `docsSchema()`, extended with `issueUrl` and `issueText`. Frontmatter is validated at build time. Starlight requires a `title`; other keys are optional unless your page has a specific need.
+
+| Field             | Required | Purpose                                                                                                                                                                                                                 |
+| ----------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`           | Yes      | Page title in the layout, browser tab, and metadata.                                                                                                                                                                    |
+| `description`     | No       | Short summary for SEO, search, and social previews. Most pages set this; it is omitted on a few pages (for example [Staff interface](/architecture/frontend), [404](/404)).                                             |
+| `slug`            | No       | Overrides the URL segment instead of deriving it from the file path.                                                                                                                                                    |
+| `editUrl`         | No       | Overrides the “Edit page” URL, or `false` to hide the link (for example on [404](/404)).                                                                                                                                |
+| `head`            | No       | Extra tags for the document head (meta, link, custom title, etc.).                                                                                                                                                      |
+| `tableOfContents` | No       | Table of contents: `false` to hide, or `{ minHeadingLevel, maxHeadingLevel }` to tune range.                                                                                                                            |
+| `template`        | No       | Starlight layout template (for example `splash`).                                                                                                                                                                       |
+| `hero`            | No       | Hero area for splash-style pages (`title`, `tagline`, optional `image`, `actions`, etc.).                                                                                                                               |
+| `banner`          | No       | Optional banner above the page content.                                                                                                                                                                                 |
+| `lastUpdated`     | No       | Override the displayed last-updated date, or `false` to hide it.                                                                                                                                                        |
+| `prev`            | No       | Previous pagination link: `false`, a string label, or `{ link, label }`.                                                                                                                                                |
+| `next`            | No       | Next pagination link: `false`, a string label, or `{ link, label }`. For example, [Development](/about/development) sets this so “next” goes to Home instead of the external Help Center entry after it in the sidebar. |
+| `pagefind`        | No       | Set `false` to omit the page from the Pagefind index.                                                                                                                                                                   |
+| `draft`           | No       | When `true`, exclude the page from production builds.                                                                                                                                                                   |
+| `sidebar`         | No       | Per-page sidebar label, order, badge, `hidden`, or link `attrs`. The main sidebar structure is configured in `src/siteNavigation.json`.                                                                                 |
+| `issueUrl`        | No       | URL for the footer “report an issue” link, or `false` to hide it. Defaults in `src/content.config.ts` when omitted; authors may set explicitly (see [YAML frontmatter](/about/authoring#yaml-frontmatter)).             |
+| `issueText`       | No       | Label text for that footer link. Defaults in `src/content.config.ts` when omitted; authors may set explicitly (see [YAML frontmatter](/about/authoring#yaml-frontmatter)).                                              |
+
+### Documentation routes
+
+- URLs are derived from file paths in `src/content/docs/` unless `slug` is set in frontmatter.
+- Previous/next pagination is derived from sidebar order unless `prev`/`next` are overridden in frontmatter.
+
+### Documentation UI components
+
+| Area                                                     | Location                                                                                                             |
+| -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Sidebar hierarchy and grouping                           | `src/siteNavigation.json`                                                                                            |
+| Default docs page title rendering                        | `src/components/CustomPageTitle.astro` (falls back to Starlight’s default `PageTitle` for non-blog routes)           |
+| Footer metadata/navigation (edit link, issue link, etc.) | `src/components/overrides/Footer.astro`, `src/components/overrides/EditLink.astro`, `src/components/IssueLink.astro` |
+
+### Documentation tests
+
+Documentation-page behavior is covered in Cypress, mainly `cypress/e2e/content-pages.cy.js` (sidebar, table of contents, footer metadata links, and pagination).
+
+## Blog
+
+The [blog](/blog) is implemented as an Astro content collection alongside the docs collection. Post source files are in `src/content/blog/`; routes live under `src/pages/blog/`. There is no separate blog build step—blog pages are part of the normal Astro static output, and site search ([Search](#search)) indexes them like other HTML. For where to put files and example frontmatter, see [Authoring content](/about/authoring#where-pages-go) and [YAML frontmatter](/about/authoring#yaml-frontmatter).
+
+### Adding blog posts
+
+To add a new blog post, create a new Markdown file in `src/content/blog/` with the required frontmatter fields (`title`, `metaDescription`, `pubDate`, and `authors`).
+
+Optional fields (`teaser` and `updatedDate`) can also be added as needed. No `src/siteNavigation.json` changes are required for blog posts; valid files in the collection are included automatically when the site builds.
+
+### Blog content collection and schema
+
+The `blog` collection is registered in `src/content.config.ts` with a Zod schema. Frontmatter is validated at build time. Adding or renaming frontmatter fields requires updating that schema and every consumer of `entry.data` (blog pages, middleware, and tests).
+
+| Field             | Required | Purpose                                                                                                                                                                            |
+| ----------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`           | Yes      | Post headline on the post page and index card. May include HTML for display; the document `<title>` and prev/next pagination labels **strip HTML** from `title`.                   |
+| `metaDescription` | Yes      | Short summary for page meta description (SEO). Used as the index teaser text when `teaser` is omitted.                                                                             |
+| `teaser`          | No       | HTML or plain text for the blog index card (`set:html`). Prefer this for links or light HTML on the index; plain text in `title` is safest where tab titles and pagination matter. |
+| `pubDate`         | Yes      | Publication date; posts are sorted by this field, newest first. Parsed from frontmatter and formatted for display in **UTC** on the index and post header.                         |
+| `authors`         | Yes      | Array of author display names; shown comma-separated on the index and post page.                                                                                                   |
+| `updatedDate`     | No       | Optional revision date (`YYYY-MM-DD`). Stored in frontmatter but **not shown in the UI** today; useful for future display or consistency with the authoring template.              |
+
+### Blog routes
+
+- `src/pages/blog/index.astro` — `/blog` index; loads posts, sorts by `pubDate` descending, passes data to the index UI.
+- `src/pages/blog/[id].astro` — individual posts; `getStaticPaths` comes from the collection, so new valid posts appear on the next build.
+
+### Blog route middleware
+
+`src/blogRouteData.js` is Starlight route middleware for blog routes. It injects `pubDate`, `authors`, and `postTitle` for post pages and sets prev/next pagination (older post as “Previous,” newer as “Next”). Pagination labels use titles with HTML stripped.
+
+### Blog UI components
+
+| Area                                 | Location                                                                      |
+| ------------------------------------ | ----------------------------------------------------------------------------- |
+| Index list and cards                 | `src/components/BlogIndex.astro`                                              |
+| Index page title                     | `src/components/BlogIndexTitleHeader.astro`                                   |
+| Post title, date, authors, back link | `src/components/BlogPostTitleHeader.astro`, `src/components/BackToBlog.astro` |
+| Default vs blog title                | `src/components/CustomPageTitle.astro`                                        |
+| Header “Blog” link                   | `src/components/overrides/Header.astro`                                       |
+| Blog layout / sidebar behavior       | `src/components/overrides/PageFrame.astro`                                    |
+
+### Blog tests
+
+End-to-end coverage is in `cypress/e2e/blog.cy.js`. Update these tests when you change blog markup, URLs, or visible behavior.
+
+## Search
+
+Site search is a [Starlight feature](https://starlight.astro.build/guides/site-search/):
+
+> By default, Starlight sites include full-text search powered by [Pagefind](https://pagefind.app/), which is a fast and low-bandwidth search tool for static sites.
+>
+> No configuration is required to enable search. Build and deploy your site, then use the search bar in the site header to find content.
+
+:::note
+Search only runs in production builds not in the dev server.
+:::
+
+## Theme customization
+
+Starlight can be customized in various ways, including:
+
+- [Settings](https://starlight.astro.build/guides/customization/) -- see `astro.config.mjs`
+- [CSS](https://starlight.astro.build/guides/css-and-tailwind/) -- see `src/styles/custom.css`
+- [Components](https://starlight.astro.build/guides/overriding-components/) -- see `src/components`
+
+## Static assets
+
+### Images
+
+Most image files should be stored in `src/images`. This allows for [processing by Astro](https://docs.astro.build/en/guides/images/) which includes performance optimizations.
+
+Images that should not be processed by Astro, like favicons, should be stored in `public`.
+
+:::note[Use `src/images` for all content images]
+Put all images used in Tech Docs content in `src/images`.
+:::
+
+### The `public` directory
+
+Files placed in `public` are not processed by Astro. They are copied directly to the output and made available from the root of the site, so `public/favicon.svg` becomes available at `docs.archivesspace.org/favicon.svg`, while `public/example/slides.pdf` becomes available at `docs.archivesspace.org/example/slides.pdf`.
+
+## Mermaid diagrams
+
+Tech Docs supports Mermaid diagrams in both docs and blog content (for authoring syntax, see [Authoring content](/about/authoring#diagrams)). Mermaid is a text-to-diagram tool: authors write diagram definitions in a code fence, and Mermaid turns that text into SVG diagrams in the browser. This differs from regular fenced code blocks that Starlight renders with [Expressive Code](https://expressive-code.com/) as static syntax-highlighted code snippets.
+
+### Implementation
+
+1. Runtime logic lives in `src/lib/mermaid.ts`.
+2. The runtime is loaded by the Starlight page frame override in `src/components/overrides/PageFrame.astro`.
+3. Mermaid fences are post-processed at runtime and rendered as SVG diagrams.
+
+### Theme behavior
+
+- Mermaid theme is derived from the site theme (`data-theme` on `<html>`):
+  - dark mode => Mermaid `dark`
+  - non-dark modes => Mermaid `default`
+- A `MutationObserver` in `src/lib/mermaid.ts` watches for `data-theme` changes and re-renders existing Mermaid diagrams so colors update after theme toggles.
+- Mermaid text color is explicitly set in `initializeMermaidRuntime()` bor improved accessibility over its default styles:
+  - dark mode text: `#fff`
+  - light mode text: `#000`
+
+### Maintenance notes
+
+- If Starlight/Expressive Code markup changes in a future upgrade, update Mermaid selectors/parsing in `src/lib/mermaid.ts` (especially `pre[data-language="mermaid"]` and `.ec-line .code`).
+- If layout-level script loading changes, keep `src/components/overrides/PageFrame.astro` loading `src/lib/mermaid.ts` on pages where markdown content appears.
+- Keep Cypress coverage updated in `cypress/e2e/mermaid.cy.js` when Mermaid rendering behavior or markup changes.
+
+## Update npm dependencies
+
+Run the following commands locally to update the npm dependencies, then push the changes upstream.
+
+```sh
+# List outdated dependencies
+npm outdated
+
+# Update dependencies
+npm update
+```
+
+## Import aliases
+
+Astro supports [import aliases](https://docs.astro.build/en/guides/imports/#aliases) which provide shortcuts to writing long relative import paths.
+
+```astro title="src/components/overrides/Example.astro" del="../../images" ins="@images"
+---
+import relativeA from '../../images/A_logo.svg' // no alias
+import aliasA from '@images/A_logo.svg' // alias
+---
+```
+
+## Sitemap
+
+Starlight has built-in [sitemap support](https://starlight.astro.build/guides/customization/#enable-sitemap) which is enabled via the top-level `site` key in `astro.config.mjs`. This key generates `/sitemap-index.xml` and `/sitemap-0.xml` when Tech Docs is [built](#building-the-site), and adds the sitemap link to the `<head>` of every page. `public/robots.txt` also points to the sitemap.
+
+## Testing
+
+### End-to-end
+
+Tech Docs uses [Cypress](https://www.cypress.io/) for end-to-end testing customizations made to the underlying Starlight framework and other project needs. End-to-end tests are located in `cypress/e2e`.
+
+Run the Cypress tests locally by first building and serving the site:
+
+```sh
+# Build the site
+npm run build
+
+# Serve the build output
+npm run preview
+```
+
+Then **in a different terminal** initiate the tests:
+
+```sh
+# Run the tests
+npm test
+```
+
+### Code style
+
+Nearly all files in the Tech Docs code base get formatted by [Prettier](https://prettier.io/) to ensure consistent readability and syntax. Run Prettier locally to find format errors and automatically fix them when possible:
+
+```sh
+# Check formatting of .md, .css, .astro, .js, .yml, etc. files
+npm run prettier:check
+
+# Fix any errors that can be overwritten automatically
+npm run prettier:fix
+```
+
+All CSS in .css and .astro files are linted by [Stylelint](https://stylelint.io/) to help avoid errors and enforce conventions. Run Stylelint locally to find lint errors and automatically fix them when possible:
+
+```sh
+# Check all CSS
+npm run stylelint:check
+
+# Fix any errors that can be overwritten automatically
+npm run stylelint:fix
+```
+
+### CI/CD
+
+Before new changes are accepted into the code base, the [end-to-end](#end-to-end) and [code style](#code-style) tests need to pass. Tech Docs uses [GitHub Actions](https://docs.github.com/en/actions) for its continuous integration and continuous delivery (CI/CD) platform, which automates the testing and deployment processes. The tests are defined in yaml files found in `.github/workflows/` and are run automatically when new changes are proposed.
