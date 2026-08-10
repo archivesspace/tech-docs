@@ -52,7 +52,7 @@ After=syslog.target network.target
 Type=forking
 ExecStart=/path/to/your/archivesspace/archivesspace.sh start
 ExecStop=/path/to/your/archivesspace/archivesspace.sh stop
-PIDFile=/path/to/your/archivesspace/archivesspace.pid
+PIDFile=/path/to/your/archivesspace/data/.archivesspace.pid
 User=archivesspace
 Group=archivesspace
 [Install]
