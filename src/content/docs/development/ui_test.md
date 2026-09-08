@@ -1,17 +1,37 @@
 ---
 title: UI tests
-description: Instructions on running automated browser tests with Selenium on the ArchivesSpace UI on both Firefox and Chrome.
+description: Instructions on running the staff (SUI) and public (PUI) interface feature specs, which drive a real browser with Capybara and Selenium WebDriver.
 ---
 
-ArchivesSpace's staff and public interfaces use [Selenium](http://docs.seleniumhq.org/) to run automated browser tests. These tests can be run using [Firefox via geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/geckodriver/index.html) and [Chrome](https://sites.google.com/a/chromium.org/chromedriver/home) (either regular Chrome or headless).
+The staff interface (SUI) and the public interface (PUI) are both Rails applications with RSpec test suites. Their _feature specs_ (`frontend/spec/features` and `public/spec/features`) drive a real browser using [Capybara](https://github.com/teamcapybara/capybara) and [Selenium WebDriver](https://www.selenium.dev/documentation/webdriver/), either [Firefox via geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/geckodriver/index.html) (the default) or [Chrome via ChromeDriver](https://developer.chrome.com/docs/chromedriver). Both run headless unless you ask for a visible browser.
 
-## UI tests with firefox (default)
+Feature specs are run by the same build tasks as the rest of each application's specs:
 
-Firefox is the default used in our [CI workflows](https://github.com/archivesspace/archivesspace/actions).
+- `./build/run frontend:test` — staff interface specs
+- `./build/run public:test` — public interface specs
 
-On Ubuntu Linux 22.04 or later, the included Firefox deb package is a transition package that actually installs Firefox through [snap](https://snapcraft.io/). Snap has security restrictions that do not work with automated testing without additional configuration.
+Note: all example commands assume you are running from the root of your ArchivesSpace project directory.
 
-To uninstall the Firefox snap package and reinstall it as a traditional deb package on Ubuntu Linux use:
+## Before running
+
+1. Set up your development environment as described in [Running a development version of ArchivesSpace](/development/dev). In particular, the **test** MySQL (`127.0.0.1:3307`) and **test** Solr (`127.0.0.1:8984`) instances must be running — the `docker-compose-dev.yml` stack starts them as `as_test_db` and `as_test_solr` alongside the development ones.
+2. Install JRuby and all dependencies:
+
+   ```bash
+   ./build/run bootstrap
+   ```
+
+3. Install Firefox or Chrome (see below). The specs start their own backend, indexer and Rails server, so you do not need the development servers running to run them.
+
+## Browser and driver setup
+
+### Firefox (default)
+
+Firefox is the default and is what our [CI workflows](https://github.com/archivesspace/archivesspace/actions) use.
+
+`selenium-webdriver` ships with [Selenium Manager](https://www.selenium.dev/documentation/selenium_manager/), which downloads a matching geckodriver automatically when one is not already on your `PATH`. If you prefer to manage the driver yourself, check the [compatibility table](https://firefox-source-docs.mozilla.org/testing/geckodriver/Support.html) against your Firefox version (`firefox --version`) and download the matching [geckodriver release](https://github.com/mozilla/geckodriver/releases). On macOS: `brew install geckodriver`.
+
+On Ubuntu 22.04 or later, the Firefox deb package is a transition package that actually installs Firefox through [snap](https://snapcraft.io/). Snap has security restrictions that do not work with automated testing without additional configuration. To uninstall the snap package and install Firefox as a traditional deb package:
 
 ```bash
 # remove old snap firefox package (if installed)
@@ -23,7 +43,7 @@ sudo install -d -m 0755 /etc/apt/keyrings
 # download mozilla key and add it to the keyring
 wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
 
-# set high priority for the mozilla pakcages
+# set high priority for the mozilla packages
 echo "deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] https://packages.mozilla.org/apt mozilla main" | sudo tee -a /etc/apt/sources.list.d/mozilla.list > /dev/null
 echo '
 Package: *
@@ -35,100 +55,95 @@ Pin-Priority: 1000
 sudo apt update && sudo apt install firefox
 ```
 
-When using firefox, you need to make sure that the version of geckodriver you are using works with your firefox version, see this [compatibility table](https://firefox-source-docs.mozilla.org/testing/geckodriver/Support.html). Get your installed firefox version by running: `firefox --version`.
+### Chrome
 
-On Linux, you can download the geckodriver version that corresponds to your firefox version [here](https://github.com/mozilla/geckodriver/releases).
+Set `SELENIUM_CHROME=true` to use Chrome instead of Firefox. As with geckodriver, Selenium Manager will fetch a matching [ChromeDriver](https://developer.chrome.com/docs/chromedriver/downloads) if one is not on your `PATH`; macOS users with Homebrew can also install it with `brew install --cask chromedriver`.
 
-On Mac you can use: `brew install geckodriver`.
+**You must have either Firefox or Chrome installed to run these tests.** If you manage drivers yourself, consult the [Firefox WebDriver](https://developer.mozilla.org/en-US/docs/Web/WebDriver) or [ChromeDriver](https://developer.chrome.com/docs/chromedriver) documentation to ensure your Selenium, driver, browser and OS versions all support each other.
 
-## UI tests with Chrome
-
-To run using Chrome, you must first download the appropriate [ChromeDriver
-executable](https://sites.google.com/a/chromium.org/chromedriver/downloads)
-and place it somewhere in your OS system path. Mac users with Homebrew may accomplish this via `brew cask install chromedriver`.
-
-**Please note, you must have either Firefox or Chrome installed on your system to
-run these tests. Consult the [Firefox WebDriver](https://developer.mozilla.org/en-US/docs/Web/WebDriver)
-or [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/home)
-documentation to ensure your Selenium, driver, browser, and OS versions all match
-and support each other.**
-
-## Before running:
-
-Run the bootstrap build task to configure JRuby and all required dependencies:
+## Running the tests
 
 ```bash
-$ cd ..
-$ build/run bootstrap
+# Staff interface (SUI)
+./build/run frontend:test                                  # Firefox, headless
+FIREFOX_OPTS= ./build/run frontend:test                    # Firefox, visible browser
+SELENIUM_CHROME=true ./build/run frontend:test             # Chrome, headless
+SELENIUM_CHROME=true CHROME_OPTS= ./build/run frontend:test # Chrome, visible browser
+
+# Public interface (PUI)
+./build/run public:test                                    # Firefox, headless
+FIREFOX_OPTS= ./build/run public:test                      # Firefox, visible browser
+SELENIUM_CHROME=true ./build/run public:test               # Chrome, headless
+SELENIUM_CHROME=true CHROME_OPTS= ./build/run public:test  # Chrome, visible browser
 ```
 
-Note: all example code assumes you are running from your ArchivesSpace project directory.
+`FIREFOX_OPTS` and `CHROME_OPTS` replace the default browser arguments, which include the headless flag; setting them to an empty value therefore gives you a visible browser. They can also be used to pass any other browser arguments, for example `FIREFOX_OPTS='--width=1280 --height=1024'`.
 
-## Running the tests:
+Both tasks run the whole spec suite for the application — the feature specs plus the model, controller and helper specs. Use the options below to run only what you need.
+
+_Note: the old `frontend:selenium` task no longer exists. The Selenium specs were ported to Capybara and now run as part of `frontend:test`._
+
+### Running a subset of specs
+
+| Option       | Maps to                     | Notes                                                                                       |
+| ------------ | --------------------------- | ------------------------------------------------------------------------------------------- |
+| `-Dspec=`    | the rspec file/dir argument | Relative to the application's `spec` directory. A single file, a directory, or `file:line`. |
+| `-Dpattern=` | `rspec --pattern`           | Glob(s) relative to the application directory, comma separated for more than one.           |
+| `-Dexample=` | `rspec -e`                  | Runs examples whose full description matches the string.                                    |
+| `-Dtag=`     | `rspec --tag`               | Defaults to `~db`.                                                                          |
+
+Quote any value containing spaces, as in the examples below. Without quotes your shell splits the value and the remaining words are passed to the build as target names, so the run ends in `Target "the" does not exist in the project "ArchivesSpace"` after the specs have already finished.
 
 ```bash
-#Frontend tests
-./build/run frontend:selenium # Firefox, headless
-FIREFOX_OPTS= ./build/run frontend:selenium # Firefox, no-opts = heady
+# a single spec file
+./build/run frontend:test -Dspec='features/accessions_spec.rb'
+./build/run public:test -Dspec='features/search_spec.rb'
 
-SELENIUM_CHROME=true ./build/run frontend:selenium # Chrome, headless
-SELENIUM_CHROME=true CHROME_OPTS= ./build/run frontend:selenium # Chrome, no-opts = heady
+# a single example, by line number
+./build/run frontend:test -Dspec='features/accessions_spec.rb:42'
 
-#Public tests
-./build/run public:test # Firefox, headless
-FIREFOX_OPTS= ./build/run public:test # Firefox, no-opts = heady
+# all examples whose description contains "can spawn"
+./build/run frontend:test -Dspec='features/accessions_spec.rb' -Dexample='can spawn'
 
-SELENIUM_CHROME=true ./build/run public:test # Chrome, headless
-SELENIUM_CHROME=true CHROME_OPTS= ./build/run public:test # Chrome, no-opts = heady
+# a group of files, as the CI workflows do
+./build/run frontend:test -Dpattern='spec/features/[b-h]*_spec.rb'
+./build/run frontend:test -Dpattern='spec/models/*_spec.rb,spec/controllers/*_spec.rb'
+
+# with a visible Chrome window
+SELENIUM_CHROME=true CHROME_OPTS= ./build/run public:test -Dspec='features/search_spec.rb'
 ```
 
-Tests can be scoped to specific files or groups:
+Note that some specs depend on a sequence of ordered steps and may not always run cleanly in isolation. In that case more than the example you asked for may need to be run, and unexpected failures may result.
+
+### Running against a backend you started
+
+By default each run starts a backend of its own on a free port from 3636 and shuts it down afterwards. Set `ASPACE_TEST_BACKEND_URL` to point the specs at a backend that is already running instead, which saves the startup wait on every run. It works the same way for both suites:
 
 ```bash
-./build/run .. -Dspec='path/to/spec/from/spec/directory' # single file
-./build/run .. -Dexample='[description from it block]' # specific block
-
-#EXAMPLES
-./build/run frontend:selenium -Dexample='Repository model'
-FIREFOX_OPTS= ./build/run frontend:selenium -Dexample='Repository model'# Firefox, heady
-
-./build/run public:test -Dspec='features/accessibility_spec.rb'
-SELENIUM_CHROME=true CHROME_OPTS= ./build/run public:test -Dspec='features/accessibility_spec.rb' # Chrome, heady
+ASPACE_TEST_BACKEND_URL='http://localhost:4567' ./build/run frontend:test -Dspec='features/accessions_spec.rb'
+ASPACE_TEST_BACKEND_URL='http://localhost:4567' ./build/run public:test -Dspec='features/search_spec.rb'
 ```
 
-Test require a backend and a frontend service to be running. To ovoid the overhead of starting and stopping them while developing, you can run tests against a dev backend:
-
-```bash
-# start mysql and solr containers:
-docker-compose -f docker-compose-dev.yml up
-
-# start services:
- supervisord -c supervisord/archivesspace.conf
-
-# run a spec using the started backend:
-ASPACE_TEST_BACKEND_URL='http://localhost:4567' ./build/run frontend:test -Dpattern="./features/events_spec.rb"
-
-# run all examples that contain "can spawn" in their description:
-./build/run frontend:test -Dpattern="./features/accessions_spec.rb" -Dexample="can spawn"
-```
-
-Note, however, that some tests are dependent on a sequence of ordered steps and may not always run cleanly in isolation. In this case, more than the example provided may be run, and/or unexpected fails may result.
+The specs report which backend they are using at the start of the run — `Running tests against http://localhost:4567` rather than `Starting backend ...`. Port 4567 is the development backend, which you can start along with the other development servers as described in [Running a development version of ArchivesSpace](/development/dev).
 
 ### Saved pages on spec failures
 
-When frontend specs fail, a screenshot and an html page is saved for each failed example under `frontend/tmp/capybara`. On the CI, a zip file will be available for each failed CI job run under Summary -> Artifacts. In order to load the assets (and not see plain html) when viewing the saved html pages, a dev server should be running locally on port 3000, see [Running a development version of ArchivesSpace](/development/dev).
+When a feature spec fails, a screenshot and an HTML copy of the page are saved to the `ci_logs` directory at the root of your project directory, together with the application and test logs for the run. On CI, a zip of that directory is attached to each failed job under Summary -> Artifacts.
 
-### Keeping the test database up to date
+To load the assets when viewing a saved HTML page (rather than seeing unstyled HTML), run a development server on the port the application expects: 3000 for staff interface pages and 3001 for public interface pages. See [Running a development version of ArchivesSpace](/development/dev).
 
-When calling `./build/run frontend:test` to run frontend specs, the following steps happen before the actual specs run:
+## Keeping the test database up to date
+
+When you run `./build/run frontend:test` or `./build/run public:test`, the following steps happen before the specs run:
 
 - All tables of the test database are dropped: `./build/run db:nuke:test`
-- `frontend/spec/fixtures/archivesspace-test.sql` is loaded to the test database: `./build/run db:load:test`
+- `frontend/spec/fixtures/archivesspace-test.sql` is loaded into the test database: `./build/run db:load:test`
 - Any not-yet-applied migrations are run: `./build/run db:migrate:test`
+- The test Solr index is emptied: `./build/run solr:reset:test`
 
-#### Updating the test database dump
+### Updating the test database dump
 
-If any migrations are being applied whenever you run one or all frontend specs, it means that the test database dump `frontend/spec/fixtures/archivesspace-test.sql` has stayed behind. A new test database dump can be created by running:
+If migrations are being applied whenever you run the specs, it means the test database dump `frontend/spec/fixtures/archivesspace-test.sql` has fallen behind. A new dump can be created by running:
 
 ```bash
 ./build/run db:nuke:test
@@ -137,4 +152,10 @@ If any migrations are being applied whenever you run one or all frontend specs, 
 ./build/run db:dump:test
 ```
 
-An updated `frontend/spec/fixtures/archivesspace-test.sql` will be created that can be committed and pushed to a Pull Request.
+An updated `frontend/spec/fixtures/archivesspace-test.sql` will be created that can be committed and pushed to a pull request.
+
+`db:dump:test` uses your locally installed `mysqldump`, so check the diff before committing it. The dump is written by the client, not by the server in the container, and a client from a different MySQL series will rewrite parts of the file that have nothing to do with your migration — for example a `mysqldump` 8.4 client adds an explicit `COLLATE` clause to every column that declares a `CHARACTER SET`, producing thousands of unrelated changed lines. The changes you want to see are the `schema_info` version, the new or altered tables, and any rows your migration adds.
+
+## End-to-end tests
+
+The feature specs described here are separate from the ArchivesSpace end-to-end test suite, which runs against a deployed instance. See [ArchivesSpace End-to-End Test Suite](/development/e2e_tests).
