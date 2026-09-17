@@ -54,14 +54,14 @@ Volunteer collaborators translate Tech Docs pages using an agentic tool with rea
 ### How to use this prompt
 
 1. Pick a source file under `src/content/docs/` and a target language.
-2. Fill in the `{TARGET_LANGUAGE}`, `{LOCALE_CODE}`, and `{RELATIVE_PATH}` placeholders (locale codes: `nl` Dutch, `fr` French, `de` German, `ja` Japanese, `es` Spanish, `uk` Ukrainian).
+2. Fill in the `{TARGET_LANGUAGE}`, `{LOCALE_CODE}`, and `{RELATIVE_PATH}` placeholders (locale codes: `nl` Dutch, `fr` French, `de` German, `ja` Japanese, `es` Spanish, `uk` Ukrainian). `{RELATIVE_PATH}` is always the English source file's path (e.g. `about/authoring.md`) — do not translate or rename it.
 3. Give the whole prompt to your agentic tool (e.g. Cursor) with access to this repo. It reads the source file and the glossary itself — no need to paste file contents.
 4. The agent writes the translated file to `src/content/docs/{LOCALE_CODE}/{RELATIVE_PATH}`, adds any new glossary terms directly to [TD-21-i18n-glossary.md](TD-21-i18n-glossary.md), and appends a dated entry to `i18n-notes/{LOCALE_CODE}.md` documenting its choices and uncertainties.
 5. Open a PR with these changes. **The output is always a draft**, never a final, merge-ready translation — since none of the collaborators doing this initial translation work are fluent in a language beyond English, review happens on the PR (ideally by a fluent-speaking reviewer) rather than before it's opened.
 
 ### The prompt
 
-````md
+```md
 You are assisting the ArchivesSpace Tech Docs project with translating technical documentation from English into another language, for a human volunteer to review before it is merged.
 
 Context:
@@ -89,14 +89,14 @@ Translation rules:
 - Use a formal, neutral, precise technical register; avoid regional slang.
 - Do not add, remove, reorder, or "fix" content. If you spot an English error, note it instead of silently changing meaning.
 
-Source file: read `src/content/docs/{RELATIVE_PATH}` directly from this repo.
+Source file: read `src/content/docs/{RELATIVE_PATH}` directly from this repo. `{RELATIVE_PATH}` must match the English original exactly (same filename and directory segments); do not translate or rename the path.
 
 Output — perform these actions directly in this repo; do not just print results in chat:
 
 1. Write the full translated file (frontmatter included) to `src/content/docs/{LOCALE_CODE}/{RELATIVE_PATH}`.
 2. If you proposed any new glossary terms, add them as new rows to the {TARGET_LANGUAGE} table in `TD-21-i18n-glossary.md`.
 3. Append a new section to `i18n-notes/{LOCALE_CODE}.md` (create the file with a top-level heading if it doesn't exist yet) titled with today's date and the relative path you just translated, listing: (a) any new glossary terms you added and why, (b) terms/sentences you were unsure about and why, (c) issues noticed in the English source but not changed.
-````
+```
 
 ### Growing the glossary
 
