@@ -36,7 +36,7 @@ Starlight i18n is enabled. English is the root locale (served at `/` with no `/e
 
 ### Adding page translations
 
-To translate a page, follow the collaborator prompt below and save the output at `src/content/docs/{LOCALE_CODE}/{RELATIVE_PATH}` (same relative path as the English original). Once a translated file exists, Starlight stops serving the English fallback for that route and serves the translated page instead. The custom `issueUrl`/`issueText` frontmatter fields are optional and default to the project constants.
+To translate a page, follow the collaborator prompt below and save the output at `src/content/docs/{LOCALE_CODE}/{RELATIVE_FILE_NAME}` (same relative path as the English original). Once a translated file exists, Starlight stops serving the English fallback for that route and serves the translated page instead. The custom `issueUrl`/`issueText` frontmatter fields are optional and default to the project constants.
 
 ### Notes
 
@@ -54,9 +54,9 @@ Volunteer collaborators translate Tech Docs pages using an agentic tool with rea
 ### How to use this prompt
 
 1. Pick a source file under `src/content/docs/` and a target language.
-2. Fill in the `{TARGET_LANGUAGE}`, `{LOCALE_CODE}`, and `{RELATIVE_PATH}` placeholders (locale codes: `nl` Dutch, `fr` French, `de` German, `ja` Japanese, `es` Spanish, `uk` Ukrainian). `{RELATIVE_PATH}` is always the English source file's path (e.g. `about/authoring.md`) — do not translate or rename it.
+2. Fill in the `{TARGET_LANGUAGE}`, `{LOCALE_CODE}`, and `{RELATIVE_FILE_NAME}` placeholders (locale codes: `nl` Dutch, `fr` French, `de` German, `ja` Japanese, `es` Spanish, `uk` Ukrainian). `{RELATIVE_FILE_NAME}` is always the English source file's path (e.g. `about/authoring.md`) — do not translate or rename it.
 3. Give the whole prompt to your agentic tool (e.g. Cursor) with access to this repo. It reads the source file and the glossary itself — no need to paste file contents.
-4. The agent writes the translated file to `src/content/docs/{LOCALE_CODE}/{RELATIVE_PATH}`, adds any new glossary terms directly to [TD-21-i18n-glossary.md](TD-21-i18n-glossary.md), and appends a dated entry to `i18n-notes/{LOCALE_CODE}.md` documenting its choices and uncertainties.
+4. The agent writes the translated file to `src/content/docs/{LOCALE_CODE}/{RELATIVE_FILE_NAME}`, adds any new glossary terms directly to [TD-21-i18n-glossary.md](TD-21-i18n-glossary.md), and appends a dated entry to `i18n-notes/{LOCALE_CODE}.md` documenting its choices and uncertainties.
 5. Open a PR with these changes. **The output is always a draft**, never a final, merge-ready translation — since none of the collaborators doing this initial translation work are fluent in a language beyond English, review happens on the PR (ideally by a fluent-speaking reviewer) rather than before it's opened.
 
 ### The prompt
