@@ -26,9 +26,12 @@
     "@astrojs/starlight": "^0.41.5",
     "astro": "^7.1.6",
     "mermaid": "^11.14.0",
-    "sharp": "^0.35.3"
+    "sharp": "^0.35.3",
+    "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
+    "@types/mdast": "^4.0.4",
+    "@types/unist": "^3.0.3",
     "cypress": "^15.13.0",
     "postcss-html": "^1.8.0",
     "prettier": "^3.8.1",
