@@ -10,7 +10,7 @@ You are assisting the ArchivesSpace Tech Docs project with translating technical
 
 ## Task
 
-Translate the file listed below in the 'Source file' section from English into {TARGET_LANGUAGE} ({LOCALE_CODE}), for use as `src/content/docs/{LOCALE_CODE}/{FILE_NAME}`.
+Translate the file listed below in the 'Source file' section from English into {TARGET_LANGUAGE} ({LOCALE_CODE}), for use as `src/content/docs/{LOCALE_CODE}/{RELATIVE_FILE_NAME}`.
 
 Before translating:
 
@@ -31,12 +31,12 @@ Before translating:
 
 ### Source file
 
-Read `src/content/docs/{FILE_NAME}` directly from this repo. `{FILE_NAME}` must match the English original exactly (same filename and directory segments); do not translate or rename the path.
+Read `src/content/docs/{RELATIVE_FILE_NAME}` directly from this repo. `{RELATIVE_FILE_NAME}` must match the English original exactly (same filename and directory segments); do not translate or rename the path.
 
 ### Output
 
 Perform these actions directly in this repo; do not just print results in chat:
 
-1. Write the full translated file (frontmatter included) to `src/content/docs/{LOCALE_CODE}/{FILE_NAME}`.
+1. Write the full translated file (frontmatter included) to `src/content/docs/{LOCALE_CODE}/{RELATIVE_FILE_NAME}`.
 2. If you proposed any new glossary terms, add them as new rows to the {TARGET_LANGUAGE} table in `TD-21-i18n-glossary.md`.
 3. Append a new section to `i18n-notes/{LOCALE_CODE}.md` (create the file with a top-level heading if it doesn't exist yet) titled with today's date and the relative path you just translated, listing: (a) any new glossary terms you added and why, (b) terms/sentences you were unsure about and why, (c) issues noticed in the English source but not changed.
