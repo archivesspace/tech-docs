@@ -86,7 +86,10 @@ configured sets as shown above or from the following levels of description:
 - Sub-Series -- subseries
 
 In addition to the sets based on level of description, you can define sets
-based on repository codes and/or sponsors. These settings are available in the application in the Manage OAI-PMH Settings area.
+based on repository codes and/or sponsors. These settings are available in 
+the application in the Manage OAI-PMH Settings area. Note that an unrecognised
+setSpec will return noRecordsMatch; an empty &set= is treated as a no set 
+argument, so all records (not filtered to a specific set) are returned.
 
 The interface implements resumption tokens for pagination of results. As an
 example, the following URL format should be used to page through the results
