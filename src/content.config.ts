@@ -1,7 +1,7 @@
 import { defineCollection } from 'astro:content'
 import { glob } from 'astro/loaders'
-import { docsLoader } from '@astrojs/starlight/loaders'
-import { docsSchema } from '@astrojs/starlight/schema'
+import { docsLoader, i18nLoader } from '@astrojs/starlight/loaders'
+import { docsSchema, i18nSchema } from '@astrojs/starlight/schema'
 import { z } from 'astro/zod'
 import { DEFAULT_ISSUE_TEXT, DEFAULT_ISSUE_URL } from '@lib/constants.ts'
 
@@ -30,5 +30,6 @@ export const collections = {
   blog: defineCollection({
     loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
     schema: blogSchema
-  })
+  }),
+  i18n: defineCollection({ loader: i18nLoader(), schema: i18nSchema() })
 }
