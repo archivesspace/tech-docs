@@ -16,6 +16,7 @@ A shared, living reference for translating recurring ArchivesSpace/archival-scie
 | English term                | Context                                                                                                                                | Dutch translation |
 | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | Accession                   | A group of records acquired by a repository in a single transaction; a core ArchivesSpace record type.                                 | nog niet ontsloten materiaal |
+| Assessment                  | An ArchivesSpace record type used to document an assessment associated with resources, accessions, or digital objects.                  | beoordeling |
 | Archival Object             | A descriptive record for an archival component in a resource hierarchy; a core ArchivesSpace record type.                              | archiefonderdeel |
 | Nested record               | A record that exists only within the context of another record and is stored and retrieved as part of that record.                     | genest record |
 | Main record                 | A primary ArchivesSpace record type with its own persistent URI, as distinct from a supporting or nested record.                      | hoofdrecord |
@@ -34,15 +35,18 @@ A shared, living reference for translating recurring ArchivesSpace/archival-scie
 | Subject                     | A controlled-vocabulary term record describing the topic, geographic area, or genre of archival materials.                             | onderwerp        |
 | Agent                       | A record representing a person, family, or corporate body associated with archival materials (as creator, subject, etc.).              | agent |
 | Repository                  | The top-level organizational record representing an individual archive/institution within an ArchivesSpace instance.                   | collectiebeherende instelling |
+| Release                     | A packaged version of ArchivesSpace made available to users, usually tagged and published on GitHub.                               | uitgave |
+| Release notes               | A summary of changes, fixes, and compatibility notes for a specific release.                                                       | release-opmerkingen |
 | Report                      | A custom report generated from ArchivesSpace records and associated data.                                                               | rapport |
 | Subreport                   | A report nested within a report or another subreport to provide additional detail.                                                       | subrapport |
-| Classification              | A record type used to arrange accessions/resources into a hierarchical scheme independent of physical arrangement.                     |                   |
+| Classification              | A record type used to arrange accessions/resources into a hierarchical scheme independent of physical arrangement.                     | classificatie    |
 | Rights Statement            | A record capturing rights and restriction information attached to resources, accessions, or digital objects.                           | rechtenverklaring |
 | Access restrictions note    | A note that describes restrictions on access to archival materials.                                                                     | aantekening over openbaarheidsbeperkingen |
 | Reference Code               | The archival identifier for a described unit, commonly associated with ISAD(G) and DACS.                                                | referentiecode |
 | Scope and contents note      | An archival description element summarizing the scope and content of a described unit.                                                   | toelichting op inhoud |
 | Language of Materials note   | A note describing the language or languages of the materials being described.                                                           | aantekening over de taal van het materiaal |
 | Enumeration                 | A controlled, dynamic list of values (e.g., dropdown options) configurable via System > Manage Controlled Value Lists.                 | enumeratie |
+| Controlled Value List       | A configurable list of controlled values used in ArchivesSpace, such as options in a dropdown.                                        | gecontroleerde waardelijst |
 | EAD                         | Encoded Archival Description, the XML standard ArchivesSpace uses to export/import finding aids for resources.                         |                   |
 | EAC-CPF                     | Encoded Archival Context — Corporate Bodies, Persons, and Families, the XML standard for exporting agent records.                      |                   |
 | MARCXML                     | The XML-encoded MARC21 bibliographic format, supported as an import/export format for resource records.                                |                   |
@@ -67,9 +71,10 @@ A shared, living reference for translating recurring ArchivesSpace/archival-scie
 | Authentication handler      | A class that checks credentials and returns a user model during an authentication attempt.                                              | authenticatiehandler |
 | Authentication source       | The external user directory or service against which a user authenticates.                                                             | authenticatiebron |
 | Locale                      | A language/region configuration (e.g., `en`, `fr`) used by the Rails I18n system that drives the application's own UI translations.    | locale (taal-/regio-instelling) |
+| Mapping                     | A table or document describing correspondences between fields or values in data formats or systems.                                  | mapping           |
 | Migration                   | The process and tooling for importing data into ArchivesSpace from a prior system (e.g., Archivists' Toolkit, Archon).                 | migratie          |
 | Database migration          | A migration that applies database schema changes and associated data changes during an ArchivesSpace upgrade.                         | databasemigratie  |
-| Schema version              | The database schema version number associated with a given ArchivesSpace release, used to track upgrades.                              |                   |
+| Schema version              | The database schema version number associated with a given ArchivesSpace release, used to track upgrades.                              | schemaversie     |
 | Reindex                     | Updating or rebuilding the Solr index for records.                                                                                      | herindexering |
 | Soft reindex                | Updating existing Solr documents without rebuilding the index files.                                                                    | soft-herindexering |
 | Full reindex                | Rebuilding the Solr index from the database.                                                                                             | volledige herindexering |
@@ -210,7 +215,7 @@ A shared, living reference for translating recurring ArchivesSpace/archival-scie
 | Plugin                      | A self-contained package that customizes or extends ArchivesSpace behavior without modifying its core codebase.                        |                     |
 | Locale                      | A language/region configuration (e.g., `en`, `fr`) used by the Rails I18n system that drives the application's own UI translations.    |                     |
 | Migration                   | The process and tooling for importing data into ArchivesSpace from a prior system (e.g., Archivists' Toolkit, Archon).                 |                     |
-| Schema version              | The database schema version number associated with a given ArchivesSpace release, used to track upgrades.                              |                     |
+| Schema version              | The database schema version number associated with a given ArchivesSpace release, used to track upgrades.                              |                       |
 
 ## Ukrainian (uk)
 

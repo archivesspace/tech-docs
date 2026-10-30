@@ -239,3 +239,87 @@
 - **Glossary:** No new terms added. `Stylesheet` is rendered as `stijlblad`, a standard Dutch technical term; EAD and EAC-CPF remain unchanged as names of XML standards.
 - **Uncertainty:** The description’s phrase “transforming ArchivesSpace data to EAC-CPF and EAD exports into HTML or PDF” is ambiguous. The translation interprets EAC-CPF and EAD exports as the input formats being converted to HTML or PDF.
 - **English-source issues not changed:** The description is grammatically awkward and does not clearly distinguish the exported input formats from the HTML/PDF output formats. It was rendered according to the most likely intended meaning.
+
+## 2026-10-30 — `src/content/docs/nl/dev.md`
+
+- **Glossary:** Added `Development environment` → `ontwikkelomgeving`, `Bootstrap` → `bootstrap`, and `MySQL connector` → `MySQL-connector` because these are recurring technical terms in the source page, and the Dutch wording is standard technical usage without inventing a new ArchivesSpace-specific label. Reused the existing `Staff interface` → `medewerkersinterface` and `Public User Interface (PUI)` → `publieke gebruikersinterface (PUI)` entries.
+- **Uncertainty:** The source page alternates between `Solr reset`, `clear out existing Solr state`, and `database reset` to describe related cleanup steps; I rendered these as `Solr-reset` and `bestaande Solr-status wissen` to keep the operational steps clear in Dutch. The term `development environment` is generic rather than a formal ArchivesSpace record or UI label, so I used the standard Dutch `ontwikkelomgeving`.
+- **English-source issues not changed:** The source contains a minor typo in the Java section (`has occured`) and leaves a few prose lines in English (`Do not use system packages...` and `By default ...`), but these were part of the original source and were noted rather than altered in the English text. The source also uses the phrase “Building an Archivesspace Release” in the section links; I preserved the source link text as provided.
+
+## 2026-10-30 — `src/content/docs/nl/development/docker.md`
+
+- **Glossary:** No new terms added. The page uses standard Docker technical terms (`Docker`, `MySQL`, `Solr`, `image`, and `branch`), and no ArchivesSpace-specific term on this page required a new Dutch glossary entry.
+- **Uncertainty:** I kept the Docker terms in their established technical forms rather than translating `image` or `branch` into Dutch prose, because this page is a deployment workflow and those terms are standard outside any ArchivesSpace-specific UI label. The source wording for “build image” is slightly generic, but in context it clearly refers to the Docker image produced for deployment.
+- **English-source issues not changed:** No substantive English-source errors were noted in this short page. The shell command examples, comments, and output lines are intentionally left unchanged because they are code blocks or command snippets, not human-language prose.
+
+## 2026-10-30 — `src/content/docs/nl/e2e_tests.md`
+
+- **Glossary:** No new terms added. Reused `Staff interface` → `medewerkersinterface` and `Public User Interface (PUI)` → `publieke gebruikersinterface (PUI)` from the glossary. `End-to-endtestsuite` and other testing terms are general software-development terminology, not recurring ArchivesSpace or archival-science terms.
+- **Uncertainty:** I rendered `version manager` as `versiebeheerder`, consistent with the Dutch development documentation. In the frontend dev-server heading, I used the glossary's `medewerkersinterface` term, following the existing Dutch documentation's description of `frontend:devserver`.
+- **English-source issues not changed:** No substantive English-source errors were noted.
+
+## 2026-10-30 — `src/content/docs/nl/ead-exporter.md`
+
+- **Glossary:** No new terms added. Reused `Resource` → `collectie` and `Repository` → `collectiebeherende instelling` from the glossary. `EAD` remains unchanged as the name/acronym of the standard.
+- **Uncertainty:** None. “Published resources” is translated using the glossary's `collectie` term.
+- **English-source issues not changed:** No substantive English-source errors were noticed.
+
+## 2026-10-30 — `src/content/docs/nl/development/index.md`
+
+- **Glossary:** No new glossary rows were added. The page is a legacy navigation index made up of product names, technical labels, and standard Dutch terminology; nothing required a new recurring term beyond those already covered in the glossary.
+- **Uncertainty:** The only notable wording choice was `Gebruikersinterfacetestsuite`, which follows Dutch compound-noun conventions without translating the product name. I preserved the legacy `.html` links and the old relative paths exactly, because the task requires leaving internal link paths unchanged while translating only the visible text.
+- **English-source issues not changed:** The source uses legacy `.html` navigation links and a dated target pattern such as `./development/jruby-rack-build.html`; I kept these as given rather than rewriting them to newer locale-aware paths.
+
+## 2026-10-30 — `src/content/docs/nl/jruby-rack-build.md`
+
+- **Glossary:** No new terms added. This short build guide uses product and technical names such as JRuby, Rack, Maven, and S3, which remain unchanged in Dutch; it contains no recurring archival-science term that needs a glossary entry.
+- **Uncertainty:** The source uses `aspace` as shorthand in “aspace version” and “aspace build.xml” without defining it. I retained `aspace` rather than expanding it to ArchivesSpace.
+- **English-source issues not changed:** The instruction “Download jruby-rack” does not say where or how to obtain it. I noted the omission rather than adding an assumed download method.
+
+## 2026-10-30 — `src/content/docs/nl/release_schema_versions.md`
+
+- **Glossary:** No new rows were added. Filled the existing `Schema version` entry as `schemaversie`, matching the database schema version described by the page.
+- **Uncertainty:** The source's table heading says `DB Version`; I rendered this as `Databaseschemaversie` because the source filename and glossary context specify that these are database schema versions. `Release` is retained as standard Dutch IT usage.
+- **English-source issues not changed:** No substantive English-source issues were noticed.
+
+## 2026-10-30 — `src/content/docs/nl/release.md`
+
+- **Glossary:** Added `Release` → `uitgave` and `Release notes` → `release-opmerkingen` because this page is entirely devoted to the release process and those two labels recur throughout the workflow. I reused the existing Dutch technical convention for `release-branch` and `release-tag` in the prose while leaving Git branch and tag names unchanged in code examples.
+- **Uncertainty:** I translated `release` as `uitgave` rather than `versie` because in this context it refers to a packaged and published ArchivesSpace version, not to a generic version number alone. The source uses `hotfix` as a Git-flow concept; I retained it as `hotfix` because it is standard Dutch IT usage and the distinction from a normal release is important here. I kept `GitHub Pages` and `GitHub` unchanged because they are product names rather than ordinary English words.
+- **English-source issues not changed:** The source contains several English-language inconsistencies and typos—`Github` vs. `GitHub`, `Neccessary`, and the awkward sentence around the manual release-note note—while the example block intentionally remains in English as code/sample text. I noted those issues rather than rewriting the English source text itself.
+
+## 2026-10-30 — `src/content/docs/nl/releases.md`
+
+- **Glossary:** No new terms were added. Reused `Release` → `uitgave`; filled the existing `Schema version` entry as `schemaversie` and used that term for the source's schema numbers.
+- **Uncertainty:** The source calls these values “schema numbers,” while the related Dutch page identifies them as database schema versions. I translated them as `schemaversie` for consistency with that context.
+- **English-source issues not changed:** The source misspells “November” as `Novemver` and the 3.1.1 download URL points to `v3.1.0`. It also uses the noncanonical capitalization `Archivesspace` in the description, has a standalone `[Bug in Release]` without a link destination, and leaves several schema numbers as `???`. The product name is rendered as `ArchivesSpace` in Dutch; the listed values and URLs are otherwise preserved.
+
+## 2026-10-30 — `src/content/docs/nl/ui_test.md`
+
+- **Glossary:** No new terms were added. Reused `Staff interface` → `medewerkersinterface`, `Public User Interface (PUI)` → `publieke gebruikersinterface (PUI)`, and `Database dump` → `database-dump` where relevant; UI testing and browser-testing vocabulary is general software-development terminology rather than a recurring ArchivesSpace or archival-science term.
+- **Uncertainty:** I translated the browser UI label `Summary -> Artifacts` as `Samenvatting -> Artefacten`. I rendered `headless` as `headless` in prose because it is standard browser-testing terminology, and used `pullrequest` as the Dutch compound for the GitHub workflow term.
+- **English-source issues not changed:** The source contains the typos `pakcages`, `heady`, and `ovoid`, as well as grammatical issues in “Test require” and “unexpected fails.” These remain untouched in the English source; code blocks, including their comments, are preserved verbatim as required.
+
+## 2026-10-30 — `src/content/docs/nl/vscode.md`
+
+- **Glossary:** No new terms were added. The page uses general VS Code and software-development terminology, not recurring ArchivesSpace or archival-science terms.
+- **Uncertainty:** No significant terminology uncertainties arose. The VS Code task label `Terminal → Run Task… → Cucumber: Run e2e-test` is kept verbatim so readers can find the exact task in the editor.
+- **English-source issues not changed:** The description misspells the product name as `ArchiveSpace`; the Dutch description uses the correct name, `ArchivesSpace`.
+
+## 2026-10-30 — `src/content/docs/nl/migrate_from_archivists_toolkit.md`
+
+- **Glossary:** Added `Assessment` → `beoordeling` for the recurring ArchivesSpace record type. The Dutch translations in ArchivesSpace's `frontend/config/locales/nl.yml`, `public/config/locales/nl.yml`, and `common/locales/nl.yml` did not provide a Dutch term for this record type, so the standard Dutch term is used. Reused the existing glossary entries for `Accession`, `Resource`, `Digital Object`, `Repository`, `Subject`, `Migration`, and `Enumeration`.
+- **Uncertainty:** Exact AT plug-in control names are kept in English where they identify specific controls, so readers can match them to the application. The menu label “Tools” is translated as “Hulpmiddelen”; a reviewer should confirm whether it should instead remain in English to match the AT interface. The glossary translation of `Accession` (“nog niet ontsloten materiaal”) is not a one-to-one name for this record type, so the text uses it in context as a description of the material.
+- **English-source issues not changed:** The explanation for **Copy to ArchivesSpace** is grammatically incomplete and contradictory about the Host URL and the three buttons; the phrase “For most part” is ungrammatical; and the standalone “Data” bullet followed by a missing-information warning leaves unclear which AT modules' reports will not migrate. These issues were not resolved by guessing.
+
+## 2026-10-30 — `src/content/docs/nl/migrate_from_archon.md`
+
+- **Glossary:** Filled the existing `Classification` entry as `classificatie`, matching the official Dutch ArchivesSpace UI label `Classificatie`. Added `Controlled Value List` → `gecontroleerde waardelijst`; searches of ArchivesSpace's Dutch locale files did not find an existing UI translation, so the standard Dutch rendering is used. Reused the existing glossary terms for `Accession`, `Archival Object`, `Resource`, `Digital Object`, `Digital Object Component`, `Top Container`, `Location`, `Subject`, `Agent`, `Repository`, `Instance`, `Migration`, and `Enumeration`.
+- **Uncertainty:** The existing glossary renders `Accession` as `nog niet ontsloten materiaal`, which is descriptive rather than the usual record-type label; the translation follows that canonical entry when referring to these records. The Archon-specific terms `level container`, `collection content`, and `intellectual level` do not map neatly to ArchivesSpace record names, so they are translated descriptively. Exact migration-tool controls are retained in English where readers need to match their labels in the tool. The source's phrase “all ArchivesSpace 2.2.2” is unclear; the description identifies ArchivesSpace 2.2.2 as the target version. The internal link to the migration-log appendix retains its English fragment as required, which may no longer match the translated heading slug.
+- **English-source issues not changed:** The source contains the malformed phrase “migration as completed,” uses “follow query” instead of “following query,” and has inconsistent `LevelID`/`LevelContainerID` references. Several list items in the controlled-value section have missing spaces or broken formatting (including “Creatorsources...” and “o MaterialTypes”). The first paragraph says “all ArchivesSpace 2.2.2,” and the sentence before the non-migrating Archon modules is not formatted as a proper list item. These issues were not corrected in the source.
+
+## 2026-10-30 — `src/content/docs/nl/migration_tools.md`
+
+- **Glossary:** Added `Mapping` → `mapping` for the repeated spreadsheet/document links that describe correspondences between data fields or formats. No dedicated Dutch UI label appeared in the ArchivesSpace locale files, so the established Dutch IT term is used. Reused existing glossary terms including `Migration`, `Plugin`, `Accession`, `Assessment`, `Archival Object`, `Resource`, `Digital Object`, and `Location`.
+- **Uncertainty:** The link text “Load Via Spreadsheet” appears to name a specific ArchivesSpace workflow. It is translated descriptively as `laden via spreadsheet`; a reviewer should confirm whether it is preferable to retain the English label so readers can match it to the interface. “Mapping” is retained as a technical loanword because the linked files are field crosswalks, not maps in the geographic sense.
+- **English-source issues not changed:** The first AT migration-mapping link label has an opening parenthesis with no matching closing parenthesis before the link delimiter. The source also repeats “(newly reviewed) MARCXML Import Map” and “MARCXML Export Map” as plain text after the corresponding list items. Both source issues are preserved.
