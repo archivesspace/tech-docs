@@ -131,3 +131,9 @@
 - **Glossary:** No new terms added. Reused the existing `Staff interface` → `medewerkersinterface` entry.
 - **Uncertainty:** The source’s “frontend/staff interface” treats these as equivalent; I rendered it as `frontend (medewerkersinterface)` to preserve that relationship. I translated the linked “ArchivesSpace Help Center” as `Helpcentrum van ArchivesSpace` because link text should be translated, although the destination may use “Help Center” as its official English name.
 - **English-source issues not changed:** The note `Additional documentation needed` signals that more content is required; I translated it without changing or expanding the source.
+
+## 2026-10-30 — `src/content/docs/nl/architecture/index.md`
+
+- **Glossary:** No new terms added. Reused the existing translations for `Backend`, `Staff interface`, `Public User Interface (PUI)`, and `Indexer`.
+- **Uncertainty:** The source calls the indexer an “application,” while the glossary defines `Indexer` as a background process; `indexeerproces` follows the established glossary entry.
+- **English-source issues not changed:** No issues noticed in the English source.
