@@ -137,3 +137,105 @@
 - **Glossary:** No new terms added. Reused the existing translations for `Backend`, `Staff interface`, `Public User Interface (PUI)`, and `Indexer`.
 - **Uncertainty:** The source calls the indexer an “application,” while the glossary defines `Indexer` as a background process; `indexeerproces` follows the established glossary entry.
 - **English-source issues not changed:** No issues noticed in the English source.
+
+## 2026-10-30 — `src/content/docs/nl/jobs.md`
+
+- **Glossary:** Filled the existing blank `Job` translation as `achtergrondtaak`, matching its definition as a background/batch task. Added `Job runner` → `taakuitvoerder` for the registered class that executes jobs.
+- **Uncertainty:** The official Dutch ArchivesSpace locale files checked in `frontend/config/locales`, `public/config/locales`, and `common/locales` do not provide Dutch labels for jobs. Literal UI labels and code identifiers in backticks were therefore retained, while explanatory prose uses Dutch terms.
+- **English-source issues not changed:** No issues noticed in the English source.
+
+## 2026-10-30 — `src/content/docs/nl/jsonmodel.md`
+
+- **Glossary:** No new terms added. Reused the existing translations for `Digital Object`, `Repository`, and `Backend`. Kept `JSONModel` and `JSONModel::Client` unchanged as technical names.
+- **Uncertainty:** Rendered “accessors” as `toegangsmethoden` to convey their role in retrieving JSONModel values without introducing an unfamiliar loanword.
+- **English-source issues not changed:** No issues noticed in the English source.
+
+## 2026-10-30 — `src/content/docs/nl/languages.md`
+
+- **Glossary:** No new terms added. Reused the existing translations for `Backend`, `Staff interface`, `Public User Interface (PUI)`, and `Indexer`.
+- **Uncertainty:** Rendered “out of the box” as `standaard wordt meegeleverd` to convey that Apache Derby is available in the standard setup. Kept `OAI-harvester` as a technical component name.
+- **English-source issues not changed:** No issues noticed in the English source.
+
+## 2026-10-30 — `src/content/docs/nl/oai-pmh.md`
+
+- **Glossary:** Added `Harvest` → `harvesten`, matching usage in the existing Dutch docs; `Level of Description` → `beschrijvingsniveau`, the standard Dutch archival term; `OAI-PMH set` → `set`, retaining the protocol's term; and `Resumption Token` → `token voor voortzetting`, a descriptive rendering of the pagination token.
+- **Uncertainty:** Rendered “persistent deletes” as `blijvende verwijderingsmeldingen` to clarify that harvesters are notified of records deleted since their previous harvest. The Dutch UI locale does not provide specific translations for this OAI-PMH protocol behavior.
+- **English-source issues not changed:** “OAI options are set within both ... and via ...” uses a nonparallel construction. “Configured sets as shown above” is not specific about where the configuration was shown. Both were translated without changing or inferring the source meaning.
+
+## 2026-10-30 — `src/content/docs/nl/overview.md`
+
+- **Glossary:** No new terms added. Reused the existing translations for `Staff interface`, `Public User Interface (PUI)`, `Backend`, and `Indexer`.
+- **Uncertainty:** No significant uncertainties.
+- **English-source issues not changed:** No issues noticed in the English source.
+
+## 2026-10-30 — `src/content/docs/nl/public.md`
+
+- **Glossary:** Added `Access restrictions note` → `aantekening over openbaarheidsbeperkingen`, following the Dutch PUI locale's `Openbaarheidsbeperkingen` label; `Composite identifier` → `samengesteld ID-nummer`, following the ArchivesSpace UI's `ID-nummer` for identifiers and using a clear Dutch modifier for the composite form; `Element of description` → `beschrijvingselement`, a standard archival-science compound; `Inheritance` → `overerving`, the standard technical term for this behavior; `Language of Materials note` → `aantekening over de taal van het materiaal`, following the PUI label `Taal van het materiaal`; `Reference Code` → `referentiecode`, the Dutch archival term associated with ISAD(G) and DACS; and `Scope and contents note` → `toelichting op inhoud`, matching the official Dutch PUI locale. Reused the existing interface, collection, description-level, extent, and indexer glossary terms.
+- **Uncertainty:** The ArchivesSpace locale uses the general label `ID-nummer` rather than a specific translation for `Reference Code`; `referentiecode` follows Dutch archival terminology for the ISAD(G)/DACS concept. The official PUI locale renders inherited labels as `Uit de %{level}:`; the examples use `Uit de collectie` and `Uit de subserie` to match that pattern. `Request` was translated as `Aanvragen`, matching the Dutch PUI locale.
+- **English-source issues not changed:** The source has a duplicated article in “a child-level series record has an an access restrictions note.” “The lower-level of description” is grammatically awkward, and “at the series 1 level, and any descendant record” appears to omit a word or preposition. The unresolved placeholder `AR-XXXX` was preserved. The source writes `ISAD-G`; the standard is commonly styled `ISAD(G)`, but the source wording was not changed.
+
+## 2026-10-30 — `src/content/docs/nl/search.md`
+
+- **Glossary:** No new terms added. Reused the existing `Indexer` → `indexeerproces`, `Reindex` → `herindexering`, and related indexing terms.
+- **Uncertainty:** Rendered “browse list” as `de lijst met records die gebruikers kunnen doorbladeren`. The official Dutch PUI locale uses `Blader door` for browse actions, but does not provide an exact label for this list.
+- **English-source issues not changed:** No issues noticed in the English source.
+
+## 2026-10-30 — `src/content/docs/nl/authentication.md`
+
+- **Glossary:** Added `Authentication handler` → `authenticatiehandler` and `Authentication source` → `authenticatiebron`. The official Dutch locale files do not provide exact terms for these concepts, so I used clear Dutch compounds for these recurring ArchivesSpace concepts. Reused the existing `Plugin` → `plug-in` entry and the Dutch PUI locale's `Inloggen`, `Gebruikersnaam`, and `Wachtwoord` labels.
+- **Uncertainty:** The source uses “user directory” broadly for password-based authentication services; I translated this as `gebruikersdirectory's` to retain that broader meaning rather than narrowing it to LDAP. The PUI locale renders “authenticating” as `Toegang verifiëren`, but this page describes verification of user credentials, so I followed the existing Tech Docs term `authenticatie`.
+- **English-source issues not changed:** The prose spells the product term `OAUTH` in all capitals rather than the standard `OAuth` styling. It also uses the grammatically incorrect article in “an `JSONModel::ValidationException`”, and the inline code span `The JSONModel(:user)` includes the English article “The”. These source forms were left unchanged.
+
+## 2026-10-30 — `src/content/docs/nl/bower.md`
+
+- **Glossary:** No new terms added. Reused the existing `Staff interface` → `medewerkersinterface` translation.
+- **Uncertainty:** Translated “static assets” as `statische bestanden` for clarity in Dutch; the page's context indicates frontend files, not archival assets.
+- **English-source issues not changed:** The frontmatter description misspells “assets” as “assests”; the translated description conveys the intended meaning without changing the source.
+
+## 2026-10-30 — `src/content/docs/nl/configuration.md`
+
+- **Glossary:** No new terms added. Reused existing entries for `Staff interface`, `Public User Interface (PUI)`, `Backend`, `Indexer`, `Repository`, `Resource`, `Archival Object`, `Level of Description`, `Inheritance`, `Enumeration`, and `Extent`.
+- **Uncertainty:** Rendered “container inventory” as `containerinventaris`; the source does not identify a Dutch UI label for this navigation item. Rendered the PUI label “Read More” as `Meer lezen`; a reviewer may want to confirm the exact Dutch UI wording.
+- **English-source issues not changed:** The OAI deprecation note says “These three settings” although it lists four parameter names. The notification description says “older that this amount” where “older than” appears intended. The indexer-state description uses “it's” instead of “its”. The source styles OAuth as “Oauth” and JavaScript as “Javascript”; conventional casing is used in the Dutch text, but the English source was not modified. The `help_url` and `help_topic_base_url` examples each end with an extra backtick; these source quirks were preserved.
+
+## 2026-10-30 — `src/content/docs/nl/customization/index.md`
+
+- **Glossary:** No new glossary terms added. This page is a short section index, and the wording used here follows standard Dutch documentation practice rather than introducing new ArchivesSpace-specific terminology.
+- **Uncertainty:** No significant terminology uncertainty. The section labels were translated as straightforward Dutch equivalents: `configureren`, `aanpassen`, and `thematiseeren`.
+- **English-source issues not changed:** No issues noticed in the English source for this index page.
+
+## 2026-10-30 — `src/content/docs/nl/ldap.md`
+
+- **Glossary:** No new terms added. Reused the existing `Authentication handler` → `authenticatiehandler` and `Authentication source` → `authenticatiebron` entries where relevant. The official Dutch locale files did not provide an exact LDAP or bind term.
+- **Uncertainty:** Used `bind` as a Dutch technical noun for the LDAP protocol operation; this preserves the LDAP-specific meaning, but a reviewer may prefer another established Dutch wording.
+- **English-source issues not changed:** No issues noticed in the English source.
+
+## 2026-10-30 — `src/content/docs/nl/locales.md`
+
+- **Glossary:** No new terms added. Reused `Locale` → `locale (taal-/regio-instelling)`, `Enumeration` → `enumeratie`, and the existing translations for the staff and public interfaces.
+- **Uncertainty:** Translated “tooltip” as `knopinfo` and “placeholder” as `tijdelijke aanduiding`; the checked Dutch ArchivesSpace locale files did not provide exact UI terms for these concepts.
+- **English-source issues not changed:** The prose spells the product name as “Archives Space” once instead of “ArchivesSpace,” uses “top most” instead of “topmost,” has an extra space before a comma after a parenthetical example, and uses singular “version” with plural “they.” These source issues were not changed.
+
+## 2026-10-30 — `src/content/docs/nl/plugins.md`
+
+- **Glossary:** No new terms added. Reused `Plugin` → `plug-in`, `Staff interface` → `medewerkersinterface`, and `Public User Interface (PUI)` → `publieke gebruikersinterface (PUI)`.
+- **Uncertainty:** Kept `favicon` and `hooks` as familiar technical terms. The ArchivesSpace frontend's Dutch locale has no `Plugins` menu translation; I preserved this label as inline code and used the glossary spelling `plug-in` in the surrounding prose. The source also refers to the `Welcome` page using `[home]` without a link destination; rendered this as `[startpagina]` and preserved the source's link-like Markdown.
+- **English-source issues not changed:** The source has spelling/wording errors including “rather then,” “practiceable,” “astericks,” and “eaiser,” as well as grammatical issues in “allows you define” and “new records fields.” The example path line for `my.js` has an unmatched quotation mark, and the sample ERB `img` tag contains a questionable `#{...}` interpolation. The source's `[home]` text has no link destination. These were preserved rather than silently changed.
+
+## 2026-10-30 — `src/content/docs/nl/reports.md`
+
+- **Glossary:** Added `Report` → `rapport` and `Subreport` → `subrapport`. The ArchivesSpace Dutch locale files provide report-format labels but no direct labels for these report classes; `rapport` is the standard Dutch term, and `subrapport` preserves the nested relationship and the `AbstractSubreport` class name.
+- **Uncertainty:** Rendered “initializer” as `initialisatiemethode` and “result set” as `resultaatset`; a reviewer may prefer the English Ruby term `initializer` or another Dutch database term. Rendered “implement page_break to be false” as setting `page_break` to `false`; the intended implementation is not explicit in the source.
+- **English-source issues not changed:** “Implement page_break to be false” is grammatically awkward and does not make clear whether the method should return `false` or a value should be set. The `after_tasks` bullet has no final punctuation in the source. These issues were not changed.
+
+## 2026-10-30 — `src/content/docs/nl/theming.md`
+
+- **Glossary:** Added `Theme` → `thema` and `Rails asset pipeline` → `assetpipeline van Rails`. The Dutch ArchivesSpace locale files do not provide specific UI terms for these concepts; `thema` is standard Dutch and is already used for this concept in the Dutch Tech Docs, while `assetpipeline van Rails` is a clear Dutch rendering of the established Rails technical term.
+- **Uncertainty:** Rendered “heavy re-theming” as `ingrijpende wijzigingen aan het thema` to convey the extensive visual changes without reproducing the source's informal wording.
+- **English-source issues not changed:** The source says “updated you theme,” apparently intending “updated your theme,” and has an unmatched closing parenthesis after the note about starting Backend. The phrase “these kind of site-specific changes” is grammatically nonstandard. These issues were noted rather than changed in the English source.
+
+## 2026-10-30 — `src/content/docs/nl/xsl.md`
+
+- **Glossary:** No new terms added. `Stylesheet` is rendered as `stijlblad`, a standard Dutch technical term; EAD and EAC-CPF remain unchanged as names of XML standards.
+- **Uncertainty:** The description’s phrase “transforming ArchivesSpace data to EAC-CPF and EAD exports into HTML or PDF” is ambiguous. The translation interprets EAC-CPF and EAD exports as the input formats being converted to HTML or PDF.
+- **English-source issues not changed:** The description is grammatically awkward and does not clearly distinguish the exported input formats from the HTML/PDF output formats. It was rendered according to the most likely intended meaning.
