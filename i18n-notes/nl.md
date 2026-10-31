@@ -323,3 +323,81 @@
 - **Glossary:** Added `Mapping` → `mapping` for the repeated spreadsheet/document links that describe correspondences between data fields or formats. No dedicated Dutch UI label appeared in the ArchivesSpace locale files, so the established Dutch IT term is used. Reused existing glossary terms including `Migration`, `Plugin`, `Accession`, `Assessment`, `Archival Object`, `Resource`, `Digital Object`, and `Location`.
 - **Uncertainty:** The link text “Load Via Spreadsheet” appears to name a specific ArchivesSpace workflow. It is translated descriptively as `laden via spreadsheet`; a reviewer should confirm whether it is preferable to retain the English label so readers can match it to the interface. “Mapping” is retained as a technical loanword because the linked files are field crosswalks, not maps in the geographic sense.
 - **English-source issues not changed:** The first AT migration-mapping link label has an opening parenthesis with no matching closing parenthesis before the link delimiter. The source also repeats “(newly reviewed) MARCXML Import Map” and “MARCXML Export Map” as plain text after the corresponding list items. Both source issues are preserved.
+
+## 2026-10-31 — `src/content/docs/nl/clustering.md`
+
+- **Glossary:** Added `Tenant` → `tenant` because the term recurs throughout this page for an isolated ArchivesSpace installation in a shared deployment. No corresponding Dutch label appeared in the ArchivesSpace locale files; `tenant` is established Dutch IT usage for this deployment concept.
+- **Uncertainty:** `Tenant` is retained as a technical loanword rather than translated; a reviewer may want to confirm that this is preferred in the project's target Dutch register. The existing glossary translations for the staff interface and public user interface were reused.
+- **English-source issues not changed:** The instructions rely on dated software/platform versions and examples, including CentOS 6, Java 1.6, and MySQL Connector/J 5.1.24. Their current compatibility should be reviewed; they were retained as source content rather than updated during translation.
+
+## 2026-10-31 — `src/content/docs/nl/domains.md`
+
+- **Glossary:** No new terms added. Reused the existing translations `medewerkersinterface` and `publieke gebruikersinterface`; the remaining terminology is general web-server and networking terminology.
+- **Uncertainty:** The source says that `ProxyPassReverse` intercepts outgoing traffic and rewrites “the header.” This may simplify its behavior, which is more specifically about rewriting response headers; the wording was preserved in the translation.
+- **English-source issues not changed:** None noticed beyond the technical imprecision noted above.
+
+## 2026-10-31 — `src/content/docs/nl/https.md`
+
+- **Glossary:** No new terms added. Reused the glossary translations `medewerkersinterface` and `publieke gebruikersinterface (PUI)`; the remaining terminology is general web-server and networking terminology.
+- **Uncertainty:** The source describes “end-user requests (i.e., URLs),” which equates requests with URLs; this was translated conservatively without changing the source's meaning.
+- **English-source issues not changed:** The Nginx example appears syntactically malformed: the TLS server blocks close before the certificate and location directives. In the second TLS block, `server_name` is `staff.myarchive.org` although the preceding HTTP block is for `public.myarchive.org`; the proxy ports also differ from the staff/public mapping in the Apache example. These source issues were not changed.
+
+## 2026-10-31 — `src/content/docs/nl/provisioning/index.md`
+
+- **Glossary:** No new terms added. Reused `tenant` and the established Dutch wording for load balancing, subdomains, and HTTPS from the existing Dutch pages.
+- **Uncertainty:** `Provisioning` is rendered as `inrichting`, which fits the deployment and server-configuration context; Dutch usage of the technical term varies.
+- **English-source issues not changed:** The description misspells “technical” as “techinal”; the translation conveys the intended meaning.
+
+## 2026-10-31 — `src/content/docs/nl/jmeter.md`
+
+- **Glossary:** No new terms added. Reused `Repository` → `collectiebeherende instelling` and `Backend` → `backend`.
+- **Uncertainty:** The source calls this a “Test Group.” I translated it as `testgroep`; it may not refer to JMeter's standard “Thread Group” UI element, so the wording should be checked against the example plan.
+- **English-source issues not changed:** The description spells the product name as “Jmeter” instead of “JMeter”; the correct product capitalization is used in the Dutch text.
+
+## 2026-10-31 — `src/content/docs/nl/mysql.md`
+
+- **Glossary:** No new terms added. “Database” is consistently translated as `database` in the existing Dutch documentation; this page contains no recurring ArchivesSpace or archival-science term that requires a new glossary entry.
+- **Uncertainty:** None noted.
+- **English-source issues not changed:** The source says “ready to starting using,” which is grammatically incorrect. Its character-encoding instructions are inconsistent: the bold note says `utf8`, the database creation command uses `utf8mb4`, and the configuration text later specifies `UTF-8`. The final note also begins with the sentence fragment “For MySQL 8.” and refers to the product as lowercase “mysql.” These source issues were preserved in the translation.
+
+## 2026-10-31 — `src/content/docs/nl/newrelic.md`
+
+- **Glossary:** No new terms added. The page uses general application-monitoring and system-administration terminology rather than recurring ArchivesSpace or archival-science terms.
+- **Uncertainty:** None noted.
+- **English-source issues not changed:** The bullet says “Signup for an account” where the verb phrase “Sign up” is expected. It also spells the product name as lowercase “newrelic” in that bullet, although the brand is written “New Relic” elsewhere on the page.
+
+## 2026-10-31 — `src/content/docs/nl/prefix.md`
+
+- **Glossary:** No new terms added. The page uses general web-server terminology and existing Dutch wording for the staff/public applications; the technical concept of `prefix` is kept as `prefix` in line with the surrounding Dutch provisioning docs.
+- **Uncertainty:** The source uses `prefix` as a deployment pattern; Dutch technical prose often uses `voorvoegsel`, but the existing Dutch provisioning overview already uses `prefix`, so the term was retained for consistency and to match the specific Apache configuration pattern described.
+- **English-source issues not changed:** The source uses the bold warning “Prefixes do NOT work properly…,” the shorthand references `README_HTTPS` and `iptables`, and the phrase “the following are assumed”; these were preserved in the Dutch translation because they are source wording and exact technical references rather than translation errors.
+
+## 2026-10-31 — `src/content/docs/nl/robots.md`
+
+- **Glossary:** No new terms added. The page uses general web-server terminology rather than recurring ArchivesSpace or archival-science terms.
+- **Uncertainty:** The phrase “in your `/config/` directly” is unclear; it was interpreted as referring to the `/config/` directory. The source does not specify how the separate file relates to the proxy, so the translation retains the same general relationship.
+- **English-source issues not changed:** The source misspells “separate” as “seperate” and uses the unclear phrase “in your `/config/` directly.” The fragment “nginx, more like this:” was rendered naturally as an introductory label without changing the technical content.
+
+## 2026-10-31 — `src/content/docs/nl/solr.md`
+
+- **Glossary:** No new terms added. The page reuses the existing entries `Reindex` → `herindexering` and `Full reindex` → `volledige herindexering`; its remaining terminology is general Solr and system-administration language.
+- **Uncertainty:** The phrase “standalone mode” was translated as `zelfstandige modus`. Solr's linked documentation uses the technical term “standalone mode”; this Dutch rendering is intended to convey that it is not a Solr Cloud deployment.
+- **English-source issues not changed:** The source says “instructions on how set an environment variable,” missing “to.” This grammatical error was not carried over into Dutch.
+
+## 2026-10-31 — `src/content/docs/nl/tuning.md`
+
+- **Glossary:** No new terms added; the page contains general system-administration terminology rather than recurring ArchivesSpace or archival-science terms.
+- **Uncertainty:** `Heap` was retained as a technical loanword because it refers specifically to JVM heap memory. No other uncertain terms noted.
+- **English-source issues not changed:** The source has grammatical errors, including “multiple server” and “can tuned,” and refers to the “top limits what you've set.” It also misspells `archivesspace.sh` as `archivsspace.sh`. The Windows code sample contains line breaks within `-Xmx2048m` and `launcher/launcher.rb`, which appear to make the sample invalid if copied as-is; these source issues were not changed.
+
+## 2026-10-31 — `src/content/docs/nl/v4.0.0.md`
+
+- **Glossary:** Added `Finding aid` → `collectiebeschrijving`. The official ArchivesSpace Dutch PUI locale labels the finding-aid title as `Titel van de collectiebeschrijving`, so this term follows the application's own terminology.
+- **Uncertainty:** “Large finding aids” was translated as `omvangrijke collectiebeschrijvingen`; here “large” appears to refer to the size or complexity of the described collection, rather than the physical size of a document. `Rapid Data Entry` was retained as the name of the feature because the source presents it as a specific ArchivesSpace interface component.
+- **English-source issues not changed:** “More fields have special character escaped” has a grammatical agreement error, and “Change PDF label from ...” uses an imperative where the surrounding release-note bullets describe completed changes. Their intended meaning was preserved in Dutch.
+
+## 2026-10-31 — `src/content/docs/nl/index.mdx`
+
+- **Glossary:** No new terms added. “Archives management tool” is rendered as `opensourcesoftware voor archiefbeheer`, a general description rather than a recurring ArchivesSpace or archival-science term.
+- **Uncertainty:** None noted.
+- **English-source issues not changed:** None noticed.

@@ -61,6 +61,7 @@ A shared, living reference for translating recurring ArchivesSpace/archival-scie
 | Public User Interface (PUI) | The public-facing web application that presents published records to end users and researchers.                                        | publieke gebruikersinterface (PUI) |
 | Backend                     | The core ArchivesSpace application that exposes data and workflows via a REST API, consumed by the staff and public interfaces.        | backend            |
 | Instance                    | A running deployment of ArchivesSpace or a service such as Solr, with its own configuration.                                            | instantie         |
+| Tenant                      | An isolated ArchivesSpace installation within a shared deployment environment.                                                          | tenant            |
 | Inheritance                 | The process by which a record displays values from an ancestor in an archival hierarchy when it has no value of its own.               | overerving |
 | Indexer                     | The background process that reads records from the backend and writes them into Solr for search and browse.                            | indexeerproces |
 | JSONModel                   | The class/library defining the JSON data format ArchivesSpace's components use to exchange records.                                    |                   |
@@ -82,6 +83,7 @@ A shared, living reference for translating recurring ArchivesSpace/archival-scie
 | Child container             | A container nested within a top container, corresponding to the first level below it in the container hierarchy.                       | subcontainer |
 | Grandchild container        | A container nested within a child container, corresponding to the second level below a top container.                                   | sub-subcontainer |
 | Extent                      | A description of the quantity or physical extent of archival materials.                                                                  | omvang |
+| Finding aid                  | A descriptive tool that provides information about an archival collection and its contents.                                              | collectiebeschrijving |
 | Theme                       | A set of visual styles and layout choices that determine the appearance of an ArchivesSpace interface.                                    | thema |
 | Rails asset pipeline        | Rails tooling that processes and compiles assets such as stylesheets and images for an application.                                       | assetpipeline van Rails |
 
