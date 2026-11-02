@@ -162,9 +162,9 @@ afhankelijkheden te downloaden--JRuby, Gems, enz. Met één opdracht wordt een v
 zelfvoorzienende ontwikkelomgeving aangemaakt waarin alles binnen de `build`-map van het ArchivesSpace-project wordt gedownload.
 
 _Het is niet nodig en over het algemeen onjuist om JRuby
-& bundler etc. handmatig te installeren voor ArchivesSpace (zowel met een versiebeheerder als anderszins)._ 
+& bundler etc. handmatig te installeren voor ArchivesSpace (zowel met een versiebeheerder als anderszins)._
 
-_De zelfvoorzienende ontwikkelomgeving van ArchivesSpace werkt normaal gesproken niet samen met andere J/Ruby-omgevingen die je op je systeem hebt (zoals die worden beheerd door rbenv of vergelijkbare tools)._ 
+_De zelfvoorzienende ontwikkelomgeving van ArchivesSpace werkt normaal gesproken niet samen met andere J/Ruby-omgevingen die je op je systeem hebt (zoals die worden beheerd door rbenv of vergelijkbare tools)._
 
 Dit is het startpunt voor alle ArchivesSpace-ontwikkeling. Je moet deze opdracht mogelijk opnieuw uitvoeren nadat je updates hebt opgehaald, of wanneer je wijzigingen aanbrengt in Gemfiles of andere afhankelijkheden zoals die in het `./build/build.xml`-bestand.
 
@@ -184,7 +184,7 @@ Dit is het startpunt voor alle ArchivesSpace-ontwikkeling. Je moet deze opdracht
      ./build/run indexer
 
 Er zijn verschillende vormen van dezelfde `LoadError` geweest. Het is een tijdelijke fout
- die wordt opgelost door bootstrap opnieuw uit te voeren.
+die wordt opgelost door bootstrap opnieuw uit te voeren.
 
 ```txt
      [java] org.jruby.Main -I uri:classloader://META-INF/jruby.home/lib/ruby/stdlib -r
@@ -230,7 +230,7 @@ Welke eerst de database verwijdert en daarna opnieuw migreert.
 
 Bij het laden van een database in de ontwikkel-MySQL-instantie moet je er altijd voor zorgen dat ArchivesSpace
 **niet** actief is. Stop ArchivesSpace als het draait. Voer `./build/run solr:reset` uit om
- de indexeerstatus te wissen (een grondigere uitleg van deze stap staat hieronder).
+de indexeerstatus te wissen (een grondigere uitleg van deze stap staat hieronder).
 
 Als je een database laadt en MySQL is al voor ontwikkeling gebruikt, wil je waarschijnlijk eerst een lege database verwijderen en opnieuw aanmaken.
 
@@ -239,7 +239,7 @@ mysql -h 127.0.0.1 -u as -pas123 -e "DROP DATABASE archivesspace"
 mysql -h 127.0.0.1 -u as -pas123 -e "CREATE DATABASE IF NOT EXISTS archivesspace DEFAULT CHARACTER SET utf8mb4"
 ```
 
-_Noot: je kunt bovenstaande stap overslaan als MySQL net voor de eerste keer is gestart of als je een lege ArchivesSpace hebt (een instantie waarin `db:migrate` nog niet is uitgevoerd)._ 
+_Noot: je kunt bovenstaande stap overslaan als MySQL net voor de eerste keer is gestart of als je een lege ArchivesSpace hebt (een instantie waarin `db:migrate` nog niet is uitgevoerd)._
 
 Uitgaande van een draaiende MySQL en een lege `archivesspace`-database kun je doorgaan met herstellen:
 
@@ -251,7 +251,7 @@ gzip -dc ./build/mysql_db_fixtures/blank.sql.gz | mysql --host=127.0.0.1 --port=
 _Noot: de bovenstaande instructies zouden out-of-the-box moeten werken. Als je je eigen database wilt gebruiken en/of MySQL anders hebt geconfigureerd, pas de opdrachten dan naar behoefte aan._
 
 Na het herstellen wordt `./build/run db:migrate` uitgevoerd om migratie-updates op te vangen. Je kunt nu
- doorgaan met het starten van de ontwikkelservers, zoals hieronder beschreven, met data die al in ArchivesSpace is geladen.
+doorgaan met het starten van de ontwikkelservers, zoals hieronder beschreven, met data die al in ArchivesSpace is geladen.
 
 ### Bestaande Solr-status wissen
 
