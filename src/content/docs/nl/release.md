@@ -72,7 +72,7 @@ Voordat u verdergaat, is het een goed idee om te controleren of er ontbrekende
 vertalingen of meerdere gem-versies zijn.
 
 1.  Bootstrap uw huidige ontwikkelomgeving op de nieuwste master-branch
-door alle afhankelijkheden te downloaden--JRuby, Gems, Solr, enz.
+    door alle afhankelijkheden te downloaden--JRuby, Gems, Solr, enz.
 
     ```shell
     build/run bootstrap
