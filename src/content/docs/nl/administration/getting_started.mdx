@@ -1,0 +1,149 @@
+---
+title: Aan de slag
+description: Gedetailleerde hardware- en softwarevereisten voor het uitvoeren van ArchivesSpace, inclusief instructies voor het instellen en starten van een ArchivesSpace-installatie met het nieuwste distributie-.zip-bestand.
+---
+
+import LatestReleaseBlurb from '@components/LatestReleaseBlurb.astro'
+
+## De nieuwste release
+
+<LatestReleaseBlurb />
+
+## Twee installatiemethoden
+
+Er zijn twee verschillende manieren om ArchivesSpace te installeren:
+
+- Met Docker
+- Met de `.zip`-distributie
+
+### Met Docker
+
+Zie de pagina [Uitvoeren met Docker](/administration/docker/) voor instructies over het installeren van ArchivesSpace met Docker.
+
+Vanaf ArchivesSpace v4.0.0 is de gemakkelijkste en aanbevolen manier om snel aan de slag te gaan het gebruik van Docker. Deze methode vereenvoudigt het installeren, upgraden, starten en stoppen van ArchivesSpace. Het maakt het ook eenvoudig om ArchivesSpace als systeemservice in te stellen die bij elke herstart automatisch start.
+
+### Met de `.zip`-distributie
+
+De oudere en meer omvattende manier is het installeren vanaf het nieuwste distributie-.zip-bestand, zoals hieronder wordt beschreven.
+
+#### Systeemvereisten
+
+##### Besturingssysteem
+
+ArchivesSpace wordt getest op Ubuntu Linux, macOS en Windows.
+
+##### Geheugen
+
+Minimaal 1024 MB RAM toegewezen aan de toepassing is vereist. We raden minimaal 2 GB aan voor optimale prestaties.
+
+#### Softwarevereisten
+
+Bij gebruik van de zip-distributie zijn een Java-runtimeomgeving en een Solr-instantie vereist. Zie [Docker gebruiken](/administration/docker/) om deze afhankelijkheden te vermijden.
+
+##### Java Runtime Environment
+
+We raden [OpenJDK](https://openjdk.org/projects/jdk/) aan. De volgende tabel toont de ondersteunde Java-versies voor elke versie van ArchivesSpace:
+
+| ArchivesSpace-versie | OpenJDK-versie |
+| -------------------- | -------------- |
+| ≤ v3.5.1             | 8 of 11        |
+| v4.0.0 tot v4.1.1    | 11 of 17       |
+| ≥ v4.2.0             | 17 of 21       |
+
+De JRuby-versie die in ArchivesSpace v4.2.0 wordt gebruikt, is nog steeds compatibel met Java 11. We raden sterk aan om Java 17 of 21 te gebruiken, omdat dit de Java-versies zijn waarmee ArchivesSpace v4.2.0 is getest. U kunt Java 11 nog steeds gebruiken met v4.2.0, maar het ArchivesSpace Program Team kan ondersteuning bieden voor omgevingen die Java-versies gebruiken waarmee ArchivesSpace is getest (17 of 21).
+
+Merk op dat we in de volgende grote release de ondersteuning voor Java 17 waarschijnlijk zullen stoppen en alleen Java 21 en 25 ondersteunen.
+
+##### Solr
+
+Tot en met ArchivesSpace v3.1.1 bevat de zip-distributie een ingebedde Solr v4-instantie, die verouderd is en niet meer ondersteund wordt. Gebruik de Docker-afbeeldingen in het [ArchivesSpace Docker Repository](https://hub.docker.com/orgs/archivesspace/repositories) en zie ook [Docker gebruiken](/administration/docker/) om een externe Solr-instantie te beheren.
+
+ArchivesSpace v3.2.0 en hoger vereist een externe Solr-instantie bij gebruik van de zip-distributie. De onderstaande tabel vat de ondersteunde Solr-versies voor elke ArchivesSpace-versie samen:
+
+| ArchivesSpace-versie | Externe Solr-versie       |
+| -------------------- | ------------------------- |
+| ≤ v3.1.1             | geen externe Solr vereist |
+| v3.2.0 tot v3.5.1    | 8 (8.11)                  |
+| v4.0.0 tot v4.1.1    | 9 (9.4.1)                 |
+| ≥ v4.2.0             | 9 (9.9.0)                 |
+
+Elke ArchivesSpace-versie is getest op compatibiliteit met de bijbehorende Solr-versie die in de bovenstaande tabel staat. Het wordt aanbevolen de bijbehorende Solr-versie te gebruiken, omdat deze versie tijdens de ontwikkeling en bij het uitvoeren van de geautomatiseerde tests van ArchivesSpace wordt gebruikt.
+
+Als u ArchivesSpace wilt gebruiken met een oudere Solr-versie, controleert u de [release notes](https://github.com/archivesspace/archivesspace/releases) op mogelijke compatibiliteitsproblemen.
+
+**Opmerking: het ArchivesSpace Program Team kan alleen ondersteuning bieden voor Solr-implementaties
+die de "officieel" ondersteunde versie gebruiken met de standaardconfiguratie die door
+de toepassing wordt geleverd. Alles andere wordt behandeld als "best effort"-ondersteuning, geleid door de community.**
+
+Zie [Uitvoeren met externe Solr](/provisioning/solr) voor meer informatie over het installeren en upgraden van Solr.
+
+#### Database
+
+Hoewel ArchivesSpace een ingebedde database heeft, is MySQL verplicht voor productiegebruik.
+
+(Hoewel niet officieel ondersteund door ArchivesSpace, gebruiken sommige leden van de community MariaDB, en er is enige communityondersteuning voor versie 10.4.10.)
+
+Alle ArchivesSpace-versies kunnen op MySQL 5.x of 8.x draaien.
+
+##### Opmerking over het draaien met de ingebedde database
+
+**De ingebedde database is alleen voor testdoeleinden. We raden aan MySQL te gebruiken voor alle gegevens die bedoeld zijn voor productie, inclusief gegevens in een testinstantie die u later wilt overzetten naar een productie-instantie.**
+
+De ingebedde database is beschikbaar bij gebruik van de `.zip`-distributie van ArchivesSpace als een eenvoudige manier om snel een demo-ArchivesSpace-systeem op te zetten zonder MySQL in te stellen. Deze wordt in de komende grote release verouderd.
+
+Zie de pagina [Uitvoeren met Docker](/administration/docker/) voor instructies over het installeren van ArchivesSpace met Docker, wat de aanbevolen manier is om een ArchivesSpace-systeem met minimale inspanning op te zetten.
+
+#### Installeren en uitvoeren
+
+Download de distributie-`.zip` voor uw versie van [ArchivesSpace-release op GitHub](https://github.com/archivesspace/archivesspace/releases).
+
+Controleer of een ondersteunde Java-versie actief is in uw `PATH`:
+
+```sh
+java -version
+```
+
+Vergelijk de uitvoer met [Java Runtime Environment](#java-runtime-environment). Als dat nodig is, installeert u een ondersteunde OpenJDK of wijst u uw omgeving daar naartoe (vermijd een niet-ondersteunde nieuwere Java als standaard).
+
+Pak de `.zip` uit; dit maakt een map met de naam `archivesspace`. Voordat u ArchivesSpace start, voltooit u de provisie:
+
+- [MySQL](/provisioning/mysql)
+- JDBC-driver: [Download MySQL Connector](/provisioning/mysql/#download-mysql-connector)
+- Extern [Solr](/provisioning/solr) wanneer uw versie dat vereist (ArchivesSpace v3.2.0 en later bij de zip-distributie; zie [Solr](#solr))
+
+**Ga niet verder voordat MySQL en Solr (wanneer vereist) actief zijn.**
+
+Start ArchivesSpace vanuit die map. Op Linux en macOS:
+
+```shell
+cd /path/to/archivesspace
+./archivesspace.sh
+```
+
+Op Windows:
+
+```shell
+cd \path\to\archivesspace
+archivesspace.bat
+```
+
+Dit voert ArchivesSpace uit in de foreground (het stopt wanneer u de terminal sluit). Standaard worden logs geschreven naar `logs/archivesspace.out`.
+
+**Opmerking:** Op Windows betekenen fouten zoals `unable to resolve type 'size_t'` of `no such file to load -- bundler` vaak dat het pad naar de map `archivesspace` spaties bevat. Gebruik een pad zonder spaties.
+
+##### Verifiëren en inloggen
+
+De eerste start kan ongeveer een minuut duren. Controleer daarna de services in een browser:
+
+- http://localhost:8089/ — backend
+- http://localhost:8080/ — medewerkersinterface
+- http://localhost:8081/ — publieke gebruikersinterface
+- http://localhost:8082/ — OAI-PMH-server
+- http://localhost:8090/ — Solr-beheerconsole
+
+Log in op de medewerkersinterface met het standaard beheerdersaccount:
+
+- Gebruikersnaam: `admin`
+- Wachtwoord: `admin`
+
+Maak een repository aan via **Systeem** → **Beheer repositories** (rechtsboven). Via **Systeem** kunt u gebruikers en andere beheertaken beheren. **Verander het standaardwachtwoord van `admin` voordat u deze in productie gebruikt.**
