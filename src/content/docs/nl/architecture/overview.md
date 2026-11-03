@@ -12,4 +12,4 @@ ArchivesSpace is onderverdeeld in verschillende onderdelen:
 
 Deze onderdelen wisselen JSON-gegevens met elkaar uit. Het formaat van deze gegevens wordt gedefinieerd door een klasse met de naam JSONModel.
 
-![Architectuur van ArchivesSpace](./archivesspace_architecture.svg)
+![Architectuur van ArchivesSpace](archivesspace_architecture.svg)

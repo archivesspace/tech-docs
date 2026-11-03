@@ -39,7 +39,7 @@ Deze richtlijnen beschrijven hoe u gegevens migreert uit Archivists' Toolkit 2.0
 - Zorg ervoor dat de ArchivesSpace-instantie waarnaar u migreert actief is.
 - Start de AT-instantie opnieuw om de nieuw geïnstalleerde plug-in te laden. Open het menu "Hulpmiddelen" om de plug-in uit te voeren, selecteer vervolgens "Script Runtime v1.0" en ten slotte "ArchivesSpace Data Migrator". Het venster van de plug-in wordt dan weergegeven.
 
-![AT-migratietool](../../../images/at_migrator.jpg)
+![AT-migratietool](../../../../images/at_migrator.jpg)
 
 - Wijzig de standaardgegevens in de gebruikersinterface van de migratietool:
   - **Threads** – Hiermee geeft u het aantal clients op dat wordt gebruikt om records voor collecties gelijktijdig te kopiëren. Het maximumaantal clients hangt af van de recordgrootte en het toegewezen geheugen. Een aantal van 4 tot 6 is doorgaans een goede keuze, maar u kunt dit verlagen als er een "Out of Memory Exception" optreedt.

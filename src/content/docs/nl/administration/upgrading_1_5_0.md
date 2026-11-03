@@ -90,23 +90,23 @@ Omdat dit een grote wijziging in het gegevensmodel van dit deel van de applicati
 - Volg de upgrade-instructies om de databasemigraties uit te voeren. Tijdens deze stap worden uw containergegevens naar het nieuwe gegevensmodel geconverteerd. U kunt de voortgang in het logboek volgen. Windows-gebruikers kunnen het bestand archivesspace.out openen met een programma zoals Notepad ++. Mac-gebruikers kunnen tail –f logs/archivesspace.out uitvoeren om het logboek live te volgen.
 - Na afloop van de testconversie vermeldt het logboek: "Completed: existing containers have been migrated to the new container model."
 
-![Afbeelding van het conversielogboek](../../../images/ConversionLog.png)
+![Afbeelding van het conversielogboek](../../../../images/ConversionLog.png)
 
 - Open ArchivesSpace in uw browser en meld u aan.
   Haal het foutenrapport van de containerconversie op in het gedeelte Achtergrondtaken:
 - Selecteer Achtergrondtaken in het menu Instellingen.
 
-![Afbeelding van Achtergrondtaken](../../../images/BackgroundJobs.png)
+![Afbeelding van Achtergrondtaken](../../../../images/BackgroundJobs.png)
 
 - Het eerste item onder Gearchiveerde taken na de upgrade moet container_conversion_job zijn. Klik op Weergeven.
 
-![Afbeelding van de lijst met achtergrondtaken](../../../images/BackgroundJobsList.png)
+![Afbeelding van de lijst met achtergrondtaken](../../../../images/BackgroundJobsList.png)
 
 - Klik onder Bestanden op Bestand om een CSV-bestand met de fouten en een korte toelichting te downloaden.
 
-![Afbeelding van bestanden](../../../images/Files.png)
+![Afbeelding van bestanden](../../../../images/Files.png)
 
-![Afbeelding van het foutenrapport](../../../images/ErrorReport.png)
+![Afbeelding van het foutenrapport](../../../../images/ErrorReport.png)
 
 - Ga terug naar uw brongegevens en corrigeer eventuele fouten voordat u opnieuw een testconversie uitvoert.
 - Wanneer het foutenrapport geen fouten meer bevat, of wanneer u tevreden bent met de resterende fouten, is uw productie-instantie klaar voor de upgrade.

@@ -33,20 +33,20 @@ Als genormaliseerde datums niet correct zijn vastgelegd (bijvoorbeeld als de ein
 
 Controleer de instellingen en zorg ervoor dat voor elke 'niveaucontainer' de juiste waarden zijn ingesteld bij 'Intellectueel niveau' en 'Fysieke container' en dat de EAD-waarden correct zijn vastgelegd.
 
-![Niveau-/containermanager](../../../images/archon_level.jpg)
+![Niveau-/containermanager](../../../../images/archon_level.jpg)
 
 Als de waarden van niveaucontainers niet correct zijn gecodeerd, kunnen archiefonderdelen in ArchivesSpace verkeerd worden genest. U hoeft de volgende informatie niet vóór de migratie te verwerken, maar houd er rekening mee als de inhoud na de migratie niet correct is genest:
 
 - Records met collectie-inhoud waarvan de niveaucontainer is ingesteld op 'Alleen intellectueel' worden als archiefonderdelen naar ArchivesSpace gemigreerd. Voor elk niveau/container waarvoor 'intellectueel niveau' is aangevinkt, moet in het veld 'EAD-niveau' een geldige waarde zijn vastgelegd (bijvoorbeeld class, collection, file, fonds, item, otherlevel, recordgrp, series, subfonds, subgrp, subseries). Deze waarden zijn hoofdlettergevoelig. Alle andere waarden worden voor de betreffende records met collectie-inhoud/archiefonderdelen gemigreerd als "otherlevel".
 - Records met collectie-inhoud waarvan de niveaucontainer is ingesteld op 'Alleen fysiek' worden gemigreerd als instantierecords van het type 'text', gekoppeld aan een container in ArchivesSpace. Deze instantie-/containerrecords worden gekoppeld aan het intellectuele niveau of de intellectuele niveaus die in Archon eerder als directe onderliggende niveaus van de container waren vastgelegd. Als de instantie/container geen onderliggende niveaus heeft, wordt deze gekoppeld aan het bovenliggende intellectuele niveau. Ter illustratie tonen de volgende schermafbeeldingen een containerrecord vóór en na de migratie.
-  ![Voorbeeld van een Archon-container](../../../images/archon_container.jpg)
+  ![Voorbeeld van een Archon-container](../../../../images/archon_container.jpg)
 - Records met collectie-inhoud die zowel fysieke als intellectuele niveaus hebben, worden zowel als archiefonderdelen als instanties gemigreerd. In dat geval wordt de instantie aan het archiefonderdeel gekoppeld.
 - Records met collectie-inhoud die geen fysiek of intellectueel niveau hebben, worden behandeld alsof ze zijn ingesteld op 'Alleen intellectueel'. Dit wordt afgeraden en moet vóór de migratie worden hersteld.
 
 ### Records met collectie-inhoud
 
 - Als in Archon geen waarde is ingesteld voor het veld 'Titel' of 'Inclusieve datums' van een 'intellectueel' niveau/container, krijgt het te migreren record met collectie-inhoud een titel op basis van de waarde van 'label' en het in Archon ingestelde type 'niveau/container'.
-  ![Records met collectie-inhoud](../../../images/archon_collection.jpg)
+  ![Records met collectie-inhoud](../../../../images/archon_collection.jpg)
 - Controleer eventueel, als een migratie mislukt, of records met collectie-inhoud verwijzen naar ongeldige 'niveaus/containers'. Deze records staan in de databasetabellen, maar zijn niet zichtbaar voor medewerkers of eindgebruikers en moeten vóór de migratie worden verwijderd. Als ze niet worden verwijderd, mislukt de migratie. Volg deze stappen om deze records te identificeren. **Wees zeer voorzichtig. Maak eerst een back-up van de database of raadpleeg een systeembeheerder als u niet zeker weet wat u doet!**
 - Open in MySQL of SQL Server de tabel 'tblCollections_LevelContainers'. Noteer de 'ID'-waarde van elke rij (d.w.z. LevelContainer).
 - Voer een query uit op tblCollections_Content om records te vinden waarvan de kolom LevelID naar een ongeldige waarde verwijst. Als tblCollections_Level Containers bijvoorbeeld 'ID'-waarden 1-6 en 8-22 bevat:
@@ -128,7 +128,7 @@ De volgende gegevenstypen van Archon worden gemigreerd. Alle relaties tussen dez
 
 Zorg ervoor dat de ArchivesSpace-instantie waarnaar u migreert actief is en open vervolgens de migratietool.
 
-![Archon-migratietool](../../../images/archon_migrator.jpg)
+![Archon-migratietool](../../../../images/archon_migrator.jpg)
 
 1. Wijzig de standaardgegevens in de gebruikersinterface van de migratietool:
    - ArchonSource – Geef de basis-URL van de Archon-instantie op.
