@@ -44,8 +44,11 @@ Unzipping the downloaded file will create an `archivesspace` directory with the 
 ├── plugins
 ├── proxy-config
 │   └── default.conf
+├── proxy-config-https
+│   └── default.conf
 ├── sql
 ├── docker-compose.yml
+├── docker-compose-https.yml
 ├── stylesheets
 └── .env
 ```
@@ -55,9 +58,11 @@ Unzipping the downloaded file will create an `archivesspace` directory with the 
 - The `locales` directory allows [customization of the UI text](/customization/locales/).
 - The `plugins` directory is there to accommodate additional ArchivesSpace [plugins](/customization/plugins/). By default, it contains the [`local`](/customization/plugins/#adding-your-own-branding) and [`lcnaf`](https://github.com/archivesspace-plugins/lcnaf) plugins.
 - `proxy-config/default.conf` contains the configuration of the bundled `nginx` see also [proxy configuration](#proxy-configuration).
+- `proxy-config-https/default.conf` contains the `nginx` configuration that is used in place of `proxy-config/default.conf` when [HTTPS is turned on](#https-on-a-public-server).
 - In the `sql` directory you can put your `.sql` database dump file to initialize the new database, see [next section](migrating-from-the-zip-distribution-to-docker).
 - The `stylesheets` directory contain the files that are used to create PDFs and other files.
 - `docker-compose.yml` contains all the information required by Docker to build and run ArchivesSpace.
+- `docker-compose-https.yml` adds optional HTTPS with free, automatically renewed certificates from Let's Encrypt. It is not used unless you turn it on, see [HTTPS on a public server](#https-on-a-public-server).
 - `.env` contains configuration of the docker containers including:
   - Credentials used by archivespace to access its MySQL database. It is recommended to change the default root and user passwords to something safer.
   - The database connection URI which should also be [updated accordingly](/customization/configuration/#database-config) after the database user password is updated in the step above.
@@ -138,13 +143,15 @@ docker ps
 Which will give a listing like this:
 
 ```
-CONTAINER ID   IMAGE                               COMMAND                  CREATED        STATUS                    PORTS                                                  NAMES
-6cd7114c1796   nginx:1.21                          "/docker-entrypoint.…"   26 hours ago   Up 29 minutes             0.0.0.0:80->80/tcp, :::80->80/tcp                      proxy
-9ed453c46a9f   archivesspace/archivesspace:4.0.0   "/archivesspace/star…"   26 hours ago   Up 29 minutes (healthy)   8080-8081/tcp, 8089-8090/tcp, 8092/tcp                 archivesspace
-ec71dd3030b7   databack/mysql-backup:latest        "/entrypoint dump"       26 hours ago   Up 29 minutes                                                                    db-backup
-8b74aa374ec8   archivesspace/solr:4.0.0            "docker-entrypoint.s…"   26 hours ago   Up 29 minutes             0.0.0.0:8983->8983/tcp, :::8983->8983/tcp              solr
-d2cf634744fe   mysql:8                             "docker-entrypoint.s…"   26 hours ago   Up 29 minutes             0.0.0.0:3306->3306/tcp, :::3306->3306/tcp, 33060/tcp   mysql
+CONTAINER ID   IMAGE                               COMMAND                  CREATED              STATUS                        PORTS                                    NAMES
+9892976d3db8   nginx:1.30-alpine                   "/docker-entrypoint.…"   About a minute ago   Up About a minute             0.0.0.0:80->80/tcp, [::]:80->80/tcp      proxy
+19db83268a59   archivesspace/archivesspace:4.2.1   "/archivesspace/star…"   About a minute ago   Up About a minute (healthy)   8080-8081/tcp, 8089-8090/tcp, 8092/tcp   archivesspace
+d817f4919947   databack/mysql-backup:1.5.0         "/entrypoint dump"       About a minute ago   Up About a minute                                                      db-backup
+7a700955e112   archivesspace/solr:4.2.1            "docker-entrypoint.s…"   About a minute ago   Up About a minute             127.0.0.1:8983->8983/tcp                 solr
+3ea323c8ad17   mysql:8.4                           "docker-entrypoint.s…"   About a minute ago   Up About a minute             127.0.0.1:3306->3306/tcp, 33060/tcp      mysql
 ```
+
+If you turned on [HTTPS](#https-on-a-public-server), the list also includes a `certbot` container, and the `proxy` container also uses port 443.
 
 If you have also [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed, you can use it to start, stop and manage the ArchivesSpace containers after they have been created for the first time. Docker Desktop does have a built in terminal window that can be used to run Docker commands.
 
@@ -201,9 +208,115 @@ The Docker configuration package includes a mechanism that will perform periodic
 
 The Docker configuration package includes an `nginx` based proxy that is by default binding on port 80 of the host machine (see `NGINX_PORT` variable in `.env` file). See `proxy-config/default.conf` and the [nginx docker page](https://hub.docker.com/_/nginx) for more configuration options.
 
+If you turned on [HTTPS](#https-on-a-public-server), `nginx` uses `proxy-config-https/default.conf` in place of `proxy-config/default.conf`. If you change the proxy configuration (for example to enable `/oai`), make the change in `proxy-config-https/default.conf`.
+
+### Database and Solr ports
+
+The MySQL (3306) and Solr (8983) ports are available only from the computer that runs Docker (`127.0.0.1`). This prevents access to them from the internet. Tools on the same computer, for example a MySQL client, can still connect to `127.0.0.1:3306`.
+
+## HTTPS on a public server
+
+If ArchivesSpace runs on a server that people reach on the internet with a domain name (for example `archives.example.org`), you can turn on HTTPS. The configuration package then gets a free certificate from [Let's Encrypt](https://letsencrypt.org/) and renews it automatically.
+
+You do not need this if you run ArchivesSpace on your own computer.
+
+### Requirements
+
+- A domain name that points (DNS `A` record) to your server. If the domain also has an IPv6 (`AAAA`) record, IPv6 must work on the server.
+- Ports 80 and 443 on the server open to the internet. Let's Encrypt checks your domain on port 80, so keep `NGINX_PORT=80` in `.env`.
+
+The certificate is for one name only. For example, a certificate for `archives.example.org` does not include `www.archives.example.org`.
+
+### Turn on HTTPS
+
+1. Open the `.env` file and find the `# HTTPS (optional)` section at the end.
+2. Remove the `#` from the start of these 2 lines, and set your domain:
+
+   ```
+   COMPOSE_FILE=docker-compose.yml:docker-compose-https.yml
+   DOMAIN=archives.example.org
+   ```
+
+   Use the same lines on Windows, macOS and Linux. Do not change the `COMPOSE_PATH_SEPARATOR=:` line above them.
+
+   `EMAIL` is optional. Let's Encrypt does not send expiry warnings by email. If you set an address, Let's Encrypt adds it to its general mailing list. Renewal is automatic, so you do not need it.
+
+3. Start ArchivesSpace as usual:
+
+   ```shell
+   docker compose up --detach
+   ```
+
+   All containers restart one time when you turn HTTPS on or off.
+
+The first certificate usually arrives within a few minutes. Until then, the site uses a temporary certificate, and browsers show a security warning. To see the progress, run:
+
+```shell
+docker compose logs --follow certbot
+```
+
+When the certificate is ready, the log shows:
+
+```
+Certificate for archives.example.org is in place. Next check in 12 hours.
+```
+
+The Public User Interface is then available at `https://archives.example.org/` and the Staff User Interface at `https://archives.example.org/staff/`. Requests to `http://` are sent to `https://`.
+
+ArchivesSpace sets the public, staff and OAI proxy URLs to your `DOMAIN` automatically. These values replace the proxy URL settings in `config/config.rb`.
+
+### Troubleshooting
+
+**`docker compose up` says `container certbot is unhealthy`**
+
+The `DOMAIN` value in `.env` is not correct. Run `docker compose logs certbot` to see the reason. `DOMAIN` must be only the name, for example `archives.example.org`. Do not include `https://`, a `/` at the end, or a port number. The site does not start until you correct `DOMAIN` and run `docker compose up --detach` again.
+
+**The log shows `Could not get a certificate for ...`**
+
+The log also shows the reason from Let's Encrypt. The site continues to use the temporary certificate, and the request is tried again every 12 hours. Usually the cause is one of these:
+
+- The domain does not point to this server yet (DNS changes can take some time).
+- Port 80 is blocked by a firewall, or `NGINX_PORT` is not `80`. If `NGINX_PORT` is not `80`, the log also shows a warning.
+- The `DOMAIN` in `.env` has a spelling error.
+
+After you correct the problem, try again immediately with:
+
+```shell
+docker compose up --detach
+docker compose restart certbot
+```
+
+Let's Encrypt allows only a small number of failed requests per hour, so correct the problem before you try again many times.
+
+### Renewal
+
+Certificates are checked every 12 hours and renewed automatically before they expire. `nginx` loads the renewed certificate without a restart. To see your certificate and its expiry date, run:
+
+```shell
+docker compose exec certbot certbot certificates
+```
+
+The certificate is kept in a Docker volume. `docker compose down --volumes` deletes it, and a new one is then requested. Let's Encrypt allows only a small number of new certificates for the same name each week, so do not delete the volumes often.
+
+### Change the domain
+
+Change `DOMAIN` in `.env` and run `docker compose up --detach`. A certificate for the new domain is requested automatically.
+
+### Turn off HTTPS
+
+Put the `#` back at the start of the `COMPOSE_FILE` line in `.env`, then run:
+
+```shell
+docker compose up --detach --remove-orphans
+```
+
+The certificate is kept, so you can turn HTTPS on again later.
+
 ## Upgrading
 
 If you are already using the Docker configuration package and upgrading to a newer ArchivesSpace version, [download and extract](#downloading-the-configuration-package) the latest version of the Docker configuration package.
+
+**Note:** the new configuration package has a new `.env` file. Before you start, copy your changes from your old `.env` file to the new one. If you turned on [HTTPS](#https-on-a-public-server), this includes the `COMPOSE_FILE` and `DOMAIN` lines (and `EMAIL`, if you set it). Your certificate is kept and used again, if you extract the new package into the same folder.
 
 ### With solr configuration / schema changes
 
