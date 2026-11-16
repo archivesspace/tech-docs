@@ -19,7 +19,7 @@ Starlight i18n is enabled. English is the root locale (served at `/` with no `/e
 
 - `astro.config.mjs`: added `defaultLocale: 'root'` and a `locales` map (root + nl, fr, de, ja, es, uk). Each non-root locale sets `lang` to a value matching a built-in Starlight UI dictionary, so UI strings (search, table of contents, language picker, etc.) localize automatically.
 - `src/content.config.ts`: added an `i18n` content collection (`i18nLoader()` + `i18nSchema()`) for future custom UI string overrides. No JSON files are required to start.
-- `src/content/docs/{nl,fr,de,ja,es,uk}/`: empty directories created as the home for translated content.
+- `src/content/docs/{nl,fr,de,ja,es,uk}/`: one directory per language as the home for translated content, each holding an empty `.gitkeep` file so Git tracks the directory before any translations exist. The `.gitkeep` files are ignored by Starlight (it only loads Markdown/MDX files) and can stay after translations are added.
 - No changes to `src/siteNavigation.json` (the shared sidebar is localized per locale automatically), the component overrides (`Header.astro` already renders Starlight's `<LanguageSelect />`), or the blog (intentionally English-only).
 
 ### Locale config reference
@@ -55,9 +55,18 @@ Volunteer collaborators translate Tech Docs pages using an agentic tool with rea
 
 1. Pick a source file under `src/content/docs/` and a target language.
 2. Fill in the `{TARGET_LANGUAGE}`, `{LOCALE_CODE}`, and `{RELATIVE_FILE_NAME}` placeholders (locale codes: `nl` Dutch, `fr` French, `de` German, `ja` Japanese, `es` Spanish, `uk` Ukrainian). `{RELATIVE_FILE_NAME}` is always the English source file's path (e.g. `about/authoring.md`) — do not translate or rename it.
-3. Give the whole prompt to your agentic tool (e.g. Cursor) with access to this repo. It reads the source file and the glossary itself — no need to paste file contents.
+3. Give the whole prompt to your agentic tool (e.g. Cursor) with access to this repo. It reads the source file and the glossary itself — no need to paste file contents. Paste the whole prompt again for every file, even in the same session, so its guardrails stay in effect. Starting a new agent session for each file is better still: agents tend to drift (for example, into replying in the target language) over a long session.
 4. The agent writes the translated file to `src/content/docs/{LOCALE_CODE}/{RELATIVE_FILE_NAME}`, adds any new glossary terms directly to [TD-21-i18n-glossary.md](TD-21-i18n-glossary.md), and appends a dated entry to `i18n-notes/{LOCALE_CODE}.md` documenting its choices and uncertainties.
-5. Open a PR with these changes. **The output is always a draft**, never a final, merge-ready translation — since none of the collaborators doing this initial translation work are fluent in a language beyond English, review happens on the PR (ideally by a fluent-speaking reviewer) rather than before it's opened.
+5. Check the agent's changes before committing: the glossary diff should touch only the target language's section, and the notes entry should be in English. Revert anything outside that scope.
+6. Open a PR with these changes. **The output is always a draft**, never a final, merge-ready translation — since none of the collaborators doing this initial translation work are fluent in a language beyond English, review happens on the PR (ideally by a fluent-speaking reviewer) rather than before it's opened.
+
+### Guardrails
+
+Collaborators on this project work in English only. The prompt includes guardrails that hold for every run, and reviewers should check for them on each PR:
+
+- **The agent communicates only in English.** All chat with the collaborator — questions, plans, progress updates, summaries — is in English. The target language appears only in the translated content file and in the target language's column of the glossary. Translator notes (`i18n-notes/{LOCALE_CODE}.md`) are written in English.
+- **One glossary section per run.** Each run adds or fills in rows only in the target language's section of the glossary. The agent never adds terms to other languages' sections, even when it knows the translation; it can suggest them in its translator notes instead.
+- **Only the expected files change.** A run changes at most three files: the translated page, the glossary (target language section only), and that language's notes log.
 
 ### The prompt
 
@@ -68,7 +77,7 @@ See [TD-21-i18n-PROMPT.md](./TD-21-i18n-PROMPT.md).
 The glossary in [TD-21-i18n-glossary.md](TD-21-i18n-glossary.md) is seeded with terms that already recur across the docs, but it will always be incomplete — new pages introduce new terms. The feedback loop:
 
 1. While translating, the agent checks the glossary first and reuses existing entries verbatim.
-2. When it hits a recurring term that isn't in the glossary yet, it adds a new row directly to that language's table in `TD-21-i18n-glossary.md` and records its reasoning in the corresponding entry it appends to `i18n-notes/{LOCALE_CODE}.md`.
+2. When it hits a recurring term that isn't in the glossary yet, it adds a new row directly to that language's table (and only that language's table) in `TD-21-i18n-glossary.md` and records its reasoning in the corresponding entry it appends to `i18n-notes/{LOCALE_CODE}.md`.
 3. A human reviewer checks the proposed glossary row during PR review (ideally more than one set of eyes for less common languages) and can request changes before merge, so every later translation of that term — on any page, by any collaborator — stays consistent.
 
 ## Apendix
