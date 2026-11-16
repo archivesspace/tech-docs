@@ -5,7 +5,7 @@ A shared, living reference for translating recurring ArchivesSpace/archival-scie
 ## How this glossary works
 
 - **Terms come from the docs, not a generic word list.** Every seed row below is a term that actually recurs in `src/content/docs/**`, not a general archival-science glossary imported from elsewhere.
-- **One section per target language.** Find your language's section and work only within it.
+- **One section per target language.** Find your language's section and work only within it. A translation run adds or fills in rows only in its own target language's section, never in another language's, even when the translation is known; suggest those in the translator notes instead.
 - **Translation column starts blank.** Fill it in the first time you translate a page that uses that term.
 - **Prefer ArchivesSpace's own UI translation when one exists.** Before inventing a translation, check whether the ArchivesSpace application already ships an official translation for that term in your language (locale files at `frontend/config/locales`, `public/config/locales`, and `common/locales` in the [archivesspace/archivesspace](https://github.com/archivesspace/archivesspace) repo; background in [Customizing text](/customization/locales)). Reusing it keeps the docs consistent with the software readers are using.
 - **Growing the glossary:** when the canonical translation prompt (see `TD-21-i18n_project.md`) produces a "Translator notes" section proposing a new term, a human reviewer confirms the proposed translation and adds it as a new row in the relevant language section below, so future translations can reuse it verbatim.
