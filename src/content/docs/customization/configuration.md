@@ -1251,3 +1251,41 @@ Whether to expand all additional information blocks at the bottom of record page
 Use to specify the maximum number of columns to display when searching or browsing
 
 `AppConfig[:max_search_columns] = 7`
+
+#### `AppConfig[:iiif_viewer]`
+
+AppConfig[:iiif_viewer] selects the viewer used to embed a Digital Object File Version that is flagged as a IIIF manifest. It can be:
+
+- `universal_viewer` - Serve the bundled Universal Viewer (https://universalviewer.io).
+- `mirador` - Serve the bundled Mirador (https://projectmirador.org).
+- `none` - Disable the embedded viewer entirely.
+- a URL `String` - Embed an externally hosted viewer. The manifest URI is appended to the URL, so end it where the manifest URI should go, e.g. 'https://viewer.example.com/?manifest='.
+- a `Proc` - For viewer URLs that need more than a simple append. The Proc receives the manifest URI and returns the full URL.
+
+Both bundled viewers are served from ArchivesSpace itself. Examples:
+
+- `AppConfig[:iiif_viewer] = 'universal_viewer'`
+- `AppConfig[:iiif_viewer] = 'mirador'`
+- `AppConfig[:iiif_viewer] = 'none'`
+- `AppConfig[:iiif_viewer] = 'https://viewer.example.com/?manifest='`
+- `AppConfig[:iiif_viewer] = proc { |manifest_uri| "https://viewer.example.com/?m=#{CGI::escape(manifest_uri)}&other_param=value" }`
+
+To choose per repository, use a `Hash` keyed on repo_code with a :default fallback. Each value can be any of the forms above, e.g.:
+
+```
+AppConfig[:iiif_viewer] = {
+   :default => 'universal_viewer',
+   'myrepo' => 'mirador',
+   'otherrepo' => 'https://viewer.example.com/?manifest=',
+ }
+```
+
+Most externally hosted viewers accept the manifest URI in one of two forms:
+
+1. The IIIF Content State API `iiif-content` query parameter, which is what Mirador and Clover (https://github.com/samvera/clover-iiif) both read: 'https://mirador.example.com/embed/?iiif-content='
+
+2. A hash fragment parameter, which is what the Universal Viewer reads. Use this to point at an externally hosted UV rather than the bundled one: 'https://uv.example.com/uv.html#?manifest='
+
+The example hosts above are placeholders. Host your own, or use a bundled viewer. Note that an externally hosted viewer must be served over the same scheme as ArchivesSpace (https to https); an http viewer embedded in an https page is blocked by browsers. The bundled viewers avoid this issue.
+
+See the ArchivesSpace Help Center for guidance on Digital Object File Version metadata settings required to show an embedded IIIF viewer.
