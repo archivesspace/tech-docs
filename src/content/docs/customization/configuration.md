@@ -1288,4 +1288,4 @@ Most externally hosted viewers accept the manifest URI in one of two forms:
 
 The example hosts above are placeholders. Host your own, or use a bundled viewer. Note that an externally hosted viewer must be served over the same scheme as ArchivesSpace (https to https); an http viewer embedded in an https page is blocked by browsers. The bundled viewers avoid this issue.
 
-See the ArchivesSpace Help Center for guidance on Digital Object File Version metadata settings required to show an embedded IIIF viewer. 
+See the ArchivesSpace Help Center for guidance on Digital Object File Version metadata settings required to show an embedded IIIF viewer.
